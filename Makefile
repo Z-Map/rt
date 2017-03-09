@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 05:08:22 by qloubier          #+#    #+#              #
-#    Updated: 2017/02/28 19:11:28 by qloubier         ###   ########.fr        #
+#    Updated: 2017/03/09 15:23:20 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS		= src/main.c
 SILENT		= @
 BUILDDIR	= build
 SRCDIR		= src
+TARGETDIR	= .
 ifndef FANCY
 	FANCY	= on
 endif
@@ -45,14 +46,48 @@ ifeq ($(config),release)
   CFLAGS	+= -Ofast
 endif
 
-# Intern vars
+# Global vars
+ROOTDIR		= $(CURDIR)
 OPSYS		= $(shell uname -s)
-I_SRCS		= $(shell find src -name "*.c" -type f)
-I_OBJS		= $(I_SRCS:src/%.c=$(BUILDDIR)/%.o)
 
-all: $(NAME)
+# Intern vars
+I_BD		= $(BUILDDIR)/$(config)
+OBJS		= $(subst /,~,$(I_SRCS:$(SRCDIR)/%.c=%.o))
+I_OBD		= $(I_BD)/$(config)
+I_SRCS		= $(shell find $(SRCDIR)/*.c -type f)
+I_OBJS		= $(OBJS:%=$(I_BD)/%)
+I_DEP		= $(I_OBJS:%.o=%.d)
+I_BUILDTIME	= no
 
-src/%.c: $(BUILDDIR)/%.o
-	
+all: $(TARGETDIR)/$(NAME)
 
-$(NAME): $(I_SRCS)
+$(I_BD):
+	$(SILENT)mkdir -p $(I_BD)
+
+$(I_OBJS): $(I_BD)
+ifeq ($(I_BUILDTIME),yes)
+	@printf "\e[33mCompile $(notdir $(subst ~,/,$(@:$(I_BD)/%.o=%.c)))\e[31m\e[80D"
+	$(SILENT)$(CC) -MMD -MP $(CFLAGS) $(INCDIR) -o $@ -c $(subst ~,/,$(@:$(I_BD)/%.o=$(SRCDIR)/%.c))
+	@printf "\e[m[\e[32mok\e[m] \e[35m$(notdir $@)\e[m compiled !\e(B\e[m\n"
+else
+	@#echo "Preconf $@"
+endif
+
+-include $(I_DEP)
+
+$(TARGETDIR)/$(NAME): $(I_OBJS)
+ifeq ($(I_BUILDTIME),yes)
+	$(SILENT)$(CC) -MMD -MP $(CFLAGS) $(INCDIR) -o $@ $(I_OBJS)
+else
+	$(SILENT)$(MAKE) -s I_BUILDTIME=yes SILENT=$(SILENT)
+endif
+
+clean:
+	@printf "\e[31mCleaning compile files ...\e(B\e[m\n"
+	$(SILENT)rm -f $(I_OBJS) $(I_DEP)
+
+fclean: clean
+	@printf "\e[31mCleaning $(NAME) ...\e(B\e[m\n"
+	$(SILENT)rm -f $(TARGETDIR)/$(NAME)
+
+re: fclean all

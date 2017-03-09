@@ -6,8 +6,15 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:28:23 by qloubier          #+#    #+#             */
-/*   Updated: 2017/02/23 05:50:57 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/09 15:24:53 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+int			main(int argc, char** argv)
+{
+	if (argc > 1)
+		(void)argv;
+	return (0);
+}
