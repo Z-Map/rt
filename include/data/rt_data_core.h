@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt.h                                               :+:      :+:    :+:   */
+/*   rt_data_core.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/23 05:29:24 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/11 19:22:32 by qloubier         ###   ########.fr       */
+/*   Created: 2017/03/11 18:19:26 by qloubier          #+#    #+#             */
+/*   Updated: 2017/03/11 19:31:10 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_H
-# define RT_H
+#ifndef RT_DATA_CORE_H
+# define RT_DATA_CORE_H
 
 # include "rt_prototype.h"
-# include "data/rt_data_core.h"
 
-# include "rt_core.h"
-# include "rt_parser.h"
-// # include "rt_server.h"
-// # include "rt_client.h"
-// # include "rt_raycast.h"
+struct				s_rt_gui
+{
+	mglwin			*win;
+	mglwin			**wins;
+	mglimg			*layer;
+};
+
+struct				s_rt_root
+{
+	unsigned long	flags;
+	unsigned long	state;
+	char			*scene;
+	t_rtgui			gui;
+};
 
 #endif

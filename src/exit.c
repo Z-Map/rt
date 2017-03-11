@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt.h                                               :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/23 05:29:24 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/11 19:22:32 by qloubier         ###   ########.fr       */
+/*   Created: 2017/03/11 18:16:17 by qloubier          #+#    #+#             */
+/*   Updated: 2017/03/11 19:29:15 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_H
-# define RT_H
+#include <stdlib.h>
+#include "rt.h"
 
-# include "rt_prototype.h"
-# include "data/rt_data_core.h"
+int			rt_quit(t_rt *rt)
+{
+	int		ret;
 
-# include "rt_core.h"
-# include "rt_parser.h"
-// # include "rt_server.h"
-// # include "rt_client.h"
-// # include "rt_raycast.h"
-
-#endif
+	if (!rt)
+		return (-1);
+	if (rt->state & RTS_VPREV)
+		mglw_close();
+	if ((ret = rt_check_error(rt)))
+		return (ret);
+	return (0);
+}

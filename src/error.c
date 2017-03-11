@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt.h                                               :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/23 05:29:24 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/11 19:22:32 by qloubier         ###   ########.fr       */
+/*   Created: 2017/03/11 18:15:50 by qloubier          #+#    #+#             */
+/*   Updated: 2017/03/11 18:30:53 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_H
-# define RT_H
+#include <stdlib.h>
+#include "rt.h"
 
-# include "rt_prototype.h"
-# include "data/rt_data_core.h"
+int			rt_error(t_rt *rt, int code, const char *msg)
+{
+	if (!rt)
+		return (-1);
+	ft_printf("Error #%i : %s\n", code, msg);
+	return (code);
+}
 
-# include "rt_core.h"
-# include "rt_parser.h"
-// # include "rt_server.h"
-// # include "rt_client.h"
-// # include "rt_raycast.h"
-
-#endif
+int			rt_check_error(t_rt *rt)
+{
+	if (!rt)
+		return (-1);
+	return (0);
+}
