@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/12 15:18:04 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/12 17:21:56 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 # define RT_PROTOTYPE
 
 # include "libft.h"
+# include "mathex/vector.h"
 # include "mglw/mglw.h"
 
 typedef struct s_rt_root			t_rt;
 typedef struct s_rt_viewer			t_rtview;
 typedef struct s_rt_tree			t_rtree;
+
+typedef struct s_obj				t_obj; 
 
 # define RT_COMMANDMODE				0x1
 # define RT_FILEOUT					0x2
