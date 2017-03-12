@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 18:16:17 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/11 19:29:15 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/12 15:56:26 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			rt_quit(t_rt *rt)
 
 	if (!rt)
 		return (-1);
-	if (rt->state & RTS_VPREV)
+	if (rt->state & RTS_MGLW_INIT)
 		mglw_close();
 	if ((ret = rt_check_error(rt)))
 		return (ret);

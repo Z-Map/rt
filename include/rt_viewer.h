@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 14:44:59 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/12 14:52:07 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/12 16:20:05 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,7 @@
 # include "rt_core.h"
 
 void			*rt_viewer_main(void *arg);
+int				rt_init_window(t_rt *rt);
+int				viewer_loop(t_rt *rt);
 
 #endif
