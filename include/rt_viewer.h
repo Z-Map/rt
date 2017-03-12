@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt.h                                               :+:      :+:    :+:   */
+/*   rt_viewer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/23 05:29:24 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/12 14:44:20 by qloubier         ###   ########.fr       */
+/*   Created: 2017/03/12 14:44:59 by qloubier          #+#    #+#             */
+/*   Updated: 2017/03/12 14:52:07 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_H
-# define RT_H
+#ifndef RT_VIEWER_H
+# define RT_VIEWER_H
 
 # include "rt_prototype.h"
-# include "data/rt_data_core.h"
-
 # include "rt_core.h"
-# include "rt_parser.h"
-# include "rt_viewer.h"
-// # include "rt_server.h"
-// # include "rt_client.h"
-// # include "rt_raycast.h"
+
+void			*rt_viewer_main(void *arg);
 
 #endif
