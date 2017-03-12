@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 05:08:22 by qloubier          #+#    #+#              #
-#    Updated: 2017/03/11 20:09:41 by qloubier         ###   ########.fr        #
+#    Updated: 2017/03/12 14:28:56 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME		= rt
 PROJECTNAME	= rt
 
 # Project vars
-LIBSMK		= lib/libft/libft.a lib/mathex/libmathex.a ../mglw/libmglw.a
+LIBSMK		= lib/libft/libft.a lib/mathex/libmathex.a lib/mglw/libmglw.a
 LIBSFLAGS	= -lm
 INCDIR		= -Iinclude
 CFLAGS		= -Wall -Wextra -Werror #-Weverything
@@ -58,7 +58,7 @@ I_SRCS		= $(shell find $(SRCDIR) -name "*.c" -type f)
 I_OBJS		= $(OBJS:%=$(I_BD)/%)
 I_DEP		= $(I_OBJS:%.o=%.d)
 I_MKTARGET	=
-I_BUILDTIME	= no
+I_BUILDTIME	= $(shell if [ -d $(I_BD) ]; then printf "yes"; else printf "no"; fi)
 LIBDIRS		= $(shell for lib in $(LIBSMK); do dirname "$$lib"; done)
 INCDIR		+= $(LIBDIRS:%=-I%/include)#-Imglw/include -Imathex/include -Ilibft/include
 LIBFLAGS	+= $(LIBDIRS:%=-L%) $(shell basename -as .a $(LIBSMK) | sed -e "s/lib/-l/g") -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
@@ -73,11 +73,11 @@ $(LIBSMK):
 $(I_BD):
 	$(SILENT)mkdir -p $(I_BD)
 
-$(TARGETDIR)/$(NAME): $(I_BD) $(LIBSMK) $(I_OBJS)
+$(TARGETDIR)/$(NAME): $(I_BD) $(I_OBJS) $(LIBSMK)
 ifeq ($(I_BUILDTIME),yes)
 	$(SILENT)$(CC) -MMD -MP $(CFLAGS) $(INCDIR) $(LIBFLAGS) -o $@ $(I_OBJS)
 else
-	$(SILENT)$(MAKE) -s I_BUILDTIME=yes SILENT=$(SILENT)
+	$(SILENT)$(MAKE) -s $@ I_BUILDTIME=yes SILENT=$(SILENT)
 endif
 
 $(I_OBJS):
