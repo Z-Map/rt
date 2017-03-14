@@ -14,7 +14,7 @@
 
 int			rt_init_scenerdr(t_rt *rt)
 {
-	rt->state |= RTS_INIT;
+	rt->state = RTS_INIT;
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 05:08:22 by qloubier          #+#    #+#              #
-#    Updated: 2017/03/12 14:28:56 by qloubier         ###   ########.fr        #
+#    Updated: 2017/03/14 15:31:44 by lcarreel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ PROJECTNAME	= rt
 # Project vars
 LIBSMK		= lib/libft/libft.a lib/mathex/libmathex.a lib/mglw/libmglw.a
 LIBSFLAGS	= -lm
-INCDIR		= -Iinclude
+INCDIR		= -Iinclude -Ilib/mglw/lib/glload/include
 CFLAGS		= -Wall -Wextra -Werror #-Weverything
 SRCS		= src/main.c
 
@@ -60,7 +60,7 @@ I_DEP		= $(I_OBJS:%.o=%.d)
 I_MKTARGET	=
 I_BUILDTIME	= $(shell if [ -d $(I_BD) ]; then printf "yes"; else printf "no"; fi)
 LIBDIRS		= $(shell for lib in $(LIBSMK); do dirname "$$lib"; done)
-INCDIR		+= $(LIBDIRS:%=-I%/include)#-Imglw/include -Imathex/include -Ilibft/include
+INCDIR		+= $(LIBDIRS:%=-I%/include)#-Imglw/include -Imglw/lib/glload/include -Imathex/include -Ilibft/include
 LIBFLAGS	+= $(LIBDIRS:%=-L%) $(shell basename -as .a $(LIBSMK) | sed -e "s/lib/-l/g") -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
 
 .PHONY: all clean fclean re libclean $(I_DEP)
