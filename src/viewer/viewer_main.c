@@ -6,14 +6,30 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 14:51:55 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/12 16:23:31 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/14 19:52:28 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "rt_viewer.h"
 
-int					rt_init_window(t_rt *rt)
+int				viewer_run(t_rt *rt, t_rtview *v)
+{
+	mglwin_draw(v->win);
+	mglw_setGLContext(NULL);
+	if (!(v->keys & RTWK_REFRESH))
+		pthread_cond_wait(&(v->refresh_cond), &(v->refresh_lock));
+	if (v->keys & RTWK_STOP)
+	{
+		mglw_setGLContext(NULL);
+		return (0);
+	}
+	mglwin_clear(v->win);
+	mglw_setGLContext(v->wins);
+	return (1);
+}
+
+int				rt_init_window(t_rt *rt)
 {
 	mglw_setsetting(MGLWS_EXITKEY, MGLW_KEY_ESCAPE);
 	rt->viewer.layer = (mglimg *)mglw_get2dlayer(rt->viewer.win);
@@ -28,15 +44,9 @@ void			*rt_viewer_main(void *arg)
 	rt = (t_rt *)arg;
 	if (rt_init_window(rt))
 		pthread_exit(NULL);
-	while (42)
+	while (viewer_run(rt, &(rt->viewer)))
 	{
-		if (!rt_isrunning(rt) || !(rt->state & RTS_VPREV))
-		{
-			mglwin_shouldclose(rt->viewer.win);
-			break ;
-		}
 		viewer_loop(rt);
 	}
-	rt->state &= ~RTS_VPREV;
 	pthread_exit(NULL);
 }

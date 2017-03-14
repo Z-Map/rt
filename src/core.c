@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 19:06:35 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/12 16:21:47 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/14 19:51:30 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,8 @@ int			rt_init_mglw(t_rt *rt)
 
 int			rt_run(t_rt *rt)
 {
-	if ((rt->state & RTS_VPREV) && !mglwin_run(rt->viewer.win))
-		rt->state &= ~RTS_VPREV;
 	else if (rt->state & RTS_VPREV)
-		viewer_loop(rt);
+		rt_sync_viewerthread(rt)
 	if ((rt->flags & RT_VISUALPREV) && !(rt->state & RTS_VPREV))
 		rt->state |= RTS_QUIT;
 	return (0);
