@@ -6,10 +6,11 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 19:06:35 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/14 19:51:30 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/15 19:43:50 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include "rt.h"
 
 int			rt_init_scenerdr(t_rt *rt)
@@ -23,22 +24,15 @@ int			rt_init_mglw(t_rt *rt)
 	if (!mglw_init())
 		return (rt_error(rt, 121, "Unable to init mglw."));
 	rt->state |= RTS_MGLW_INIT;
-	// if ((!(rt->viewer.win = mglw_openwin(
-	// 		mglw_mkwin(MGLW_LEGACY_MODE, MGLW_2DLAYER),
-	// 		1400, 900, "-=[ |RT| ]=-"))))
-	// 	return (-120);
-	// mglw_setsetting(MGLWS_EXITKEY, MGLW_KEY_ESCAPE);
-	// rt->viewer.layer = (mglimg *)mglw_get2dlayer(rt->viewer.win);
-	// ft_bzero(rt->viewer.layer->pixels, rt->viewer.layer->memlen);
 	rt_init_viewerthread(rt);
 	return (1);
 }
 
 int			rt_run(t_rt *rt)
 {
-	else if (rt->state & RTS_VPREV)
-		rt_sync_viewerthread(rt)
-	if ((rt->flags & RT_VISUALPREV) && !(rt->state & RTS_VPREV))
+	if (rt->state & RTS_VPREV)
+		rt_sync_viewerthread(rt);
+	if (!(rt->flags & RT_MODES))
 		rt->state |= RTS_QUIT;
 	return (0);
 }
@@ -63,5 +57,7 @@ int			rt_main(t_rt *rt)
 		return (ret);
 	while (rt_isrunning(rt))
 		ret = rt_run(rt);
+	if (rt->flags & RT_VISUALPREV)
+		rt_sync_viewerthread(rt);
 	return (ret);
 }

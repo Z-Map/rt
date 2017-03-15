@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 05:08:22 by qloubier          #+#    #+#              #
-#    Updated: 2017/03/14 15:31:44 by lcarreel         ###   ########.fr        #
+#    Updated: 2017/03/15 20:08:01 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME		= rt
 PROJECTNAME	= rt
 
 # Project vars
-LIBSMK		= lib/libft/libft.a lib/mathex/libmathex.a lib/mglw/libmglw.a
+LIBSMK		= lib/libft/libft.a lib/mathex/libmathex.a mglw/libmglw.a
 LIBSFLAGS	= -lm
 INCDIR		= -Iinclude -Ilib/mglw/lib/glload/include
 CFLAGS		= -Wall -Wextra -Werror #-Weverything
@@ -63,7 +63,7 @@ LIBDIRS		= $(shell for lib in $(LIBSMK); do dirname "$$lib"; done)
 INCDIR		+= $(LIBDIRS:%=-I%/include)#-Imglw/include -Imglw/lib/glload/include -Imathex/include -Ilibft/include
 LIBFLAGS	+= $(LIBDIRS:%=-L%) $(shell basename -as .a $(LIBSMK) | sed -e "s/lib/-l/g") -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
 
-.PHONY: all clean fclean re libclean $(I_DEP)
+.PHONY: all clean fclean re libclean $(I_DEP) unicorn
 
 all: $(TARGETDIR)/$(NAME)
 
@@ -76,9 +76,37 @@ $(I_BD):
 $(TARGETDIR)/$(NAME): $(I_BD) $(I_OBJS) $(LIBSMK)
 ifeq ($(I_BUILDTIME),yes)
 	$(SILENT)$(CC) -MMD -MP $(CFLAGS) $(INCDIR) $(LIBFLAGS) -o $@ $(I_OBJS)
+	@$(MAKE) -s unicorn
 else
 	$(SILENT)$(MAKE) -s $@ I_BUILDTIME=yes SILENT=$(SILENT)
 endif
+
+unicorn:
+	@printf " ______________________________________________________________\n\
+|\e[48;5;235m                                 \e[91m     \\                       \e[m|\n\
+|\e[48;5;235m                                 \e[31m      \\                      \e[m|\n\
+|\e[48;5;235m     ____          _______       \e[92m       \\\\                     \e[m|\n\
+|\e[48;5;235m   🦄|      \\      |___ ___|      \e[32m        \\\\                    \e[m|\n\
+|\e[48;5;235m    |  D   |         | |         \e[93m         >\\/7                \e[m|\n\
+|\e[48;5;235m    |    _/          | |         \e[33m     _.-(6'  \\               \e[m|\n\
+|\e[48;5;235m    | |\\ \\           | |         \e[94m    (=___._/\` \\              \e[m|\n\
+|\e[48;5;235m    | | \\ \\          | |         \e[34m         )  \\ |              \e[m|\n\
+|\e[48;5;235m    | |  \\ \\         | |         \e[95m        /   / |              \e[m|\n\
+|\e[48;5;235m    |_|   \\_\\        |_|         \e[35m       /    > /              \e[m|\n\
+|\e[48;5;235m                                 \e[91m      j    < _\\              \e[m|\n\
+|\e[48;5;235m                                 \e[31m  _.-' :      \`\`.            \e[m|\n\
+|\e[48;5;235m                                 \e[95m  \\ r=._\\        \`.          \e[m|\n\
+|\e[48;5;235m                                 \e[35m <\`\\\\_  \\         .\`-.        \e[m|\n\
+|\e[48;5;235m                                 \e[92m  \\ r-7  \`-. ._  ' .  \`\\     \e[m|\n\
+|\e[48;5;235m                                 \e[32m   \\\`,      \`-.\`7  7)   )    \e[m|\n\
+|\e[48;5;235m                                 \e[94m    \\/         \\|  \\'  / \`-._ \e[m|\n\
+|\e[48;5;235m                                 \e[34m               ||    .'      \e[m|\n\
+|\e[48;5;235m                                 \e[91m                \\\\  (         \e[m|\n\
+|\e[48;5;235m                                 \e[31m                 >\\  >       \e[m|\n\
+|\e[48;5;235m                                 \e[95m             ,.-' >.'        \e[m|\n\
+|\e[48;5;235m                                 \e[35m            <.'_.''          \e[m|\n\
+|\e[48;5;235m                                 \e[95m              <'             \e[m|\n\
+ ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n"
 
 $(I_OBJS):
 ifeq ($(I_BUILDTIME),yes)
