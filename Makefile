@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 05:08:22 by qloubier          #+#    #+#              #
-#    Updated: 2017/03/15 20:08:01 by qloubier         ###   ########.fr        #
+#    Updated: 2017/03/16 19:05:26 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME		= rt
 PROJECTNAME	= rt
 
 # Project vars
-LIBSMK		= lib/libft/libft.a lib/mathex/libmathex.a mglw/libmglw.a
+LIBSMK		= lib/libft/libft.a lib/mathex/libmathex.a lib/mglw/libmglw.a
 LIBSFLAGS	= -lm
 INCDIR		= -Iinclude -Ilib/mglw/lib/glload/include
 CFLAGS		= -Wall -Wextra -Werror #-Weverything
