@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 14:51:55 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/15 20:05:57 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/16 19:40:26 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int				viewer_run(t_rt *rt, t_rtview *v)
 	if (!(v->keys & RTWK_REFRESH))
 		pthread_cond_wait(&(v->refresh_cond), &(v->refresh_lock));
 	v->keys &= ~RTWK_REFRESH;
-	printf("coucou je me reveille\n");
 	pthread_mutex_unlock(&(v->refresh_lock));
 	if ((v->keys & RTWK_STOP) || !rt_isrunning(rt))
 	{
