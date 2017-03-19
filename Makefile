@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 05:08:22 by qloubier          #+#    #+#              #
-#    Updated: 2017/03/16 19:05:26 by qloubier         ###   ########.fr        #
+#    Updated: 2017/03/19 13:42:20 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,8 +60,15 @@ I_DEP		= $(I_OBJS:%.o=%.d)
 I_MKTARGET	=
 I_BUILDTIME	= $(shell if [ -d $(I_BD) ]; then printf "yes"; else printf "no"; fi)
 LIBDIRS		= $(shell for lib in $(LIBSMK); do dirname "$$lib"; done)
-INCDIR		+= $(LIBDIRS:%=-I%/include)#-Imglw/include -Imglw/lib/glload/include -Imathex/include -Ilibft/include
-LIBFLAGS	+= $(LIBDIRS:%=-L%) $(shell basename -as .a $(LIBSMK) | sed -e "s/lib/-l/g") -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
+INCDIR		+= $(LIBDIRS:%=-I%/include) #-Imglw/include -Imglw/lib/glload/include -Imathex/include -Ilibft/include
+
+LIBFLAGS	+= $(LIBDIRS:%=-L%) $(shell basename -as .a $(LIBSMK) | sed -e "s/lib/-l/g")
+
+ifeq ($(OPSYS),Linux)
+  LIBFLAGS	+= -lrt -lm -ldl -lXrandr -lXinerama -lXext -lXcursor -lXrender -lXfixes -lX11 -lpthread -lxcb -lXau -lXdmcp -lGL
+else
+  LIBFLAGS	+=-framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
+endif
 
 .PHONY: all clean fclean re libclean $(I_DEP) unicorn
 
@@ -75,7 +82,7 @@ $(I_BD):
 
 $(TARGETDIR)/$(NAME): $(I_BD) $(I_OBJS) $(LIBSMK)
 ifeq ($(I_BUILDTIME),yes)
-	$(SILENT)$(CC) -MMD -MP $(CFLAGS) $(INCDIR) $(LIBFLAGS) -o $@ $(I_OBJS)
+	$(SILENT)$(CC) $(CFLAGS) $(INCDIR) -o $@ $(I_OBJS) $(LIBFLAGS)
 	@$(MAKE) -s unicorn
 else
 	$(SILENT)$(MAKE) -s $@ I_BUILDTIME=yes SILENT=$(SILENT)
