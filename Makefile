@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 05:08:22 by qloubier          #+#    #+#              #
-#    Updated: 2017/03/19 13:42:20 by qloubier         ###   ########.fr        #
+#    Updated: 2017/03/19 16:21:05 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ I_OBJS		= $(OBJS:%=$(I_BD)/%)
 I_DEP		= $(I_OBJS:%.o=%.d)
 I_MKTARGET	=
 I_BUILDTIME	= $(shell if [ -d $(I_BD) ]; then printf "yes"; else printf "no"; fi)
+I_GITINITED	= $(shell if [ -e lib/libft/Makefile ] && [ -e lib/mathex/Makefile ] && [ -e lib/mglw/Makefile ]; then printf "yes"; else printf "no"; fi)
 LIBDIRS		= $(shell for lib in $(LIBSMK); do dirname "$$lib"; done)
 INCDIR		+= $(LIBDIRS:%=-I%/include) #-Imglw/include -Imglw/lib/glload/include -Imathex/include -Ilibft/include
 
@@ -70,9 +71,30 @@ else
   LIBFLAGS	+=-framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
 endif
 
-.PHONY: all clean fclean re libclean $(I_DEP) unicorn
+.PHONY: all clean fclean re libclean $(I_DEP) unicorn gitinit gitpull pull
 
 all: $(TARGETDIR)/$(NAME)
+
+gitinit:
+ifneq ($(I_GITINITED),yes)
+	$(SILENT)git submodule update --init lib
+	$(SILENT)echo "Submodule inited"
+	$(SILENT)cd lib/libft && git chekout master && git pull origin master
+	$(SILENT)cd lib/mathex && git chekout master && git pull origin master
+	$(SILENT)cd lib/mglw && git chekout mglw42 && git pull origin mglw42
+endif
+
+gitpull: gitinit
+	$(SILENT)printf "Libft : "
+	$(SILENT)cd lib/libft && git pull
+	$(SILENT)printf "Mathex : "
+	$(SILENT)cd lib/mathex && git pull
+	$(SILENT)printf "mGLw : "
+	$(SILENT)cd lib/mglw && git pull
+	$(SILENT)printf "RT : "
+	$(SILENT)git pull
+
+pull: gitpull
 
 $(LIBSMK):
 	$(SILENT)$(MAKE) -C $(shell dirname $@) $(I_MKTARGET) BUILDDIR=$(CURDIR)/$(I_BD) PROJECTPATH=$(CURDIR) config=$(config)
