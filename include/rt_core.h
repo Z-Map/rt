@@ -6,12 +6,15 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 17:08:51 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/14 15:40:24 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/19 14:27:16 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_CORE_H
 # define RT_CORE_H
+
+# include <pthread.h>
+# include "mglw/mglw.h"
 
 # include "rt_prototype.h"
 # include "data/rt_data_core.h"

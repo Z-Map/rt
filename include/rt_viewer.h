@@ -6,12 +6,15 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 14:44:59 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/15 19:56:36 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/19 14:26:48 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_VIEWER_H
 # define RT_VIEWER_H
+
+# include <pthread.h>
+# include "mglw/mglw.h"
 
 # include "rt_prototype.h"
 # include "rt_core.h"

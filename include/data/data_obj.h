@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   data_obj.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 16:47:19 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/03/12 17:09:08 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/03/19 14:26:12 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DATA_OBJ_H
 # define DATA_OBJ_H
 
+# include "mathex/vector.h"
 # include "rt_prototype.h"
 
 typedef struct			s_obj_parser

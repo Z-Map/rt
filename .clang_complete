@@ -1,3 +1,4 @@
 -Iinclude
 -Ilib/libft/include
+-Ilib/mathex/include
 -Ilib/mglw/include
