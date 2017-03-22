@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/21 17:14:23 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/22 15:57:15 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef enum						e_rt_object_type
 	SPOT		 = 0x400,
 	POINTLIGHT	 = 0x800,
 	SUNLIGHT	 = 0x1000,
-	VISIBLE		 = PLAN | SPHERE | CONE | CYLINDER | CUBE | TRIS | MESH,
+	VISIBLE		 = PLAN | SPHERE | CONE | CYLINDER | CUBOID | TRIS | MESH,
 	LIGHT		 = SPOT | POINTLIGHT | SUNLIGHT,
 }									t_rtobt;
 
@@ -50,20 +50,20 @@ typedef enum						e_rt_object_type
 typedef struct s_obj				t_obj;
 
 
-# define RT_COMMANDMODE				0x1
-# define RT_FILEOUT					0x2
-# define RT_CLIENTMODE				0x4
-# define RT_VISUALPREV				0x8
-# define RT_MODES					0xF
+# define RT_COMMANDMODE				0x1ul
+# define RT_FILEOUT					0x2ul
+# define RT_CLIENTMODE				0x4ul
+# define RT_VISUALPREV				0x8ul
+# define RT_MODES					0xFul
 
-# define RTS_INIT					0x1
-# define RTS_MGLW_INIT				0x2
-# define RTS_RENDER					0x4
-# define RTS_SLEEP					0x8
-# define RTS_QUIT					0x10
-# define RTS_VPREV					0x20
+# define RTS_INIT					0x1ul
+# define RTS_MGLW_INIT				0x2ul
+# define RTS_RENDER					0x4ul
+# define RTS_SLEEP					0x8ul
+# define RTS_QUIT					0x10ul
+# define RTS_VPREV					0x20ul
 
-# define RTWK_REFRESH				0x1
-# define RTWK_STOP					0x2
+# define RTWK_REFRESH				0x1ul
+# define RTWK_STOP					0x2ul
 
 #endif
