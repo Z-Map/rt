@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 05:08:22 by qloubier          #+#    #+#              #
-#    Updated: 2017/03/22 17:15:23 by qloubier         ###   ########.fr        #
+#    Updated: 2017/03/22 17:19:44 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,9 +81,13 @@ else
   LIBFLAGS	+=-framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
 endif
 
-.PHONY: all clean fclean re libclean $(I_DEP) unicorn gitinit gitpull pull
+.PHONY: all clean fclean re libclean $(I_DEP) unicorn gitinit gitpull pull gitreinit
 
 all: $(TARGETDIR)/$(NAME)
+
+gitreinit:
+	git submodule deinit -f lib/libft lib/mathex lib/mglw
+	$(SILENT)$(MAKE) -s gitinit
 
 gitinit:
 ifneq ($(I_GITINITED),yes)
