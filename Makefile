@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 05:08:22 by qloubier          #+#    #+#              #
-#    Updated: 2017/03/21 17:18:24 by qloubier         ###   ########.fr        #
+#    Updated: 2017/03/22 17:15:23 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,7 @@ INCDIR		+= $(LIBDIRS:%=-I%/include) #-Imglw/include -Imglw/lib/glload/include -I
 
 LIBFLAGS	+= $(LIBDIRS:%=-L%) $(shell basename -as .a $(LIBSMK) | sed -e "s/lib/-l/g")
 
-I_CFLAGS	= $(CFLAGS) -Weverything $(INCDIR)
+I_CFLAGS	= $(CFLAGS) $(INCDIR) #-Weverything
 
 ifeq ($(OPSYS),Linux)
   LIBFLAGS	+= -lrt -lm -ldl -lXrandr -lXinerama -lXext -lXcursor -lXrender -lXfixes -lX11 -lpthread -lxcb -lXau -lXdmcp -lGL
@@ -89,9 +89,9 @@ gitinit:
 ifneq ($(I_GITINITED),yes)
 	$(SILENT)git submodule update --init lib
 	$(SILENT)echo "Submodule inited"
-	$(SILENT)cd lib/libft && git chekout master && git pull origin master
-	$(SILENT)cd lib/mathex && git chekout master && git pull origin master
-	$(SILENT)cd lib/mglw && git chekout mglw42 && git pull origin mglw42
+	$(SILENT)cd lib/libft && git checkout master && git pull origin master
+	$(SILENT)cd lib/mathex && git checkout master && git pull origin master
+	$(SILENT)cd lib/mglw && git checkout mglw42 && git pull origin mglw42
 endif
 
 gitpull: gitinit
