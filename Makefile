@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 05:08:22 by qloubier          #+#    #+#              #
-#    Updated: 2017/03/22 17:19:44 by qloubier         ###   ########.fr        #
+#    Updated: 2017/03/23 13:53:21 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,16 +111,16 @@ gitpull: gitinit
 pull: gitpull
 
 $(LIBSMK):
-	$(SILENT)$(MAKE) -C $(shell dirname $@) $(I_MKTARGET) BUILDDIR=$(CURDIR)/$(I_BD) PROJECTPATH=$(CURDIR) config=$(config)
+	$(SILENT)$(MAKE) --no-print-directory -C $(shell dirname $@) $(I_MKTARGET) BUILDDIR=$(I_BD) PROJECTPATH=$(CURDIR) config=$(config)
 
 $(I_BD):
 	$(SILENT)mkdir -p $(I_BD)
 
 $(I_OBJS):
 ifeq ($(I_BUILDTIME),yes)
-	@printf "\e[33mCompile $(notdir $(subst ~,/,$(@:$(I_BD)/%.o=%.c)))\e[31m\e[80D"
+	@printf "\e[33mCompile $(notdir $@)\e[31m\e[80D"
 	$(SILENT)$(CC) -MMD -MP $(I_CFLAGS) -o $@ -c $(subst ~,/,$(@:$(I_BD)/%.o=$(SRCDIR)/%.c))
-	@printf "\e[m[\e[32mok\e[m] \e[35m$(notdir $@)\e[m compiled !\e(B\e[m\n"
+	@printf "\e[80D%-79.79b \e[m[\e[32mok\e[m]\n" "\e[35m$(notdir $@)\e[m compiled !\e(B\e[m"
 endif
 
 -include $(I_DEP)
@@ -128,6 +128,7 @@ endif
 $(TARGETDIR)/$(NAME): $(I_BD) $(I_OBJS) $(LIBSMK)
 ifeq ($(I_BUILDTIME),yes)
 	$(SILENT)$(CC) $(I_CFLAGS) -o $@ $(I_OBJS) $(LIBFLAGS)
+	@printf "\e[80D%-79.79b \e[m[\e[32mok\e[m]\n" "\e[35m$(NAME)\e[m compiled !\e(B\e[m"
 	@$(MAKE) -s unicorn
 else
 	$(SILENT)$(MAKE) -s $@ I_BUILDTIME=yes SILENT=$(SILENT)
