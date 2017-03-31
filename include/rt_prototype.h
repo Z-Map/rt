@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/22 15:57:15 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/27 15:14:54 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 typedef struct s_rt_root			t_rt;
 typedef struct s_rt_viewer			t_rtview;
+typedef struct s_rt_render			t_rtr;
 
 typedef struct s_rt_tree			t_rtree;
 typedef struct s_rt_treenode		t_rtnode;
@@ -45,7 +46,9 @@ typedef enum						e_rt_object_type
 	LIGHT		 = SPOT | POINTLIGHT | SUNLIGHT,
 }									t_rtobt;
 
-
+typedef struct s_rt_render_gdata	t_rtrgd;
+typedef struct s_rt_render_fdata	t_rtrfd;
+typedef struct s_rt_render_data		t_rtrd;
 
 typedef struct s_obj				t_obj;
 
@@ -62,6 +65,8 @@ typedef struct s_obj				t_obj;
 # define RTS_SLEEP					0x8ul
 # define RTS_QUIT					0x10ul
 # define RTS_VPREV					0x20ul
+
+# define RTR_CG						0x1ul
 
 # define RTWK_REFRESH				0x1ul
 # define RTWK_STOP					0x2ul

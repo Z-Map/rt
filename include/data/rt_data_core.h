@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 18:19:26 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/12 15:30:45 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/03/27 15:06:11 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 # include "rt_prototype.h"
 # include "data/rt_data_viewer.h"
+# include "data/rt_data_render.h"
 
 struct						s_rt_root
 {
@@ -27,6 +28,7 @@ struct						s_rt_root
 	int						errors[15];
 	char					*scene;
 	t_rtview				viewer;
+	t_rtr					render;
 };
 
 #endif
