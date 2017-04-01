@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 05:08:22 by qloubier          #+#    #+#              #
-#    Updated: 2017/03/24 22:32:26 by qloubier         ###   ########.fr        #
+#    Updated: 2017/04/01 19:27:09 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,12 +66,13 @@ I_HEADERS	= $(shell find ./include -name "*.h" -type f)
 I_OBJS		= $(OBJS:%=$(I_BD)/%)
 I_DEP		= $(I_OBJS:%.o=%.d)
 I_MKTARGET	=
+I_MKLIB		= $(addprefix $(I_BD)/,$(notdir $(LIBSMK)))
 I_BUILDTIME	= $(shell if [ -d $(I_BD) ]; then printf "yes"; else printf "no"; fi)
 I_GITINITED	= $(shell if [ -e lib/libft/Makefile ] && [ -e lib/mathex/Makefile ] && [ -e lib/mglw/Makefile ]; then printf "yes"; else printf "no"; fi)
 LIBDIRS		= $(shell for lib in $(LIBSMK); do dirname "$$lib"; done)
 INCDIR		+= $(LIBDIRS:%=-I%/include) #-Imglw/include -Imglw/lib/glload/include -Imathex/include -Ilibft/include
 
-LIBFLAGS	+= $(LIBDIRS:%=-L%) $(shell basename -as .a $(LIBSMK) | sed -e "s/lib/-l/g")
+LIBFLAGS	+= -L$(I_BD) $(addprefix -l,$(I_MKLIB:$(I_BD)/lib%.a=%))
 
 I_CFLAGS	= $(CFLAGS) $(INCDIR) #-Weverything
 
@@ -110,8 +111,10 @@ gitpull: gitinit
 
 pull: gitpull
 
-$(LIBSMK):
-	$(SILENT)$(MAKE) --no-print-directory -C $(shell dirname $@) $(I_MKTARGET) BUILDDIR=$(I_BD) PROJECTPATH=$(CURDIR) config=$(config)
+$(I_MKLIB):
+	$(SILENT)$(MAKE) --no-print-directory -C $(dir $(filter %/$(notdir $@),$(LIBSMK))) $(I_MKTARGET)\
+		TARGETDIR=$(CURDIR)/$(I_BD) BUILDDIR=$(I_BD) PROJECTPATH=$(CURDIR)\
+		config=$(config) SILENT=$(SILENT)
 
 $(I_BD):
 	$(SILENT)mkdir -p $(I_BD)
@@ -125,12 +128,13 @@ endif
 
 -include $(I_DEP)
 
-$(TARGETDIR)/$(NAME): $(I_BD) $(I_OBJS) $(LIBSMK)
 ifeq ($(I_BUILDTIME),yes)
+$(TARGETDIR)/$(NAME): $(I_BD) $(I_MKLIB) $(I_OBJS)
 	$(SILENT)$(CC) $(I_CFLAGS) -o $@ $(I_OBJS) $(LIBFLAGS)
 	@printf "\e[80D%-79.79b \e[m[\e[32mok\e[m]\n" "\e[35m$(NAME)\e[m compiled !\e(B\e[m"
 	@$(MAKE) -s unicorn
 else
+$(TARGETDIR)/$(NAME): $(I_BD)
 	$(SILENT)$(MAKE) -s $@ I_BUILDTIME=yes SILENT=$(SILENT)
 endif
 
@@ -182,7 +186,7 @@ unicorn:
  ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n"
 
 libclean:
-	$(SILENT)$(MAKE) -Bs $(LIBSMK) I_MKTARGET=fclean
+	$(SILENT)$(MAKE) -Bs $(I_MKLIB) I_MKTARGET=fclean
 
 clean:
 	@printf "\e[31mCleaning compile files ...\e(B\e[m\n"
