@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 05:08:22 by qloubier          #+#    #+#              #
-#    Updated: 2017/04/01 19:27:09 by qloubier         ###   ########.fr        #
+#    Updated: 2017/04/01 19:35:06 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ PROJECTNAME	= rt
 
 # Project vars
 ifeq ($(RT_NATIVEMKLIB),on)
-	LIBSMK	= ../libft/libft.a ../mathex/libmathex.a lib/mglw/libmglw.a
+	LIBSMK	= ../libft/libft.a ../mathex/libmathex.a ../mglw/libmglw.a
 else
 	LIBSMK	= lib/libft/libft.a lib/mathex/libmathex.a lib/mglw/libmglw.a
 endif
