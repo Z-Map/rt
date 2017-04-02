@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 05:08:22 by qloubier          #+#    #+#              #
-#    Updated: 2017/04/01 19:35:06 by qloubier         ###   ########.fr        #
+#    Updated: 2017/04/02 20:31:49 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,23 +58,28 @@ ROOTDIR		= $(CURDIR)
 OPSYS		= $(shell uname -s)
 
 # Intern vars
-I_BD		= $(BUILDDIR)/$(config)
-OBJS		= $(subst /,~,$(I_SRCS:$(SRCDIR)/%.c=%.o))
-I_OBD		= $(I_BD)/$(config)
-I_SRCS		= $(shell find $(SRCDIR) -name "*.c" -type f)
-I_HEADERS	= $(shell find ./include -name "*.h" -type f)
-I_OBJS		= $(OBJS:%=$(I_BD)/%)
-I_DEP		= $(I_OBJS:%.o=%.d)
+I_BD				= $(BUILDDIR)/$(config)
+I_LASTCFG		= $(shell if [ -e $(BUILDDIR)/cfg ]; then cat $(BUILDDIR)/cfg; fi;)
+I_PHONY			=
+ifneq ($(I_LASTCFG),$(config))
+  I_PHONY		=  $(TARGETDIR)/$(NAME)
+endif
+OBJS				= $(subst /,~,$(I_SRCS:$(SRCDIR)/%.c=%.o))
+I_OBD				= $(I_BD)/$(config)
+I_SRCS			= $(shell find $(SRCDIR) -name "*.c" -type f)
+I_HEADERS		= $(shell find ./include -name "*.h" -type f)
+I_OBJS			= $(OBJS:%=$(I_BD)/%)
+I_DEP				= $(I_OBJS:%.o=%.d)
 I_MKTARGET	=
-I_MKLIB		= $(addprefix $(I_BD)/,$(notdir $(LIBSMK)))
+I_MKLIB			= $(addprefix $(I_BD)/,$(notdir $(LIBSMK)))
 I_BUILDTIME	= $(shell if [ -d $(I_BD) ]; then printf "yes"; else printf "no"; fi)
 I_GITINITED	= $(shell if [ -e lib/libft/Makefile ] && [ -e lib/mathex/Makefile ] && [ -e lib/mglw/Makefile ]; then printf "yes"; else printf "no"; fi)
-LIBDIRS		= $(shell for lib in $(LIBSMK); do dirname "$$lib"; done)
-INCDIR		+= $(LIBDIRS:%=-I%/include) #-Imglw/include -Imglw/lib/glload/include -Imathex/include -Ilibft/include
+LIBDIRS			= $(shell for lib in $(LIBSMK); do dirname "$$lib"; done)
+INCDIR			+= $(LIBDIRS:%=-I%/include) #-Imglw/include -Imglw/lib/glload/include -Imathex/include -Ilibft/include
 
-LIBFLAGS	+= -L$(I_BD) $(addprefix -l,$(I_MKLIB:$(I_BD)/lib%.a=%))
+LIBFLAGS		+= -L$(I_BD) $(addprefix -l,$(I_MKLIB:$(I_BD)/lib%.a=%))
 
-I_CFLAGS	= $(CFLAGS) $(INCDIR) #-Weverything
+I_CFLAGS		= $(CFLAGS) $(INCDIR) #-Weverything
 
 ifeq ($(OPSYS),Linux)
   LIBFLAGS	+= -lrt -lm -ldl -lXrandr -lXinerama -lXext -lXcursor -lXrender -lXfixes -lX11 -lpthread -lxcb -lXau -lXdmcp -lGL
@@ -82,7 +87,7 @@ else
   LIBFLAGS	+=-framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
 endif
 
-.PHONY: all clean fclean re libclean $(I_DEP) unicorn gitinit gitpull pull gitreinit
+.PHONY: all clean fclean re libclean $(I_DEP) unicorn gitinit gitpull pull gitreinit $(I_PHONY)
 
 all: $(TARGETDIR)/$(NAME)
 
@@ -131,6 +136,7 @@ endif
 ifeq ($(I_BUILDTIME),yes)
 $(TARGETDIR)/$(NAME): $(I_BD) $(I_MKLIB) $(I_OBJS)
 	$(SILENT)$(CC) $(I_CFLAGS) -o $@ $(I_OBJS) $(LIBFLAGS)
+	$(SILENT)printf "$(config)" > $(BUILDDIR)/cfg
 	@printf "\e[80D%-79.79b \e[m[\e[32mok\e[m]\n" "\e[35m$(NAME)\e[m compiled !\e(B\e[m"
 	@$(MAKE) -s unicorn
 else
