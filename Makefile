@@ -6,74 +6,74 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 05:08:22 by qloubier          #+#    #+#              #
-#    Updated: 2017/04/02 20:31:49 by qloubier         ###   ########.fr        #
+#    Updated: 2017/04/04 16:59:43 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Name
-NAME		= rt
-PROJECTNAME	= rt
+NAME			= rt
+PROJECTNAME		= rt
 
 # Project vars
 ifeq ($(RT_NATIVEMKLIB),on)
-	LIBSMK	= ../libft/libft.a ../mathex/libmathex.a ../mglw/libmglw.a
+	LIBSMK		= ../libft/libft.a ../mathex/libmathex.a ../mglw/libmglw.a
 else
-	LIBSMK	= lib/libft/libft.a lib/mathex/libmathex.a lib/mglw/libmglw.a
+	LIBSMK		= lib/libft/libft.a lib/mathex/libmathex.a lib/mglw/libmglw.a
 endif
-LIBSFLAGS	= -lm
-INCDIR		= -Iinclude -Ilib/mglw/lib/glload/include
-SRCS		= src/main.c
+LIBSFLAGS		= -lm
+INCDIR			= -Iinclude -Ilib/mglw/lib/glload/include
+SRCS			= src/main.c
 
 ifndef CFLAGS
-	CFLAGS	= -Wall -Wextra -Werror
+	CFLAGS		= -Wall -Wextra -Werror
 endif
 
 # Setup vars
-SILENT		= @
-BUILDDIR	= build
-SRCDIR		= src
-TARGETDIR	= .
+SILENT			= @
+BUILDDIR		= build
+SRCDIR			= src
+TARGETDIR		= .
 ifndef FANCY
-	FANCY	= on
+	FANCY		= on
 endif
 
 # Set compiler command name
 ifndef CC
-	CC		= clang
+	CC			= clang
 endif
 
 # Set debug flag if config is in debug mode
 ifndef config
-	config	= release
+	config		= release
 endif
 ifeq ($(config),debug)
-  CFLAGS	+= -O1 -g -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
+  CFLAGS		+= -O1 -g -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
 endif
 ifeq ($(config),release)
-  CFLAGS	+= -Ofast
+  CFLAGS		+= -Ofast
 endif
 
 # Global vars
-ROOTDIR		= $(CURDIR)
-OPSYS		= $(shell uname -s)
+ROOTDIR			= $(CURDIR)
+OPSYS			= $(shell uname -s)
 
 # Intern vars
-I_BD				= $(BUILDDIR)/$(config)
+I_BD			= $(BUILDDIR)/$(config)
 I_LASTCFG		= $(shell if [ -e $(BUILDDIR)/cfg ]; then cat $(BUILDDIR)/cfg; fi;)
 I_PHONY			=
 ifneq ($(I_LASTCFG),$(config))
   I_PHONY		=  $(TARGETDIR)/$(NAME)
 endif
-OBJS				= $(subst /,~,$(I_SRCS:$(SRCDIR)/%.c=%.o))
-I_OBD				= $(I_BD)/$(config)
+OBJS			= $(subst /,~,$(I_SRCS:$(SRCDIR)/%.c=%.o))
+I_OBD			= $(I_BD)/$(config)
 I_SRCS			= $(shell find $(SRCDIR) -name "*.c" -type f)
 I_HEADERS		= $(shell find ./include -name "*.h" -type f)
 I_OBJS			= $(OBJS:%=$(I_BD)/%)
-I_DEP				= $(I_OBJS:%.o=%.d)
-I_MKTARGET	=
+I_DEP			= $(I_OBJS:%.o=%.d)
+I_MKTARGET		=
 I_MKLIB			= $(addprefix $(I_BD)/,$(notdir $(LIBSMK)))
-I_BUILDTIME	= $(shell if [ -d $(I_BD) ]; then printf "yes"; else printf "no"; fi)
-I_GITINITED	= $(shell if [ -e lib/libft/Makefile ] && [ -e lib/mathex/Makefile ] && [ -e lib/mglw/Makefile ]; then printf "yes"; else printf "no"; fi)
+I_BUILDTIME		= $(shell if [ -d $(I_BD) ]; then printf "yes"; else printf "no"; fi)
+I_GITINITED		= $(shell if [ -e lib/libft/Makefile ] && [ -e lib/mathex/Makefile ] && [ -e lib/mglw/Makefile ]; then printf "yes"; else printf "no"; fi)
 LIBDIRS			= $(shell for lib in $(LIBSMK); do dirname "$$lib"; done)
 INCDIR			+= $(LIBDIRS:%=-I%/include) #-Imglw/include -Imglw/lib/glload/include -Imathex/include -Ilibft/include
 
@@ -82,9 +82,9 @@ LIBFLAGS		+= -L$(I_BD) $(addprefix -l,$(I_MKLIB:$(I_BD)/lib%.a=%))
 I_CFLAGS		= $(CFLAGS) $(INCDIR) #-Weverything
 
 ifeq ($(OPSYS),Linux)
-  LIBFLAGS	+= -lrt -lm -ldl -lXrandr -lXinerama -lXext -lXcursor -lXrender -lXfixes -lX11 -lpthread -lxcb -lXau -lXdmcp -lGL
+  LIBFLAGS		+= -lrt -lm -ldl -lXrandr -lXinerama -lXext -lXcursor -lXrender -lXfixes -lX11 -lpthread -lxcb -lXau -lXdmcp -lGL
 else
-  LIBFLAGS	+=-framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
+  LIBFLAGS		+= -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
 endif
 
 .PHONY: all clean fclean re libclean $(I_DEP) unicorn gitinit gitpull pull gitreinit $(I_PHONY)
