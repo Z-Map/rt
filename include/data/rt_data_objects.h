@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 18:56:24 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/21 19:04:00 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/10 15:44:31 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ struct				s_rt_object
 	t_rtobt			type:32;
 	unsigned int	flags;
 	char			*name;
-
+	t_rtobd			data;
 };
 
 #endif
