@@ -6,7 +6,7 @@
 /*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 17:30:19 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/04/11 17:41:10 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/04/11 18:14:56 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@ int			rmnodes(size_t num, ...)
 		return (0);
 	va_start(nodes, num);
 	while (num-- > 0)
-		if (node)
-		{
-			free(node);
-			node = NULL;
-		}
+		rmnode(va_arg(nodes, t_rtnode *));
 	return (1);
 }
