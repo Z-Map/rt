@@ -6,7 +6,7 @@
 /*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 18:34:30 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/04/11 18:49:43 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/04/12 19:07:26 by ealbert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int				rmrnode(t_rtnode *node)
 {
 	t_rtnode	**tmp;
+	t_rtnode	**next;
 
 	if (!node)
 		return (0);
@@ -22,7 +23,9 @@ int				rmrnode(t_rtnode *node)
 	while (*tmp)
 	{
 		rmrnodes(*tmp);
+		*next = tmp->next;
 		rmnode(*tmp);
+		*tmp = *next;
 	}
 	rmnode(node);
 	return (1);
