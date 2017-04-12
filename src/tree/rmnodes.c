@@ -21,5 +21,6 @@ int			rmnodes(size_t num, ...)
 	va_start(nodes, num);
 	while (num-- > 0)
 		rmnode(va_arg(nodes, t_rtnode *));
+	va_end(nodes);
 	return (1);
 }
