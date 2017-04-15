@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/27 15:14:54 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/15 20:43:02 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,25 @@ typedef union u_rt_objectdata		t_rtobd;
 
 typedef enum						e_rt_object_type
 {
-	INVALID		 = 0,
-	ROOT		 = 0x1,
-	EMPTY		 = 0x2,
-	CAMERA		 = 0x4,
-	PLAN		 = 0x8,
-	SPHERE		 = 0x10,
-	CONE		 = 0x20,
-	CYLINDER	 = 0x40,
-	CUBOID		 = 0x80,
-	TRIS		 = 0x100,
-	MESH		 = 0x200,
-	SPOT		 = 0x400,
-	POINTLIGHT	 = 0x800,
-	SUNLIGHT	 = 0x1000,
-	VISIBLE		 = PLAN | SPHERE | CONE | CYLINDER | CUBOID | TRIS | MESH,
-	LIGHT		 = SPOT | POINTLIGHT | SUNLIGHT,
+	INVALID		= 0,
+	SCENE		= 0x1,
+	EMPTY		= 0x2,
+	CAMERA		= 0x4,
+	PLAN		= 0x8,
+	SPHERE		= 0x10,
+	CONE		= 0x20,
+	CYLINDER	= 0x40,
+	CUBOID		= 0x80,
+	TRIS		= 0x100,
+	MESH		= 0x200,
+	SPOT		= 0x400,
+	POINTLIGHT	= 0x800,
+	SUNLIGHT	= 0x1000,
+	NOTYPE		= 0x2000,
+	VISIBLE		= PLAN | SPHERE | CONE | CYLINDER | CUBOID | TRIS | MESH,
+	LIGHT		= SPOT | POINTLIGHT | SUNLIGHT,
+	TOOL		= EMPTY | CAMERA,
+	VALID		= VISIBLE | LIGHT | TOOL | SCENE
 }									t_rtobt;
 
 typedef struct s_rt_render_gdata	t_rtrgd;

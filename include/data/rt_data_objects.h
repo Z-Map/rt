@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 18:56:24 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/10 15:44:31 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/15 21:02:51 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,22 @@
 # include "mathex/matrix.h"
 # include "rt_prototype.h"
 
+struct					s_rtscene
+{
+	t_rtmat				*ambient_light;
+	t_rtmat				*skybox;
+};
+
+struct					s_rtempty
+{
+	void				*subtree;
+	float				size;
+};
+
 struct					s_rtcamera
 {
 	t_v2d				fov;
+	float				focus;
 };
 
 struct					s_rtplan
@@ -48,6 +61,7 @@ struct					s_rtcylinder
 struct					s_rtcuboid
 {
 	t_rtmat				*material;
+	float				radius;
 };
 
 struct					s_rtmesh
@@ -63,11 +77,13 @@ struct					s_rtmesh
 
 struct					s_rtlight
 {
+	t_rtmat				*material;
 	float				intensity;
 };
 
 union					u_rt_objectdata
 {
+	struct s_rtscene	scene;
 	struct s_rtcamera	camera;
 	struct s_rtplan		plan;
 	struct s_rtsphere	sphere;
@@ -78,21 +94,24 @@ union					u_rt_objectdata
 	struct s_rtlight	light;
 };
 
-struct				s_rt_object_instance
+struct					s_rt_object_instance
 {
-	unsigned int	id;
-	int				flags;
-	char			*name;
-	t_mattf			transform;
-	t_rtobj			*obdata;
+	unsigned int		id;
+	int					flags;
+	char				*name;
+	t_mattf				transform;
+	t_rtobj				*obdata;
 };
 
-struct				s_rt_object
+struct					s_rt_object
 {
-	t_rtobt			type:32;
-	unsigned int	flags;
-	char			*name;
-	t_rtobd			data;
+	t_rtobt				type:32;
+	t_rgba				color;
+	unsigned long		flags;
+	unsigned long		usercfg;
+	size_t				instances;
+	char				*name;
+	t_rtobd				data;
 };
 
 #endif
