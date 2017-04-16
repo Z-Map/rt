@@ -6,19 +6,19 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 15:45:36 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/14 21:10:20 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/15 21:38:42 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_TREE_H
 # define RT_TREE_H
 
-# include <stdarg.h>
+#include <stdarg.h>
 
 # include "rt_prototype.h"
+# include "data/rt_data_core.h"
 # include "data/rt_data_objects.h"
 # include "data/rt_data_tree.h"
-# include "data/rt_data_core.h"
 
 t_rtnode			*mknode(t_rtobi *ob_inst); // <<
 t_rtree				*mktree(size_t num, ...);
