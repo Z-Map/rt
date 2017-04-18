@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/27 15:14:54 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/18 19:44:06 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef enum						e_rt_object_type
 	LIGHT		 = SPOT | POINTLIGHT | SUNLIGHT,
 }									t_rtobt;
 
+typedef struct s_rt_render_ray		t_rtray;
 typedef struct s_rt_render_gdata	t_rtrgd;
 typedef struct s_rt_render_fdata	t_rtrfd;
 typedef struct s_rt_render_data		t_rtrd;

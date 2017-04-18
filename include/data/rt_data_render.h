@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 15:03:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/27 15:38:04 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/18 19:45:21 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@
 # include "mathex/matrix.h"
 
 # include "rt_prototype.h"
+
+struct					s_rt_render_ray
+{
+	t_v3f				start;
+	t_v3f				direction;
+	t_rgba				color;
+	int					intensity;
+};
 
 struct					s_rt_render_gdata
 {
