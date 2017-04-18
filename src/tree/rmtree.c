@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rmrnode.c                                          :+:      :+:    :+:   */
+/*   rmtree.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/11 18:34:30 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/04/18 15:39:14 by lcarreel         ###   ########.fr       */
+/*   Created: 2017/04/18 15:35:47 by lcarreel          #+#    #+#             */
+/*   Updated: 2017/04/18 15:44:24 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "rt_tree.h"
 
-int				rmrnode(t_rtnode *node)
+int				rmtree(t_rtree *tree)
 {
 	t_rtnode	**tmp;
 	t_rtnode	**next;
 
-	if (!node)
+	if (!tree)
 		return (0);
-	tmp = &(node->childs);
+	tmp = &(tree->node.childs);
 	next = NULL;
 	while (*tmp)
 	{
 		*next = (*tmp)->next;
 		rmrnode(*tmp);
-		rmnode(*tmp);
 		*tmp = *next;
 	}
-	rmnode(node);
+	if (tree->buffer)
+		free(tree->buffer);
+	free(tree);
+	tree = NULL;
 	return (1);
 }
