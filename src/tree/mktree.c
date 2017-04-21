@@ -6,7 +6,7 @@
 /*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 19:20:09 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/04/18 13:49:04 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/04/20 16:52:15 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ t_rtree			*mktree(size_t num, ...)
 	if (num == 0)
 		tree = NULL;
 	va_start(nodes, num);
+	tree->node.parent = tree->node;
+	tree->node.next = NULL;
 	tree->node.childs = va_arg(nodes, t_rtnode *);
 	while (--num > 0)
 	{
