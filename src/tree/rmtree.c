@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tree_collapsechild.c                               :+:      :+:    :+:   */
+/*   rmtree.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/11 18:54:50 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/04/21 14:11:52 by lcarreel         ###   ########.fr       */
+/*   Created: 2017/04/18 15:35:47 by lcarreel          #+#    #+#             */
+/*   Updated: 2017/04/18 15:44:24 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "rt_tree.h"
 
-t_rtnode		*tree_collapsechild(t_rtnode *parent, t_rtnode *node)
+int				rmtree(t_rtree *tree)
 {
 	t_rtnode	**tmp;
+	t_rtnode	**next;
 
-	if (!parent || !node)
-		return (NULL);
-	tmp = &(node->childs);
+	if (!tree)
+		return (0);
+	tmp = &(tree->node.childs);
+	next = NULL;
 	while (*tmp)
 	{
-		(*tmp)->parent = parent;
-		tmp = &((*tmp)->next);
+		*next = (*tmp)->next;
+		rmrnode(*tmp);
+		*tmp = *next;
 	}
-	(*tmp)->next = parent->childs;
-	parent->childs = node->childs;
-	return (tree_delchild(parent, node));
+	if (tree->buffer)
+		free(tree->buffer);
+	free(tree);
+	tree = NULL;
+	return (1);
 }
