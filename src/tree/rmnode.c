@@ -6,10 +6,11 @@
 /*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 17:24:29 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/04/11 17:30:03 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/04/18 13:49:31 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "rt_tree.h"
 
 int			rmnode(t_rtnode *node)

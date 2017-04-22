@@ -6,10 +6,10 @@
 /*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 17:13:38 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/04/10 17:24:12 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/04/18 13:46:47 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include <stdlib.h>
 #include "rt_tree.h"
 
 t_rtnode			*mknode(t_rtobi *ob_inst)
