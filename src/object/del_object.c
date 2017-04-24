@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/15 20:57:35 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/15 21:17:07 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/22 02:22:30 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int				rmobject(t_rtobj *obj)
 {
 	if (obj)
-		free(obj);
+		ft_vfree(obj);
 	else
 		return (0);
 	return (1);
@@ -58,7 +58,7 @@ t_rtobj			*rminstance(t_rtobi *inst)
 	ob = inst->obdata;
 	if (ob)
 		ob->instances -= 1;
-	free(inst);
+	ft_vfree(inst);
 	return (ob);
 }
 

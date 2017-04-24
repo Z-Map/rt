@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 20:51:21 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/15 21:32:27 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/22 02:22:58 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,24 @@ static void			init_obj(t_rtobj *obj, t_rtobt type, const char *name)
 	};
 }
 
-t_rtobj			*mkobject(t_rtobt type, const char *name)
+t_rtobj				*mkobject(t_rtobt type, const char *name)
 {
-	t_rtobj		*newob;
+	static t_vmem	*vm;
+	t_rtobj			*newob;
 
-	if (!(type & VALID) || !(newob = (t_rtobj *)malloc(obj_type_memsize(type))))
+	if (!vm)
+		vm = ft_vmemnew((sizeof(t_rtobj) + sizeof(t_vmps)) * RTOBJ_MEMBUF_SIZE);
+	if (!(type & VALID) || !(newob =
+		(t_rtobj *)ft_vmemalloc(vm, (short)obj_type_memsize(type))))
 		return (NULL);
 	init_obj(newob, type, name);
 	return (newob);
 }
 
-int				mkobjects(t_rtobj **obtab, size_t num, ...)
+int					mkobjects(t_rtobj **obtab, size_t num, ...)
 {
-	va_list		objs;
-	size_t		i;
+	va_list			objs;
+	size_t			i;
 
 	va_start(objs, num);
 	i = 0;
@@ -57,21 +61,25 @@ int				mkobjects(t_rtobj **obtab, size_t num, ...)
 	return (1);
 }
 
-t_rtobi			*mkinstance(t_rtobj *object, char *name)
+t_rtobi				*mkinstance(t_rtobj *object, char *name)
 {
-	t_rtobi		*newinst;
+	static t_vmem	*vm;
+	t_rtobi			*newinst;
 
-	if (!object || !(newinst = malloc((t_rtobi *)sizeof(t_rtobi))))
+	if (!vm)
+		vm = ft_vmemnew((sizeof(t_rtobi) + sizeof(t_vmps)) * RTOBI_MEMBUF_SIZE);
+	if (!object || !(newinst =
+		(t_rtobi *)ft_vmemalloc(vm, (short)sizeof(t_rtobi))))
 		return (NULL);
 	newinst->obdata = object;
 	object->instances += 1;
 	return (newinst);
 }
 
-int				mkinstances(t_rtobi **obitab, size_t num, ...)
+int					mkinstances(t_rtobi **obitab, size_t num, ...)
 {
-	va_list		objs;
-	size_t		i;
+	va_list			objs;
+	size_t			i;
 
 	va_start(objs, num);
 	i = 0;

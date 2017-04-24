@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 17:08:51 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/19 14:27:16 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/22 22:47:43 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,11 @@
 
 int			rt_main(t_rt *rt);
 
+int			rt_init_main(t_rt *rt);
 int			rt_init_scenerdr(t_rt *rt);
+
+int			rt_init_rdrmgrthread(t_rt *rt);
+int			rt_sync_rdrmgrthread(t_rt *rt);
 
 int			rt_init_mglw(t_rt *rt);
 int			rt_init_viewerthread(t_rt *rt);

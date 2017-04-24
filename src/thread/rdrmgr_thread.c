@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   rdrmgr_thread.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/23 05:28:23 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/22 22:44:17 by qloubier         ###   ########.fr       */
+/*   Created: 2017/04/23 01:42:02 by qloubier          #+#    #+#             */
+/*   Updated: 2017/04/23 03:56:04 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "rt.h"
+#include "rt_render.h"
 
-int			main(int argc, char** argv)
+void		*rt_rdrmgr_main(void *arg)
 {
-	t_rt	rt_root;
+	t_rt		*rt;
 
-	rt_init_main(&rt_root);
-	if (!rt_parse_args(&rt_root, argc, argv))
-		return (-1);
-	rt_main(&rt_root);
-	return (rt_quit(&rt_root));
+	rt = (t_rt *)arg;
+	pthread_exit(rdrmgr_exit(rt, 0));
 }
