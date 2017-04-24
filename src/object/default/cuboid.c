@@ -11,3 +11,9 @@
 /* ************************************************************************** */
 
 #include "rt_object.h"
+
+void			object_default_cuboid(t_rtobj *object)
+{
+	object->data.cuboid = (struct s_rtcuboid){
+		.material = NULL, .radius = 1.0};
+}

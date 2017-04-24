@@ -11,3 +11,8 @@
 /* ************************************************************************** */
 
 #include "rt_object.h"
+
+void			object_default_plan(t_rtobj *object)
+{
+	object->data.plan = (struct s_rtplan){.material = NULL};
+}

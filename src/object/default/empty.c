@@ -11,3 +11,9 @@
 /* ************************************************************************** */
 
 #include "rt_object.h"
+
+void			object_default_empty(t_rtobj *object)
+{
+	object->data.empty = (struct s_rtempty){
+		.subtree = NULL, .size = 1.0};
+}

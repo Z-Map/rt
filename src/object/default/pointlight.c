@@ -11,3 +11,9 @@
 /* ************************************************************************** */
 
 #include "rt_object.h"
+
+void			object_default_light(t_rtobj *object)
+{
+	object->data.light = (struct s_rtlight){
+		.material = NULL, .radius = 1.0, .angle = 1.0, .intensity = 1.0};
+}

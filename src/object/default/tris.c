@@ -11,3 +11,8 @@
 /* ************************************************************************** */
 
 #include "rt_object.h"
+
+void			object_default_tris(t_rtobj *object)
+{
+	
+}

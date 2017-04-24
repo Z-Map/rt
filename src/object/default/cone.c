@@ -11,3 +11,9 @@
 /* ************************************************************************** */
 
 #include "rt_object.h"
+
+void			object_default_cone(t_rtobj *object)
+{
+	object->data.cone = (struct s_rtcone){
+		.material = NULL, .angle = 1.0};
+}

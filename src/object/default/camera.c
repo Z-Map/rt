@@ -11,3 +11,9 @@
 /* ************************************************************************** */
 
 #include "rt_object.h"
+
+void			object_default_camera(t_rtobj *object)
+{
+	object->data.camera = (struct s_rtcamera){
+		.fov = (t_v2d){1.0, 1.0}, .focus = 1.0};
+}

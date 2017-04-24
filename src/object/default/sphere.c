@@ -11,3 +11,9 @@
 /* ************************************************************************** */
 
 #include "rt_object.h"
+
+void			object_default_sphere(t_rtobj *object)
+{
+	object->data.sphere = (struct s_rtsphere){
+		.material = NULL, .radius = 1.0};
+}

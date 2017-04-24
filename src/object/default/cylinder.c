@@ -11,3 +11,9 @@
 /* ************************************************************************** */
 
 #include "rt_object.h"
+
+void			object_default_cylinder(t_rtobj *object)
+{
+	object->data.cylinder = (struct s_rtcylinder){
+		.material = NULL, .radius = 1};
+}
