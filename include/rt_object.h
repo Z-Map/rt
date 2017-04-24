@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 21:07:42 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/24 16:19:54 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/24 16:59:21 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,10 @@ void			object_default_cone(t_rtobj *object);
 void			object_default_cylinder(t_rtobj *object);
 void			object_default_cuboid(t_rtobj *object);
 void			object_default_tris(t_rtobj *object);
+void			object_default_mesh(t_rtobj *object);
 void			object_default_light(t_rtobj *object);
 void			object_default(t_rtobj *object);
+void			obinst_default(t_rtobi *inst, t_rtobj *obj, const char *name);
 
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 02:02:13 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/24 16:20:05 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/24 16:44:30 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			object_default(t_rtobj *object)
 		object_default_empty(object);
 	if (object->type & CAMERA)
 		object_default_camera(object);
-	if (object->type & PLAN)
+	if (object->type & (PLAN|TRIS))
 		object_default_plan(object);
 	if (object->type & SPHERE)
 		object_default_sphere(object);

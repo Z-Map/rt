@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 18:56:24 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/24 16:20:42 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/24 16:53:11 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ struct					s_rtmesh
 	t_v3f				*vertex;
 	t_v3f				*normale;
 	t_v2f				*uv;
-	t_mat3ui			poly;
+	t_v3ui				*poly;
 };
 
 struct					s_rtlight

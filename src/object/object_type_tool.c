@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/15 20:11:55 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/15 20:50:41 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/24 17:03:51 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ size_t				obj_type_memsize(t_rtobt type)
 		sizeof(struct s_rtcuboid), sizeof(struct s_rtplan),
 		sizeof(struct s_rtmesh), sizeof(struct s_rtlight),
 		sizeof(struct s_rtlight), sizeof(struct s_rtlight), 8};
-	size_t			*size;
+	const size_t	*size;
 	unsigned int	i;
 
 	size = sizes;

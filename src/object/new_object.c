@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 20:51:21 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/22 02:22:58 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/24 17:02:21 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,10 @@
 
 static void			init_obj(t_rtobj *obj, t_rtobt type, const char *name)
 {
-	*obj = (t_rtobj){
-		.type = type,
-		.color = (t_rgba){.r = 200, .g = 200, .b = 200, .a = 255},
-		.flags = 0,
-		.usercfg = 0,
-		.name = name
-	};
+	*obj = (t_rtobj){ .type = type,
+		.color = (t_rgba){.r = 200, .g = 200, .b = 200, .a = 255}, .flags = 0,
+		.usercfg = 0, .name = ft_vsdup(name)};
+	object_default(obj);
 }
 
 t_rtobj				*mkobject(t_rtobt type, const char *name)
@@ -71,7 +68,7 @@ t_rtobi				*mkinstance(t_rtobj *object, char *name)
 	if (!object || !(newinst =
 		(t_rtobi *)ft_vmemalloc(vm, (short)sizeof(t_rtobi))))
 		return (NULL);
-	newinst->obdata = object;
+	obinst_default(newinst, object, name);
 	object->instances += 1;
 	return (newinst);
 }
@@ -79,13 +76,16 @@ t_rtobi				*mkinstance(t_rtobj *object, char *name)
 int					mkinstances(t_rtobi **obitab, size_t num, ...)
 {
 	va_list			objs;
+	t_rtobj			*aob;
 	size_t			i;
 
 	va_start(objs, num);
 	i = 0;
 	while (i < num)
 	{
-		if (!(obitab[i] = mkinstance(va_arg(objs, t_rtobj *), NULL)))
+		obitab[i] = NULL;
+		aob = va_arg(objs, t_rtobj *);
+		if (aob && !(obitab[i] = mkinstance(aob, NULL)))
 			break ;
 		i++;
 	}
