@@ -6,7 +6,7 @@
 /*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 16:42:15 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/04/21 19:16:21 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/04/24 15:39:43 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ int			arg_modes (const char *arg, void *env, const char **nextargtab, int tab_le
 	t_rt	*rt;
 
 	rt = (t_rt *)env;
-	rt->flags != RT_MODES;
+	rt->flags |= RT_MODES;
 	return (0);
 }
