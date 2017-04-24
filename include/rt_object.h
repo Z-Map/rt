@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 21:07:42 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/23 03:42:54 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/24 16:19:54 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,16 @@ int				mkinstances(t_rtobi **obitab, size_t num, ...);
 t_rtobj			*rminstance(t_rtobi *inst);
 int				rminstances(size_t num, ...);
 
+void			object_default_scene(t_rtobj *object);
+void			object_default_empty(t_rtobj *object);
+void			object_default_camera(t_rtobj *object);
+void			object_default_plan(t_rtobj *object);
+void			object_default_sphere(t_rtobj *object);
+void			object_default_cone(t_rtobj *object);
+void			object_default_cylinder(t_rtobj *object);
+void			object_default_cuboid(t_rtobj *object);
+void			object_default_tris(t_rtobj *object);
+void			object_default_light(t_rtobj *object);
 void			object_default(t_rtobj *object);
 
 

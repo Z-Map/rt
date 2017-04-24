@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 18:56:24 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/15 21:02:51 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/24 16:20:42 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,15 @@ struct					s_rtmesh
 struct					s_rtlight
 {
 	t_rtmat				*material;
+	float				radius;
+	float				angle;
 	float				intensity;
 };
 
 union					u_rt_objectdata
 {
 	struct s_rtscene	scene;
+	struct s_rtempty	empty;
 	struct s_rtcamera	camera;
 	struct s_rtplan		plan;
 	struct s_rtsphere	sphere;
