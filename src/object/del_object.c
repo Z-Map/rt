@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/15 20:57:35 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/22 02:22:30 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/25 18:47:22 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@
 int				rmobject(t_rtobj *obj)
 {
 	if (obj)
+	{
+		ft_vfree(obj->name);
 		ft_vfree(obj);
+	}
 	else
 		return (0);
 	return (1);

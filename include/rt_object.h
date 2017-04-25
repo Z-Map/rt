@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 21:07:42 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/25 17:46:24 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/25 20:27:56 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,7 @@ void			object_default_light(t_rtobj *object);
 void			object_default(t_rtobj *object);
 void			obinst_default(t_rtobi *inst, t_rtobj *obj, const char *name);
 
+void			object_set(t_rtobj *object, FT_CC *vn, t_vt vt, void *vc);
+void			object_getsetter(t_rtobt type);
 
 #endif

@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_data_material.h                                 :+:      :+:    :+:   */
+/*   sda_data_parser.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/21 16:52:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/25 20:51:40 by qloubier         ###   ########.fr       */
+/*   Created: 2017/04/25 18:14:22 by qloubier          #+#    #+#             */
+/*   Updated: 2017/04/25 20:49:57 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_DATA_MATERIAL_H
-# define RT_DATA_MATERIAL_H
+#ifndef SDA_DATA_PARSER
+# define SDA_DATA_PARSER
 
-# include "mathex/vector.h"
-# include "mathex/matrix.h"
 # include "rt_prototype.h"
+# include "data/rt_data_tree.h"
 
-# define RTMAT_MEMBUF_SIZE		128
-
-struct			s_rt_material
+typedef struct		s_rt_parsenode
 {
+	t_rtnode		node;
 	char			*name;
-	t_rgba			color1;
-	t_rgba			color2;
-	float			reflectivity;
-	float			refraction;
-};
+}					t_pnod;
+
 
 #endif

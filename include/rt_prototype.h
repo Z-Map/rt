@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/22 02:04:29 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/25 18:53:41 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,29 @@
 typedef struct s_rt_root			t_rt;
 typedef struct s_rt_viewer			t_rtview;
 typedef struct s_rt_render			t_rtr;
+
+typedef enum						e_valuetype
+{
+	PT_INT,
+	PT_LONG,
+	PT_FLOAT,
+	PT_DOUBLE,
+	PT_COLOR,
+	PT_VEC2I,
+	PT_VEC3I,
+	PT_VEC4I,
+	PT_VEC2L,
+	PT_VEC3L,
+	PT_VEC4L,
+	PT_VEC2F,
+	PT_VEC3F,
+	PT_VEC4F,
+	PT_VEC2D,
+	PT_VEC3D,
+	PT_VEC4D,
+	PT_STR,
+	PT_OBJECT
+}									t_vt;
 
 typedef struct s_rt_tree			t_rtree;
 typedef struct s_rt_treenode		t_rtnode;

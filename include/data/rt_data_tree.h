@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 16:59:57 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/13 23:05:18 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/25 18:26:17 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ struct				s_rt_treenode
 	t_rtnode		*childs;
 	unsigned int	type;
 	unsigned int	flags;
-	t_rtobi			*instance;
+	void			*content;
 };
 
 struct				s_rt_tree
