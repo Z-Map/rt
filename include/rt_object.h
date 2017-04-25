@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 21:07:42 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/24 16:59:21 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/25 17:46:24 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ t_rtobj			*mkobject(t_rtobt type, const char *name);
 int				mkobjects(t_rtobj **obtab, size_t num, ...);
 int				rmobject(t_rtobj *obj);
 int				rmobjects(size_t num, ...);
+
+t_rtmat			*mkmaterial(const char *name);
+int				mkmaterials(t_rtmat **obtab, size_t num, ...);
+int				rmmaterial(t_rtmat *obj);
+int				rmmaterials(size_t num, ...);
 
 t_rtobi			*mkinstance(t_rtobj *object, char *name);
 int				mkinstances(t_rtobi **obitab, size_t num, ...);

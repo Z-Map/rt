@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 16:52:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/21 17:36:10 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/25 17:44:08 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 
 struct			s_rt_material
 {
+	char			*name;
 	t_rgba			color1;
 	t_rgba			color2;
-	
+	float			reflectivity;
+	float			refraction;
 };
 
 #endif

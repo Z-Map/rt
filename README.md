@@ -69,6 +69,8 @@ Une scène est stocké en mémoire sous la forme d'un arbre nodal d'instance d'o
 ### Parser
 Les parsers qui lisent les scènes doivent obligatoirement générer un Scene tree valide, ce qui veux dire qu'ils doivent remplir les données des objets avec des valeurs par défaut, quand elle ne sont pas spécifiées, et vérifier la validité de celles spécifiées (par exemple les noms, les noms d'instances et d'objets doivent être uniques) et il doit s'occuper de l'attribution des ID.
 
+**.sda** : **S**_cene_ **D**_escriptor_ **A**_rchive_
+
 ### Render Tree
 Le render tree est une copie complète des node d'un Scene tree (seulement les nodes, pas les instances qu'ils contiennent) avec un précalcul des matrices de transformation et de transformation inverse.
 
