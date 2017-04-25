@@ -32,8 +32,8 @@ int				rmobject(t_rtobj *obj);
 int				rmobjects(size_t num, ...);
 
 t_rtmat			*mkmaterial(const char *name);
-int				mkmaterials(t_rtmat **obtab, size_t num, ...);
-int				rmmaterial(t_rtmat *obj);
+int				mkmaterials(t_rtmat **mattab, size_t num, ...);
+int				rmmaterial(t_rtmat *mat);
 int				rmmaterials(size_t num, ...);
 
 t_rtobi			*mkinstance(t_rtobj *object, char *name);

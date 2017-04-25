@@ -13,6 +13,9 @@
 #ifndef RT_DATA_MATERIAL_H
 # define RT_DATA_MATERIAL_H
 
+# define RTMAT_MEMBUF_SIZE		128
+
+
 struct			s_rt_material
 {
 	char			*name;
