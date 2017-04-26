@@ -28,7 +28,7 @@ t_rtmat				*mkmaterial(const char *name)
 	return (newmat);
 }
 
-int					mkobjects(t_rtobj **mattab, size_t num, ...)
+int					mkmaterials(t_rtobj **mattab, size_t num, ...)
 {
 	va_list			mats;
 	size_t			i;
