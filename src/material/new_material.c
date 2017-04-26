@@ -45,7 +45,7 @@ int					mkmaterials(t_rtobj **mattab, size_t num, ...)
 	if (i != num)
 	{
 		while (i)
-			rmmaterials(mattab[i--]);
+			rmmaterial(mattab[i--]);
 		return (0);
 	}
 	return (1);
