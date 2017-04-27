@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 15:03:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/18 19:45:21 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/26 16:06:34 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ struct					s_rt_render
 	pthread_mutex_t		refresh_lock;
 	pthread_cond_t		refresh_cond;
 	t_ul				flags;
+	t_rtree				*rendertree;
 };
 
 #endif

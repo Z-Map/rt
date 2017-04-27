@@ -21,18 +21,21 @@ t_rtree			*mktree(size_t num, ...)
 
 	if (!(tree = (t_rtree *)malloc(sizeof(t_rtree))))
 		return (NULL);
-	if (num == 0)
-		tree = NULL;
-	va_start(nodes, num);
-	tree->node.parent = tree->node;
+	tree->node.parent = &(tree->node);
 	tree->node.next = NULL;
-	tree->node.childs = va_arg(nodes, t_rtnode *);
-	while (--num > 0)
+	if (num == 0)
+		tree->node.childs = NULL;
+	else
 	{
-		tmp = va_arg(nodes, t_rtnode *);
-		tmp->next = tree->node.childs;
-		tree->node.childs = tmp;
+		va_start(nodes, num);
+		tree->node.childs = va_arg(nodes, t_rtnode *);
+		while (--num > 0)
+		{
+			tmp = va_arg(nodes, t_rtnode *);
+			tmp->next = tree->node.childs;
+			tree->node.childs = tmp;
+		}
+		va_end(nodes);
 	}
-	va_end(nodes);
 	return (tree);
 }
