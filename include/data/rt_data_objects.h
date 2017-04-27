@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 18:56:24 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/24 16:53:11 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/04/27 16:49:22 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,13 @@ struct					s_rtlight
 	float				radius;
 	float				angle;
 	float				intensity;
+};
+
+t_val					g_rtlight[] = {
+	(t_val){"material", PT_MAT},
+	(t_val){"radius", PT_FLOAT},
+	(t_val){"angle", PT_FLOAT},
+	(t_val){"intensity", PT_FLOAT}
 };
 
 union					u_rt_objectdata
