@@ -24,7 +24,7 @@ t_rtree			*mktree(size_t num, ...)
 	if (num == 0)
 		tree = NULL;
 	va_start(nodes, num);
-	tree->node.parent = tree->node;
+	tree->node.parent = NULL;
 	tree->node.next = NULL;
 	tree->node.childs = va_arg(nodes, t_rtnode *);
 	while (--num > 0)
