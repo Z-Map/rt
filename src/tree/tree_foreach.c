@@ -26,8 +26,8 @@ static int	infix_foreach(t_rtnode *node, int (*f)(t_rtnode *, void *),
 	while (*tmp)
 	{
 		if ((*tmp)->childs)
-			infix_foreach((*node)->childs, f, env);
-		if (f(tmp, env) == FAILURE)
+			infix_foreach(node->childs, f, env);
+		if (f(*tmp, env) == FAILURE)
 			return (FAILURE);
 		*tmp = (*tmp)->next;
 	}
@@ -45,9 +45,9 @@ static int	prefix_foreach(t_rtnode *node, int (*f)(t_rtnode *, void *),
 	{
 		if (f(node, env) == FAILURE)
 			return (FAILURE);
-		if (tmp->childs)
-			prefix_foreach(tmp->childs, f, env);
-		tmp = &(tmp->next);
+		if ((*tmp)->childs)
+			prefix_foreach((*tmp)->childs, f, env);
+		tmp = &((*tmp)->next);
 	}
 	return (1);
 }
@@ -72,6 +72,6 @@ int tree_foreach(t_rtnode *node, int method, int (*f)(t_rtnode *, void *),
 	else if (method & SUFFIX)
 		return (suffix_foreach(node, f, env));
 	else if (method & PREFIX)
-		return (suffix_foreach(node, f, env));
+		return (prefix_foreach(node, f, env));
 	return (FAILURE);
-}
+	}
