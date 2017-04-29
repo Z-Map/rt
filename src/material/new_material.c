@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "rt_object.h"
-#include "rt_data_material.h"
+#include "data/rt_data_material.h"
 
 t_rtmat				*mkmaterial(const char *name)
 {

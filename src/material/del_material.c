@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "rt_object.h"
-#include "rt_data_material.h"
+#include "data/rt_data_material.h"
 
 int				rmmaterial(t_rtmat *mat)
 {
@@ -25,7 +25,7 @@ int				rmmaterial(t_rtmat *mat)
 	return (1);
 }
 
-int				rmmaterials(size_t num, ...);
+int				rmmaterials(size_t num, ...)
 {
 	va_list		mats;
 	size_t		i;
