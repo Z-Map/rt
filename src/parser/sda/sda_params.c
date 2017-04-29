@@ -34,29 +34,29 @@ static int	make_new_node(/**/)
 
 int			check_line(t_rtnode *node, char *s)
 {
-	if (!ft_strncmp(line, "EMPTY"))
+	if (!ft_strcmp(s, "EMPTY"))
 		return (make_new_node(node));
-	else if (!ft_strncmp(line, "CAMERA"))
+	else if (!ft_strcmp(s, "CAMERA"))
 		return (make_new_node(node));
-	else if (!ft_strncmp(line, "PLAN"))
+	else if (!ft_strcmp(s, "PLAN"))
 		return (make_new_node(node));
-	else if (!ft_strncmp(line, "SPHERE"))
+	else if (!ft_strcmp(s, "SPHERE"))
 		return (make_new_node(node));
-	else if (!ft_strncmp(line, "CONE"))
+	else if (!ft_strcmp(s, "CONE"))
 		return (make_new_node(node));
-	else if (!ft_strncmp(line, "CYLINDER"))
+	else if (!ft_strcmp(s, "CYLINDER"))
 		return (make_new_node(node));
-	else if (!ft_strncmp(line, "CUBOID"))
+	else if (!ft_strcmp(s, "CUBOID"))
 		return (make_new_node(node));
-	else if (!ft_strncmp(line, "MESH"))
+	else if (!ft_strcmp(s, "MESH"))
 		return (make_new_node(node));
-	else if (!ft_strncmp(line, "TRIS"))
+	else if (!ft_strcmp(s, "TRIS"))
 		return (make_new_node(node));
-	else if (!ft_strncmp(line, "SPOT"))
+	else if (!ft_strcmp(s, "SPOT"))
 		return (make_new_node(node));
-	else if (!ft_strncmp(line, "POINTLIGHT"))
+	else if (!ft_strcmp(s, "POINTLIGHT"))
 		return (make_new_node(node));
-	else if (!ft_strncmp(line, "SUNLIGHT"))
+	else if (!ft_strcmp(s, "SUNLIGHT"))
 		return (make_new_node());
-	return (check_line2(node, s, i));
+//	return (check_line2(node, s, i));
 }

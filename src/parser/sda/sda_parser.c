@@ -10,7 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "sda.h"
+#include <fcntl.h>
+#include "data_sda.h"
 
 /*
 ** tab_diff :
@@ -46,7 +47,7 @@ static int			tab_diff(int *tab, char *s)
 		return (2);
 	while (s[i] == '\t')
 		i++;
-	ret = i - tab;
+	ret = i - *tab;
 	*tab = i;
 	return (ret);
 }
@@ -70,24 +71,25 @@ static void			move_node(int n, t_rtnode *node)
 static t_rtree		*read_file(t_sda_env *env, t_rtree *tree)
 {
 	int		i;
+	int		ret;
 
-	while ((ret = get_next_line(fd, &line)))
+	while ((ret = ft_get_line(env->fd, &(env->line))))
 	{
 		i = 0;
-		move = tab_diff(&(env->tab), line);
-		if (move > 1)
+		env->move = tab_diff(&(env->tab), env->line);
+		if (env->move > 1)
 			return (NULL);/* a changer */
-		move_node(move, env->node);
-		while (line[i] == '\t')
+		move_node(env->move, env->curr);
+		while (env->line[i] == '\t')
 			i++;
-		check_line(node, &line[i]);
+		check_line(env->curr, &(env->line[i]));
 	}
 }
 
-static void			env_init(t_sda_env *env)
+static int		env_init(char *s, t_sda_env *env)
 {
-	if ((fd = open(s, O_RDONLY)) == -1)
-		return (NULL);/* a changer */
+	if ((env->fd = open(s, O_RDONLY)) == -1)
+		return (-1);/* a changer */
 	env->move = 0;
 	env->tab = 0;
 }
@@ -101,7 +103,7 @@ t_rtree				*sda_parser(char *s)
 		return (NULL);/* a changer */
 	if (!(tree = mktree(0)))
 		return (NULL);/* a changer */
-	env_init(env);
-	env->tmp = &(tree->node);
+	env_init(s, env);
+	env->curr = &(tree->node);
 	return (read_file(env, tree));
 }
