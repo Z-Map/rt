@@ -27,6 +27,7 @@ struct						s_rt_root
 	int						error;
 	int						errors[15];
 	char					*scene;
+	char					*fileout;
 	t_rtview				viewer;
 	t_rtr					render;
 };
