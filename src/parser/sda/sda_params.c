@@ -23,40 +23,55 @@
 ** Si le mot est inconnu au parser, on appellera une fonction d'erreur.
 */
 
-static int	make_new_node(/**/)
+static int	make_new_node(t_rtnode *node, t_rtobt type, char *s)
 {
 	t_rtnode	*new;
 	t_rtobi		*inst;
+	t_rtobj		*obj;
+	char		*name;
 
+	name = get_name(s);
+	if (!(obj = mkobject(type, name)))
+		return (-1);
+	if (!(inst = mkinstance(obj, /**/)))
+		return (-1);
+	if (!(new = mknode(inst)))
+		return (-1);
+	if (!(new = tree_addchild(node, new)))
+		return (-1);
+	return (1);
+}
 
-	new = mknode(inst);
+static int	check_line2(t_rtnode *node, char *s)
+{
+
 }
 
 int			check_line(t_rtnode *node, char *s)
 {
 	if (!ft_strcmp(s, "EMPTY"))
-		return (make_new_node(node));
+		return (make_new_node(node, EMPTY));
 	else if (!ft_strcmp(s, "CAMERA"))
-		return (make_new_node(node));
+		return (make_new_node(node, CAMERA));
 	else if (!ft_strcmp(s, "PLAN"))
-		return (make_new_node(node));
+		return (make_new_node(node, PLAN));
 	else if (!ft_strcmp(s, "SPHERE"))
-		return (make_new_node(node));
+		return (make_new_node(node, SPHERE));
 	else if (!ft_strcmp(s, "CONE"))
-		return (make_new_node(node));
+		return (make_new_node(node, CONE));
 	else if (!ft_strcmp(s, "CYLINDER"))
-		return (make_new_node(node));
+		return (make_new_node(node, CYLINDER));
 	else if (!ft_strcmp(s, "CUBOID"))
-		return (make_new_node(node));
+		return (make_new_node(node, CUBOID));
 	else if (!ft_strcmp(s, "MESH"))
-		return (make_new_node(node));
+		return (make_new_node(node, MESH));
 	else if (!ft_strcmp(s, "TRIS"))
-		return (make_new_node(node));
+		return (make_new_node(node, TRIS));
 	else if (!ft_strcmp(s, "SPOT"))
-		return (make_new_node(node));
+		return (make_new_node(node, SPOT));
 	else if (!ft_strcmp(s, "POINTLIGHT"))
-		return (make_new_node(node));
+		return (make_new_node(node, POINTLIGHT));
 	else if (!ft_strcmp(s, "SUNLIGHT"))
-		return (make_new_node());
-//	return (check_line2(node, s, i));
+		return (make_new_node(node, SUNLIGHT));
+//	return (check_line2(node, s));
 }
