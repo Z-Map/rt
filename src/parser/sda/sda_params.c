@@ -39,7 +39,7 @@ static int	make_new_node(t_rtnode *node, t_rtobt type, char *s)
 	name = get_name(s);
 	if (!(obj = mkobject(type, name)))
 		return (-1);
-	if (!(inst = mkinstance(obj, /**/)))
+	if (!(inst = mkinstance(obj, NULL)))
 		return (-1);
 	if (!(new = mknode(inst)))
 		return (-1);
