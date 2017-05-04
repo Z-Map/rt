@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/27 18:29:34 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/04 12:41:18 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,11 @@
 
 # include "libft.h"
 
+#include "generated/rt_proto_gen.h"
+
 typedef struct s_rt_root			t_rt;
 typedef struct s_rt_viewer			t_rtview;
 typedef struct s_rt_render			t_rtr;
-
-typedef enum						e_valuetype
-{
-	PT_INT,
-	PT_LONG,
-	PT_FLOAT,
-	PT_DOUBLE,
-	PT_COLOR,
-	PT_VEC2I,
-	PT_VEC3I,
-	PT_VEC4I,
-	PT_VEC2L,
-	PT_VEC3L,
-	PT_VEC4L,
-	PT_VEC2F,
-	PT_VEC3F,
-	PT_VEC4F,
-	PT_VEC2D,
-	PT_VEC3D,
-	PT_VEC4D,
-	PT_STR,
-	PT_OBJECT
-}									t_vt;
 
 typedef struct s_rt_tree			t_rtree;
 typedef struct s_rt_treenode		t_rtnode;
@@ -49,6 +28,7 @@ typedef struct s_rt_object			t_rtobj;
 typedef struct s_rt_material		t_rtmat;
 typedef union u_rt_objectdata		t_rtobd;
 
+/*
 typedef enum						e_rt_object_type
 {
 	INVALID		= 0,
@@ -71,6 +51,7 @@ typedef enum						e_rt_object_type
 	TOOL		= EMPTY | CAMERA,
 	VALID		= VISIBLE | LIGHT | TOOL | SCENE
 }									t_rtobt;
+*/
 
 typedef struct s_rt_render_ray		t_rtray;
 typedef struct s_rt_render_gdata	t_rtrgd;
@@ -79,12 +60,15 @@ typedef struct s_rt_render_data		t_rtrd;
 
 typedef struct s_obj				t_obj;
 
-
 # define RT_COMMANDMODE				0x1ul
 # define RT_FILEOUT					0x2ul
 # define RT_CLIENTMODE				0x4ul
 # define RT_VISUALPREV				0x8ul
 # define RT_MODES					0xFul
+
+# define RT_GET						2
+# define RT_SET						1
+# define RT_UNSET					0
 
 # define RTS_INIT					0x1ul
 # define RTS_MGLW_INIT				0x2ul
@@ -94,6 +78,13 @@ typedef struct s_obj				t_obj;
 # define RTS_VPREV					0x20ul
 
 # define RTR_CG						0x1ul
+
+# define RTRMGR_STARTRENDER			2048
+
+# define RTRMK_REFRESH				0x1ul
+# define RTRMK_STOP					0x2ul
+# define RTRMK_CANCEL				0x4ul
+# define RTRMK_DONE					0x10ul
 
 # define RTWK_REFRESH				0x1ul
 # define RTWK_STOP					0x2ul
