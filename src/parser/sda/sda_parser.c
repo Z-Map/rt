@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sda_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ealbert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/24 22:50:08 by ealbert           #+#    #+#             */
-/*   Updated: 2017/04/26 17:57:34 by ealbert          ###   ########.fr       */
+/*   Updated: 2017/05/04 11:44:55 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,22 @@ static int			tab_diff(int *tab, char *s)
 	return (ret);
 }
 
-static void			move_node(int n, t_rtnode *node)
+static void			move_node(int n, t_rtnode **node)
 {
+	t_rtnode		*nd;
+
 	if (n == 1)
-		node = node->childs;
-	else if (n == 0)
-		;
-	else
+	{
+		*node = (*node)->childs;
+		while ((*node)->next)
+			*node = (*node)->next;
+	}
+	else if (n < 0)
 	{
 		while (n != 0)
 		{
-			node = node->parent;
-			n--;
+			*node = (*node)->parent;
+			n++;
 		}
 	}
 }
@@ -78,12 +82,17 @@ static t_rtree		*read_file(t_sda_env *env, t_rtree *tree)
 		i = 0;
 		env->move = tab_diff(&(env->tab), env->line);
 		if (env->move > 1)
-			return (NULL);/* a changer */
-		move_node(env->move, env->curr);
+			return (ft_mfree_ret(tree, 1, &(env->line)));/* a changer */
+		move_node(env->move, &(env->curr));
 		while (env->line[i] == '\t')
 			i++;
-		check_line(env->curr, &(env->line[i]));
+		if (check_line(env->curr, &(env->line[i])) < 0)
+			break;
+		ft_memdel(&(env->line));
 	}
+	if (env->line)
+		ft_memdel(&(env->line));
+	return (tree);
 }
 
 static int		env_init(char *s, t_sda_env *env)
@@ -92,6 +101,8 @@ static int		env_init(char *s, t_sda_env *env)
 		return (-1);/* a changer */
 	env->move = 0;
 	env->tab = 0;
+	env->curr = NULL;
+	env->line = NULL;
 }
 
 t_rtree				*sda_parser(char *s)
