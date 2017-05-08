@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 21:07:42 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/30 18:19:45 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/08 17:39:24 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,21 @@ int				mkinstances(t_rtobi **obitab, size_t num, ...);
 t_rtobj			*rminstance(t_rtobi *inst);
 int				rminstances(size_t num, ...);
 
-void			object_default_scene(t_rtobj *object);
-void			object_default_empty(t_rtobj *object);
-void			object_default_camera(t_rtobj *object);
-void			object_default_plan(t_rtobj *object);
-void			object_default_sphere(t_rtobj *object);
-void			object_default_cone(t_rtobj *object);
-void			object_default_cylinder(t_rtobj *object);
-void			object_default_cuboid(t_rtobj *object);
-void			object_default_tris(t_rtobj *object);
-void			object_default_mesh(t_rtobj *object);
-void			object_default_light(t_rtobj *object);
+void			object_default_scene(t_rtobd *object);
+void			object_default_empty(t_rtobd *object);
+void			object_default_camera(t_rtobd *object);
+void			object_default_plan(t_rtobd *object);
+void			object_default_sphere(t_rtobd *object);
+void			object_default_cone(t_rtobd *object);
+void			object_default_cylinder(t_rtobd *object);
+void			object_default_cuboid(t_rtobd *object);
+void			object_default_tris(t_rtobd *object);
+void			object_default_mesh(t_rtobd *object);
+void			object_default_light(t_rtobd *object);
 void			object_default(t_rtobj *object);
 void			obinst_default(t_rtobi *inst, t_rtobj *obj, const char *name);
 
-void			object_set(t_rtobj *object, FT_CC *vn, t_vt vt, void *vc);
+void			object_set(t_rtobj *object, FT_CC *vn, t_rt vt, void *vc);
 void			object_getsetter(t_rtobt type);
 
 #endif

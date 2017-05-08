@@ -6,13 +6,13 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 02:00:51 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/22 02:00:53 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/08 17:13:57 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_object.h"
 
-void			object_default_plan(t_rtobj *object)
+void			object_default_plan(t_rtobd *object)
 {
-	object->data.plan = (struct s_rtplan){.material = NULL};
+	object->plan.material = NULL;
 }

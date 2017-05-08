@@ -6,7 +6,7 @@
 /*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/25 17:59:47 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/04/25 17:59:48 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/08 16:17:06 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ t_rtmat				*mkmaterial(const char *name)
 		vm = ft_vmemnew((sizeof(t_rtmat) + sizeof(t_vmps)) * RTMAT_MEMBUF_SIZE);
 	if (!(newmat = (t_rtmat *)ft_vmemalloc(vm, sizeof(t_rtmat))))
 		return (NULL);
-	newmat = (t_rtmat *){.name = ft_vsdup(name),
+	*newmat = (t_rtmat){.name = ft_vsdup(name),
 		.color1 = (t_rgba){0, 0, 0, 0}, .color2 = (t_rgba){0, 0, 0, 0},
 	 	.reflectivity = 0, .refraction = 0};
 	return (newmat);
 }
 
-int					mkmaterials(t_rtobj **mattab, size_t num, ...)
+int					mkmaterials(t_rtmat **mattab, size_t num, ...)
 {
 	va_list			mats;
 	size_t			i;
