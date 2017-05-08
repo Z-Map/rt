@@ -48,8 +48,10 @@ int			rdrmgr_isrendering(t_rt *rt, t_rtrmgr *rmgr)
 	return (RTRMGR_STARTRENDER);
 }
 
-void		*rdrmgr_exit(t_rt *rt, int code)
+void		*rdrmgr_exit(t_rt *rt, t_rtrmgr *rmgr, int code)
 {
+	if (rmgr->rpx)
+		free(rmgr->px);
 	return (NULL);
 }
 
@@ -57,14 +59,18 @@ void		*rt_rdrmgr_main(void *arg)
 {
 	t_rt		*rt;
 	t_rtrmgr	rmgr;
+	int			get;
 
-	rmgr.rpx = NULL;
 	rt = (t_rt *)arg;
+	rmgr.rpx = NULL;
 	while (rdrmgr_isrendering(rt, &rmgr))
 	{
 		rdrmgr_sync(rt, &rmgr);
-		// Le rendu commence ici
-
+		/* Modifications (Eddy) à vérifier */
+		get = calc_img(rt, &rmgr);
+		if (get < RTRMGR_STARTRENDER)
+			continue ;
+		rdrmgr_done(rt, &rmgr);
 	}
-	pthread_exit(rdrmgr_exit(rt, 0));
+	pthread_exit(rdrmgr_exit(rt, &rmgr, s0));
 }

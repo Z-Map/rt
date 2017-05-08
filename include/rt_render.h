@@ -24,6 +24,6 @@ void		*rt_rdrmgr_main(void *arg);
 int			rdrmgr_isalive(t_rt *rt);
 int			rdrmgr_sync(t_rt *rt, t_rtrmgr *rmgr);
 int			rdrmgr_done(t_rt *rt, t_rtrmgr *rmgr);
-void		*rdrmgr_exit(t_rt *rt, int code);
+void		*rdrmgr_exit(t_rt *rt, t_rtrmgr *rmgr, int code);
 
 #endif
