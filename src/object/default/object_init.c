@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 02:02:13 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/08 16:47:10 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/08 17:13:25 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void			object_default(t_rtobd *object)
 {
-	if (object->type & SCENE)
+	(void)object;
+/*	if (object->type & SCENE)
 		object_default_scene(object);
 	if (object->type & EMPTY)
 		object_default_empty(object);
@@ -33,5 +34,5 @@ void			object_default(t_rtobd *object)
 	if (object->type & TRIS)
 		object_default_tris(object);
 	if (object->type & (SPOT|POINTLIGHT|SUNLIGHT))
-		object_default_light(object);
+		object_default_light(object);*/
 }
