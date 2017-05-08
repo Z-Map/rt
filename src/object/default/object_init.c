@@ -6,13 +6,13 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 02:02:13 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/24 16:44:30 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/08 16:47:10 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_object.h"
 
-void			object_default(t_rtobj *object)
+void			object_default(t_rtobd *object)
 {
 	if (object->type & SCENE)
 		object_default_scene(object);
