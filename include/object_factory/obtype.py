@@ -1,7 +1,8 @@
 
 class Obtype(object):
 
-	def __init__(self, typestr, num = 1, etype = "PT_NONE"):
+	def __init__(self, name, typestr, num = 1, etype = "PT_NONE"):
+		self.name = name
 		self.pointer = True if num < 0 else False
 		self.e_len = num if num > 1 else 1
 		self.csufix = "[" + str(num) + "]" if num > 1 else ""
@@ -78,7 +79,7 @@ class Obtype(object):
 		ret = self.ctype
 		if self.pointer:
 			ret = ret + " *"
-		ret = ret + self.csufix
+		ret = ret + self.name + self.csufix
 		return (ret)
 
 	def __repr__(self):
@@ -89,7 +90,9 @@ class Obtype(object):
 			return 8
 		return self.size * self.e_len
 
-	def mkcvar(self, name, atab = 6, btab = 1):
+	def mkcvar(self, name = None, atab = 6, btab = 1):
+		if not name:
+			name = self.name
 		text = '\t' * btab
 		text += self.ctype
 		atab -= btab + int(len(self.ctype) / 4)

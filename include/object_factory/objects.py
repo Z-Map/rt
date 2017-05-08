@@ -2,117 +2,136 @@ from . import obtype
 
 ObT = obtype.Obtype
 
-G_basicproperty = {
-	"instances" : ObT("size_t"),
-	"type" : ObT("ul"),
-	"usercfg" : ObT("ul"),
-	"name" : ObT("char")
-}
+G_basicproperty = (
+	ObT("instances", "size_t"),
+	ObT("type", "ul"),
+	ObT("usercfg", "ul"),
+	ObT("name", "char"),
+)
 
-G_groups = {
-	"visible" : {
+G_groups =(
+	{
+		"name" : "visible",
 		"group" : "valid",
-		"property" : {
-			"material" : ObT("t_rtmat")
-		}
+		"property" : (
+			ObT("material", "t_rtmat"),
+		)
 	},
-	"light" : {
+	{
+		"name" : "light",
 		"group" : "valid",
-		"property" : {
-			"material" : ObT("t_rtmat"),
-			"intensity" : ObT("f"),
-			"radius" : ObT("f")
-		}
+		"property" : (
+			ObT("intensity", "f"),
+			ObT("radius", "f"),
+		)
 	},
-	"tool" : {
+	{
+		"name" : "tool",
 		"group" : "valid",
 	},
-	"valid" : {}
-}
-G_objects = {
-	"invalid" : {
+	{
+		"name" : "valid"
+	}
+)
+G_objects = (
+	{
+		"name" : "invalid",
 		"id" : 0,
 	},
-	"scene" : {
+	{
+		"name" : "scene",
 		"group" : "valid",
-		"property" : {
-			"ambient_light" : ObT("t_rtmat"),
-			"skybox" : ObT("t_rtmat")
-		}
+		"property" : (
+			ObT("ambient_light", "t_rtmat"),
+			ObT("skybox", "t_rtmat"),
+		)
 	},
-	"empty" : {
+	{
+		"name" : "empty",
 		"group" : "tool",
-		"property" : {
-			"subtree" : ObT("void"),
-			"size" : ObT("float")
-		}
+		"property" : (
+			ObT("subtree", "void"),
+			ObT("size", "float"),
+		)
 	},
-	"camera" : {
+	{
+		"name" : "camera",
 		"group" : "tool",
-		"property" : {
-			"fov" : ObT("t_v2f"),
-			"focus" : ObT("float")
-		}
+		"property" : (
+			ObT("fov", "t_v2f"),
+			ObT("focus", "float"),
+		)
 	},
-	"plan" : {
+	{
+		"name" : "plan",
 		"group" : "visible",
 	},
-	"sphere" : {
+	{
+		"name" : "sphere",
 		"group" : "visible",
-		"property" : {
-			"radius" : ObT("float")
-		}
+		"property" : (
+			ObT("radius", "float"),
+		)
 	},
-	"cone" : {
+	{
+		"name" : "cone",
 		"group" : "visible",
-		"property" : {
-			"angle" : ObT("float")
-		}
+		"property" : (
+			ObT("angle", "float"),
+		)
 	},
-	"cylinder" : {
+	{
+		"name" : "cylinder",
 		"group" : "visible",
-		"property" : {
-			"radius" : ObT("float")
-		}
+		"property" : (
+			ObT("radius", "float"),
+		)
 	},
-	"cuboid" : {
+	{
+		"name" : "cuboid",
 		"group" : "visible",
-		"property" : {
-			"radius" : ObT("float")
-		}
+		"property" : (
+			ObT("radius", "float"),
+		)
 	},
-	"tris" : {
+	{
+		"name" : "tris",
 		"group" : "visible",
 	},
-	"mesh" : {
+	{
+		"name" : "mesh",
 		"group" : "visible",
-		"property" : {
-			"vertex_len" : ObT("size_t"),
-			"poly_len" : ObT("size_t"),
-			"vertex" : ObT("t_v3f", -1),
-			"normale" : ObT("t_v3f", -1),
-			"uv" : ObT("t_v2f", -1),
-			"poly" : ObT("t_v3ui", -1)
-		}
+		"property" : (
+			ObT("vertex_len", "size_t"),
+			ObT("poly_len", "size_t"),
+			ObT("vertex", "t_v3f", -1),
+			ObT("normale", "t_v3f", -1),
+			ObT("uv", "t_v2f", -1),
+			ObT("poly", "t_v3ui", -1),
+		)
 	},
-	"spot" : {
+	{
+		"name" : "spot",
 		"group" : "light",
-		"property" : {
-			"angle" : ObT("float")
-		}
+		"property" : (
+			ObT("angle", "float"),
+		)
 	},
-	"pointlight" : {
+	{
+		"name" : "pointlight",
 		"group" : "light",
 	},
-	"sunlight" : {
+	{
+		"name" : "sunlight",
 		"group" : "light",
 	},
-	"notype" : {
+	{
+		"name" : "notype"
 	},
-}
+)
 
 def print_objects(objs):
-	for ob in objs:
+	for ob in objs[0]:
 		dispstr = ob + " : \n"
 		for akey in objs[ob]:
 			dispstr += "\t" + akey + " : " + repr(objs[ob][akey]) + "\n"
@@ -120,24 +139,33 @@ def print_objects(objs):
 
 def build_groups():
 	groups = {}
-	for akey,anob in G_groups.items():
+	groups[0] = []
+	for anob in G_groups:
+		akey = anob["name"]
+		groups[0].append(akey)
 		groups[akey] = {}
 		groups[akey]["cenum"] = akey.upper()
 		groups[akey]["parents"] = []
 		groups[akey]["childs"] = []
-		groups[akey]["property"] = {}
+		groups[akey]["property"] = ()
 		groups[akey]["objects"] = []
 		parent = anob
 		while "group" in parent and parent["group"] not in groups[akey]["parents"]:
 			groups[akey]["parents"].append(parent["group"])
-			parent = G_groups[parent["group"]]
+			nparent = None
+			for aob in G_groups:
+				if aob["name"] == parent["group"]:
+					nparent = aob
+			if not nparent:
+				break
+			parent = nparent
 			if "property" in parent:
-				for apkey, aprop in parent["property"].items():
-					groups[akey]["property"][apkey] = aprop
+				groups[akey]["property"] = parent["property"] + groups[akey]["property"]
 		if "property" in anob:
-			for apkey, aprop in anob["property"].items():
-				groups[akey]["property"][apkey] = aprop
+			groups[akey]["property"] = groups[akey]["property"] + anob["property"]
 	for akey,anob in groups.items():
+		if type(akey) != str:
+			continue
 		for aparent in anob["parents"]:
 			groups[aparent]["childs"].append(akey)
 	return groups
@@ -146,8 +174,11 @@ def build_objects(groups = None):
 	if not groups:
 		groups = build_groups()
 	objs = {}
+	objs[0] = []
 	obid = 1
-	for akey,anob in G_objects.items():
+	for anob in G_objects:
+		akey = anob["name"]
+		objs[0].append(akey)
 		objs[akey] = {}
 		if not "id" in anob:
 			objs[akey]["id"] = obid
@@ -155,18 +186,16 @@ def build_objects(groups = None):
 		else:
 			objs[akey]["id"] = anob["id"]
 		objs[akey]["cstruct"] = False
-		objs[akey]["property"] = {}
+		objs[akey]["property"] = ()
 		if "group" in anob and anob["group"] in groups:
 			if anob["group"] == "valid" or "valid" in groups[anob["group"]]["parents"]:
 				objs[akey]["cstruct"] = True
 			groups[anob["group"]]["objects"].append(akey)
 			if "property" in groups[anob["group"]]:
-				for apkey, aprop in groups[anob["group"]]["property"].items():
-					objs[akey]["property"][apkey] = aprop
+				objs[akey]["property"] = groups[anob["group"]]["property"]
 		if "property" in anob:
-			for apkey, aprop in anob["property"].items():
-				objs[akey]["property"][apkey] = aprop
-		if objs[akey]["property"] == {}:
+			objs[akey]["property"] = objs[akey]["property"] + anob["property"]
+		if objs[akey]["property"] == ():
 			objs[akey]["cstruct"] = False
 		objs[akey]["cname"] = "rt" + akey
 		objs[akey]["cenum"] = akey.upper()

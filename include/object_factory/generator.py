@@ -40,27 +40,29 @@ def generate_headers(dirname):
 	f.write("""# include "mathex/matrix.h"\n""")
 	f.write("""# include "rt_prototype.h"\n\n""")
 	ctext = alignOnTab("struct", G_tabalign, 0) + "s_rt_object\n{\n"
-	for apkey,aprop in G_basicproperty.items():
-		ctext += aprop.mkcvar(apkey, G_tabalign)
+	for aprop in G_basicproperty:
+		ctext += aprop.mkcvar(None, G_tabalign)
 	ctext += "};\n\n"
 	f.write(ctext)
 	allstruct = alignOnTab("union", G_tabalign, 0) + "u_rt_objectdata\n{\n"
-	for akey,anob in objs.items():
+	for akey in objs[0]:
+		anob = objs[akey]
 		ctext = ""
 		if anob["cstruct"]:
 			allstruct += alignOnTab("struct s_" + anob["cname"], G_tabalign) + akey + ";\n"
 			ctext = alignOnTab("struct", G_tabalign, 0) + "s_"+anob["cname"] + "\n{\n"
-			for apkey,aprop in G_basicproperty.items():
-				ctext += aprop.mkcvar(apkey, G_tabalign)
-			for apkey,aprop in anob["property"].items():
-				ctext += aprop.mkcvar(apkey, G_tabalign)
+			for aprop in G_basicproperty:
+				ctext += aprop.mkcvar(None, G_tabalign)
+			for aprop in anob["property"]:
+				ctext += aprop.mkcvar(None, G_tabalign)
 			ctext += "};\n\n"
 		if ctext:
 			f.write(ctext)
 		ftype.write(alignOnTab(anob["cenum"], G_tabalignenum, 1) + "= " + hex(anob["id"]) + ",\n")
 	allstruct += "};\n\n"
 	f.write(allstruct)
-	for akey,anob in groups.items():
+	for akey in groups[0]:
+		anob = groups[akey]
 		ctext = alignOnTab(anob["cenum"], G_tabalignenum, 1) + "= "
 		for k in anob["childs"]:
 			ctext += groups[k]["cenum"] + " | "

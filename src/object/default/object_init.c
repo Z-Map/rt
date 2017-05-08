@@ -6,32 +6,35 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 02:02:13 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/24 16:44:30 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/08 16:58:19 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_object.h"
 
-void			object_default(t_rtobj *object)
+void			object_default(t_rtobj *obj)
 {
-	if (object->type & SCENE)
+	t_rtobd		*object;
+
+	object = (t_rtobd *)obj;
+	if (obj->type & SCENE)
 		object_default_scene(object);
-	if (object->type & EMPTY)
+	if (obj->type & EMPTY)
 		object_default_empty(object);
-	if (object->type & CAMERA)
+	if (obj->type & CAMERA)
 		object_default_camera(object);
-	if (object->type & (PLAN|TRIS))
+	if (obj->type & (PLAN|TRIS))
 		object_default_plan(object);
-	if (object->type & SPHERE)
+	if (obj->type & SPHERE)
 		object_default_sphere(object);
-	if (object->type & CONE)
+	if (obj->type & CONE)
 		object_default_cone(object);
-	if (object->type & CYLINDER)
+	if (obj->type & CYLINDER)
 		object_default_cylinder(object);
-	if (object->type & CUBOID)
+	if (obj->type & CUBOID)
 		object_default_cuboid(object);
-	if (object->type & TRIS)
+	if (obj->type & TRIS)
 		object_default_tris(object);
-	if (object->type & (SPOT|POINTLIGHT|SUNLIGHT))
+	if (obj->type & (SPOT|POINTLIGHT|SUNLIGHT))
 		object_default_light(object);
 }
