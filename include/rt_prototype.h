@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/04 12:41:18 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/09 19:10:54 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_obj				t_obj;
 # define RTR_CG						0x1ul
 
 # define RTRMGR_STARTRENDER			2048
+# define RTRMGR_REFRESH				0x1ul
 
 # define RTRMK_REFRESH				0x1ul
 # define RTRMK_STOP					0x2ul
