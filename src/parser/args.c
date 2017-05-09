@@ -6,7 +6,7 @@
 /*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 16:42:15 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/04/21 19:16:21 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/09 16:14:17 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 int			arg_commandmode (const char *arg, void *env, const char **nextargtab, int tab_len)
 {
+	arg = NULL; // A ENLEVER
+	nextargtab = NULL; // A ENLEVER
+	tab_len = 0; // A ENLEVER
 	t_rt	*rt;
 
 	rt = (t_rt *)env;
@@ -24,6 +27,7 @@ int			arg_commandmode (const char *arg, void *env, const char **nextargtab, int 
 
 int			arg_fileout (const char *arg, void *env, const char **nextargtab, int tab_len)
 {
+	arg = NULL; // A ENLEVER
 	t_rt	*rt;
 
 	rt = (t_rt *)env;
@@ -36,6 +40,9 @@ int			arg_fileout (const char *arg, void *env, const char **nextargtab, int tab_
 
 int			arg_clientmode (const char *arg, void *env, const char **nextargtab, int tab_len)
 {
+	arg = NULL; // A ENLEVER
+	nextargtab = NULL; // A ENLEVER
+	tab_len = 0; // A ENLEVER
 	t_rt	*rt;
 
 	rt = (t_rt *)env;
@@ -45,6 +52,9 @@ int			arg_clientmode (const char *arg, void *env, const char **nextargtab, int t
 
 int			arg_visualprev (const char *arg, void *env, const char **nextargtab, int tab_len)
 {
+	arg = NULL; // A ENLEVER
+	nextargtab = NULL; // A ENLEVER
+	tab_len = 0; // A ENLEVER
 	t_rt	*rt;
 
 	rt = (t_rt *)env;
@@ -54,9 +64,12 @@ int			arg_visualprev (const char *arg, void *env, const char **nextargtab, int t
 
 int			arg_modes (const char *arg, void *env, const char **nextargtab, int tab_len)
 {
+	arg = NULL; // A ENLEVER
+	nextargtab = NULL; // A ENLEVER
+	tab_len = 0; // A ENLEVER
 	t_rt	*rt;
 
 	rt = (t_rt *)env;
-	rt->flags != RT_MODES;
+	rt->flags |= RT_MODES;
 	return (0);
 }
