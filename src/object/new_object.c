@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 20:51:21 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/24 17:02:21 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/08 17:44:07 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 static void			init_obj(t_rtobj *obj, t_rtobt type, const char *name)
 {
 	*obj = (t_rtobj){ .type = type,
-		.color = (t_rgba){.r = 200, .g = 200, .b = 200, .a = 255}, .flags = 0,
 		.usercfg = 0, .name = ft_vsdup(name)};
 	object_default(obj);
 }

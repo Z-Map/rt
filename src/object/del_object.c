@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/15 20:57:35 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/25 18:47:22 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/09 16:29:58 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_rtobj			*rminstance(t_rtobi *inst)
 
 	if (!inst)
 		return (NULL);
-	ob = inst->obdata;
+	ob = inst->obj;
 	if (ob)
 		ob->instances -= 1;
 	ft_vfree(inst);
