@@ -6,11 +6,12 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/24 22:50:08 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/04 11:44:55 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/09 18:07:09 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
+#include <stdlib.h>
 #include "data_sda.h"
 
 /*
@@ -54,8 +55,6 @@ static int			tab_diff(int *tab, char *s)
 
 static void			move_node(int n, t_rtnode **node)
 {
-	t_rtnode		*nd;
-
 	if (n == 1)
 	{
 		*node = (*node)->childs;
@@ -88,10 +87,10 @@ static t_rtree		*read_file(t_sda_env *env, t_rtree *tree)
 			i++;
 		if (check_line(env->curr, &(env->line[i])) < 0)
 			break;
-		ft_memdel(&(env->line));
+		ft_memdel((void **)&(env->line));
 	}
 	if (env->line)
-		ft_memdel(&(env->line));
+		ft_memdel((void **)&(env->line));
 	return (tree);
 }
 
@@ -103,6 +102,7 @@ static int		env_init(char *s, t_sda_env *env)
 	env->tab = 0;
 	env->curr = NULL;
 	env->line = NULL;
+	return (1);
 }
 
 t_rtree				*sda_parser(char *s)

@@ -6,7 +6,7 @@
 /*   By: ealbert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 17:39:03 by ealbert           #+#    #+#             */
-/*   Updated: 2017/04/26 17:57:38 by ealbert          ###   ########.fr       */
+/*   Updated: 2017/05/09 18:07:06 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@
 
 typedef struct		s_sda_env
 {
-	int			fd;
-	int			ret;
-	char		*line;
-	int			tab;
-	int			move;
-	t_rtnode	*curr;
+	int				fd;
+	int				ret;
+	char			*line;
+	int				tab;
+	int				move;
+	t_rtnode		*curr;
 }					t_sda_env;
+
+int         	    check_line(t_rtnode *node, char *s);
 
 #endif

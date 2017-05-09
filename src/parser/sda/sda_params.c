@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 17:35:04 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/04 11:31:42 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/09 16:39:46 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static char		*get_name(char *s)
 {
 	char		*n;
 
-	if (n = ft_strchr(s, (int)':'))
+	if ((n = ft_strchr(s, (int)':')))
 		n = ft_strpskp(n, FT_WHITESPACE);
 	if (!n || !(*n))
 	{
@@ -50,6 +50,9 @@ static int		make_new_node(t_rtnode *node, t_rtobt type, char *s)
 	t_rtobj		*obj;
 	char		*name;
 
+	new = NULL;
+	inst = NULL;
+	obj = NULL;
 	name = get_name(s);
 	if ((obj = mkobject(type, name)) &&
 		(inst = mkinstance(obj, NULL)) &&
