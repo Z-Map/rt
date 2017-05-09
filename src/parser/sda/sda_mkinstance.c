@@ -6,7 +6,7 @@
 /*   By: ealbert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 21:37:42 by ealbert           #+#    #+#             */
-/*   Updated: 2017/04/13 23:47:56 by ealbert          ###   ########.fr       */
+/*   Updated: 2017/05/09 16:33:22 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 ** Par exemple, si l'on trouve "SETTING", pas besoin de malloc de la place pour
 ** l'objet.
 */
-
+/*
 t_rtobi		sda_mkinstance(char *name, unsigned int id, int flags)
 {
 	t_rtobi		new;
@@ -46,4 +46,4 @@ t_rtobi		sda_mkinstance(char *name, unsigned int id, int flags)
 	new.flags = flags;
 	new.data = NULL;
 	return (new);
-}
+}*/
