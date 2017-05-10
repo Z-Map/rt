@@ -6,12 +6,12 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 17:35:04 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/09 16:39:46 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/10 16:12:58 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_object.h"
-#include "data_sda.h"
+#include "data/data_sda.h"
 
 /*
 ** make_new_node :

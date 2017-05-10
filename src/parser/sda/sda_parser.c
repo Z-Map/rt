@@ -6,13 +6,13 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/24 22:50:08 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/09 18:07:09 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/10 16:12:48 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <stdlib.h>
-#include "data_sda.h"
+#include "data/data_sda.h"
 
 /*
 ** tab_diff :
