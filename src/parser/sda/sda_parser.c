@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/24 22:50:08 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/12 15:43:38 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/12 17:34:55 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ static t_rtree		*read_file(t_sda_env *env, t_rtree *tree)
 		while (env->line[i] == '\t')
 			i++;
 		if (check_line(env->curr, &(env->line[i])) < 0)
-			break;
+			break ;
 		ft_memdel((void **)&(env->line));
 	}
 	if (env->line)
