@@ -6,14 +6,14 @@
 /*   By: ealbert <ealbert@student42.fr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 17:59:51 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/11 14:23:02 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/12 15:42:49 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_tree.h"
 #include "libft.h"
 
-typedef struct	s_printree
+typedef struct	s_printree // A mettre dans un .h !
 {
 	int			run;
 	int			tab;

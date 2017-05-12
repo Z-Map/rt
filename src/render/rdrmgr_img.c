@@ -6,7 +6,7 @@
 /*   By: ealbert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 15:56:32 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/09 18:25:04 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/12 15:42:01 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int					img_calc(t_rt *rt, t_rtrmgr *rmgr)
 			(*rmgr).rpx[x * (*rmgr).rsize.x + y] = calc_pixel(rt);
 			get = rdrmgr_isrendering(rt, rmgr);
 			if (get & RTRMK_STOP)
-				return rt_error(rt, 1, "Render quit");
+				return (rt_error(rt, 1, "Render quit"));
 			else if (get & RTRMK_CANCEL)
 				return (8);
 			y++;

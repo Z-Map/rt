@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 02:02:13 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/08 17:39:33 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/12 15:47:35 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void			object_default(t_rtobj *obj)
 		object_default_empty(object);
 	if (obj->type & CAMERA)
 		object_default_camera(object);
-	if (obj->type & (PLAN|TRIS))
+	if (obj->type & (PLAN | TRIS))
 		object_default_plan(object);
 	if (obj->type & SPHERE)
 		object_default_sphere(object);
@@ -35,6 +35,6 @@ void			object_default(t_rtobj *obj)
 		object_default_cuboid(object);
 	if (obj->type & TRIS)
 		object_default_tris(object);
-	if (obj->type & (SPOT|POINTLIGHT|SUNLIGHT))
+	if (obj->type & (SPOT | POINTLIGHT | SUNLIGHT))
 		object_default_light(object);
 }

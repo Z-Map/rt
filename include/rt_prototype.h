@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/09 19:10:54 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/12 16:34:18 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "libft.h"
 
-#include "generated/rt_proto_gen.h"
+# include "generated/rt_proto_gen.h"
 
 typedef struct s_rt_root			t_rt;
 typedef struct s_rt_viewer			t_rtview;

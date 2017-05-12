@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 19:06:35 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/15 19:43:50 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/12 15:48:38 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int			rt_main(t_rt *rt)
 
 	ret = rt_init_scenerdr(rt);
 	if ((rt->flags & RT_VISUALPREV) ||
-		!(rt->flags & (RT_FILEOUT|RT_COMMANDMODE)))
+		!(rt->flags & (RT_FILEOUT | RT_COMMANDMODE)))
 		ret = rt_init_mglw(rt);
 	if (ret <= 0)
 		return (ret);

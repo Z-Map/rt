@@ -6,7 +6,7 @@
 /*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 14:04:07 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/03/19 13:58:39 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/12 15:41:13 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static int	parse_face(char *line, t_obj *obj)
 	tmp_fv = (t_v3i){0, 0, 0};
 	tmp_fuv = (t_v3i){0, 0, 0};
 	tmp_fvn = (t_v3i){0, 0, 0};
-
 	line++;
 	if (!(*line && (ft_sscanf(line, "%d/%_d/%_d",
 					&tmp_fv.x, &tmp_fuv.x, &tmp_fvn.x) > 0)))
@@ -104,7 +103,6 @@ int			rt_parser_obj(char *file, t_obj *obj)
 	size_t	i;
 
 	i = -1;
-
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (1);

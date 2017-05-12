@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/24 22:50:08 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/10 16:12:48 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/12 15:43:38 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static t_rtree		*read_file(t_sda_env *env, t_rtree *tree)
 		i = 0;
 		env->move = tab_diff(&(env->tab), env->line);
 		if (env->move > 1)
-			return (ft_mfree_ret(tree, 1, &(env->line)));/* a changer */
+			return (ft_mfree_ret(tree, 1, &(env->line))); /* a changer */
 		move_node(env->move, &(env->curr));
 		while (env->line[i] == '\t')
 			i++;
@@ -97,7 +97,7 @@ static t_rtree		*read_file(t_sda_env *env, t_rtree *tree)
 static int		env_init(char *s, t_sda_env *env)
 {
 	if ((env->fd = open(s, O_RDONLY)) == -1)
-		return (-1);/* a changer */
+		return (-1); /* a changer */
 	env->move = 0;
 	env->tab = 0;
 	env->curr = NULL;
@@ -111,9 +111,9 @@ t_rtree				*sda_parser(char *s)
 	t_sda_env		*env;
 
 	if (!(env = (t_sda_env *)malloc(sizeof(t_sda_env))))
-		return (NULL);/* a changer */
+		return (NULL); /* a changer */
 	if (!(tree = mktree(0)))
-		return (NULL);/* a changer */
+		return (NULL); /* a changer */
 	env_init(s, env);
 	env->curr = &(tree->node);
 	return (read_file(env, tree));

@@ -6,14 +6,14 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 15:45:36 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/15 21:38:42 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/12 16:34:59 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_TREE_H
 # define RT_TREE_H
 
-#include <stdarg.h>
+# include <stdarg.h>
 
 # include "rt_prototype.h"
 # include "data/rt_data_core.h"
@@ -31,7 +31,8 @@ int					rmtree(t_rtree *tree);
 t_rtnode			*tree_addchild(t_rtnode *parent, t_rtnode *node); // <<
 // Remove child "node" from "parent" - return node or null if error
 t_rtnode			*tree_delchild(t_rtnode *parent, t_rtnode *node); // <<
-// Add all childs of "node" as "parent" child and remove node - return node or null if error
+// Add all childs of "node" as "parent" child and remove node
+// - return node or null if error
 t_rtnode			*tree_collapsechild(t_rtnode *parent, t_rtnode *node);
 
 // Set "parent" as parent of node and remove "node" from his parent before

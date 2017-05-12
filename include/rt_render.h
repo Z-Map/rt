@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 22:47:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/09 19:10:05 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/12 16:34:34 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int			rdrmgr_isalive(t_rt *rt);
 int			rdrmgr_sync(t_rt *rt, t_rtrmgr *rmgr);
 int			rdrmgr_done(t_rt *rt, t_rtrmgr *rmgr);
 void		*rdrmgr_exit(t_rt *rt, t_rtrmgr *rmgr, int code);
-int         rdrmgr_isrendering(t_rt *rt, t_rtrmgr *rmgr);
+int			rdrmgr_isrendering(t_rt *rt, t_rtrmgr *rmgr);
 int			img_calc(t_rt *rt, t_rtrmgr *rmgr);
 #endif
