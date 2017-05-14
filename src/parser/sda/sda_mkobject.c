@@ -6,7 +6,7 @@
 /*   By: ealbert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 21:22:10 by ealbert           #+#    #+#             */
-/*   Updated: 2017/04/13 23:47:30 by ealbert          ###   ########.fr       */
+/*   Updated: 2017/05/09 16:34:00 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@
 ** defaut a tel ou tel variable, which is nice. (A FAIRE)
 ** On retourne la structure.
 */
-
-t_rtobj			sda_mkobject(char *name, unsigned int flags/*variable pour l'union*/)
+/*
+t_rtobj			sda_mkobject(char *name, unsigned int flags *variable pour l'union*)
 {
 	t_rtobj		new;
 
@@ -49,4 +49,4 @@ t_rtobj			sda_mkobject(char *name, unsigned int flags/*variable pour l'union*/)
 		return (NULL);
 	new.flags = flags;
 	return (new);
-}
+} */

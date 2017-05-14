@@ -6,7 +6,7 @@
 /*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 17:13:38 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/04/18 13:46:47 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/09 19:16:36 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
@@ -21,6 +21,6 @@ t_rtnode			*mknode(t_rtobi *ob_inst)
 	node->parent = NULL;
 	node->next = NULL;
 	node->childs = NULL;
-	node->instance = ob_inst;
+	node->content = (void *)ob_inst;
 	return (node);
 }
