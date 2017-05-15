@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 18:19:26 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 02:18:06 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/15 07:23:35 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 struct						s_debugger
 {
 	unsigned long			flags;
+	unsigned long			mask;
 	int						codepoint;
 	int						cpline;
 	const char				*cpname;

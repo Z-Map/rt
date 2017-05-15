@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 06:36:22 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/15 07:26:23 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct s_obj				t_obj;
 # define RTWK_STOP					0x2ul
 
 # ifdef RT_DEBUG
+
 #  define RT_DBGF_ALLCP				0x1ul
 #  define RT_DBGF_DISPKEY			0x2ul
 #  define RT_DBGF_STATECHANGE		0x4ul
@@ -100,6 +101,10 @@ typedef struct s_obj				t_obj;
 #  define RT_DBGF_INFO				0x10ul
 #  define RT_DBGF_RET				0x20ul
 #  define RT_DBGF_ALLRET			0x40ul
+
+#  define RT_DBGM_GLOBALE			0x1ul
+#  define RT_DBGM_PARSER			0x2ul
+
 # endif
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 23:05:29 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 02:22:49 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/15 07:25:50 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ int					rtd_ret(t_rt *rt, int retcode, int code, const char *msg,
 	return (retcode);
 }
 
-int					rtd_msg(t_rt *rt, int code, const char *msg,
+int					rtd_msg(t_rt *rt, unsigned long mask, const char *msg,
 						int l, const char *file, const char *func)
 {
 	pthread_mutex_lock(&(rt->global_lock));
-	if (rt->debug.flags & RT_DBGF_MSG)
+	if ((rt->debug.flags & RT_DBGF_MSG) && ((!mask) || (mask & rt->debug.mask)))
 		ft_printf(print_info(rt, "%s\n", l, file, func), msg);
 	pthread_mutex_unlock(&(rt->global_lock));
-	return (code);
+	return (0);
 }
