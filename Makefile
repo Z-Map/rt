@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 05:08:22 by qloubier          #+#    #+#              #
-#    Updated: 2017/05/14 23:38:23 by qloubier         ###   ########.fr        #
+#    Updated: 2017/05/15 18:10:42 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -129,6 +129,11 @@ $(I_MKLIB):
 
 $(I_BD):
 	$(SILENT)mkdir -p $(I_BD)
+
+include/object_factory/objects.py:
+
+include/generated/%.h: include/object_factory/objects.py
+	$(SILENT)cd include && python3 obf_test.py > /dev/null
 
 $(I_OBJS):
 ifeq ($(I_BUILDTIME),yes)
