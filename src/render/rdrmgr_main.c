@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/23 01:42:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 15:39:11 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/15 16:59:47 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int			rdrmgr_sync(t_rt *rt, t_rtrmgr *rmgr)
 	if (!(rt->render.flags & RTRMGR_REFRESH))
 		pthread_cond_wait(&(rt->render.refresh_cond),
 			&(rt->render.refresh_lock));
-	rt->render.flags &= ~(RTRMK_CANCEL|RTRMK_DONE|RTRMGR_REFRESH);
+	rt->render.flags &= ~(RTRMK_CANCEL | RTRMK_DONE | RTRMGR_REFRESH);
 	if (!rdrmgr_isrendering(rt, rmgr))
 		return (0);
 	if (*((t_ul *)&(rmgr->rsize)) != *((t_ul *)&(rt->render.render_size)))
@@ -79,7 +79,7 @@ void		*rt_rdrmgr_main(void *arg)
 	while (rdrmgr_isrendering(rt, &rmgr))
 	{
 		if (!rdrmgr_sync(rt, &rmgr))
-			break;
+			break ;
 /* Modifications (Eddy) à vérifier */
 		get = img_calc(rt, &rmgr);
 		if (get < RTRMGR_STARTRENDER)

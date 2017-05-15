@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 14:50:20 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/14 21:02:00 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/15 16:58:55 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,4 @@ int			tree_foreach(t_rtnode *node, int method,
 	else if (method & PREFIX)
 		return (prefix_foreach(node, f, env));
 	return (FAILURE);
-	}
+}

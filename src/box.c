@@ -6,7 +6,7 @@
 /*   By: fanno <fanno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 13:57:35 by fanno             #+#    #+#             */
-/*   Updated: 2017/05/14 21:44:17 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/15 17:08:35 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ static void		rt_box_update_cone(t_obj *obj, const t_v4f *p)
 	obj->hitbox = (t_box){p->x - r.x * r.y, p->x + r.x * r.y, p->y - r.y,
 		p->y, p->z - r.x * r.y, p->z + r.x * r.y};
 }
-
 
 void			rt_box_update(t_obj *obj)
 {

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 21:51:11 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 15:39:03 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/15 17:07:44 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int			rt_init_main(t_rt *rt)
 		.viewer = (t_rtview){ .keys = 0,
 			.win = NULL, .wins = NULL, .layer = NULL },
 		.render = (t_rtr) { .flags = 0, .target = NULL,
-			.render_size = (t_v2ui){0,0}, .render_px = NULL},
+			.render_size = (t_v2ui){0, 0}, .render_px = NULL},
 #ifdef RT_DEBUG
 		.debug = (struct s_debugger){
-			.flags = RT_DBGF_MSG|RT_DBGF_RET,
+			.flags = RT_DBGF_MSG | RT_DBGF_RET,
 			.mask = RT_DBGM_GLOBALE,
 			.codepoint = 0, .cpline = 0, .cpname = NULL, .cpfile = NULL,
 			.cpfunc = NULL}

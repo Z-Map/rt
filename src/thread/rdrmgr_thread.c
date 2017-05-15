@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/23 01:42:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 07:11:51 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/15 17:00:21 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int			rdrmgr_render_request(t_rt *rt, t_rtree *tree)
 {
 	pthread_mutex_lock(&(rt->render.refresh_lock));
-	rt->render.flags |= RTRMK_CANCEL|RTRMK_REFRESH;
+	rt->render.flags |= RTRMK_CANCEL | RTRMK_REFRESH;
 	rt->render.target = tree;
 	pthread_mutex_unlock(&(rt->render.refresh_lock));
 	rt_sync_rdrmgrthread(rt);
@@ -28,7 +28,7 @@ int			rt_sync_rdrmgrthread(t_rt *rt)
 		return (0);
 	pthread_mutex_lock(&(rt->render.refresh_lock));
 	if (!rt_isrunning(rt))
-		rt->render.flags |= RTRMK_STOP|RTRMK_REFRESH;
+		rt->render.flags |= RTRMK_STOP | RTRMK_REFRESH;
 	pthread_mutex_unlock(&(rt->render.refresh_lock));
 	if (rt->render.flags & RTRMK_REFRESH)
 		pthread_cond_broadcast(&(rt->render.refresh_cond));

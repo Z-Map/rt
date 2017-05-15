@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 15:45:36 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/14 21:05:03 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/15 17:08:08 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 # include "data/rt_data_objects.h"
 # include "data/rt_data_tree.h"
 
-#define FAILURE -1
-#define INFIX 1
-#define PREFIX 2
-#define SUFFIX 4
+# define FAILURE -1
+# define INFIX 1
+# define PREFIX 2
+# define SUFFIX 4
 
 t_rtnode			*mknode(t_rtobi *ob_inst); // <<
 t_rtree				*mktree(size_t num, ...);
