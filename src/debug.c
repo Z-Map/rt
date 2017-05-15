@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 23:05:29 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 15:37:48 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/15 22:23:52 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,18 @@ int					rtd_ret(t_rt *rt, int retcode, int code, const char *msg,
 			ft_printf(print_info(rt, "Return succeed with code %i.\n",
 				l, file, func), retcode);
 		else
+		{
+			pthread_mutex_unlock(&(rt->global_lock));
 			return (retcode);
-		if (rt->debug.cpname)
-			return (retcode);
-		ft_printf("Last debug point reach : %s with code %i",
-			rt->debug.cpname, rt->debug.codepoint);
-		ft_printf(" at line %i in %s <function %s>\n", rt->debug.cpline,
-			rt->debug.cpfile, rt->debug.cpfunc);
+		}
+		if (rt->debug.cpname && (rt->debug.flags & RT_DBGF_RETCP))
+		{
+			ft_printf("Last debug point reach : %s with code %i\n",
+				rt->debug.cpname, rt->debug.codepoint);
+			if (rt->debug.flags & RT_DBGF_INFO)
+				ft_printf("at line %i in %s <function %s>\n", rt->debug.cpline,
+					rt->debug.cpfile, rt->debug.cpfunc);
+		}
 	}
 	pthread_mutex_unlock(&(rt->global_lock));
 	return (retcode);

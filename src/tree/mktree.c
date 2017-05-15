@@ -6,7 +6,7 @@
 /*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 19:20:09 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/05/14 20:54:35 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/15 22:49:51 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ t_rtree			*mktree(size_t num, ...)
 
 	if (!(tree = (t_rtree *)malloc(sizeof(t_rtree))))
 		return (NULL);
-	tree->node.parent = &(tree->node);
+	tree->node.parent = (t_rtnode *)tree;
 	tree->node.next = NULL;
+	tree->node.content = NULL;
 	if (num == 0)
 		tree->node.childs = NULL;
 	else

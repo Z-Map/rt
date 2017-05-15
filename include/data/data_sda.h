@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 17:39:03 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/15 18:53:20 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/15 21:29:54 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,5 @@ typedef struct		s_sda_env
 	char			*line;
 	t_rtnode		*curr;
 }					t_sda_env;
-
-int					check_line(t_rtnode *node, char *s);
 
 #endif

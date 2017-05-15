@@ -58,7 +58,7 @@ int			rdrmgr_isrendering(t_rt *rt, t_rtrmgr *rmgr)
 
 void		*rdrmgr_exit(t_rt *rt, t_rtrmgr *rmgr)
 {
-	RT_DBGM(rt, "Render manager stoped.");
+	RT_DBGM("Render manager stoped.");
 	rt_state(rt, RTS_RDRMGR_INIT, RT_UNSET);
 	if (rmgr->rpx)
 		free(rmgr->rpx);
@@ -75,7 +75,7 @@ void		*rt_rdrmgr_main(void *arg)
 	rmgr.rpx = NULL;
 	rmgr.rdrstate = RTRMGR_FINISHED;
 	rt_state(rt, RTS_RDRMGR_INIT, RT_SET);
-	RT_DBGM(rt, "Render manager started.");
+	RT_DBGM("Render manager started.");
 	while (rdrmgr_isrendering(rt, &rmgr))
 	{
 		if (!rdrmgr_sync(rt, &rmgr))

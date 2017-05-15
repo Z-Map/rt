@@ -6,12 +6,11 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 17:35:04 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/10 16:12:58 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/15 23:00:08 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt_object.h"
-#include "data/data_sda.h"
+#include "rt_parser.h"
 
 /*
 ** make_new_node :
@@ -29,7 +28,7 @@ static char		*get_name(char *s)
 	char		*n;
 
 	if ((n = ft_strchr(s, (int)':')))
-		n = ft_strpskp(n, FT_WHITESPACE);
+		n = ft_strpskp(n + 1, FT_WHITESPACE);
 	if (!n || !(*n))
 	{
 		n = s;
@@ -40,6 +39,7 @@ static char		*get_name(char *s)
 		}
 		*s = '\0';
 	}
+	ft_printf("## Name > \"%s\"\n", n);
 	return (n);
 }
 
@@ -57,7 +57,7 @@ static int		make_new_node(t_rtnode *node, t_rtobt type, char *s)
 	if ((obj = mkobject(type, name)) &&
 		(inst = mkinstance(obj, NULL)) &&
 		(new = mknode(inst)) &&
-		(new = tree_addchild(node, new)))
+		tree_addchild(node, new))
 		return (1);
 	if (obj)
 		rmobject(obj);

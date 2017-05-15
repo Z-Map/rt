@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/15 20:11:55 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/09 15:32:04 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/15 22:10:57 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ size_t				obj_type_memsize(t_rtobt type)
 		size++;
 		i <<= 1;
 	}
-	return ((sizeof(t_rtobj) - sizeof(t_rtobd)) + *size);
+	return (*size);
 }

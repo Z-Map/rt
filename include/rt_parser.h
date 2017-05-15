@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 17:55:10 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 18:20:57 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/15 21:52:51 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "rt_prototype.h"
 # include "rt_core.h"
+# include "rt_object.h"
 # include "data/data_obj.h"
 # include "data/data_sda.h"
 
@@ -31,6 +32,7 @@ int			arg_modes(const char *arg, void *env,
 		const char **nextargtab, int tab_len);
 
 int			rt_parser_obj(char *file, t_obj *obj);
+int			check_line(t_rtnode *node, char *s);
 t_rtree		*sda_parser(const char *s);
 
 #endif

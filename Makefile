@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 05:08:22 by qloubier          #+#    #+#              #
-#    Updated: 2017/05/15 18:10:42 by qloubier         ###   ########.fr        #
+#    Updated: 2017/05/15 19:13:08 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ INCDIR			= -Iinclude -Ilib/mglw/lib/glload/include
 SRCS			= src/main.c
 
 ifndef CFLAGS
-	CFLAGS		= -Wall -Wextra -Werror
+	CFLAGS		= -Wall -Wextra -Werror -Wpadded
 endif
 
 # Setup vars

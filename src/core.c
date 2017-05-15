@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 19:06:35 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 15:39:46 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/15 21:54:32 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@
 int			rt_init_scenerdr(t_rt *rt)
 {
 	rt_state(rt, RTS_INIT, RT_SET);
+	RT_DBGM("Start tree parsing.");
+	rt->tree = sda_parser(rt->scene);
+	RT_DBGM("Tree parsed.");
+	print_tree(rt->tree);
 	rt_init_rdrmgrthread(rt);
-	RT_DBGM(rt, "Render inited.");
+	RT_DBGM("Render inited.");
 	return (1);
 }
 
@@ -27,7 +31,7 @@ int			rt_init_mglw(t_rt *rt)
 		return (rt_error(rt, 121, "Unable to init mglw."));
 	rt_state(rt, RTS_MGLW_INIT, RT_SET);
 	rt_init_viewerthread(rt);
-	RT_DBGM(rt, "MGLW inited.");
+	RT_DBGM("MGLW inited.");
 	return (1);
 }
 

@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   print_tree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ealbert <ealbert@student42.fr>             +#+  +:+       +#+        */
+/*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 17:59:51 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/12 15:42:49 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/15 22:54:47 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_tree.h"
-#include "libft.h"
 
 typedef struct	s_printree // A mettre dans un .h !
 {
@@ -22,21 +21,27 @@ typedef struct	s_printree // A mettre dans un .h !
 static int		recursive(t_ptree *p, t_rtnode *node, int i)
 {
 	t_rtobi		*content;
+	int			j;
 
+	j = i;
+	while (j--)
+		ft_putchar('\t');
+	ft_printf("NODE: ");
 	content = (t_rtobi *)node->content;
-	i = -1;
-	while (++i < p->tab)
-		ft_printf("%c", '\t');
-	ft_printf("NODE: type: %X | name: '%s'\n", content->obj->type,
-		content->obj->name);
-	if (node->childs)
+	if (content)
 	{
-		p->tab++;
-		recursive(p, node->childs, i);
+		if (content->obj)
+			ft_printf(" Obj(type: %X, name: '%s')\n", content->obj->type,
+				content->obj->name);
+		else
+			ft_printf(" Invalid instance\n");
 	}
+	else
+		ft_printf("ROOT\n");
+	if (node->childs)
+		recursive(p, node->childs, i + 1);
 	if (node->next)
 		recursive(p, node->next, i);
-	p->tab--;
 	return (1);
 }
 
@@ -49,7 +54,7 @@ int			print_tree(t_rtree *tree)
 	i = -1;
 	p.run = 1;
 	p.tab = 0;
-	tmp = &(tree->node);
-	recursive(&p, tmp, i);
+	if ((tmp = (t_rtnode *)tree))
+		recursive(&p, tmp, 0);
 	return (1);
 }
