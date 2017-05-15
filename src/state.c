@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 12:06:03 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/04 12:30:25 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/15 06:59:04 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,18 @@ int				rt_state(t_rt *rt, t_ul state, int s)
 		|| ((s == RT_UNSET) && ((rt->state & state) == 0))
 		|| ((s != RT_UNSET) && (s != RT_SET)))
 		return (0);
+	pthread_mutex_lock(&(rt->global_lock));
 	pthread_mutex_lock(&(rt->state_lock));
+#ifdef RT_DEBUG
+	if (rt->debug.flags & RT_DBGF_STATECHANGE)
+		ft_printf("[DEBUG] State %s : %#06X\n",
+			(s == RT_SET) ? "set" : "unset", state);
+#endif
 	if (s == RT_SET)
 		rt->state |= state;
 	else
 		rt->state &= ~state;
 	pthread_mutex_unlock(&(rt->state_lock));
-	return (0);
+	pthread_mutex_unlock(&(rt->global_lock));
+	return (1);
 }

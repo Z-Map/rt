@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   box.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fanno <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: fanno <fanno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 13:57:35 by fanno             #+#    #+#             */
-/*   Updated: 2017/05/02 14:57:29 by fanno            ###   ########.fr       */
+/*   Updated: 2017/05/14 21:44:17 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"
-#include "rt_data_render.h"
-#include "rt_data_objects.h"
-
+#include "rt_object.h"
+/*
 int				cube_check(float *box, float dir, double *tb)
 {
 	double	tmin;
@@ -68,7 +66,8 @@ int				raybox_cube_check(t_ray *r, t_box *box)
 	r->lenght = (tb[0] > 0.0) ? tb[0] : tb[1];
 	return (1);
 }
-
+//*/
+/*
 static void		rt_box_update_triangle(t_obj *obj)
 {
 	const t_triangle	*tri = obj->content;
@@ -108,6 +107,7 @@ static void		rt_box_update_cone(t_obj *obj, const t_v4f *p)
 		p->y, p->z - r.x * r.y, p->z + r.x * r.y};
 }
 
+
 void			rt_box_update(t_obj *obj)
 {
 	const t_v4f		p = draw_convert_v4d_to_v4f(obj->trans.w);
@@ -132,3 +132,4 @@ void			rt_box_update(t_obj *obj)
 	else
 		obj->hitbox = (t_box){0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 }
+//*/

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 14:51:55 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 15:36:59 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/15 06:54:23 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ int				rt_init_window(t_rt *rt)
 	pthread_mutex_lock(&(rt->viewer.refresh_lock));
 	rt->viewer.layer = (mglimg *)mglw_get2dlayer(rt->viewer.win);
 	ft_bzero(rt->viewer.layer->pixels, rt->viewer.layer->memlen);
+	rt_state(rt, RTS_VPREV, RT_SET);
 	pthread_mutex_unlock(&(rt->viewer.refresh_lock));
+	RT_DBGM(rt, "Viewer window started.")
 	return (0);
 }
 
@@ -47,8 +49,10 @@ void			*viewer_exit(t_rt *rt, int code)
 	rt->error = code;
 	pthread_mutex_lock(&(rt->viewer.refresh_lock));
 	rt->viewer.keys |= RTWK_STOP | RTWK_REFRESH;
+	rt_state(rt, RTS_VPREV, RT_UNSET);
 	pthread_mutex_unlock(&(rt->viewer.refresh_lock));
 	viewer_run(rt, &(rt->viewer));
+	RT_DBGM(rt, "Viewer window stoped.")
 	return (NULL);
 }
 

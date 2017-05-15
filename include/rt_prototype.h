@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/14 21:01:17 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/15 06:36:22 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,16 @@ typedef struct s_obj				t_obj;
 
 # define RTS_INIT					0x1ul
 # define RTS_MGLW_INIT				0x2ul
-# define RTS_RENDER					0x4ul
+# define RTS_RDRMGR_INIT			0x4ul
 # define RTS_SLEEP					0x8ul
 # define RTS_QUIT					0x10ul
-# define RTS_VPREV					0x20ul
+# define RTS_RENDER					0x20ul
+# define RTS_VPREV					0x40ul
 
 # define RTR_CG						0x1ul
 
 # define RTRMGR_STARTRENDER			2048
+# define RTRMGR_FINISHED			256
 # define RTRMGR_REFRESH				0x1ul
 
 # define RTRMK_REFRESH				0x1ul
@@ -89,5 +91,15 @@ typedef struct s_obj				t_obj;
 
 # define RTWK_REFRESH				0x1ul
 # define RTWK_STOP					0x2ul
+
+# ifdef RT_DEBUG
+#  define RT_DBGF_ALLCP				0x1ul
+#  define RT_DBGF_DISPKEY			0x2ul
+#  define RT_DBGF_STATECHANGE		0x4ul
+#  define RT_DBGF_MSG				0x8ul
+#  define RT_DBGF_INFO				0x10ul
+#  define RT_DBGF_RET				0x20ul
+#  define RT_DBGF_ALLRET			0x40ul
+# endif
 
 #endif

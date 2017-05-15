@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 15:03:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/03 20:34:45 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/15 07:10:09 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,10 @@ struct					s_rt_render_data
 
 typedef struct			s_rt_render_manager
 {
+	unsigned long		rdrstate;
 	t_v2ui				rsize;
 	t_rgba				*rpx;
+	t_rtree				*rendertree;
 }						t_rtrmgr;
 
 struct					s_rt_render
@@ -64,7 +66,7 @@ struct					s_rt_render
 	pthread_mutex_t		refresh_lock;
 	pthread_cond_t		refresh_cond;
 	t_ul				flags;
-	t_rtree				*rendertree;
+	t_rtree				*target;
 	t_v2ui				render_size;
 	t_rgba				*render_px;
 };

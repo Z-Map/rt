@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 18:16:17 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/12 15:56:26 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/15 06:59:58 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ int			rt_quit(t_rt *rt)
 
 	if (!rt)
 		return (-1);
-	if (rt->state & RTS_MGLW_INIT)
+	if (rt_state(rt, RTS_VPREV, RT_GET))
+		rt_sync_viewerthread(rt);
+	if (rt_state(rt, RTS_RDRMGR_INIT, RT_GET))
+		rt_sync_rdrmgrthread(rt);
+	if (rt_state(rt, RTS_MGLW_INIT, RT_UNSET))
 		mglw_close();
 	if ((ret = rt_check_error(rt)))
 		return (ret);

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 21:07:42 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 16:22:36 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/14 22:14:30 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,10 @@ void			object_default_cylinder(t_rtobd *object);
 void			object_default_cuboid(t_rtobd *object);
 void			object_default_tris(t_rtobd *object);
 void			object_default_mesh(t_rtobd *object);
-void			object_default_light(t_rtobd *object);
+void			object_default_light(t_rtobj *obj);
+void			object_default_sunlight(t_rtobd *object);
+void			object_default_pointlight(t_rtobd *object);
+void			object_default_spot(t_rtobd *object);
 void			object_default(t_rtobj *object);
 void			obinst_default(t_rtobi *inst, t_rtobj *obj, const char *name);
 

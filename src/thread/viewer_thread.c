@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 14:57:26 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 15:38:59 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/15 06:46:29 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int			rt_sync_viewerthread(t_rt *rt)
 	{
 		pthread_join(v->mainthread, NULL);
 		mglw_closewin(v->win);
-		rt->state &= ~RTS_VPREV;
 		if (rt->flags & RT_VISUALPREV)
 			rt->flags &= ~RT_VISUALPREV;
 	}
@@ -54,7 +53,6 @@ int			rt_init_viewerthread(t_rt *rt)
 	rt->viewer.refresh_cond = (pthread_cond_t)PTHREAD_COND_INITIALIZER;
 	if (pthread_create(&(rt->viewer.mainthread), NULL, &rt_viewer_main, rt))
 		return (rt_error(rt, 122, "Unable to start viewer thread."));
-	rt->state |= RTS_VPREV;
 	// rt_init_window(rt);
 	return (1);
 }

@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 05:08:22 by qloubier          #+#    #+#              #
-#    Updated: 2017/05/14 20:52:49 by qloubier         ###   ########.fr        #
+#    Updated: 2017/05/14 23:38:23 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME			= rt
 PROJECTNAME		= rt
 
 # Project vars
+RT_DEBUG		= on
 ifeq ($(RT_NATIVEMKLIB),on)
 	LIBSMK		= ../libft/libft.a ../mathex/libmathex.a ../mglw/libmglw.a
 else
@@ -47,10 +48,15 @@ ifndef config
 	config		= release
 endif
 ifeq ($(config),debug)
+  RT_DEBUG		= on
   CFLAGS		+= -O1 -g -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
 endif
 ifeq ($(config),release)
   CFLAGS		+= -Ofast
+endif
+
+ifeq ($(RT_DEBUG),on)
+	CFLAGS		+= -DRT_DEBUG
 endif
 
 # Global vars
@@ -190,6 +196,9 @@ unicorn:
 |\e[48;5;235m                                 \e[35m            <.'_.''          \e[m|\n\
 |\e[48;5;235m                                 \e[95m              <'             \e[m|\n\
  ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n"
+
+flib:
+	$(SILENT)$(MAKE) -Bs $(I_MKLIB) I_MKTARGET=all
 
 libclean:
 	$(SILENT)$(MAKE) -Bs $(I_MKLIB) I_MKTARGET=fclean

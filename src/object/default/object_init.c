@@ -6,11 +6,24 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 02:02:13 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 15:47:35 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/14 22:14:50 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_object.h"
+
+void			object_default_light(t_rtobj *obj)
+{
+	t_rtobd		*object;
+
+	object = (t_rtobd *)obj;
+	if (obj->type & SUNLIGHT)
+		object_default_sunlight(object);
+	if (obj->type & POINTLIGHT)
+		object_default_pointlight(object);
+	if (obj->type & SPOT)
+		object_default_spot(object);
+}
 
 void			object_default(t_rtobj *obj)
 {
@@ -36,5 +49,5 @@ void			object_default(t_rtobj *obj)
 	if (obj->type & TRIS)
 		object_default_tris(object);
 	if (obj->type & (SPOT | POINTLIGHT | SUNLIGHT))
-		object_default_light(object);
+		object_default_light(obj);
 }
