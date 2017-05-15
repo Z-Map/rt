@@ -16,18 +16,20 @@ int				rt_parse_args(t_rt *rt, int ac, char **av)
 {
 	t_arg		*arglst;
 	t_argret	*argret;
-	if (ac)
-		return (1);
+
 	ft_setarg(&arglst, 'd', "command", &arg_commandmode);
 	ft_setarg(&arglst, 'f', "fileout", &arg_fileout);
 	ft_setarg(&arglst, 'c', "client", &arg_clientmode);
 	ft_setarg(&arglst, 'v', "visual", &arg_visualprev);
 	ft_setarg(&arglst, 'm', "modes", &arg_modes);
 	argret = ft_parsearg(arglst, ac, av, rt);
+	RT_DBGR(rt, argret->argp, 0, "Arg parsed");
 	ac = argret->ac;
 	av = argret->av;
 	ft_freearg(&arglst, argret);
 	if (ac)
 		rt->scene = av[0];
+	if (!(rt->flags & RT_MODES))
+		rt->flags = RT_VISUALPREV;
 	return (1);
 }

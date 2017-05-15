@@ -17,9 +17,8 @@ int			main(int argc, char **argv)
 {
 	t_rt	rt_root;
 
-	if (!rt_init_main(&rt_root)
-		|| !rt_parse_args(&rt_root, argc + 1, argv + 1))
-		return (rt_quit(&rt_root));
-	rt_main(&rt_root);
+	if (rt_init_main(&rt_root)
+		&& rt_parse_args(&rt_root, argc - 1, argv + 1))
+		rt_main(&rt_root);
 	return (rt_quit(&rt_root));
 }

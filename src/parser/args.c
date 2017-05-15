@@ -62,7 +62,7 @@ int			arg_visualprev(const char *arg, void *env,
 	(void)nextargtab;
 	(void)tab_len;
 	rt = (t_rt *)env;
-	rt->flags |= RT_VISUALPREV | ~RT_CLIENTMODE;
+	rt->flags = (rt->flags & ~RT_CLIENTMODE) | RT_VISUALPREV;
 	return (0);
 }
 
