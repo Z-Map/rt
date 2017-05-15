@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 18:19:26 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 15:37:36 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/15 18:22:32 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ struct						s_rt_root
 	int						errors[15];
 	char					*scene;
 	char					*fileout;
+	t_rtree					*tree;
 	t_rtview				viewer;
 	t_rtr					render;
 	struct s_debugger		debug;

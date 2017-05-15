@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 15:45:36 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 17:08:08 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/15 18:24:26 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ t_rtnode			*tree_collapsechild(t_rtnode *parent, t_rtnode *node);
 t_rtnode			*tree_setparent(t_rtnode *node, t_rtnode *parent);
 int					tree_foreach(t_rtnode *node, int method,
 						int (*f)(t_rtnode *, void *), void *env);
+
+int					print_tree(t_rtree *tree);
 
 #endif

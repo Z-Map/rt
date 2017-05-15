@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_sda.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ealbert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 17:39:03 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/12 16:25:13 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/15 18:53:20 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 typedef struct		s_sda_env
 {
 	int				fd;
-	int				ret;
-	char			*line;
 	int				tab;
 	int				move;
+	int				padding;
+	char			*line;
 	t_rtnode		*curr;
 }					t_sda_env;
 
