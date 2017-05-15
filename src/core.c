@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 19:06:35 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 07:05:52 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/15 15:39:46 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int			rt_init_scenerdr(t_rt *rt)
 {
 	rt_state(rt, RTS_INIT, RT_SET);
 	rt_init_rdrmgrthread(rt);
-	RT_DBGM(rt, "Render inited.")
+	RT_DBGM(rt, "Render inited.");
 	return (1);
 }
 
@@ -27,7 +27,7 @@ int			rt_init_mglw(t_rt *rt)
 		return (rt_error(rt, 121, "Unable to init mglw."));
 	rt_state(rt, RTS_MGLW_INIT, RT_SET);
 	rt_init_viewerthread(rt);
-	RT_DBGM(rt, "MGLW inited.")
+	RT_DBGM(rt, "MGLW inited.");
 	return (1);
 }
 

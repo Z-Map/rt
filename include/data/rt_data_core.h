@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 18:19:26 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 07:23:35 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/15 15:37:36 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include "data/rt_data_viewer.h"
 # include "data/rt_data_render.h"
 
-# ifdef RT_DEBUG
 struct						s_debugger
 {
 	unsigned long			flags;
@@ -30,7 +29,6 @@ struct						s_debugger
 	const char				*cpfile;
 	const char				*cpfunc;
 };
-# endif
 
 struct						s_rt_root
 {
@@ -44,9 +42,7 @@ struct						s_rt_root
 	char					*fileout;
 	t_rtview				viewer;
 	t_rtr					render;
-# ifdef RT_DEBUG
 	struct s_debugger		debug;
-# endif
 };
 
 #endif
