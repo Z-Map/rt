@@ -19,8 +19,18 @@
 # include "data/data_sda.h"
 
 int			rt_parse_args(t_rt *rt, int ac, char **av);
-int			rt_parser_obj(char *file, t_obj *obj);
+int			arg_commandmode(const char *arg, void *env,
+		const char **nextargtab, int tab_len);
+int			arg_fileout(const char *arg, void *env,
+		const char **nextargtab, int tab_len);
+int			arg_clientmode(const char *arg, void *env,
+		const char **nextargtab, int tab_len);
+int			arg_visualprev(const char *arg, void *env,
+		const char **nextargtab, int tab_len);
+int			arg_modes(const char *arg, void *env,
+		const char **nextargtab, int tab_len);
 
+int			rt_parser_obj(char *file, t_obj *obj);
 t_rtree		*sda_parser(const char *s);
 
 #endif
