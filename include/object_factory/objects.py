@@ -52,7 +52,7 @@ G_objects = (
 		"group" : "tool",
 		"property" : (
 			ObT("subtree", "void"),
-			ObT("size", "float"),
+			ObT("size", "double"),
 		)
 	},
 	{
@@ -61,6 +61,7 @@ G_objects = (
 		"property" : (
 			ObT("fov", "t_v2f"),
 			ObT("focus", "float"),
+			ObT("fstop", "float"),
 		)
 	},
 	{
@@ -72,6 +73,7 @@ G_objects = (
 		"group" : "visible",
 		"property" : (
 			ObT("radius", "float"),
+			ObT("padding", "int"),
 		)
 	},
 	{
@@ -79,6 +81,7 @@ G_objects = (
 		"group" : "visible",
 		"property" : (
 			ObT("angle", "float"),
+			ObT("padding", "int"),
 		)
 	},
 	{
@@ -86,6 +89,7 @@ G_objects = (
 		"group" : "visible",
 		"property" : (
 			ObT("radius", "float"),
+			ObT("padding", "int"),
 		)
 	},
 	{
@@ -93,6 +97,7 @@ G_objects = (
 		"group" : "visible",
 		"property" : (
 			ObT("radius", "float"),
+			ObT("padding", "int"),
 		)
 	},
 	{
@@ -116,6 +121,7 @@ G_objects = (
 		"group" : "light",
 		"property" : (
 			ObT("angle", "float"),
+			ObT("padding", "int"),
 		)
 	},
 	{

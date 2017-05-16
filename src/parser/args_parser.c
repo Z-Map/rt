@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 17:52:09 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 21:54:55 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/16 02:25:41 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int				rt_parse_args(t_rt *rt, int ac, char **av)
 	t_arg		*arglst;
 	t_argret	*argret;
 
+	arglst = NULL;
 	ft_setarg(&arglst, 'd', "command", &arg_commandmode);
 	ft_setarg(&arglst, 'f', "fileout", &arg_fileout);
 	ft_setarg(&arglst, 'c', "client", &arg_clientmode);
