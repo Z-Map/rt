@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 18:15:50 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/12 15:39:18 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/12 16:22:55 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			rt_error(t_rt *rt, int code, const char *msg)
 		return (-1);
 	if (msg)
 		ft_printf("Error #%i : \"%s\"\n", code, msg);
-	// if (rt->error)
+// if (rt->error)
 	rt->error = code;
 	if (code < 0)
 	{

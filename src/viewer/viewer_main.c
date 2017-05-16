@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 14:51:55 by qloubier          #+#    #+#             */
-/*   Updated: 2017/04/01 19:28:33 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/12 15:36:59 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,11 @@ void			*viewer_exit(t_rt *rt, int code)
 {
 	rt->error = code;
 	pthread_mutex_lock(&(rt->viewer.refresh_lock));
-	rt->viewer.keys |= RTWK_STOP|RTWK_REFRESH;
+	rt->viewer.keys |= RTWK_STOP | RTWK_REFRESH;
 	pthread_mutex_unlock(&(rt->viewer.refresh_lock));
 	viewer_run(rt, &(rt->viewer));
 	return (NULL);
 }
-
 
 void			*rt_viewer_main(void *arg)
 {

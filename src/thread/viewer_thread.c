@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 14:57:26 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/15 20:03:35 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/12 15:38:59 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int			rt_sync_viewerthread(t_rt *rt)
 	v = &(rt->viewer);
 	pthread_mutex_lock(&(v->refresh_lock));
 	if (!(ret = mglwin_process_event(v->win)) || !rt_isrunning(rt))
-		v->keys |= RTWK_STOP|RTWK_REFRESH;
+		v->keys |= RTWK_STOP | RTWK_REFRESH;
 	if (v->keys & RTWK_STOP)
 		ret = 0;
 	pthread_mutex_unlock(&(v->refresh_lock));

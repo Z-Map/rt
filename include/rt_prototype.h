@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/04 12:41:18 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/12 16:34:18 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "libft.h"
 
-#include "generated/rt_proto_gen.h"
+# include "generated/rt_proto_gen.h"
 
 typedef struct s_rt_root			t_rt;
 typedef struct s_rt_viewer			t_rtview;
@@ -80,6 +80,7 @@ typedef struct s_obj				t_obj;
 # define RTR_CG						0x1ul
 
 # define RTRMGR_STARTRENDER			2048
+# define RTRMGR_REFRESH				0x1ul
 
 # define RTRMK_REFRESH				0x1ul
 # define RTRMK_STOP					0x2ul

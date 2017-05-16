@@ -6,12 +6,12 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 21:07:42 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/08 17:39:24 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/12 16:22:36 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_OBJECTS_H
-#define RT_OBJECTS_H
+# define RT_OBJECTS_H
 
 # include <stdarg.h>
 
@@ -21,8 +21,6 @@
 
 # define RTOBJ_MEMBUF_SIZE		128
 # define RTOBI_MEMBUF_SIZE		128
-
-
 
 size_t			obj_type_memsize(t_rtobt type);
 
