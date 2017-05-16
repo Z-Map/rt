@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/24 22:50:08 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/15 21:54:16 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/16 16:14:25 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static int			move_node(int n, t_rtnode **node)
 	if ((n == 1) && (*node)->childs)
 	{
 		*node = (*node)->childs;
-		while ((*node)->next)
-			*node = (*node)->next;
+		// while ((*node)->next)
+		// 	*node = (*node)->next;
 	}
 	else if (n >= 1)
 		return (0);

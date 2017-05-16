@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 17:35:04 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/15 23:00:08 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/16 16:15:27 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int				check_line(t_rtnode *node, char *s)
 		return (make_new_node(node, CONE, s));
 	else if (!ft_strncmp(s, "CYLINDER", 8))
 		return (make_new_node(node, CYLINDER, s));
-	else if (!ft_strncmp(s, "CUBOID", 6))
+	else if (!ft_strncmp(s, "CUBE", 4))
 		return (make_new_node(node, CUBOID, s));
 	else if (!ft_strncmp(s, "MESH", 4))
 		return (make_new_node(node, MESH, s));

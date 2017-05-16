@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 05:08:22 by qloubier          #+#    #+#              #
-#    Updated: 2017/05/16 02:28:38 by qloubier         ###   ########.fr        #
+#    Updated: 2017/05/16 16:11:04 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,7 +93,7 @@ else
   LIBFLAGS		+= -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
 endif
 
-.PHONY: all clean fclean re libclean $(I_DEP) unicorn gitinit gitpull pull gitreinit $(I_PHONY)
+.PHONY: all clean fclean re libclean $(I_DEP) unicorn gitinit gitpull pull gitreinit $(I_PHONY) libs
 
 all: $(TARGETDIR)/$(NAME)
 
@@ -122,7 +122,9 @@ gitpull: gitinit
 
 pull: gitpull
 
-$(I_MKLIB):
+libs:
+
+$(I_MKLIB): libs
 	$(SILENT)$(MAKE) --no-print-directory -C $(dir $(filter %/$(notdir $@),$(LIBSMK))) $(I_MKTARGET)\
 		TARGETDIR=$(CURDIR)/$(I_BD) BUILDDIR=$(I_BD) PROJECTPATH=$(CURDIR)\
 		config=$(config) SILENT=$(SILENT)
