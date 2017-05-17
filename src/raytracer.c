@@ -6,39 +6,68 @@
 /*   By: fanno <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/16 13:52:21 by fanno             #+#    #+#             */
-/*   Updated: 2017/05/16 14:04:55 by fanno            ###   ########.fr       */
+/*   Updated: 2017/05/17 16:48:54 by fanno            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <RT.h>
-
-void		calc_ray(t_env *env, double x, double y)
+void		**node_prefix(t_rtnode *node)
 {
-	t_ray *ray;
-	t_cam *cam;
+	void		**tmp;
+	
+	tmp = &node;
+	while (*tmp)
+	{
+		if (!node->child)
+		{
+			if (t_rtnode->t_rtobi->obj.type | SPHERE)
+				tmp++ = calc_sphere;
+			if (t_rtnode->t_rtobi->obj.type | CONE)
+				tmp++ = calc_cone;
+			if (t_rtnode->t_rtobi->obj.type | PLAN)
+				tmp++ = calc_plan;
+			if (t_rtnode->t_rtobi->obj.type | CYLINDER)
+				tmp++ = calc_cylinder
+		}
+		if (!node->next)
+			if (t_rtnode->t_rtobi->obj.type | SPHERE)
+				tmp++ = calc_sphere;
+			if (t_rtnode->t_rtobi->obj.type | CONE)
+				tmp++ = calc_cone;
+			if (t_rtnod0e->t_rtobi->obj.type | PLAN)
+				tmp++ = calc_plan;
+			if (t_rtnode->t_rtobi->obj.type | CYLINDER)
+				tmp++ = calc_cylinder
+		}
+	}
+}
+// Pour le moment la fonction est en iteratif. Il faut je pense la passer en 
+// recursive, cela s'adaptera mieux a la structure du nodetree.
+// mon void** est un type par default, a creuser.
 
-	ray = &env->ray;
-	cam = &env->cam;
-	cpy_tp3d(&env->ray.dir, sum_tp3d(env->viewplane.upleft, sub_t3d(
-		mult_nb_tp3d(env->viewplane.rvec, x * env->xindent),
-		mult_nb_tp3d(env->viewplane.upvec, y * env->yindent))));
-	normalized(&env->ray.dir);
+double		calc_delta(double a, double b, double c)
+{
+	double	t0;
+	double	t1;
+	double	t;
+
+	if ((b * b) - (4 * a * c) < 0)
+		return (0);
+	t0 = (-b + sqrt((b * b) - (4 * a * c))) / (2 * a);
+	t1 = (-b - sqrt((b * b) - (4 * a * c))) / (2 * a);
+	t = (t0 > 0 && (t0 < t1 || t1 <= 0)) ? t0 : t1;
+	t = (t > 0) ? t : -8;
+	return (t);
 }
 
-void		set_light(t_ray *light)
+double		calc_plane()
 {
-	set_tp3d(&light->pos, 0, 0, 300);
-	set_tp3d(&light->dir, 0, 0, 0);
-	light->next = NULL;
 }
-
-void		set_ray(t_ray *ray, t_env *env)
+double		calc_sphere()
 {
-	ray->pos.x = env->cam.pos.x;
-	ray->pos.y = env->cam.pos.y;
-	ray->pos.z = env->cam.pos.z;
-	ray->dir.x = 0;
-	ray->dir.y = 0;
-	ray->dir.z = 0;
-	ray->next = NULL;
+}
+double		calc_cone()
+{
+}
+double		calc_cylinder()
+{
 }
