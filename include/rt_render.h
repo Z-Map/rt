@@ -27,4 +27,9 @@ int			rdrmgr_done(t_rt *rt, t_rtrmgr *rmgr);
 void		*rdrmgr_exit(t_rt *rt, t_rtrmgr *rmgr, int code);
 int			rdrmgr_isrendering(t_rt *rt, t_rtrmgr *rmgr);
 int			img_calc(t_rt *rt, t_rtrmgr *rmgr);
+
+int			**sharpen_kernel_create(void);
+int			**blur_kernel_create(void);
+int			**edge_kernel_create(void);
+
 #endif
