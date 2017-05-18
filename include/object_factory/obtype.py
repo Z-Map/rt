@@ -109,8 +109,8 @@ class Obtype(object):
 		if not name:
 			name = self.name
 		txt = "(t_val){" + self.etype + ", " + str(offset)
-		txt += ", " + str(idx) + ", 0, \"" + name + "\", (t_elm *)(t_ul)&"
-		txt += self.parser_elm + "}"
+		txt += ", " + str(idx) + ", 0, \"" + name + "\", (t_elm *)(t_ul)(&"
+		txt += self.parser_elm + ")}"
 		return txt
 
 	def mkcvar(self, name = None, atab = 6, btab = 1):

@@ -42,6 +42,7 @@ def generate_headers(dirname):
 	ctext = alignOnTab("struct", G_tabalign, 0) + "s_rt_object\n{\n"
 	gObOffset = 0
 	gObprop = 0
+	vtabtxt = ""
 	for aprop in G_basicproperty:
 		ctext += aprop.mkcvar(None, G_tabalign)
 		gObOffset += int(aprop)
@@ -73,7 +74,7 @@ def generate_headers(dirname):
 		if cprstext:
 			cprstext = (alignOnTab("static const t_val", G_tabalign, 0)
 				+ "g_vtab_"+anob["cname"] + "[" + str(validx) + "] = {"
-				+ cprstext + "};\n\n")
+				+ cprstext[:-1] + "\n};\n\n")
 			f.write(cprstext)
 		ftype.write(alignOnTab(anob["cenum"], G_tabalignenum, 1) + "= " + hex(anob["id"]) + ",\n")
 	allstruct += "};\n\n"
