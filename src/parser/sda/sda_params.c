@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 17:35:04 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/16 16:15:27 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/18 14:04:59 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static char		*get_name(char *s)
 		}
 		*s = '\0';
 	}
-	ft_printf("## Name > \"%s\"\n", n);
 	return (n);
 }
 

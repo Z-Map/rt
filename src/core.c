@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 19:06:35 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 21:54:32 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/18 14:08:44 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,9 @@ int			rt_init_mglw(t_rt *rt)
 	if (!mglw_init())
 		return (rt_error(rt, 121, "Unable to init mglw."));
 	rt_state(rt, RTS_MGLW_INIT, RT_SET);
-	rt_init_viewerthread(rt);
+	if ((rt->flags & RT_VISUALPREV) ||
+		!(rt->flags & (RT_FILEOUT | RT_COMMANDMODE)))
+		rt_init_viewerthread(rt);
 	RT_DBGM("MGLW inited.");
 	return (1);
 }
@@ -57,8 +59,7 @@ int			rt_main(t_rt *rt)
 	int		ret;
 
 	ret = rt_init_scenerdr(rt);
-	if ((rt->flags & RT_VISUALPREV) ||
-		!(rt->flags & (RT_FILEOUT | RT_COMMANDMODE)))
+	if (ret)
 		ret = rt_init_mglw(rt);
 	if (ret <= 0)
 		return (ret);

@@ -40,24 +40,41 @@ def generate_headers(dirname):
 	f.write("""# include "mathex/matrix.h"\n""")
 	f.write("""# include "rt_prototype.h"\n\n""")
 	ctext = alignOnTab("struct", G_tabalign, 0) + "s_rt_object\n{\n"
+	gObOffset = 0
+	gObprop = 0
 	for aprop in G_basicproperty:
 		ctext += aprop.mkcvar(None, G_tabalign)
+		gObOffset += int(aprop)
+		gObprop += 1
 	ctext += "};\n\n"
 	f.write(ctext)
 	allstruct = alignOnTab("union", G_tabalign, 0) + "u_rt_objectdata\n{\n"
 	for akey in objs[0]:
 		anob = objs[akey]
 		ctext = ""
+		cprstext = ""
 		if anob["cstruct"]:
+			valoffset = gObOffset
+			validx = 0
 			allstruct += alignOnTab("struct s_" + anob["cname"], G_tabalign) + akey + ";\n"
 			ctext = alignOnTab("struct", G_tabalign, 0) + "s_"+anob["cname"] + "\n{\n"
 			for aprop in G_basicproperty:
 				ctext += aprop.mkcvar(None, G_tabalign)
 			for aprop in anob["property"]:
 				ctext += aprop.mkcvar(None, G_tabalign)
+				tmps = aprop.mkval(valoffset, validx)
+				valoffset += int(aprop)
+				if tmps:
+					cprstext += '\n' + tmps + ','
+					validx += 1
 			ctext += "};\n\n"
 		if ctext:
 			f.write(ctext)
+		if cprstext:
+			cprstext = (alignOnTab("static const t_val", G_tabalign, 0)
+				+ "g_vtab_"+anob["cname"] + "[" + str(validx) + "] = {"
+				+ cprstext + "};\n\n")
+			f.write(cprstext)
 		ftype.write(alignOnTab(anob["cenum"], G_tabalignenum, 1) + "= " + hex(anob["id"]) + ",\n")
 	allstruct += "};\n\n"
 	f.write(allstruct)
