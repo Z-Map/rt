@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 15:45:36 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 16:34:59 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/16 22:25:39 by ealbert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 # include "data/rt_data_core.h"
 # include "data/rt_data_objects.h"
 # include "data/rt_data_tree.h"
+
+typedef struct		s_printree
+{
+	int				run;
+	int				tab;
+}					t_printree;
 
 t_rtnode			*mknode(t_rtobi *ob_inst); // <<
 t_rtree				*mktree(size_t num, ...);

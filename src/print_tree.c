@@ -3,21 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   print_tree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ealbert <ealbert@student42.fr>             +#+  +:+       +#+        */
+/*   By: ealbert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 17:59:51 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/12 15:42:49 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/16 22:24:49 by ealbert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_tree.h"
 #include "libft.h"
 
-typedef struct	s_printree // A mettre dans un .h !
+static int	recursive(t_ptree *p, t_rtnode *tmp, int i)
 {
-	int			run;
-	int			tab;
-}				t_ptree;
+	i = -1;
+	while (++i < tab)
+		ft_printf("%c", '\t');
+	ft_printf("NODE: type: %X | name: '%s'\n", node->content->obj.type,
+		node->content->objs->name);
+	if (tmp->childs)
+	{
+		tab++;
+		recursive(p, tmp->childs, i);
+	}
+	if (tmp->next)
+		recursive(p, tmp->next, i);
+	tab--;
+}
 
 static int		recursive(t_ptree *p, t_rtnode *node, int i)
 {
@@ -46,6 +57,10 @@ int			print_tree(t_rtree *tree)
 	t_ptree		p;
 	t_rtnode	*tmp;
 
+	p.run = 1;
+	p.tab = 0;
+	tmp = &(tree->node);
+	recursive(p, tmp, i);
 	i = -1;
 	p.run = 1;
 	p.tab = 0;
