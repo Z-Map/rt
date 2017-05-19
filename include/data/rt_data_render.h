@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 15:03:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 07:10:09 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/19 19:41:35 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@ struct					s_rt_render_ray
 
 struct					s_rt_render_gdata
 {
-	t_rgba				color;
 	t_ui				flags;
-	double				depth;
+	t_v2d				depth;
 	t_v3f				hit_point;
 	t_v3f				hit_nor;
 	t_mat2x3f			hit_tangent;

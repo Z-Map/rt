@@ -39,6 +39,7 @@ def generate_headers(dirname):
 	f.write("""\n# include "mathex/vector.h"\n""")
 	f.write("""# include "mathex/matrix.h"\n""")
 	f.write("""# include "rt_prototype.h"\n\n""")
+	ftype.write("""# include "libft.h"\n\n""")
 	ctext = alignOnTab("struct", G_tabalign, 0) + "s_rt_object\n{\n"
 	gObOffset = 0
 	gObprop = 0
@@ -75,6 +76,11 @@ def generate_headers(dirname):
 			cprstext = (alignOnTab("static const t_val", G_tabalign, 0)
 				+ "g_vtab_"+anob["cname"] + "[" + str(validx) + "] = {"
 				+ cprstext[:-1] + "\n};\n\n")
+			cprstext += (alignOnTab("static const t_elm", G_tabalign, 0)
+				+ "g_elm_"+anob["cname"] + "= {" + '"'+akey+'",\n'
+				+ 'sizeof(struct s_'+anob["cname"]+'), ' + str(validx) + ', '
+				+ str(validx - 1) + ', (t_val *)(t_ul)g_vtab_'+anob["cname"]
+				+ ',\nNULL, NULL, ft_vparse_null, NULL};\n\n')
 			f.write(cprstext)
 		ftype.write(alignOnTab(anob["cenum"], G_tabalignenum, 1) + "= " + hex(anob["id"]) + ",\n")
 	allstruct += "};\n\n"

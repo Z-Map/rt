@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 15:45:36 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 18:24:26 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/19 19:19:50 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@
 
 t_rtnode			*mknode(t_rtobi *ob_inst); // <<
 t_rtree				*mktree(size_t num, ...);
-int					rmnode(t_rtnode *node); // <<
+int					rmnode(t_rtnode **node); // <<
 int					rmnodes(size_t num, ...);
-int					rmrnode(t_rtnode *node);
+int					rmrnode(t_rtnode **node);
 int					rmrnodes(size_t num, ...);
-int					rmtree(t_rtree *tree);
+int					rmtree(t_rtree **tree);
 // Add child "node" to "parent" - return node or null if error
 t_rtnode			*tree_addchild(t_rtnode *parent, t_rtnode *node); // <<
 // Remove child "node" from "parent" - return node or null if error
@@ -39,6 +39,8 @@ t_rtnode			*tree_delchild(t_rtnode *parent, t_rtnode *node); // <<
 // Add all childs of "node" as "parent" child and remove node
 // - return node or null if error
 t_rtnode			*tree_collapsechild(t_rtnode *parent, t_rtnode *node);
+t_rtnode			*tree_nodedup(t_rtnode *node);
+t_rtree				*tree_dup(t_rtree *tree);
 
 // Set "parent" as parent of node and remove "node" from his parent before
 // if needed - return node or null if error
@@ -47,5 +49,8 @@ int					tree_foreach(t_rtnode *node, int method,
 						int (*f)(t_rtnode *, void *), void *env);
 
 int					print_tree(t_rtree *tree);
+
+t_rtnode			*mkrendernode(t_rtnode *node);
+t_rtree				*mkrendertree(t_rtree *tree);
 
 #endif

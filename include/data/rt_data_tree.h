@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 16:59:57 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 16:26:04 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/19 18:33:39 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ struct				s_rt_tree
 	unsigned int	max_depth;
 	unsigned int	nodelen;
 	t_blst			*buffer;
+	t_rtnode		*camera;
 };
 
 struct				s_rt_rtreenode
@@ -40,6 +41,7 @@ struct				s_rt_rtreenode
 	t_rtnode		node;
 	t_mattf			transform;
 	t_mattf			invert_transform;
+	t_mat3x2f		bound;
 };
 
 #endif

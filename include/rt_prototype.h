@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/17 15:52:12 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/19 18:57:41 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,86 @@
 # include "libft.h"
 
 # include "generated/rt_proto_gen.h"
+
+/*
+** RT Tool
+*/
+
+# define RT_GET						2
+# define RT_SET						1
+# define RT_UNSET					0
+
+/*
+** RT Flags
+*/
+
+# define RT_COMMANDMODE				0x1ul
+# define RT_FILEOUT					0x2ul
+# define RT_CLIENTMODE				0x4ul
+# define RT_VISUALPREV				0x8ul
+# define RT_MODES					0xFul
+
+# define RTR_CG						0x100ul
+
+/*
+** RT States
+*/
+
+# define RTS_INIT					0x1ul
+# define RTS_MGLW_INIT				0x2ul
+# define RTS_RDRMGR_INIT			0x4ul
+# define RTS_SLEEP					0x8ul
+# define RTS_QUIT					0x10ul
+# define RTS_RENDER					0x20ul
+# define RTS_VPREV					0x40ul
+
+
+/*
+** Render Manager
+*/
+
+# define RTRMGR_STARTRENDER			2048
+# define RTRMGR_FINISHED			256
+# define RTRMGR_REFRESH				0x1ul
+
+# define RTRMK_REFRESH				0x1ul
+# define RTRMK_STOP					0x2ul
+# define RTRMK_CANCEL				0x4ul
+# define RTRMK_DONE					0x10ul
+
+/*
+** Window key
+*/
+
+# define RTWK_REFRESH				0x1ul
+# define RTWK_STOP					0x2ul
+
+/*
+** Tree
+*/
+
+# define TREET_TREE					0x1u
+# define TREET_NODE					0x2u
+# define TREET_RENDER				0x10u
+# define RTNF_RTREE					0x11u
+# define RTNF_RNODE					0x12u
+
+/*
+** Debug
+*/
+
+# define RT_DBGF_ALLCP				0x1ul
+# define RT_DBGF_DISPKEY			0x2ul
+# define RT_DBGF_STATECHANGE		0x4ul
+# define RT_DBGF_MSG				0x8ul
+# define RT_DBGF_INFO				0x10ul
+# define RT_DBGF_RET				0x20ul
+# define RT_DBGF_ALLRET				0x40ul
+# define RT_DBGF_RETCP				0x80ul
+
+# define RT_DBGM_GLOBALE			0x1ul
+# define RT_DBGM_PARSER				0x2ul
+
 
 typedef struct s_rt_root			t_rt;
 typedef struct s_rt_viewer			t_rtview;
@@ -59,49 +139,5 @@ typedef struct s_rt_render_fdata	t_rtrfd;
 typedef struct s_rt_render_data		t_rtrd;
 
 typedef struct s_obj				t_obj;
-
-# define RT_COMMANDMODE				0x1ul
-# define RT_FILEOUT					0x2ul
-# define RT_CLIENTMODE				0x4ul
-# define RT_VISUALPREV				0x8ul
-# define RT_MODES					0xFul
-
-# define RT_GET						2
-# define RT_SET						1
-# define RT_UNSET					0
-
-# define RTS_INIT					0x1ul
-# define RTS_MGLW_INIT				0x2ul
-# define RTS_RDRMGR_INIT			0x4ul
-# define RTS_SLEEP					0x8ul
-# define RTS_QUIT					0x10ul
-# define RTS_RENDER					0x20ul
-# define RTS_VPREV					0x40ul
-
-# define RTR_CG						0x1ul
-
-# define RTRMGR_STARTRENDER			2048
-# define RTRMGR_FINISHED			256
-# define RTRMGR_REFRESH				0x1ul
-
-# define RTRMK_REFRESH				0x1ul
-# define RTRMK_STOP					0x2ul
-# define RTRMK_CANCEL				0x4ul
-# define RTRMK_DONE					0x10ul
-
-# define RTWK_REFRESH				0x1ul
-# define RTWK_STOP					0x2ul
-
-# define RT_DBGF_ALLCP				0x1ul
-# define RT_DBGF_DISPKEY			0x2ul
-# define RT_DBGF_STATECHANGE		0x4ul
-# define RT_DBGF_MSG				0x8ul
-# define RT_DBGF_INFO				0x10ul
-# define RT_DBGF_RET				0x20ul
-# define RT_DBGF_ALLRET				0x40ul
-# define RT_DBGF_RETCP				0x80ul
-
-# define RT_DBGM_GLOBALE			0x1ul
-# define RT_DBGM_PARSER				0x2ul
 
 #endif
