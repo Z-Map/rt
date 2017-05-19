@@ -40,7 +40,7 @@ int					obj_type_search(t_rtobt type, size_t types[14])
 	t_bidule	*tab;
 
 	tab = NULL;
-	len = 15;
+	len = 14;
 	while (--len != -1)
 	{
 		if (types[len] == tab.type)
