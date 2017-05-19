@@ -6,40 +6,51 @@
 /*   By: fanno <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/16 13:52:21 by fanno             #+#    #+#             */
-/*   Updated: 2017/05/19 14:33:07 by fanno            ###   ########.fr       */
+/*   Updated: 2017/05/19 19:57:28 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void		**node_prefix(t_rtnode *node)
+#include <math.h>
+#include "rt_prototype.h"
+#include "rt_object.h"
+#include "rt_tree.h"
+
+//#include "rt_render.h"
+/*
+void			**node_prefix(t_rtnode *node)
 {
-	void		**tmp;
+	t_rtnode	**tmp;
+	t_rtobi		*inst;
 	
 	tmp = &node;
 	while (*tmp)
 	{
-		if (!node->child)
+		if (!(*tmp)->childs)
 		{
-			if (t_rtnode->t_rtobi->obj.type | SPHERE)
-				tmp++ = calc_sphere;
-			if (t_rtnode->t_rtobi->obj.type | CONE)
-				tmp++ = calc_cone;
-			if (t_rtnode->t_rtobi->obj.type | PLAN)
-				tmp++ = calc_plan;
-			if (t_rtnode->t_rtobi->obj.type | CYLINDER)
-				tmp++ = calc_cylinder
+			inst = (t_rtobi *)(*tmp)->content;
+			if (inst->obj->type | SPHERE)
+				tmp++ = calc_sphere();
+			if (inst->obj->type | CONE)
+				tmp++ = calc_cone();
+			if (inst->obj->type | PLAN)
+				tmp++ = calc_plan();
+			if (inst->obj->type | CYLINDER)
+				tmp++ = calc_cylinder();
 		}
-		if (!node->next)
-			if (t_rtnode->t_rtobi->obj.type | SPHERE)
-				tmp++ = calc_sphere;
-			if (t_rtnode->t_rtobi->obj.type | CONE)
-				tmp++ = calc_cone;
-			if (t_rtnod0e->t_rtobi->obj.type | PLAN)
-				tmp++ = calc_plan;
-			if (t_rtnode->t_rtobi->obj.type | CYLINDER)
-				tmp++ = calc_cylinder
+		if (!(*tmp)->next)
+		{
+			inst = (t_rtobi *)(*tmp)->content;
+			if (inst->obj->type | SPHERE)
+				tmp++ = calc_sphere();
+			if (inst->obj->type | CONE)
+				tmp++ = calc_cone();
+			if (inst->obj->type | PLAN)
+				tmp++ = calc_plan();
+			if (inst->obj->type | CYLINDER)
+				tmp++ = calc_cylinder();
 		}
 	}
-}
+}*/
 // Pour le moment la fonction est en iteratif. Il faut je pense la passer en 
 // recursive, cela s'adaptera mieux a la structure du nodetree.
 // mon void** est un type par default, a creuser.
@@ -50,7 +61,7 @@ double		positive_smallest(double a, double b)
 	{
 		if (b < 0)
 			return (b);
-		return (NIFINITY);
+		return (INFINITY);
 	}
 	if (b < 0)
 	{
@@ -63,7 +74,7 @@ double		positive_smallest(double a, double b)
 	return (b);
 }
 
-double		calc_cone(t_objet *cone, t_ray *ray)
+double		calc_cone(t_rtobd *cone, t_rtray *ray)
 {
 	double	a;
 	double	b;
@@ -71,10 +82,16 @@ double		calc_cone(t_objet *cone, t_ray *ray)
 	double	delta;
 	double	angle;
 
-	angle = t_cone->open * (M_PI / 180);
-	a = ray->dir.x * ray->dir.x + ray->dir.y * ray->dir.y - ray->dir.z * ray->dir.z * tan(angle) * tan(angle);
-	b = 2 * (ray->origin.x * ray->dir.x + ray->origin.y * ray->dir.y - ray.dir.x * 0/*t_cone->orgine.x*/ - ray->direction.y * 0/*t_cone->origin.y*/ + (ray->dir.z * (0/*t_cone->origin.z*/ - ray->origin.z)) * tan(angle) * tan(angle));
-	c = ray->origin.x * ray->origin.x + ray->origin.y * ray->origin.y + 0/*t_cone->origin.x*/ * 0/*t_cone->origin.x*/ + 0/*t_cone->origin.y*/ * 0/*t_cone->origin.y*/ - 2 * (ray->origin.x * 0/*t_cone->origin.x*/ + ray->origin.y * 0/*t_cone->origin.y*/) - (ray->origin.z * ray->origin.z - 2 * (ray->origin.z * 0/*t_cone->origin.z*/) + 0/*t_cone->origin.z*/ * 0/*t_cone.origin.z*/) * tan(angle) * tan(angle);
+	(void)cone;
+	angle = cone->cone.angle * (M_PI / 180);
+	a = ray->direction.x * ray->direction.x + ray->direction.y * ray->direction.y - ray->direction.z * ray->direction.z * tan(angle) * tan(angle);
+	b = 2 * (ray->start.x * ray->direction.x +
+			ray->start.y * ray->direction.y -
+			ray->direction.x * 0/*t_cone->orgine.x*/ -
+			ray->direction.y * 0/*t_cone->origin.y*/ +
+			(ray->direction.z * (0/*t_cone->origin.z*/ -
+			ray->start.z)) * tan(angle) * tan(angle));
+	c = ray->start.x * ray->start.x + ray->start.y * ray->start.y + 0/*t_cone->origin.x*/ * 0/*t_cone->origin.x*/ + 0/*t_cone->origin.y*/ * 0/*t_cone->origin.y*/ - 2 * (ray->start.x * 0/*t_cone->origin.x*/ + ray->start.y * 0/*t_cone->origin.y*/) - (ray->start.z * ray->start.z - 2 * (ray->start.z * 0/*t_cone->origin.z*/) + 0/*t_cone->origin.z*/ * 0/*t_cone.origin.z*/) * tan(angle) * tan(angle);
 	delta = b * b - 4 * a * c;
 	if (delta >= 0)
 	{
@@ -84,21 +101,22 @@ double		calc_cone(t_objet *cone, t_ray *ray)
 	return (INFINITY);
 }
 
-double		calc_plane(t_objet *plane, t_ray *ray)
+double		calc_plane(t_rtobd *plane, t_rtray *ray)
 {
 	double	n;
 	double	d;
 	double	ret;
 
-	n = plane->normal.x * (0/*plane->origin.x*/ - ray->origin.x) + plane->normal.y * (0/*->plane->origin.y*/ - ray->origin.y) + plane.normal.z * (0/*plane->origin.z*/ - ray->origin.z);
+	(void)plane;
+	n = plane->normal.x * (0/*plane->origin.x*/ - ray->start.x) + plane->normal.y * (0/*->plane->origin.y*/ - ray->start.y) + plane.normal.z * (0/*plane->origin.z*/ - ray->start.z);
 
-	d = plane->normal.x * ray->dir.x + plane->normal.y * ray->dir.y + plane->normal.z * ray->dir.z;
+	d = plane->normal.x * ray->direction.x + plane->normal.y * ray->direction.y + plane->normal.z * ray->direction.z;
 	if ((ret = n / d) > 0)
 		return (ret);
 	return (INFINITY);
 }
 
-double		calc_cylinder(t_objet *cylinder, t_ray *ray)
+double		calc_cylinder(t_rtobd *cylinder, t_rtray *ray)
 {
 	double	a;
 	double	b;
@@ -106,9 +124,10 @@ double		calc_cylinder(t_objet *cylinder, t_ray *ray)
 	double	delta;
 	double	ret;
 
-	a = ray->dir.x * ray->dir.x + ray->dir.y * ray->dir.y;
-	b = 2 * (ray->origin.x * ray->dir.x + ray->origin.y * ray->dir.y - ray->dir.x * 0/*t_cylinder->origin.x*/ - ray->dir.y * 0/*t_cylinder->origin.y*/);
-	c = ray->origin.x * ray->origin.x + ray->origin.y * ray->origin.y + 0/*t_cylinder->origin.x*/ * 0/*t_cylinder.origin.x*/ + 0/*t_cylinder->origin.y*/ * 0/*t_cylinder->origin.y*/ - 1/*t_cylinder->radius*/ * 1/*t_cylinder->radius*/ - 2 * (ray->origin.x * 0/*t_cylinder->origin.x*/ + ray->origin.y * 0/*t_cylinder->origin.y*/);
+	(void)cylinder;
+	a = ray->direction.x * ray->direction.x + ray->direction.y * ray->direction.y;
+	b = 2 * (ray->start.x * ray->direction.x + ray->start.y * ray->direction.y - ray->direction.x * 0/*t_cylinder->origin.x*/ - ray->direction.y * 0/*t_cylinder->origin.y*/);
+	c = ray->start.x * ray->start.x + ray->start.y * ray->start.y + 0/*t_cylinder->origin.x*/ * 0/*t_cylinder.origin.x*/ + 0/*t_cylinder->origin.y*/ * 0/*t_cylinder->origin.y*/ - 1/*t_cylinder->radius*/ * 1/*t_cylinder->radius*/ - 2 * (ray->start.x * 0/*t_cylinder->origin.x*/ + ray->start.y * 0/*t_cylinder->origin.y*/);
 	delta = b * b - 4 * a * c;
 	if (delta >= 0)
 	{
@@ -119,17 +138,18 @@ double		calc_cylinder(t_objet *cylinder, t_ray *ray)
 	return (INFINITY);
 }
 
-static double	sphere_eq_delta(t_objet *sphere, t_ray *ray, double *a, double *b)
+static double	sphere_eq_delta(t_rtobd *sphere, t_rtray *ray, double *a, double *b)
 {
-	t_vector	ray_dir;
-	t_point		ray_origin;
-	t_point		sphere_origin;
+	t_v3f		ray_dir;
+	t_v3f		ray_origin;
+	t_v3f		sphere_origin;
 	double		radius;
 	double		c;
 
-	ray_dir = ray_dir;
-	ray_origin = ray_origin;
-	sphere_origin = 0/*sphere_origin*/;
+	(void)sphere;
+	ray_dir = ray->direction;
+	ray_origin = ray->start;
+	sphere_origin = (t_v3f){0, 0, 0}/*sphere_origin*/;
 	radius = 1 /*sphere->radius*/;
 	*a = ray_dir.x * ray_dir.x + ray_dir.y * ray_dir.y + ray_dir.z * ray_dir.z;
 	*b = 2 * (ray_dir.x * (ray_origin.x - 0/*sphere_origin.x*/) + ray_dir.y * (ray_dir.y - 0/*sphere_origin.y*/) + ray_dir.z * (ray_origin.z - 0/*sphere_origin*/));
@@ -137,7 +157,7 @@ static double	sphere_eq_delta(t_objet *sphere, t_ray *ray, double *a, double *b)
 	return (c);
 }
 
-double			sphere_equation(t_objet *sphere, t_ray *ray)
+double			calc_sphere(t_rtobd *sphere, t_rtray *ray)
 {
 	double	ret;
 	double	a;
@@ -145,6 +165,7 @@ double			sphere_equation(t_objet *sphere, t_ray *ray)
 	double	c;
 	double	delta;
 
+	(void)sphere;
 	c = sphere_eq_delta(sphere, ray, &a, &b);
 	delta = b * b - 4 * a * c;
 	if (delta >= 0)
