@@ -24,6 +24,7 @@ typedef struct s_rt_render			t_rtr;
 typedef struct s_rt_tree			t_rtree;
 typedef struct s_rt_treenode		t_rtnode;
 typedef struct s_rt_object_instance	t_rtobi;
+typedef struct s_rt_object_index	t_rtobind;
 typedef struct s_rt_object			t_rtobj;
 typedef struct s_rt_material		t_rtmat;
 typedef union u_rt_objectdata		t_rtobd;

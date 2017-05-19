@@ -33,3 +33,18 @@ size_t				obj_type_memsize(t_rtobt type)
 	}
 	return ((sizeof(t_rtobj) - sizeof(t_rtobd)) + *size);
 }
+
+int					obj_type_search(t_rtobt type, size_t types[14])
+{
+	size_t		len;
+	t_bidule	*tab;
+
+	tab = NULL;
+	len = 15;
+	while (--len != -1)
+	{
+		if (types[len] == tab.type)
+			return (len);
+	}
+	return (-1);
+}

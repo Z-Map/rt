@@ -23,6 +23,7 @@
 # define RTOBI_MEMBUF_SIZE		128
 
 size_t			obj_type_memsize(t_rtobt type);
+int					obj_type_search(t_rtobt type, size_t types[14]);
 
 t_rtobj			*mkobject(t_rtobt type, const char *name);
 int				mkobjects(t_rtobj **obtab, size_t num, ...);
