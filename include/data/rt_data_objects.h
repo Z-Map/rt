@@ -28,4 +28,11 @@ struct					s_rt_object_instance
 	t_rtobj				*obj;
 };
 
+struct					s_rt_object_index
+{
+	const char			*name;
+	t_rtobt				type;
+	void				*fparse;
+};
+
 #endif
