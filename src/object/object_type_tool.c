@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/15 20:11:55 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/20 12:53:22 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/20 14:36:51 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
 // 	}
 // 	return (*size);
 // }
-
 
 size_t				obj_type_memsize(t_rtobt type)
 {
@@ -66,7 +65,7 @@ int					obj_typename_search(const char *name)
 	len = RT_OBT_TAB_LEN;
 	while (len--)
 	{
-		if (ft_strequ(name,tab[len].name))
+		if (ft_strequ(name, tab[len].name))
 			return (len);
 	}
 	return (-1);
