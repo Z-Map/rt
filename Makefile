@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 05:08:22 by qloubier          #+#    #+#              #
-#    Updated: 2017/05/16 16:11:04 by qloubier         ###   ########.fr        #
+#    Updated: 2017/05/20 13:26:41 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -132,9 +132,9 @@ $(I_MKLIB): libs
 $(I_BD):
 	$(SILENT)mkdir -p $(I_BD)
 
-include/object_factory/objects.py:
+include/object_factory/objects.py include/object_factory/generator.py:;
 
-include/generated/%.h: include/object_factory/objects.py
+include/generated/%.h: include/object_factory/objects.py include/object_factory/generator.py
 	$(SILENT)cd include && python3 obf_test.py > /dev/null
 
 $(I_OBJS):

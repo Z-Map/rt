@@ -49,7 +49,8 @@ class Obtype(object):
 			self.typeletter = "ul"
 			etype = "VT_ULONG"
 			self.parser_elm = "g_el_long"
-		elif typestr in ("f","float", "t_v2f", "t_v3f", "t_v4f"):
+		elif typestr in ("f","float", "t_v2f", "t_v3f", "t_v4f",
+			"t_mattf", "t_mat3x2f", "t_mat2f", "t_mat2x3f", "t_mat4f"):
 			self.ctype = "float"
 			self.basetype = "float"
 			self.typeletter = "f"
@@ -61,6 +62,16 @@ class Obtype(object):
 				self.ctype = typestr
 				etype = "VT_VEC" + (typestr[-2:]).upper()
 				self.parser_elm = "g_el_vec" + typestr[-2:]
+			if typestr.startswith("t_mat"):
+				if typestr == "t_mattf":
+					self.e_len *= 16
+				elif typestr[-3] == 'x':
+					self.e_len *= int(typestr[-2]) * int(typestr[-4])
+				else:
+					self.e_len *= int(typestr[-2]) * int(typestr[-2])
+				self.ctype = typestr
+				etype = "VT_MAT" + (typestr[6:]).upper()
+				self.parser_elm = None
 		elif typestr in ("d","double", "t_v2d", "t_v3d", "t_v4d"):
 			self.ctype = "double"
 			self.basetype = "double"

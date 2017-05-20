@@ -34,12 +34,23 @@ def generate_headers(dirname):
 		"qloubier", "marvin@student.42.fr", datetime.now()))
 	ftype.write("#ifndef " + name.upper().replace('.','_') + "\n")
 	ftype.write("# define " + name.upper().replace('.','_') + "\n\n")
+	ftype.write("""# include "libft.h"\n\n""")
 	ftype.write(alignOnTab("typedef enum", G_tabalign, 0) + "e_rt_object_type\n{\n")
+	# type tab
+	name = "rt_typetab_gen.h"
+	fname = dirname + "/" + name
+	fttab = open(fname, 'w')
+	fttab.write(gen_42header(name,
+		"qloubier", "marvin@student.42.fr", datetime.now()))
+	fttab.write("#ifndef " + name.upper().replace('.','_') + "\n")
+	fttab.write("# define " + name.upper().replace('.','_') + "\n\n")
+	fttab.write("""# include "rt_object.h"\n\n""")
+	obttab = ""
+	obttablen = 0
 	# includes
 	f.write("""\n# include "mathex/vector.h"\n""")
 	f.write("""# include "mathex/matrix.h"\n""")
 	f.write("""# include "rt_prototype.h"\n\n""")
-	ftype.write("""# include "libft.h"\n\n""")
 	ctext = alignOnTab("struct", G_tabalign, 0) + "s_rt_object\n{\n"
 	gObOffset = 0
 	gObprop = 0
@@ -70,16 +81,22 @@ def generate_headers(dirname):
 					cprstext += '\n' + tmps + ','
 					validx += 1
 			ctext += "};\n\n"
+			obttab += '{"' + anob["cenum"] + '", ' + anob["cenum"] + ', 0, ' + str(valoffset) + ', '
+			if cprstext:
+				obttab += "&g_elm_" + akey + ', object_default_' + akey + '},\n'
+			else:
+				obttab += 'NULL, object_default_' + akey + '},\n'
+			obttablen += 1;
 		if ctext:
 			f.write(ctext)
 		if cprstext:
 			cprstext = (alignOnTab("static const t_val", G_tabalign, 0)
-				+ "g_vtab_"+anob["cname"] + "[" + str(validx) + "] = {"
+				+ "g_vtab_"+ akey + "[" + str(validx) + "] = {"
 				+ cprstext[:-1] + "\n};\n\n")
 			cprstext += (alignOnTab("static const t_elm", G_tabalign, 0)
-				+ "g_elm_"+anob["cname"] + "= {" + '"'+akey+'",\n'
+				+ "g_elm_"+akey + "= {" + '"'+akey+'",\n'
 				+ 'sizeof(struct s_'+anob["cname"]+'), ' + str(validx) + ', '
-				+ str(validx - 1) + ', (t_val *)(t_ul)g_vtab_'+anob["cname"]
+				+ str(validx - 1) + ', (t_val *)(t_ul)g_vtab_'+akey
 				+ ',\nNULL, NULL, ft_vparse_null, NULL};\n\n')
 			f.write(cprstext)
 		ftype.write(alignOnTab(anob["cenum"], G_tabalignenum, 1) + "= " + hex(anob["id"]) + ",\n")
@@ -101,3 +118,10 @@ def generate_headers(dirname):
 	# close type enum file
 	ftype.write("#endif\n")
 	ftype.close()
+	# close type enum file
+	fttab.write("# define RT_OBT_TAB_LEN " + str(obttablen) + "\n\n")
+	fttab.write(alignOnTab("static const t_rtobind", G_tabalign, 0))
+	fttab.write("g_obt_tab[" + str(obttablen) + "] = {\n")
+	fttab.write(obttab + "};\n\n")
+	fttab.write("#endif\n")
+	fttab.close()

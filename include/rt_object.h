@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 21:07:42 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 22:05:53 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/20 12:50:04 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 # define RTOBI_MEMBUF_SIZE		128
 
 size_t			obj_type_memsize(t_rtobt type);
-int					obj_type_search(t_rtobt type, size_t types[14]);
+int				obj_type_search(t_rtobt type);
+int				obj_typename_search(const char *name);
 
 t_rtobj			*mkobject(t_rtobt type, const char *name);
 int				mkobjects(t_rtobj **obtab, size_t num, ...);

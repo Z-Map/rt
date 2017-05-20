@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 17:35:04 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/18 14:04:59 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/20 13:20:53 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int		make_new_node(t_rtnode *node, t_rtobt type, char *s)
 	if (inst)
 		rminstance(inst);
 	if (new)
-		rmnode(new);
+		rmnode(&new);
 	return (-1);
 }
 

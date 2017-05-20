@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fanno <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: fanno <fanno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/16 13:52:21 by fanno             #+#    #+#             */
-/*   Updated: 2017/05/19 19:57:28 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/20 13:23:44 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void			**node_prefix(t_rtnode *node)
 {
 	t_rtnode	**tmp;
 	t_rtobi		*inst;
-	
+
 	tmp = &node;
 	while (*tmp)
 	{
@@ -51,7 +51,7 @@ void			**node_prefix(t_rtnode *node)
 		}
 	}
 }*/
-// Pour le moment la fonction est en iteratif. Il faut je pense la passer en 
+// Pour le moment la fonction est en iteratif. Il faut je pense la passer en
 // recursive, cela s'adaptera mieux a la structure du nodetree.
 // mon void** est un type par default, a creuser.
 
@@ -106,11 +106,13 @@ double		calc_plane(t_rtobd *plane, t_rtray *ray)
 	double	n;
 	double	d;
 	double	ret;
+	t_v3f	nor;
 
+	nor = (t_v3f){0.0f, 0.0f, 1.0f};
 	(void)plane;
-	n = plane->normal.x * (0/*plane->origin.x*/ - ray->start.x) + plane->normal.y * (0/*->plane->origin.y*/ - ray->start.y) + plane.normal.z * (0/*plane->origin.z*/ - ray->start.z);
+	n = nor.x * (0/*plane->origin.x*/ - ray->start.x) + nor.y * (0/*->plane->origin.y*/ - ray->start.y) + nor.z * (0/*plane->origin.z*/ - ray->start.z);
 
-	d = plane->normal.x * ray->direction.x + plane->normal.y * ray->direction.y + plane->normal.z * ray->direction.z;
+	d = nor.x * ray->direction.x + nor.y * ray->direction.y + nor.z * ray->direction.z;
 	if ((ret = n / d) > 0)
 		return (ret);
 	return (INFINITY);

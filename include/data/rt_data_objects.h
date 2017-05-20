@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 18:56:24 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 16:24:41 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/20 13:24:31 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ struct					s_rt_object_index
 {
 	const char			*name;
 	t_rtobt				type;
-	void				*fparse;
+	t_ui				flags;
+	size_t				size;
+	const t_elm			*parse_elm;
+	void				(*init)(t_rtobd *object);
 };
 
 #endif
