@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/19 18:57:41 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/20 20:15:35 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct s_rt_render			t_rtr;
 
 typedef struct s_rt_tree			t_rtree;
 typedef struct s_rt_treenode		t_rtnode;
+typedef struct s_rt_rtreenode		t_rtrnode;
 typedef struct s_rt_object_instance	t_rtobi;
 typedef struct s_rt_object_index	t_rtobind;
 typedef struct s_rt_object			t_rtobj;

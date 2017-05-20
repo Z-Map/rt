@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 16:59:57 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/19 18:33:39 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/20 15:37:39 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ struct				s_rt_rtreenode
 	t_mattf			transform;
 	t_mattf			invert_transform;
 	t_mat3x2f		bound;
+	t_mat3x2f		obbound;
 };
 
 #endif
