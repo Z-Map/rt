@@ -25,6 +25,7 @@ struct				s_rt_object_instance
 	int				flags;
 	char			*name;
 	t_mattf			transform;
+	t_mat3x2f		bounds;
 	t_rtobj			*obj;
 };
 
