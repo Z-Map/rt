@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 19:06:35 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/18 14:08:44 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/21 04:21:12 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,16 @@
 
 int			rt_init_scenerdr(t_rt *rt)
 {
+	t_rtree	*tree;
+
 	rt_state(rt, RTS_INIT, RT_SET);
 	RT_DBGM("Start tree parsing.");
 	rt->tree = sda_parser(rt->scene);
 	RT_DBGM("Tree parsed.");
 	print_tree(rt->tree);
+	tree = mkrendertree(rt->tree);
+	RT_DBGM("Tree duplicated.");
+	print_tree(tree);
 	rt_init_rdrmgrthread(rt);
 	RT_DBGM("Render inited.");
 	return (1);

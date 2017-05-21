@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 15:45:36 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/20 20:55:44 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/21 04:38:26 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,17 @@ t_rtnode			*tree_childup(t_rtnode *childs);
 t_rtnode			*tree_nodedup(t_rtnode *node);
 t_rtree				*tree_dup(t_rtree *tree);
 
+// TO DO :
+/*
+// Update stats of tree
+void				tree_stats(t_rtree *tree);
+// Search node with this content
+t_rtnode			*tree_chr(t_rtree *tree, void *content);
+// Search throught a tree for node with content that valid f(node.content)
+// The search can be continued if the node last find node is passed to "node"
+t_rtnode			*tree_find(t_rtnode *node, int (*f)(void *));
+*/
+
 // Set "parent" as parent of node and remove "node" from his parent before
 // if needed - return node or null if error
 t_rtnode			*tree_setparent(t_rtnode *node, t_rtnode *parent);
@@ -51,7 +62,8 @@ int					tree_foreach(t_rtnode *node, int method,
 
 int					print_tree(t_rtree *tree);
 
-t_rtrnode			*mkrendernode(t_rtobi *inst, t_mattf mtrx, t_rtnode *c);
+t_rtrnode			*rendernodedup(t_rtnode *node, t_mattf m, t_mat3x2f *b);
+t_rtrnode			*mkrendernode(t_rtobi *inst, t_mattf mtrx, t_mat3x2f lb);
 t_rtree				*mkrendertree(t_rtree *tree);
 
 #endif

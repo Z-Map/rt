@@ -6,12 +6,13 @@
 /*   By: fanno <fanno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 15:04:58 by fanno             #+#    #+#             */
-/*   Updated: 2017/05/21 01:31:11 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/21 04:07:57 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "mathex/utils.h"
-#include "rt.h"
+#include "rt_tools.h"
 
 static void	set_vec(t_v3f *vtab, int min[4], int max[4], t_v2f lim)
 {
@@ -80,8 +81,7 @@ t_mat3x2f	bound_intersect(t_mat3x2f a, t_mat3x2f b)
 	a.z.y = mxminf(a.z.y, b.z.y);
 	if (bound_isvalid(a))
 		return (a);
-	return ((t_mat3x2f){.x = {0.0f, 0.0f},
-		.y = {0.0f, 0.0f}, .z = {0.0f, 0.0f}});
+	return (no_bound());
 }
 
 /*

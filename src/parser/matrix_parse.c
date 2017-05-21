@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_parse.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 18:19:18 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/05/19 18:19:20 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/21 04:41:58 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt_prototype.h"
-#include "mathex/vector.h"
-#include "mathex/matrix.h"
+#include "rt_parser"
 
 int				vparse_rot(t_val *val, void *mem, t_gparse parser)
 {

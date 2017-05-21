@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 18:56:24 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/20 14:29:04 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/21 04:50:37 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "mathex/vector.h"
 # include "mathex/matrix.h"
 # include "rt_prototype.h"
-
+# include "data/data_matrix_parse.h"
 # include "generated/rt_objects_gen.h"
 
 struct				s_rt_object_instance
@@ -39,13 +39,19 @@ struct					s_rt_object_index
 	void				(*init)(t_rtobd *object);
 };
 
-/*static const t_val	g_el_inst_valtab[5] = {
+static const t_val	g_el_inst_valtab[8] = {
 {VT_STR, 0, 0, 0, "name", (t_elm *)(t_ul)&g_el_str},
-{VT_MATTF, 8, 1, 0, "transform", (t_elm *)(t_ul)&g_el_}};
+{VT_MATTF, 8, 1, 0, "rot", (t_elm *)(t_ul)&g_el_mattfrot},
+{VT_MATTF, 8, 1, 0, "rotation", (t_elm *)(t_ul)&g_el_mattfrot},
+{VT_MATTF, 8, 2, 0, "pos", (t_elm *)(t_ul)&g_el_mattftrans},
+{VT_MATTF, 8, 2, 0, "position", (t_elm *)(t_ul)&g_el_mattftrans},
+{VT_MATTF, 8, 3, 0, "sca", (t_elm *)(t_ul)&g_el_mattfscale},
+{VT_MATTF, 8, 3, 0, "scale", (t_elm *)(t_ul)&g_el_mattfscale},
+{VT_MATTF, 8, 3, 0, "size", (t_elm *)(t_ul)&g_el_mattfscale}};
 
-static const t_elm	g_el_inst = {"inst", sizeof(t_rtobi), 1, 2,
+static const t_elm	g_el_inst = {"inst", sizeof(t_rtobi), 3, 8,
 (t_val *)(t_ul)g_el_inst_valtab,
 NULL, NULL, NULL, (t_elm *)(t_ul)&g_el_inst};
-*/
+
 
 #endif
