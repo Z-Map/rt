@@ -69,36 +69,26 @@ static int		make_new_node(t_rtnode *node, t_rtobt type, char *s)
 
 static int		check_line2(t_rtnode *node, char *s)
 {
-	(void)node;
-	(void)s;
-	return (0);
+    (void)s;
+    (void)node;
+    return (0);
 }
 
 int				check_line(t_rtnode *node, char *s)
 {
-	if (!ft_strncmp(s, "EMPTY", 5))
-		return (make_new_node(node, EMPTY, s));
-	else if (!ft_strncmp(s, "CAMERA", 6))
-		return (make_new_node(node, CAMERA, s));
-	else if (!ft_strncmp(s, "PLAN", 4))
-		return (make_new_node(node, PLAN, s));
-	else if (!ft_strncmp(s, "SPHERE", 6))
-		return (make_new_node(node, SPHERE, s));
-	else if (!ft_strncmp(s, "CONE", 4))
-		return (make_new_node(node, CONE, s));
-	else if (!ft_strncmp(s, "CYLINDER", 8))
-		return (make_new_node(node, CYLINDER, s));
-	else if (!ft_strncmp(s, "CUBE", 4))
-		return (make_new_node(node, CUBOID, s));
-	else if (!ft_strncmp(s, "MESH", 4))
-		return (make_new_node(node, MESH, s));
-	else if (!ft_strncmp(s, "TRIS", 3))
-		return (make_new_node(node, TRIS, s));
-	else if (!ft_strncmp(s, "SPOT", 4))
-		return (make_new_node(node, SPOT, s));
-	else if (!ft_strncmp(s, "POINTLIGHT", 10))
-		return (make_new_node(node, POINTLIGHT, s));
-	else if (!ft_strncmp(s, "SUNLIGHT", 8))
-		return (make_new_node(node, SUNLIGHT, s));
-	return (check_line2(node, s));
+    int         type;
+    t_rtobind   index = g_obt_tab;
+    t_gsep      sep = {.separator = ":", .end = NULL, .slen = 1, .elen = 0};
+    t_gparse    gparse = {.seplst = &sep, .seplen = 1, .end = "\n"
+        .cursor = NULL, .c_len = 0, .buffer = s, .b_len = ft_strlen(s)
+        .key = NULL, .k_len = 0, .value = line, .v_len = linelen,
+        .arg = NULL, .mem = node->content, .cfgbits = &obinst.flags};
+
+    if ((type = obj_typename_search(s)) != -1)
+        return (make_new_node(node, index[type].name, s));
+    else
+    {
+        type = obj_typename_search(node->content->name);
+    }
+    return (check_line2(node, s));
 }
