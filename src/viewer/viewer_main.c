@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 14:51:55 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 15:39:40 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/21 19:15:36 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int				rt_init_window(t_rt *rt)
 int				viewer_run(t_rt *rt, t_rtview *v)
 {
 	pthread_mutex_lock(&(v->refresh_lock));
+	if (rt->flags & RTF_RDRDISP)
+		mglw_draw_itow(v->win, v->rdrtarget, 0, 0);
 	mglwin_draw(v->win);
 	mglw_setGLContext(NULL);
 	if (!(v->keys & RTWK_REFRESH))

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/20 20:15:35 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/21 19:12:39 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 # define RT_CLIENTMODE				0x4ul
 # define RT_VISUALPREV				0x8ul
 # define RT_MODES					0xFul
+
+# define RTF_RDRDISP				0x1000ul
 
 # define RTR_CG						0x100ul
 

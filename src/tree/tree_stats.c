@@ -1,38 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tree_chr.c                                         :+:      :+:    :+:   */
+/*   tree_stats.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/21 13:50:09 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/05/21 19:10:28 by lcarreel         ###   ########.fr       */
+/*   Created: 2017/05/21 17:17:17 by lcarreel          #+#    #+#             */
+/*   Updated: 2017/05/21 18:07:39 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_tree.h"
 
-
-t_rtnode			*find_node(t_rtnode *node, void *content)
+void			recursive(t_rtnode *node, t_rtree *tree, int maxd)
 {
-	t_rtnode		*tmp;
-
-	if (!node || !content)
-		return (NULL);
-	else
+	if (node)
+		maxd++;
+	while (node && tree->nodelen++)
 	{
-		while (node)
-		{
-			if (tmp->content == content)
-				return (tmp);
-			tmp = find_node(node->childs, content);
-			node = node->next;
-		}
+		recursive(node->childs, tree, maxd);
+		node = node->next;
 	}
-	return (NULL);
+	if (tree->max_depth < maxd)
+		tree->max_depth = maxd;
 }
 
-t_rtnode			*tree_chr(t_rtree *tree, void *content)
+void			tree_stats(t_rtree *tree)
 {
-	return (find_node(tree->node.childs, content));
+	t_rtnode	*tmp;
+	int			maxd;
+
+	if (!tree)
+		return ;
+	tree->nodelen = 0;
+	tree->max_depth = 0;
+	maxd = 0;
+	tmp = tree->node.childs;
+	recursive(tmp, tree, maxd);
 }

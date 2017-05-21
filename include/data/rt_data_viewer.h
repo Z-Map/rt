@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 15:07:27 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/19 14:26:57 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/21 18:42:22 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ struct					s_rt_viewer
 	mglwin				*win;
 	mglwin				**wins;
 	mglimg				*layer;
+	mglimg				*rdrtarget;
 };
 
 #endif

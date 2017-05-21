@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rdrmgr_img.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ealbert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 15:56:32 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/12 15:42:01 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/21 19:30:42 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static t_rgba		calc_pixel(t_rt *rt)
 {
 	t_rgba			rgba;
 
-	rgba = (t_rgba){'0', '0', '0', '0'};
-	rt = NULL; // A FAIRE
+	rgba = (t_rgba){255, 0, 0, 255};
+	(void)rt;
 	return (rgba);
 }
 
@@ -29,20 +29,17 @@ int					img_calc(t_rt *rt, t_rtrmgr *rmgr)
 	int				get;
 
 	x = 0;
-	while (x < (*rmgr).rsize.x)
+	while (x < rmgr->rsize.x)
 	{
 		y = 0;
-		while (y < (*rmgr).rsize.y)
+		while (y < rmgr->rsize.y)
 		{
-			(*rmgr).rpx[x * (*rmgr).rsize.x + y] = calc_pixel(rt);
-			get = rdrmgr_isrendering(rt, rmgr);
-			if (get & RTRMK_STOP)
-				return (rt_error(rt, 1, "Render quit"));
-			else if (get & RTRMK_CANCEL)
-				return (8);
+			rmgr->rpx[(y * rmgr->rsize.x) + x] = calc_pixel(rt);
+			if ((get = rdrmgr_isrendering(rt, rmgr)) < RTRMGR_FINISHED)
+				return (get);
 			y++;
 		}
 		x++;
 	}
-	return (1);
+	return (RTRMGR_FINISHED);
 }
