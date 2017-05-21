@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/23 01:42:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 16:59:47 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/21 19:36:59 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int			rdrmgr_done(t_rt *rt, t_rtrmgr *rmgr)
 	rt->render.render_px = rmgr->rpx;
 	rmgr->rpx = NULL;
 	rmgr->rdrstate = RTRMGR_FINISHED;
+	rt->render.flags |= RTRMK_DONE;
 	pthread_mutex_unlock(&(rt->render.refresh_lock));
 	return (1);
 }
@@ -69,7 +70,6 @@ void		*rt_rdrmgr_main(void *arg)
 {
 	t_rt		*rt;
 	t_rtrmgr	rmgr;
-	int			get;
 
 	rt = (t_rt *)arg;
 	rmgr.rpx = NULL;
@@ -81,8 +81,7 @@ void		*rt_rdrmgr_main(void *arg)
 		if (!rdrmgr_sync(rt, &rmgr))
 			break ;
 /* Modifications (Eddy) à vérifier */
-		get = img_calc(rt, &rmgr);
-		if (get < RTRMGR_STARTRENDER)
+		if (img_calc(rt, &rmgr) < RTRMGR_FINISHED)
 			continue ;
 		rdrmgr_done(rt, &rmgr);
 	}
