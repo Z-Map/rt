@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 22:47:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 07:03:32 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/21 13:57:53 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ void		*rdrmgr_exit(t_rt *rt, t_rtrmgr *rmgr);
 int			rdrmgr_isrendering(t_rt *rt, t_rtrmgr *rmgr);
 
 int			rdrmgr_render_request(t_rt *rt, t_rtree *tree);
+
+t_rtrgd		rdr_raycast(t_rtray ray, t_rtree *tree);
+t_rtrfd		rdr_shade(t_rtrgd geometry, t_rtree *tree);
+t_rtrd		rdr_filter(t_rtrfd frag, t_rtree *tree);
+t_rtrd		raytrace(t_ui x, t_ui y, t_rtrmgr *mgr, t_rtree *tree);
 
 int			img_calc(t_rt *rt, t_rtrmgr *rmgr);
 #endif

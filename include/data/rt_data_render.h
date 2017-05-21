@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 15:03:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/19 19:41:35 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/21 13:56:16 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,14 @@ struct					s_rt_render_fdata
 {
 	t_rgba				color;
 	t_ui				flags;
-	double				depth;
-
+	float				depth;
+	t_v3f				hit_nor;
 };
 
 struct					s_rt_render_data
 {
 	t_rgba				color;
-	t_ui				flags;
-	double				depth;
+	float				depth;
 };
 
 typedef struct			s_rt_render_manager
