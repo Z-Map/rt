@@ -6,11 +6,11 @@
 /*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 18:19:18 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/05/21 04:41:58 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/21 14:31:08 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt_parser"
+#include "rt_parser.h"
 
 int				vparse_rot(t_val *val, void *mem, t_gparse parser)
 {
