@@ -6,13 +6,13 @@
 /*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 17:17:17 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/05/21 18:07:39 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/22 13:28:18 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_tree.h"
 
-void			recursive(t_rtnode *node, t_rtree *tree, int maxd)
+void				recursive(t_rtnode *node, t_rtree *tree, unsigned int maxd)
 {
 	if (node)
 		maxd++;
@@ -25,10 +25,10 @@ void			recursive(t_rtnode *node, t_rtree *tree, int maxd)
 		tree->max_depth = maxd;
 }
 
-void			tree_stats(t_rtree *tree)
+void				tree_stats(t_rtree *tree)
 {
-	t_rtnode	*tmp;
-	int			maxd;
+	t_rtnode		*tmp;
+	unsigned int	maxd;
 
 	if (!tree)
 		return ;
