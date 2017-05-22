@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/21 19:12:39 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/22 14:58:47 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@
 # define RTS_QUIT					0x10ul
 # define RTS_RENDER					0x20ul
 # define RTS_VPREV					0x40ul
-
 
 /*
 ** Render Manager
@@ -97,7 +96,6 @@
 
 # define RT_DBGM_GLOBALE			0x1ul
 # define RT_DBGM_PARSER				0x2ul
-
 
 typedef struct s_rt_root			t_rt;
 typedef struct s_rt_viewer			t_rtview;

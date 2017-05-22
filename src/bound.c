@@ -6,7 +6,7 @@
 /*   By: fanno <fanno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 15:04:58 by fanno             #+#    #+#             */
-/*   Updated: 2017/05/21 04:07:57 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/22 14:58:06 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ t_mat3x2f	bound_transform(t_mat3x2f b, t_mattf m)
 	i = 7;
 	b = (t_mat3x2f){.x = {v[7].x, v[7].x}, .y = {v[7].y, v[7].y},
 		.z = {v[7].z, v[7].z}};
-	while (i--) {
+	while (i--)
+	{
 		b.x.x = mxminf(v[i].x, b.x.x);
 		b.x.y = mxmaxf(v[i].x, b.x.y);
 		b.y.x = mxminf(v[i].y, b.y.x);

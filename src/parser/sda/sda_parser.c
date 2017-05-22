@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/24 22:50:08 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/16 16:14:25 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/22 14:52:05 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ static t_rtree		*read_file(t_sda_env *env, t_rtree *tree)
 			return (ft_mfree_ret(tree, 1, &(env->line)));
 		while (env->line[i] == '\t')
 			i++;
-		if (RT_DBGR(check_line(env->curr, &(env->line[i])), 1, "Invalid line") < 0)
+		if (RT_DBGR(check_line(env->curr,
+						&(env->line[i])), 1, "Invalid line") < 0)
 			break ;
 		ft_memdel((void **)&(env->line));
 		j++;
@@ -119,11 +120,13 @@ t_rtree				*sda_parser(const char *s)
 	t_rtree			*tree;
 	t_sda_env		env;
 
+	RT_DBGM("PARSER begin.");
 	if ((tree = env_init(s, &env)))
 	{
 		tree = read_file(&env, tree);
 		close(env.fd);
 	}
 	RT_DBGR((tree) ? 1 : 0, 1, "Parsing fail");
+	RT_DBGM("PARSER end.");
 	return (tree);
 }

@@ -6,12 +6,11 @@
 /*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 13:50:09 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/05/21 19:10:28 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/22 14:50:50 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_tree.h"
-
 
 t_rtnode			*find_node(t_rtnode *node, void *content)
 {

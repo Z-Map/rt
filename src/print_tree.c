@@ -6,19 +6,13 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 17:59:51 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/22 13:33:15 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/22 14:56:27 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_tree.h"
 
-typedef struct	s_printree // A mettre dans un .h !
-{
-	int			run;
-	int			tab;
-}				t_ptree;
-
-static int		recursive(t_ptree *p, t_rtnode *node, int i)
+static int		recursive(t_v2i *p, t_rtnode *node, int i)
 {
 	t_rtobi		*content;
 	int			j;
@@ -31,10 +25,8 @@ static int		recursive(t_ptree *p, t_rtnode *node, int i)
 	if (content)
 	{
 		if (content->obj)
-		{
-			ft_printf(" Obj(type: %X, name: '%s', prop: %b)\n", content->obj->type,
-				content->obj->name, content->flags);
-		}
+			ft_printf(" Obj(type: %X, name: '%s', prop: %b)\n",
+					content->obj->type, content->obj->name, content->flags);
 		else
 			ft_printf(" Invalid instance\n");
 	}
@@ -50,12 +42,12 @@ static int		recursive(t_ptree *p, t_rtnode *node, int i)
 int			print_tree(t_rtree *tree)
 {
 	int			i;
-	t_ptree		p;
+	t_v2i		p;
 	t_rtnode	*tmp;
 
 	i = -1;
-	p.run = 1;
-	p.tab = 0;
+	p.x = 1;
+	p.y = 0;
 	if ((tmp = (t_rtnode *)tree))
 		recursive(&p, tmp, 0);
 	return (1);
