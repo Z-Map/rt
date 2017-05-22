@@ -6,11 +6,12 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 17:35:04 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/20 13:20:53 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/22 02:02:04 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_parser.h"
+#include "generated/rt_typetab_gen.h"
 
 /*
 ** make_new_node :
@@ -23,9 +24,9 @@
 ** Si le mot est inconnu au parser, on appellera une fonction d'erreur.
 */
 
-static char		*get_name(char *s)
+static char			*get_name(char *s)
 {
-	char		*n;
+	char			*n;
 
 	if ((n = ft_strchr(s, (int)':')))
 		n = ft_strpskp(n + 1, FT_WHITESPACE);
@@ -42,12 +43,12 @@ static char		*get_name(char *s)
 	return (n);
 }
 
-static int		make_new_node(t_rtnode *node, t_rtobt type, char *s)
+static int			make_new_node(t_rtnode *node, t_rtobt type, char *s)
 {
-	t_rtnode	*new;
-	t_rtobi		*inst;
-	t_rtobj		*obj;
-	char		*name;
+	t_rtnode		*new;
+	t_rtobi			*inst;
+	t_rtobj			*obj;
+	char			*name;
 
 	new = NULL;
 	inst = NULL;
@@ -67,28 +68,64 @@ static int		make_new_node(t_rtnode *node, t_rtobt type, char *s)
 	return (-1);
 }
 
-static int		check_line2(t_rtnode *node, char *s)
+static int			check_line3(t_rtnode *node, t_gparse gparse)
 {
-    (void)s;
-    (void)node;
-    return (0);
+	const t_rtobind	*tab = g_obt_tab;
+	int				tid;
+	t_rtobj			*obj;
+	t_rtmat			*mat;
+
+	obj = ((t_rtobi *)(node->content))->obj;
+	tid = obj_type_search(obj->type);
+	gparse.mem = obj;
+	gparse.cfgbits = (char *)&(obj->usercfg);
+	if (tab[tid].parse_elm &&
+		ft_eparse(gparse, (t_elm *)(t_ul)tab[tid].parse_elm, obj) != -1)
+		return (1);
+	if (tab[tid].type & VISIBLE)
+	{
+		mat = ((t_rtobd *)obj)->plan.material;
+		gparse.cfgbits = NULL;
+		gparse.mem = mat;
+		if (mat && (ft_eparse(gparse, (t_elm *)(t_ul)&g_el_mat, mat) != -1))
+			return (1);
+	}
+	return (0);
 }
 
-int				check_line(t_rtnode *node, char *s)
+static int			check_line2(t_rtnode *node, char *s)
 {
-    int         type;
-    t_rtobind   index = g_obt_tab;
-    t_gsep      sep = {.separator = ":", .end = NULL, .slen = 1, .elen = 0};
-    t_gparse    gparse = {.seplst = &sep, .seplen = 1, .end = "\n"
-        .cursor = NULL, .c_len = 0, .buffer = s, .b_len = ft_strlen(s)
-        .key = NULL, .k_len = 0, .value = line, .v_len = linelen,
-        .arg = NULL, .mem = node->content, .cfgbits = &obinst.flags};
+	t_gsep			sep;
+	t_gparse		gparse;
+	t_rtobi			*obi;
 
-    if ((type = obj_typename_search(s)) != -1)
-        return (make_new_node(node, index[type].name, s));
-    else
-    {
-        type = obj_typename_search(node->content->name);
-    }
-    return (check_line2(node, s));
+	obi = (t_rtobi *)(node->content);
+	sep = (t_gsep){.separator = ":", .end = NULL, .slen = 1, .elen = 0};
+	gparse = (t_gparse){.seplst = &sep, .seplen = 1, .end = "\n",
+	.cursor = NULL, .c_len = 0, .buffer = s, .b_len = ft_strlen(s),
+	.key = NULL, .k_len = 0, .value = NULL, .v_len = 0,
+	.arg = NULL, .mem = node->content, .cfgbits = (char *)&(obi->flags)};
+	gparse.v_len = gparse.b_len;
+	gparse.value = gparse.buffer;
+	if (ft_eparse(gparse, (t_elm *)(t_ul)&g_elm_inst, obi) != -1)
+		return (1);
+	return (check_line3(node, gparse));
+}
+
+int					check_line(t_rtnode *node, char *s)
+{
+	const t_rtobind	*tab = g_obt_tab;
+	size_t			len;
+
+	len = RT_OBT_TAB_LEN;
+	while (len--)
+		if (!ft_strconcur(s, tab[len].name))
+			break ;
+	if (!ft_strconcur(s, "CUBE"))
+		len = obj_type_search(CUBOID);
+	if (len < RT_OBT_TAB_LEN)
+		return (make_new_node(node, tab[len].type, s));
+	else if (node->content)
+		return (check_line2(node, s));
+	return (0);
 }

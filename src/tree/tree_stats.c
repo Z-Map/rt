@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   tree_stats.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 17:17:17 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/05/21 18:07:39 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/21 21:10:32 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_tree.h"
 
-void			recursive(t_rtnode *node, t_rtree *tree, int maxd)
+void			recursive(t_rtnode *node, t_rtree *tree, t_ui maxd)
 {
 	if (node)
 		maxd++;
@@ -27,14 +27,9 @@ void			recursive(t_rtnode *node, t_rtree *tree, int maxd)
 
 void			tree_stats(t_rtree *tree)
 {
-	t_rtnode	*tmp;
-	int			maxd;
-
 	if (!tree)
 		return ;
 	tree->nodelen = 0;
 	tree->max_depth = 0;
-	maxd = 0;
-	tmp = tree->node.childs;
-	recursive(tmp, tree, maxd);
+	recursive(tree->node.childs, tree, 0);
 }

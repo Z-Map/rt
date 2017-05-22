@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 17:59:51 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/15 22:54:47 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/22 02:10:58 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,16 @@ static int		recursive(t_ptree *p, t_rtnode *node, int i)
 	if (content)
 	{
 		if (content->obj)
-			ft_printf(" Obj(type: %X, name: '%s')\n", content->obj->type,
-				content->obj->name);
+		{
+			ft_printf(" Obj(type: %X, name: '%s', prop: %b)\n", content->obj->type,
+				content->obj->name, content->flags);
+			j = i + 1;
+			while (j--)
+				ft_putchar('\t');
+			ft_printf("pos %p : %f %f %f\n", &(content->transform),
+			content->transform.offset.x,
+			content->transform.offset.y, content->transform.offset.z);
+		}
 		else
 			ft_printf(" Invalid instance\n");
 	}

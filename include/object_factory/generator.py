@@ -83,9 +83,9 @@ def generate_headers(dirname):
 			ctext += "};\n\n"
 			obttab += '{"' + anob["cenum"] + '", ' + anob["cenum"] + ', 0, ' + str(valoffset) + ', '
 			if cprstext:
-				obttab += "&g_elm_" + akey + ', object_default_' + akey + '},\n'
+				obttab += "\n&g_elm_" + akey + ', object_default_' + akey + ', NULL},\n'
 			else:
-				obttab += 'NULL, object_default_' + akey + '},\n'
+				obttab += '\nNULL, object_default_' + akey + ', NULL},\n'
 			obttablen += 1;
 		if ctext:
 			f.write(ctext)
