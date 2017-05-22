@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/24 22:50:08 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/22 14:52:05 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/22 15:46:10 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,13 +120,11 @@ t_rtree				*sda_parser(const char *s)
 	t_rtree			*tree;
 	t_sda_env		env;
 
-	RT_DBGM("PARSER begin.");
 	if ((tree = env_init(s, &env)))
 	{
 		tree = read_file(&env, tree);
 		close(env.fd);
 	}
 	RT_DBGR((tree) ? 1 : 0, 1, "Parsing fail");
-	RT_DBGM("PARSER end.");
 	return (tree);
 }
