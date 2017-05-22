@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 15:03:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/22 01:20:43 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/22 20:33:02 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ struct					s_rt_render_gdata
 {
 	t_ul				flags;
 	t_v2d				depth;
-	t_v3f				hit_point;
-	t_v3f				hit_nor;
+	t_v4f				hit_point;
 	t_mat2x3f			hit_tangent;
+	t_v3f				hit_nor[2];
+	t_rtobi				*inst;
 };
 
 struct					s_rt_render_fdata

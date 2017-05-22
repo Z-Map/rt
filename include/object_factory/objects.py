@@ -7,6 +7,7 @@ G_basicproperty = (
 	ObT("type", "ul"),
 	ObT("usercfg", "ul"),
 	ObT("name", "char"),
+	ObT("intersect", "void"),
 )
 
 G_groups =(

@@ -6,15 +6,16 @@
 /*   By: fanno <fanno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 15:04:58 by fanno             #+#    #+#             */
-/*   Updated: 2017/05/22 14:58:06 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/22 19:23:38 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "mathex/utils.h"
+#include "mathex/vector.h"
 #include "rt_tools.h"
 
-static void	set_vec(t_v3f *vtab, int min[4], int max[4], t_v2f lim)
+static void		set_vec(t_v3f *vtab, int min[4], int max[4], t_v2f lim)
 {
 	int		i;
 
@@ -26,7 +27,7 @@ static void	set_vec(t_v3f *vtab, int min[4], int max[4], t_v2f lim)
 		vtab[max[i]].x = lim.y;
 }
 
-t_mat3x2f	bound_transform(t_mat3x2f b, t_mattf m)
+t_mat3x2f		bound_transform(t_mat3x2f b, t_mattf m)
 {
 	t_v3f	v[8];
 	int		i;
@@ -54,35 +55,48 @@ t_mat3x2f	bound_transform(t_mat3x2f b, t_mattf m)
 	return (b);
 }
 
-int			bound_isvalid(t_mat3x2f b)
+static int		bound_rcdim(t_v2f rd, t_v3f nor, t_v2f b, t_rtrgd *gd)
 {
-	if ((b.x.x > b.x.y) || (b.y.x > b.y.y) || (b.z.x > b.z.y))
+	t_v2d		lim;
+
+	if (rd.y != 0.0f)
+		lim = sortv2d((t_v2d){(double)((b.x - rd.x) / rd.y),
+			(double)((b.y - rd.x) / rd.y)});
+	else
+	{
+		lim = (t_v2d){(double)(b.x - rd.x), (double)(b.y - rd.y)};
+		if ((lim.x > 0.0) || (lim.y < 0.0))
+			return (0);
+		return (1);
+	}
+	if ((lim.y < gd->depth.x) || (lim.x > gd->depth.y))
 		return (0);
+	if (lim.x > gd->depth.x)
+	{
+		gd->depth.x = lim.x;
+		gd->hit_nor[0] = (rd.y > 0.0f) ? v3fmulv3f(nor, nv3f(-1.0f)) : nor;
+	}
+	if (lim.y < gd->depth.y)
+	{
+		gd->depth.y = lim.y;
+		gd->hit_nor[1] = (rd.y > 0.0f) ? nor : v3fmulv3f(nor, nv3f(-1.0f));
+	}
 	return (1);
 }
 
-t_mat3x2f	bound_union(t_mat3x2f a, t_mat3x2f b)
+int				bound_raycast(t_rtray *r, t_mat3x2f b, t_rtrgd *gd)
 {
-	a.x.x = mxminf(a.x.x, b.x.x);
-	a.y.x = mxminf(a.y.x, b.y.x);
-	a.z.x = mxminf(a.z.x, b.z.x);
-	a.x.y = mxmaxf(a.x.y, b.x.y);
-	a.y.y = mxmaxf(a.y.y, b.y.y);
-	a.z.y = mxmaxf(a.z.y, b.z.y);
-	return (a);
-}
-
-t_mat3x2f	bound_intersect(t_mat3x2f a, t_mat3x2f b)
-{
-	a.x.x = mxmaxf(a.x.x, b.x.x);
-	a.y.x = mxmaxf(a.y.x, b.y.x);
-	a.z.x = mxmaxf(a.z.x, b.z.x);
-	a.x.y = mxminf(a.x.y, b.x.y);
-	a.y.y = mxminf(a.y.y, b.y.y);
-	a.z.y = mxminf(a.z.y, b.z.y);
-	if (bound_isvalid(a))
-		return (a);
-	return (no_bound());
+	if (!bound_rcdim((t_v2f){r->start.x, r->direction.x},
+			(t_v3f){1.0f, 0.0f, 0.0f}, b.x, gd) || (gd->depth.x < 0.0))
+		return (0);
+	if (!bound_rcdim((t_v2f){r->start.y, r->direction.y},
+			(t_v3f){0.0f, 1.0f, 0.0f}, b.y, gd) || (gd->depth.x < 0.0))
+		return (0);
+	if (!bound_rcdim((t_v2f){r->start.z, r->direction.z},
+			(t_v3f){0.0f, 0.0f, 1.0f}, b.z, gd) || (gd->depth.x < 0.0))
+		return (0);
+	gd->flags |= RAY_GDEPTH | RAY_GHNOR;
+	return (1);
 }
 
 /*

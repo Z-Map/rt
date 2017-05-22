@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/22 14:58:47 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/22 20:24:38 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,16 @@
 # define RTRMK_STOP					0x2ul
 # define RTRMK_CANCEL				0x4ul
 # define RTRMK_DONE					0x10ul
+
+/*
+** Ray flags
+*/
+
+# define RAY_GDEPTH					0x1ul
+# define RAY_GHNOR					0x2ul
+# define RAY_GHPOINT				0x4ul
+# define RAY_GHTANG					0x8ul
+# define RAY_GVALID					0x1000ul
 
 /*
 ** Window key

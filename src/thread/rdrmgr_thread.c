@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/23 01:42:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/22 14:51:24 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/22 15:28:03 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	rt_sync_rdrdone(t_rt *rt)
 
 	if (rt_state(rt, RTS_MGLW_INIT, RT_GET))
 	{
+		pthread_mutex_lock(&(rt->viewer.refresh_lock));
 		img = rt->viewer.rdrtarget;
 		if (img->pixels)
 			free(img->pixels);
@@ -41,7 +42,6 @@ static void	rt_sync_rdrdone(t_rt *rt)
 		img->pixels = (t_uc *)(rt->render.render_px);
 		rt->render.render_px = NULL;
 		rt->render.flags &= ~RTRMK_DONE;
-		pthread_mutex_lock(&(rt->viewer.refresh_lock));
 		rt->flags |= RTF_RDRDISP;
 		RT_DBGM("Request viewer refresh.");
 		rt->viewer.keys |= RTWK_REFRESH;
