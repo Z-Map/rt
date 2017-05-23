@@ -6,7 +6,7 @@
 /*   By: fanno <fanno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 15:04:58 by fanno             #+#    #+#             */
-/*   Updated: 2017/05/22 19:23:38 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/23 23:35:01 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@ t_mat3x2f		bound_transform(t_mat3x2f b, t_mattf m)
 		b.z.x = mxminf(v[i].z, b.z.x);
 		b.z.y = mxmaxf(v[i].z, b.z.y);
 	}
+	t_mat3x2f	mb = b;
+	ft_printf("bounds : x[%f,%f] y[%f,%f] z[%f,%f]}\n", mb.x.x, mb.x.y, mb.y.x,
+		mb.y.y, mb.z.x, mb.z.y);
 	return (b);
 }
 
@@ -65,9 +68,7 @@ static int		bound_rcdim(t_v2f rd, t_v3f nor, t_v2f b, t_rtrgd *gd)
 	else
 	{
 		lim = (t_v2d){(double)(b.x - rd.x), (double)(b.y - rd.y)};
-		if ((lim.x > 0.0) || (lim.y < 0.0))
-			return (0);
-		return (1);
+		return (((lim.x > 0.0) || (lim.y < 0.0)) ? 0 : 1);
 	}
 	if ((lim.y < gd->depth.x) || (lim.x > gd->depth.y))
 		return (0);
@@ -75,11 +76,13 @@ static int		bound_rcdim(t_v2f rd, t_v3f nor, t_v2f b, t_rtrgd *gd)
 	{
 		gd->depth.x = lim.x;
 		gd->hit_nor[0] = (rd.y > 0.0f) ? v3fmulv3f(nor, nv3f(-1.0f)) : nor;
+		gd->flags |= RAY_GDEPTH0 | RAY_GHNOR0;
 	}
 	if (lim.y < gd->depth.y)
 	{
 		gd->depth.y = lim.y;
 		gd->hit_nor[1] = (rd.y > 0.0f) ? nor : v3fmulv3f(nor, nv3f(-1.0f));
+		gd->flags |= RAY_GDEPTH1 | RAY_GHNOR1;
 	}
 	return (1);
 }
@@ -87,15 +90,14 @@ static int		bound_rcdim(t_v2f rd, t_v3f nor, t_v2f b, t_rtrgd *gd)
 int				bound_raycast(t_rtray *r, t_mat3x2f b, t_rtrgd *gd)
 {
 	if (!bound_rcdim((t_v2f){r->start.x, r->direction.x},
-			(t_v3f){1.0f, 0.0f, 0.0f}, b.x, gd) || (gd->depth.x < 0.0))
+			(t_v3f){1.0f, 0.0f, 0.0f}, b.x, gd) || (gd->depth.y < 0.0))
 		return (0);
 	if (!bound_rcdim((t_v2f){r->start.y, r->direction.y},
-			(t_v3f){0.0f, 1.0f, 0.0f}, b.y, gd) || (gd->depth.x < 0.0))
+			(t_v3f){0.0f, 1.0f, 0.0f}, b.y, gd) || (gd->depth.y < 0.0))
 		return (0);
 	if (!bound_rcdim((t_v2f){r->start.z, r->direction.z},
-			(t_v3f){0.0f, 0.0f, 1.0f}, b.z, gd) || (gd->depth.x < 0.0))
+			(t_v3f){0.0f, 0.0f, 1.0f}, b.z, gd) || (gd->depth.y < 0.0))
 		return (0);
-	gd->flags |= RAY_GDEPTH | RAY_GHNOR;
 	return (1);
 }
 

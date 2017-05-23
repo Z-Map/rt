@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/22 20:24:38 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/23 21:52:50 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,14 @@
 ** Ray flags
 */
 
-# define RAY_GDEPTH					0x1ul
-# define RAY_GHNOR					0x2ul
-# define RAY_GHPOINT				0x4ul
-# define RAY_GHTANG					0x8ul
+# define RAY_GDEPTH0				0x1ul
+# define RAY_GDEPTH1				0x2ul
+# define RAY_GHNOR0					0x4ul
+# define RAY_GHNOR1					0x8ul
+# define RAY_GHPOINT				0x10ul
+# define RAY_GHTANG					0x20ul
+# define RAY_LOCAL0					0x100ul
+# define RAY_LOCAL1					0x200ul
 # define RAY_GVALID					0x1000ul
 
 /*

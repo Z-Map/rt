@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 18:42:52 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/23 04:37:18 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/23 23:34:33 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,11 @@ t_rtree				*mkrendertree(t_rtree *tree)
 		rmtree(&ntree);
 	else
 	{
+		ntree->node.flags |= TREET_RENDER;
 		ntree->max_depth = tree->max_depth;
-		ntree->node = tree->node;
-		ft_printf("Coucou : %p\n", ntree->node.childs);
+		ntree->nodelen = tree->nodelen;
 		ntree->camera = find_cam(ntree->node.childs);
-		ft_printf("Ok : %p - %s\n", ntree->node.childs,
-			((t_rtobi *)(ntree->camera->content))->name);
+		print_tree(ntree);
 	}
 	return (ntree);
 }

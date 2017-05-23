@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 03:57:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/22 15:45:43 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/23 20:12:20 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ t_mat3x2f			no_bound(void)
 {
 	return ((t_mat3x2f){.x = {INFINITY, -INFINITY},
 		.y = {INFINITY, -INFINITY}, .z = {INFINITY, -INFINITY}});
+}
+
+t_mat3x2f			infinity_bound(void)
+{
+	return ((t_mat3x2f){.x = {-INFINITY, INFINITY},
+		.y = {-INFINITY, INFINITY}, .z = {-INFINITY, INFINITY}});
 }
 
 int					bound_isvalid(t_mat3x2f b)

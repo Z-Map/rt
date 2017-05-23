@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 22:47:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/23 03:30:56 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/23 22:31:33 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ void		*rdrmgr_exit(t_rt *rt, t_rtrmgr *rmgr);
 int			rdrmgr_isrendering(t_rt *rt, t_rtrmgr *rmgr);
 
 int			rdrmgr_render_request(t_rt *rt, t_rtree *tree);
+
+int			intersect_cylinder(t_rtray ray, t_rtobd *cylinder, t_rtrgd *gd);
+int			intersect_sphere(t_rtray ray, t_rtobd *sphere, t_rtrgd *gd);
+int			intersect_cuboid(t_rtray ray, t_rtobd *o, t_rtrgd *gd);
+int			intersect_plan(t_rtray ray, t_rtobd *plan, t_rtrgd *gd);
+int			intersect_cone(t_rtray ray, t_rtobd *cone, t_rtrgd *gd);
+
 
 t_rtray		rdr_pxray(t_ui x, t_ui y, t_rtrmgr *rmgr, t_rtrnode *camnode);
 t_rtrgd		rdr_raycast(t_rtray ray, t_rtree *tree);

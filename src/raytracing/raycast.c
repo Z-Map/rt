@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:38:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/23 02:34:00 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/23 23:29:52 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,29 @@ static int	intersect_obj(t_rtray ray, t_rtobi *obi, t_rtrgd *geo)
 static int	raycast_rnod(t_rtray ray, t_rtrnode *nod, t_rtrgd *geo)
 {
 	t_rtnode	*nc;
+	t_rtrgd		ogd;
 	t_rtrgd		gd;
 	int			ret;
 
 	gd = *geo;
 	if (!bound_raycast(&ray, nod->bound, &gd))
 		return (0);
+	RT_DBGM("glups");
 	ret = 0;
+	ogd = gd;
 	if ((((t_rtobi *)(nod->node.content))->obj->type & VISIBLE) &&
-		bound_raycast(&ray, nod->lbound, &gd) && intersect_obj(ray_trans(ray,
-		nod->invert_transform), (t_rtobi *)(nod->node.content), &gd))
+		bound_raycast(&ray, nod->lbound, &ogd) && intersect_obj(ray_trans(ray,
+		nod->invert_transform), (t_rtobi *)(nod->node.content), &ogd))
 		ret = 1;
 	nc = nod->node.childs;
 	while (nc)
 	{
 		if (raycast_rnod(ray, (t_rtrnode *)nc, &gd))
-			ret = 1;
+			ret = 2;
 		nc = nc->next;
 	}
+	if (ret)
+		*geo = (ret == 1) ? ogd : gd;
 	return (ret);
 }
 

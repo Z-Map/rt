@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 15:56:32 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/23 03:53:21 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/23 14:56:39 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static t_rgba		calc_pixel(t_ui x, t_ui y, t_rtrmgr *rmgr)
 {
 	t_rtrd			rd;
 
-	RT_DBGM("coucou !");
 	rd = raytrace(x, y, rmgr, rmgr->rendertree);
 	return (rd.color);
 }

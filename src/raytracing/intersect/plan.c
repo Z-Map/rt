@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instance_init.c                                    :+:      :+:    :+:   */
+/*   plan.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/24 16:45:32 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/23 22:42:53 by qloubier         ###   ########.fr       */
+/*   Created: 2017/05/23 18:23:49 by qloubier          #+#    #+#             */
+/*   Updated: 2017/05/23 22:32:33 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "rt_tools.h"
-#include "rt_object.h"
+#include "rt_render.h"
 
-void			obinst_default(t_rtobi *inst, t_rtobj *obj, const char *name)
+int				intersect_plan(t_rtray ray, t_rtobd *plan, t_rtrgd *gd)
 {
-	static t_ui	id = 0;
+	double		dist;
 
-	if (!name)
-		name = obj->name;
-	*inst = (t_rtobi){ .id = id++, .flags = 0, .name = ft_vsdup(name),
-		.transform = mattf_identity(), .obj = obj, .bounds = infinity_bound()};
+	(void)plan;
+	dist = (-ray.start.z / ray.direction.z);
+	if ((dist < 0.0) || (dist > gd->depth.y) || (dist < gd->depth.x))
+		return (0);
+	gd->depth.x = dist;
+	gd->hit_nor[0] = (t_v3f){0.0, 0.0, 1.0};
+	return (1);
 }

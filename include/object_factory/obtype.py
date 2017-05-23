@@ -114,7 +114,7 @@ class Obtype(object):
 			return 8
 		return self.size * self.e_len
 
-	def mkval(self, offset, idx, name = None):
+	def mkval(self, offset, idx, name = None, sep = ",\n"):
 		if not self.parser_elm:
 			return ""
 		if not name:

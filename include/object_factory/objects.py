@@ -97,8 +97,9 @@ G_objects = (
 		"name" : "cuboid",
 		"group" : "visible",
 		"property" : (
-			ObT("radius", "float"),
-			ObT("padding", "int"),
+			ObT("sizex", "t_v2f"),
+			ObT("sizey", "t_v2f"),
+			ObT("sizez", "t_v2f"),
 		)
 	},
 	{

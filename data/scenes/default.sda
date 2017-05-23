@@ -1,15 +1,15 @@
 CAMERA: cam1
-	rotation:	60		0		0
-	position:	0.0		-10.05	3
+	rotation:	20		0		0
+	position:	0.0		0		0
 
 SPHERE: center
 	color :	#50246f
-	radius: 0.5
+	radius: 2.0
 
 EMPTY: rot_center
 	SPHERE: moon
 		color :	#c2c2c2
-		pos: 3.
+		pos: 3.0
 	CUBE: cube_moon
 		color :	#d58213
 		pos:	0		0		3.1

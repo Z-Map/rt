@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 02:48:07 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/23 04:06:00 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/23 14:56:45 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ t_rtray		rdr_pxray(t_ui x, t_ui y, t_rtrmgr *rmgr, t_rtrnode *camnode)
 
 	cam = (t_rtobi *)(camnode->node.content);
 	fov = ((t_rtobd *)(cam->obj))->camera.fov.x;
-	if (camnode->node.type & TREET_RENDER)
-		RT_DBGM("ok !");
 	ray.start = camnode->transform.offset;
 	ray.direction = camnode->transform.z;
 	vec2 = nv3f(cosf(fov));
