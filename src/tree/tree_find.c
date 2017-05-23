@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree_find.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 17:01:12 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/05/22 13:27:31 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/23 03:47:28 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_rtnode		*tree_find_next_iteration(t_rtnode *node, int (*f)(void *env))
 {
 	while (node)
 	{
-		if (f((void *)node))
+		if (f(node->content))
 			return (node);
 		tree_find_next_iteration(node->childs, f);
 		node = node->next;
@@ -29,7 +29,7 @@ t_rtnode		*tree_find_first_iteration(t_rtnode *node, int (*f)(void *env))
 {
 	while (node)
 	{
-		if (f((void *)node))
+		if (f(node->content))
 			return (node);
 		tree_find_first_iteration(node->childs, f);
 		node = node->next;

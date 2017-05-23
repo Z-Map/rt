@@ -6,13 +6,28 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 18:42:52 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/21 04:38:45 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/23 04:37:18 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "rt_tools.h"
 #include "rt_tree.h"
+
+static t_rtnode		*find_cam(t_rtnode *n)
+{
+	t_rtnode		*c;
+
+	if (!n)
+		return (NULL);
+	if (((t_rtobi *)n->content)->obj->type & CAMERA)
+		return (n);
+	if ((c = find_cam(n->childs)))
+		return (c);
+	else if ((c = find_cam(n->next)))
+		return (c);
+	return (NULL);
+}
 
 static t_rtnode		*rendernodechilds(t_rtnode *childs, t_mattf m, t_mat3x2f *b)
 {
@@ -39,6 +54,7 @@ static t_rtnode		*rendernodechilds(t_rtnode *childs, t_mattf m, t_mat3x2f *b)
 			nchilds = childs;
 		}
 	}
+	ft_printf("Ret : %p\n", nchilds);
 	return (nchilds);
 }
 
@@ -78,6 +94,10 @@ t_rtree				*mkrendertree(t_rtree *tree)
 	{
 		ntree->max_depth = tree->max_depth;
 		ntree->node = tree->node;
+		ft_printf("Coucou : %p\n", ntree->node.childs);
+		ntree->camera = find_cam(ntree->node.childs);
+		ft_printf("Ok : %p - %s\n", ntree->node.childs,
+			((t_rtobi *)(ntree->camera->content))->name);
 	}
 	return (ntree);
 }

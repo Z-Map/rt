@@ -6,20 +6,20 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 15:56:32 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/21 19:30:42 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/23 03:53:21 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "rt_render.h"
 
-static t_rgba		calc_pixel(t_rt *rt)
+static t_rgba		calc_pixel(t_ui x, t_ui y, t_rtrmgr *rmgr)
 {
-	t_rgba			rgba;
+	t_rtrd			rd;
 
-	rgba = (t_rgba){255, 0, 0, 255};
-	(void)rt;
-	return (rgba);
+	RT_DBGM("coucou !");
+	rd = raytrace(x, y, rmgr, rmgr->rendertree);
+	return (rd.color);
 }
 
 int					img_calc(t_rt *rt, t_rtrmgr *rmgr)
@@ -34,7 +34,7 @@ int					img_calc(t_rt *rt, t_rtrmgr *rmgr)
 		y = 0;
 		while (y < rmgr->rsize.y)
 		{
-			rmgr->rpx[(y * rmgr->rsize.x) + x] = calc_pixel(rt);
+			rmgr->rpx[(y * rmgr->rsize.x) + x] = calc_pixel(x, y, rmgr);
 			if ((get = rdrmgr_isrendering(rt, rmgr)) < RTRMGR_FINISHED)
 				return (get);
 			y++;

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 15:45:36 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/21 04:38:26 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/23 03:45:13 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_rtnode			*tree_nodedup(t_rtnode *node);
 t_rtree				*tree_dup(t_rtree *tree);
 
 // TO DO :
-/*
+//*
 // Update stats of tree
 void				tree_stats(t_rtree *tree);
 // Search node with this content
@@ -52,7 +52,7 @@ t_rtnode			*tree_chr(t_rtree *tree, void *content);
 // Search throught a tree for node with content that valid f(node.content)
 // The search can be continued if the node last find node is passed to "node"
 t_rtnode			*tree_find(t_rtnode *node, int (*f)(void *));
-*/
+//*/
 
 // Set "parent" as parent of node and remove "node" from his parent before
 // if needed - return node or null if error
