@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 17:35:04 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/22 02:02:04 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/23 02:19:18 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,17 @@ static int			make_new_node(t_rtnode *node, t_rtobt type, char *s)
 	inst = NULL;
 	obj = NULL;
 	name = get_name(s);
-	if ((obj = mkobject(type, name)) &&
+	if ((obj = mkobject(type, name)) && (!(type & VISIBLE) ||
+		(((t_rtobd *)obj)->plan.material = mkmaterial("default"))) &&
 		(inst = mkinstance(obj, NULL)) &&
-		(new = mknode(inst)) &&
-		tree_addchild(node, new))
+		(new = mknode(inst)) && tree_addchild(node, new))
 		return (1);
-	if (obj)
-		rmobject(obj);
+	if (obj && (type & VISIBLE))
+		rmmaterial(((t_rtobd *)obj)->plan.material);
 	if (inst)
 		rminstance(inst);
+	if (obj)
+		rmobject(obj);
 	if (new)
 		rmnode(&new);
 	return (-1);

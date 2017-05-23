@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:38:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/22 20:47:46 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/23 02:34:00 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ static int	raycast_rnod(t_rtray ray, t_rtrnode *nod, t_rtrgd *geo)
 	if (!bound_raycast(&ray, nod->bound, &gd))
 		return (0);
 	ret = 0;
-	if (bound_raycast(&ray, nod->lbound, &gd) && intersect_obj(ray_trans(ray,
+	if ((((t_rtobi *)(nod->node.content))->obj->type & VISIBLE) &&
+		bound_raycast(&ray, nod->lbound, &gd) && intersect_obj(ray_trans(ray,
 		nod->invert_transform), (t_rtobi *)(nod->node.content), &gd))
 		ret = 1;
 	nc = nod->node.childs;
