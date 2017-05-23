@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:38:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/23 23:29:52 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/24 00:15:09 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	raycast_rnod(t_rtray ray, t_rtrnode *nod, t_rtrgd *geo)
 	gd = *geo;
 	if (!bound_raycast(&ray, nod->bound, &gd))
 		return (0);
-	RT_DBGM("glups");
+	// RT_DBGM("glups");
 	ret = 0;
 	ogd = gd;
 	if ((((t_rtobi *)(nod->node.content))->obj->type & VISIBLE) &&

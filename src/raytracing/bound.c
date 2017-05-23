@@ -6,7 +6,7 @@
 /*   By: fanno <fanno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 15:04:58 by fanno             #+#    #+#             */
-/*   Updated: 2017/05/23 23:35:01 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/24 00:41:46 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,47 +15,79 @@
 #include "mathex/vector.h"
 #include "rt_tools.h"
 
-static void		set_vec(t_v3f *vtab, int min[4], int max[4], t_v2f lim)
-{
-	int		i;
+// static void		set_vec(t_v3f *vtab, int min[4], int max[4], t_v2f lim)
+// {
+// 	int		i;
+//
+// 	i = 4;
+// 	while (i--)
+// 		vtab[min[i]].x = lim.x;
+// 	i = 4;
+// 	while (i--)
+// 		vtab[max[i]].x = lim.y;
+// }
 
-	i = 4;
-	while (i--)
-		vtab[min[i]].x = lim.x;
-	i = 4;
-	while (i--)
-		vtab[max[i]].x = lim.y;
+static void		trans_dim(t_mat3x2f *b, t_v3f dim, t_v2f lim)
+{
+	t_v3f		v;
+
+	v = (t_v3f){dim.x * lim.x, dim.y * lim.x, dim.z * lim.x};
+	dim = (t_v3f){dim.x * lim.y, dim.y * lim.y, dim.z * lim.y};
+	b->x.x = mxminf(mxminf(v.x, dim.x), b->x.x);
+	b->y.x = mxminf(mxminf(v.y, dim.y), b->y.x);
+	b->z.x = mxminf(mxminf(v.z, dim.z), b->z.x);
+	b->x.y = mxmaxf(mxmaxf(v.x, dim.x), b->x.y);
+	b->y.y = mxmaxf(mxmaxf(v.y, dim.y), b->y.y);
+	b->z.y = mxmaxf(mxmaxf(v.z, dim.z), b->z.y);
+
 }
+
+// t_mat3x2f		bound_transform(t_mat3x2f b, t_mattf m)
+// {
+// 	t_v3f	v[8];
+// 	int		i;
+//
+// 	set_vec(v, (int[4]){0, 3, 4, 7}, (int[4]){1, 2, 5, 6}, b.x);
+// 	set_vec((t_v3f *)((t_ul)v + 4), (int[4]){2, 3, 6, 7},
+// 		(int[4]){0, 1, 4, 5}, b.y);
+// 	set_vec((t_v3f *)((t_ul)v + 4), (int[4]){4, 5, 6, 7},
+// 		(int[4]){0, 1, 2, 3}, b.z);
+// 	i = 8;
+// 	while (i--)
+// 		pmattf_apply(v + i, &m);
+// 	i = 7;
+// 	b = (t_mat3x2f){.x = {v[7].x, v[7].x}, .y = {v[7].y, v[7].y},
+// 		.z = {v[7].z, v[7].z}};
+// 	while (i--)
+// 	{
+// 		b.x.x = mxminf(v[i].x, b.x.x);
+// 		b.x.y = mxmaxf(v[i].x, b.x.y);
+// 		b.y.x = mxminf(v[i].y, b.y.x);
+// 		b.y.y = mxmaxf(v[i].y, b.y.y);
+// 		b.z.x = mxminf(v[i].z, b.z.x);
+// 		b.z.y = mxmaxf(v[i].z, b.z.y);
+// 	}
+// 	t_mat3x2f	mb = b;
+// 	ft_printf("bounds : x[%f,%f] y[%f,%f] z[%f,%f]}\n", (double)mb.x.x,
+// 		(double)mb.x.y, (double)mb.y.x, (double)mb.y.y, (double)mb.z.x, mb.z.y);
+// 	return (b);
+// }
 
 t_mat3x2f		bound_transform(t_mat3x2f b, t_mattf m)
 {
-	t_v3f	v[8];
-	int		i;
+	t_mat3x2f	nb;
 
-	set_vec(v, (int[4]){0, 3, 4, 7}, (int[4]){1, 2, 5, 6}, b.x);
-	set_vec((t_v3f *)((t_ul)v + 4), (int[4]){2, 3, 6, 7},
-		(int[4]){0, 1, 4, 5}, b.y);
-	set_vec((t_v3f *)((t_ul)v + 4), (int[4]){4, 5, 6, 7},
-		(int[4]){0, 1, 2, 3}, b.z);
-	i = 8;
-	while (i--)
-		pmattf_apply(v + i, &m);
-	i = 7;
-	b = (t_mat3x2f){.x = {v[7].x, v[7].x}, .y = {v[7].y, v[7].y},
-		.z = {v[7].z, v[7].z}};
-	while (i--)
-	{
-		b.x.x = mxminf(v[i].x, b.x.x);
-		b.x.y = mxmaxf(v[i].x, b.x.y);
-		b.y.x = mxminf(v[i].y, b.y.x);
-		b.y.y = mxmaxf(v[i].y, b.y.y);
-		b.z.x = mxminf(v[i].z, b.z.x);
-		b.z.y = mxmaxf(v[i].z, b.z.y);
-	}
-	t_mat3x2f	mb = b;
-	ft_printf("bounds : x[%f,%f] y[%f,%f] z[%f,%f]}\n", mb.x.x, mb.x.y, mb.y.x,
-		mb.y.y, mb.z.x, mb.z.y);
-	return (b);
+	nb = b;
+	trans_dim(&nb, m.x, b.x);
+	trans_dim(&nb, m.y, b.y);
+	trans_dim(&nb, m.z, b.z);
+	nb.x = (t_v2f){nb.x.x + m.offset.x, nb.x.y + m.offset.x};
+	nb.y = (t_v2f){nb.y.x + m.offset.y, nb.y.y + m.offset.y};
+	nb.z = (t_v2f){nb.z.x + m.offset.z, nb.z.y + m.offset.z};
+	t_mat3x2f	mb = nb;
+	ft_printf("bounds : x[%f,%f] y[%f,%f] z[%f,%f]}\n", (double)mb.x.x,
+		(double)mb.x.y, (double)mb.y.x, (double)mb.y.y, (double)mb.z.x, mb.z.y);
+	return (nb);
 }
 
 static int		bound_rcdim(t_v2f rd, t_v3f nor, t_v2f b, t_rtrgd *gd)
