@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 17:35:04 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/23 02:19:18 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/24 20:23:33 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,52 +23,6 @@
 ** Check si la ligne correspond à quelque chose de connu.
 ** Si le mot est inconnu au parser, on appellera une fonction d'erreur.
 */
-
-static char			*get_name(char *s)
-{
-	char			*n;
-
-	if ((n = ft_strchr(s, (int)':')))
-		n = ft_strpskp(n + 1, FT_WHITESPACE);
-	if (!n || !(*n))
-	{
-		n = s;
-		while (ft_isupper(*s))
-		{
-			*s = (char)ft_tolower((int)*s);
-			s++;
-		}
-		*s = '\0';
-	}
-	return (n);
-}
-
-static int			make_new_node(t_rtnode *node, t_rtobt type, char *s)
-{
-	t_rtnode		*new;
-	t_rtobi			*inst;
-	t_rtobj			*obj;
-	char			*name;
-
-	new = NULL;
-	inst = NULL;
-	obj = NULL;
-	name = get_name(s);
-	if ((obj = mkobject(type, name)) && (!(type & VISIBLE) ||
-		(((t_rtobd *)obj)->plan.material = mkmaterial("default"))) &&
-		(inst = mkinstance(obj, NULL)) &&
-		(new = mknode(inst)) && tree_addchild(node, new))
-		return (1);
-	if (obj && (type & VISIBLE))
-		rmmaterial(((t_rtobd *)obj)->plan.material);
-	if (inst)
-		rminstance(inst);
-	if (obj)
-		rmobject(obj);
-	if (new)
-		rmnode(&new);
-	return (-1);
-}
 
 static int			check_line3(t_rtnode *node, t_gparse gparse)
 {
@@ -126,7 +80,7 @@ int					check_line(t_rtnode *node, char *s)
 	if (!ft_strconcur(s, "CUBE"))
 		len = obj_type_search(CUBOID);
 	if (len < RT_OBT_TAB_LEN)
-		return (make_new_node(node, tab[len].type, s));
+		return (sda_make_node(node, tab[len].type, s));
 	else if (node->content)
 		return (check_line2(node, s));
 	return (0);
