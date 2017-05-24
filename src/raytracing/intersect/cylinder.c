@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 18:23:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/23 22:32:39 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/24 21:36:40 by fanno            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static int		calc_cylinder(t_rtobd *cylinder, t_rtray *ray, t_v2d *dist)
 	double	radius;
 
 	radius = cylinder->cylinder.radius;
-	coef.x = ray->direction.x * ray->direction.x
-		+ ray->direction.y * ray->direction.y;
-	coef.y = 2 * (ray->start.x * ray->direction.x
-		+ ray->start.y * ray->direction.y);
-	coef.z = ray->start.x * ray->start.x + ray->start.y * ray->start.y
+	coef.x = (ray->direction.x * ray->direction.x)
+		+ (ray->direction.z * ray->direction.z);
+	coef.y = 2 * ray->start.x * ray->direction.x
+		+ 2 * ray->start.z * ray->direction.z;
+	coef.z = ray->start.x * ray->start.x + ray->start.z * ray->start.z
 		- radius * radius;
 	delta = (coef.y * coef.y) - (4 * coef.x * coef.z);
 	if (delta >= 0)

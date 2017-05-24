@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 17:52:09 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/16 02:25:41 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/24 20:51:35 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int				rt_parse_args(t_rt *rt, int ac, char **av)
 	RT_DBGR(argret->argp, 0, "Arg parsed");
 	ac = argret->ac;
 	av = argret->av;
-	ft_freearg(&arglst, argret);
 	if (ac)
 		rt->scene = av[0];
+	ft_freearg(&arglst, argret);
 	if (!(rt->flags & RT_MODES))
 		rt->flags |= RT_VISUALPREV;
 	return (1);

@@ -6,7 +6,7 @@
 /*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 17:01:12 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/05/24 21:40:41 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/24 22:02:55 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "rt_parser.h"
 
 
-t_rtnode		*findn(t_rtnode *node, int (*f)(void *env), t_rtnode **nxt)
+static t_rtnode	*findn(t_rtnode *node, int (*f)(void *env), t_rtnode **nxt)
 {
 	t_rtnode	*ret;
 	RT_DBGM("recursive.");

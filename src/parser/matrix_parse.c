@@ -6,10 +6,12 @@
 /*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 18:19:18 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/05/22 02:10:36 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/24 21:02:33 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
+#include "mathex/vector.h"
 #include "rt_parser.h"
 
 int				vparse_rot(t_val *val, void *mem, t_gparse parser)
@@ -24,6 +26,7 @@ int				vparse_rot(t_val *val, void *mem, t_gparse parser)
 	ret = ft_vparse_vec((t_val *)(t_ul)&cv, &vec, parser);
 	if (ret < 0)
 		return (ret);
+	vec = v3fmulv3f(v3fdivv3f(vec, nv3f(180)),nv3f(M_PI));
 	pmattf_rot((t_mattf *)((t_ul)mem + val->offset), vec);
 	return (ret);
 }
