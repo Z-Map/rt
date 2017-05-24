@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/23 01:42:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/23 03:57:21 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/24 01:38:58 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int			rdrmgr_sync(t_rt *rt, t_rtrmgr *rmgr)
 	if (!rmgr->rpx)
 		rmgr->rpx = malloc(rmgr->rsize.x * rmgr->rsize.y * sizeof(t_rgba));
 	rmgr->rendertree = rt->render.target;
+	rt->render.target = NULL;
 	rt_state(rt, RTS_RENDER, RT_SET);
 	rmgr->rdrstate = RTRMGR_STARTRENDER;
 	pthread_mutex_unlock(&(rt->render.refresh_lock));
