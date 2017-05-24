@@ -1,40 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tree_find.c                                        :+:      :+:    :+:   */
+/*   tree_find_test.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 17:01:12 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/05/23 03:47:28 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/24 19:14:02 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_tree.h"
 
-t_rtnode		*tree_find_next_iteration(t_rtnode *node, int (*f)(void *env))
+t_rtnode		*findn(t_rtnode *node, int (*f)(void *env), t_rtnode **nxt)
 {
-	while (node)
-	{
-		if (f(node->content))
-			return (node);
-		tree_find_next_iteration(node->childs, f);
-		node = node->next;
-	}
-	tree_find_next_iteration(node->parent->next, f);
-	return (NULL);
-}
+	t_rtnode	*ret;
+	t_rtnode	*it;
 
-t_rtnode		*tree_find_first_iteration(t_rtnode *node, int (*f)(void *env))
-{
-	while (node)
+	if ((!nxt || (*nxt != node)) && f(node->content))
+		return (node);
+	while (nxt && ((*nxt)->parent != *nxt) && (!(*nxt)->next))
+		*nxt = node->parent;
+	if (nxt)
+		*nxt = NULL;
+	ret = NULL;
+	it = node->childs;
+	while (!ret && it)
 	{
-		if (f(node->content))
-			return (node);
-		tree_find_first_iteration(node->childs, f);
-		node = node->next;
+		ret = findn(it, f, NULL);
+		it = it->next;
 	}
-	return (NULL);
+	if (!ret)
+		ret = findn(node->next, f, NULL);
+	return (ret);
 }
 
 t_rtnode		*tree_find(t_rtnode *node, int (*f)(void *env))
@@ -44,9 +42,7 @@ t_rtnode		*tree_find(t_rtnode *node, int (*f)(void *env))
 	ret = NULL;
 	if (!node)
 		return (NULL);
-	if (node->parent == node)
-		ret = tree_find_first_iteration(node->childs, f);
-	else
-		ret = tree_find_next_iteration(node->childs, f);
+	while (!ret && node)
+		ret = findn(node, f, &node);
 	return (ret);
 }

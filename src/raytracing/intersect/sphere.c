@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 18:23:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/23 22:32:22 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/24 18:35:03 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ static int		calc_sphere(t_rtobd *ob, t_rtray *ray, t_v2d *dist)
 	t_v3d	coef;
 	double	delta;
 
-	coef.x = ray->direction.x * ray->direction.x + ray->direction.y
-		* ray->direction.y + ray->direction.z * ray->direction.z;
+	coef.x = (ray->direction.x * ray->direction.x) + (ray->direction.y
+		* ray->direction.y) + (ray->direction.z * ray->direction.z);
 	coef.y = 2 * (ray->direction.x * ray->start.x + ray->direction.y
-		* ray->direction.y + ray->direction.z * ray->start.z);
-	coef.z = ray->start.x * ray->start.z + ray->start.y
+		* ray->start.y + ray->direction.z * ray->start.z);
+	coef.z = ray->start.x * ray->start.x + ray->start.y
 		* ray->start.y + ray->start.z * ray->start.z
 		- ob->sphere.radius * ob->sphere.radius;
 	delta = coef.y * coef.y - 4 * coef.x * coef.z;
