@@ -21,8 +21,6 @@ t_rtnode		*findn(t_rtnode *node, int (*f)(void *env), t_rtnode **nxt)
 		return (node);
 	while (nxt && ((*nxt)->parent != *nxt) && (!(*nxt)->next))
 		*nxt = node->parent;
-	if (nxt)
-		*nxt = NULL;
 	ret = NULL;
 	it = node->childs;
 	while (!ret && it)
@@ -38,11 +36,16 @@ t_rtnode		*findn(t_rtnode *node, int (*f)(void *env), t_rtnode **nxt)
 t_rtnode		*tree_find(t_rtnode *node, int (*f)(void *env))
 {
 	t_rtnode	*ret;
+	t_rtnode	it;
 
 	ret = NULL;
 	if (!node)
 		return (NULL);
+	it = node;
 	while (!ret && node)
-		ret = findn(node, f, &node);
+	{
+		ret = findn(node, f, &it);
+		node = it->next;
+	}
 	return (ret);
 }
