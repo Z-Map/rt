@@ -1,10 +1,12 @@
 CAMERA: cam1
-	rotation:	-90.0		0.0		0
-	position:	0		10		0
+	rotation: -90.0		0.0		0
+	position:	2		10		0
 
-SPHERE: center
+CYLINDER: center
 	color :	#50246f
-	radius: 0.5
+	pos: 0 0 0
+	rot: 90 0 0
+	radius : 1.0
 
 EMPTY: rot_center
 	SPHERE: moon

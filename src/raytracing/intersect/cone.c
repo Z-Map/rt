@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 18:23:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/23 22:32:49 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/24 21:31:11 by fanno            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,14 @@ static int		calc_cone(t_rtobd *cone, t_rtray *ray, t_v2d *dist)
 	double	delta;
 	double	angle;
 
-	angle = tan(cone->cone.angle);
-	coef.x = (ray->direction.x * ray->direction.x) + (ray->direction.y
-		* ray->direction.y) - (ray->direction.z * ray->direction.z * angle
-		* angle);
-	coef.y = 2 * (ray->start.x * ray->direction.x +
-			ray->start.y * ray->direction.y -
-			(ray->direction.z * (-ray->start.z)) * angle * angle);
-	coef.z = ray->start.x * ray->start.x + ray->start.y * ray->start.y
-		- (ray->start.z * ray->start.z * angle * angle);
+	angle = pow(tan(cone->cone.angle), 2);
+	coef.x = (ray->direction.x * ray->direction.x) 
+		+ (ray->direction.z * ray->direction.z)
+		- angle * (ray->direction.y * ray->direction.y);
+	coef.y = (2 * (ray->start.x * ray->direction.x + ray->start.z
+		* ray->direction.z) - 2 * angle * ray->start.y * ray->direction.y);   
+	coef.z = (ray->start.x * ray->start.x) + (ray->start.z * ray->start.z)
+		- angle * (ray->start.y * ray->start.y);
 	delta = (coef.y * coef.y) - (4 * coef.x * coef.z);
 	if (delta >= 0)
 	{
