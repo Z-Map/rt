@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 17:55:10 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/24 20:20:24 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/24 21:53:03 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int			rt_parser_obj(char *file, t_obj *obj);
 int			check_line(t_rtnode *node, char *s);
 t_rtree		*sda_parser(const char *s);
 
-int			sda_make_node(t_rtnode *node, t_rtobt type, char *s);
+int			sda_make_node(t_rtnode *node, t_rtobt type, const char *s);
+
+int			find_camera(t_rtree *tree);
 
 #endif

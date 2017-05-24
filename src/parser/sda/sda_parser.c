@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/24 22:50:08 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/22 15:46:10 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/24 21:34:54 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ t_rtree				*sda_parser(const char *s)
 	if ((tree = env_init(s, &env)))
 	{
 		tree = read_file(&env, tree);
+		print_tree(tree);
+		find_camera(tree);
 		close(env.fd);
 	}
 	RT_DBGR((tree) ? 1 : 0, 1, "Parsing fail");
