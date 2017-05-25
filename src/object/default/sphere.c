@@ -18,3 +18,13 @@ void			object_default_sphere(t_rtobd *object)
 	object->sphere.material = NULL;
 	object->sphere.radius = 1.0;
 }
+
+t_mat3x2f               object_bound_sphere(t_rtobd *ob)
+{
+        t_mat3x2f       bound;
+
+        bound.x = (t_v2f){-(ob->sphere.radius / 2), ob->sphere.radius / 2};
+        bound.y = (t_v2f){-(ob->sphere.radius / 2), ob->sphere.radius / 2};
+        bound.z = (t_v2f){-(ob->sphere.radius / 2), ob->sphere.radius / 2};
+        return (bound);
+}
