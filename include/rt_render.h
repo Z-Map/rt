@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 22:47:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/23 22:31:33 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/25 17:29:26 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int			intersect_sphere(t_rtray ray, t_rtobd *sphere, t_rtrgd *gd);
 int			intersect_cuboid(t_rtray ray, t_rtobd *o, t_rtrgd *gd);
 int			intersect_plan(t_rtray ray, t_rtobd *plan, t_rtrgd *gd);
 int			intersect_cone(t_rtray ray, t_rtobd *cone, t_rtrgd *gd);
+int			intersect_tris(t_rtray ray, t_rtobd *cone, t_rtrgd *gd);
+int			intersect_mesh(t_rtray ray, t_rtobd *plan, t_rtrgd *gd);
 
 
 t_rtray		rdr_pxray(t_ui x, t_ui y, t_rtrmgr *rmgr, t_rtrnode *camnode);

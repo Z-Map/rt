@@ -8,6 +8,9 @@ G_basicproperty = (
 	ObT("usercfg", "ul"),
 	ObT("name", "char"),
 	ObT("intersect", "void"),
+	ObT("limx", "t_v2f"),
+	ObT("limy", "t_v2f"),
+	ObT("limz", "t_v2f"),
 )
 
 G_groups =(
@@ -195,6 +198,7 @@ def build_objects(groups = None):
 		else:
 			objs[akey]["id"] = anob["id"]
 		objs[akey]["cstruct"] = False
+		objs[akey]["intersect"] = False
 		objs[akey]["property"] = ()
 		if "group" in anob and anob["group"] in groups:
 			if anob["group"] == "valid" or "valid" in groups[anob["group"]]["parents"]:
@@ -202,6 +206,8 @@ def build_objects(groups = None):
 			groups[anob["group"]]["objects"].append(akey)
 			if "property" in groups[anob["group"]]:
 				objs[akey]["property"] = groups[anob["group"]]["property"]
+			if anob["group"] == "visible":
+				objs[akey]["intersect"] = True
 		if "property" in anob:
 			objs[akey]["property"] = objs[akey]["property"] + anob["property"]
 		if objs[akey]["property"] == ():

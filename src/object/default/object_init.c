@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 02:02:13 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/23 02:39:40 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/25 17:36:52 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,5 @@ void				object_default(t_rtobj *obj)
 	object = (t_rtobd *)obj;
 	i = obj_type_search(obj->type);
 	g_obt_tab[i].init(object);
+	obj->intersect = g_obt_tab[i].geometry;
 }

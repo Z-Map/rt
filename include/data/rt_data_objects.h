@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 18:56:24 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/22 15:00:19 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/25 17:33:49 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ struct					s_rt_object_index
 	size_t				size;
 	const t_elm			*parse_elm;
 	void				(*init)(t_rtobd *);
-	int					(*geometry)(t_rtobd *, t_rtray *, t_rtrgd *);
+	int					(*geometry)(t_rtray, t_rtobd *, t_rtrgd *);
 };
 
 static const t_val	g_vtab_inst[8] = {

@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cone.c                                             :+:      :+:    :+:   */
+/*   mesh.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/22 02:00:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/25 17:37:06 by qloubier         ###   ########.fr       */
+/*   Created: 2017/05/25 17:30:11 by qloubier          #+#    #+#             */
+/*   Updated: 2017/05/25 17:32:24 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_render.h"
-#include "rt_object.h"
 
-void			object_default_cone(t_rtobd *object)
+int			intersect_mesh(t_rtray ray, t_rtobd *mesh, t_rtrgd *gd)
 {
-	object->cone.material = NULL;
-	object->cone.angle = 1.0;
+	(void)ray;
+	(void)mesh;
+	(void)gd;
+	return (0);
 }

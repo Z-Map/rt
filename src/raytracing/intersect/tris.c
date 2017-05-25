@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cone.c                                             :+:      :+:    :+:   */
+/*   tris.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/22 02:00:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/25 17:37:06 by qloubier         ###   ########.fr       */
+/*   Created: 2017/05/25 17:30:32 by qloubier          #+#    #+#             */
+/*   Updated: 2017/05/25 17:32:34 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_render.h"
-#include "rt_object.h"
 
-void			object_default_cone(t_rtobd *object)
+int			intersect_tris(t_rtray ray, t_rtobd *tris, t_rtrgd *gd)
 {
-	object->cone.material = NULL;
-	object->cone.angle = 1.0;
+	(void)ray;
+	(void)tris;
+	(void)gd;
+	return (0);
 }

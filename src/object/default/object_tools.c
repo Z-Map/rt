@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cone.c                                             :+:      :+:    :+:   */
+/*   object_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/22 02:00:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/25 17:37:06 by qloubier         ###   ########.fr       */
+/*   Created: 2017/05/25 17:57:24 by qloubier          #+#    #+#             */
+/*   Updated: 2017/05/25 18:06:44 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "rt_tools.h"
+#include "generated/rt_typetab_gen.h"
 #include "rt_render.h"
 #include "rt_object.h"
 
-void			object_default_cone(t_rtobd *object)
+t_mat3x2f		object_getbound(t_rtobi *ob)
 {
-	object->cone.material = NULL;
-	object->cone.angle = 1.0;
+	t_mat3x2f	bound;
+	size_t		i;
+
+
+	i = obj_type_search(ob->obj->type);
+	bound = (t_mat3x2f){nv2f(0.0f), nv2f(0.0f), nv2f(0.0f)};
+	// if (i < RT_OBT_TAB_LEN)
+	// 	bound =
+	bound = bound_intersect(bound, *((t_mat3x2f *)&(ob->obj->limx)));
+	return (bound);
 }

@@ -45,6 +45,7 @@ def generate_headers(dirname):
 	fttab.write("#ifndef " + name.upper().replace('.','_') + "\n")
 	fttab.write("# define " + name.upper().replace('.','_') + "\n\n")
 	fttab.write("""# include "rt_object.h"\n\n""")
+	fttab.write("""# include "rt_render.h"\n\n""")
 	obttab = ""
 	obttablen = 0
 	# includes
@@ -83,9 +84,13 @@ def generate_headers(dirname):
 			ctext += "};\n\n"
 			obttab += '{"' + anob["cenum"] + '", ' + anob["cenum"] + ', 0, ' + str(valoffset) + ', '
 			if cprstext:
-				obttab += "\n&g_elm_" + akey + ', object_default_' + akey + ', NULL},\n'
+				obttab += "\n&g_elm_" + akey + ', object_default_' + akey + ',\n'
 			else:
-				obttab += '\nNULL, object_default_' + akey + ', NULL},\n'
+				obttab += '\nNULL, object_default_' + akey + ',\n'
+			if anob["intersect"]:
+				obttab += 'intersect_' + akey + '},\n'
+			else:
+				obttab += 'NULL},\n'
 			obttablen += 1;
 		if ctext:
 			f.write(ctext)

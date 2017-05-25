@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 18:19:26 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 18:22:32 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/25 16:02:01 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ struct						s_rt_root
 	unsigned long			state;
 	int						error;
 	int						errors[15];
+	size_t					scene_len;
 	char					*scene;
+	const char				**scenes;
 	char					*fileout;
 	t_rtree					*tree;
 	t_rtview				viewer;

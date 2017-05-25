@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 21:07:42 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/20 12:50:04 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/25 18:08:11 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,9 @@ void			object_default_pointlight(t_rtobd *object);
 void			object_default_spot(t_rtobd *object);
 void			object_default(t_rtobj *object);
 void			obinst_default(t_rtobi *inst, t_rtobj *obj, const char *name);
+
+t_mat3x2f		object_bound_cuboid(t_rtobd *ob);
+t_mat3x2f		object_getbound(t_rtobi *ob);
 
 void			object_set(t_rtobj *object, FT_CC *vn, t_rt vt, void *vc);
 void			object_getsetter(t_rtobt type);
