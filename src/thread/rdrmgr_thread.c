@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/23 01:42:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/24 01:40:37 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/25 21:32:01 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int			rdrmgr_render_request(t_rt *rt, t_rtree *tree)
 {
 	pthread_mutex_lock(&(rt->render.refresh_lock));
 	rt->render.flags |= RTRMK_CANCEL | RTRMK_REFRESH;
-	rt->render.target = mkrendertree(tree);
+	rt->render.target = tree;
 	pthread_mutex_unlock(&(rt->render.refresh_lock));
 	RT_DBGM("Render requested.");
-	rt_sync_rdrmgrthread(rt);
+	// rt_sync_rdrmgrthread(rt);
 	return (1);
 }
 
@@ -48,12 +48,7 @@ static void	rt_sync_rdrdone(t_rt *rt)
 	}
 	rt->render.flags &= ~RTRMK_DONE;
 	if (rt->flags & RTF_RDRAUTO)
-	{
-		if (rt->render.target)
-			rmtree(&(rt->render.target));
-		rt->render.flags |= RTRMK_REFRESH;
-		rt->render.target = mkrendertree(rt->tree);
-	}
+		rt->flags |= RTF_RDRREFRESH;
 }
 
 int			rt_sync_rdrmgrthread(t_rt *rt)
@@ -63,6 +58,13 @@ int			rt_sync_rdrmgrthread(t_rt *rt)
 	pthread_mutex_lock(&(rt->render.refresh_lock));
 	if (rt->render.flags & RTRMK_DONE)
 		rt_sync_rdrdone(rt);
+	if (!rt_state(rt, RTS_RENDER, RT_GET) && (rt->flags & RTF_RDRREFRESH))
+	{
+		if (!(rt->render.target))
+			rt->render.target = rt->tree;
+		rt->render.flags |= RTRMK_REFRESH;
+		rt->flags &= ~RTF_RDRREFRESH;
+	}
 	if (!rt_isrunning(rt))
 		rt->render.flags |= RTRMK_STOP | RTRMK_REFRESH;
 	pthread_mutex_unlock(&(rt->render.refresh_lock));

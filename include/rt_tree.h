@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 15:45:36 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/23 03:45:13 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/25 21:09:16 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int					rmnodes(size_t num, ...);
 int					rmrnode(t_rtnode **node);
 int					rmrnodes(size_t num, ...);
 int					rmtree(t_rtree **tree);
+int					rmrtree(t_rtree **tree);
 // Add child "node" to "parent" - return node or null if error
 t_rtnode			*tree_addchild(t_rtnode *parent, t_rtnode *node); // <<
 // Remove child "node" from "parent" - return node or null if error

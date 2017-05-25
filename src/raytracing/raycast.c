@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:38:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/24 18:18:42 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/25 20:07:33 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ static int	intersect_obj(t_rtray ray, t_rtobi *obi, t_rtrgd *geo)
 	int		(*inter)(t_rtray, t_rtobd *, t_rtrgd *);
 
 	inter = obi->obj->intersect;
-	if (inter && inter(ray, (t_rtobd *)(obi->obj), geo))
+	if (bound_raycast(&ray, obi->bounds, geo) && inter
+		&& inter(ray, (t_rtobd *)(obi->obj), geo))
 	{
 		geo->inst = obi;
 		return (1);

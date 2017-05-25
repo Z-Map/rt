@@ -6,17 +6,20 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 20:51:21 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/22 02:08:04 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/25 19:49:24 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "rt_tools.h"
 #include "rt_object.h"
 
 static void			init_obj(t_rtobj *obj, t_rtobt type, const char *name)
 {
 	*obj = (t_rtobj){ .type = type,
 		.usercfg = 0, .name = ft_vsdup(name)};
+	if (type & VISIBLE)
+		*((t_mat3x2f *)&(((t_rtobd *)obj)->plan.limx)) = infinity_bound();
 	object_default(obj);
 }
 

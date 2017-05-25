@@ -6,12 +6,13 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 18:42:52 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/23 23:34:33 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/25 19:39:28 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "rt_tools.h"
+#include "rt_object.h"
 #include "rt_tree.h"
 
 static t_rtnode		*find_cam(t_rtnode *n)
@@ -54,7 +55,6 @@ static t_rtnode		*rendernodechilds(t_rtnode *childs, t_mattf m, t_mat3x2f *b)
 			nchilds = childs;
 		}
 	}
-	ft_printf("Ret : %p\n", nchilds);
 	return (nchilds);
 }
 
@@ -66,7 +66,7 @@ t_rtrnode			*rendernodedup(t_rtnode *node, t_mattf m, t_mat3x2f *b)
 	if (!node)
 		return (NULL);
 	pmattf_multiply(&m, &(((t_rtobi *)(node->content))->transform));
-	lb = bound_transform(((t_rtobi *)(node->content))->bounds, m);
+	lb = instance_getbound((t_rtobi *)(node->content), &m);
 	rnode = mkrendernode((t_rtobi *)(node->content), m, lb);
 	if (node->childs && (!(rnode->node.childs = rendernodechilds(
 		node->childs, m, &lb))))

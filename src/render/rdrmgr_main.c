@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/23 01:42:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/24 01:38:58 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/25 21:36:01 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int			rdrmgr_done(t_rt *rt, t_rtrmgr *rmgr)
 int			rdrmgr_sync(t_rt *rt, t_rtrmgr *rmgr)
 {
 	pthread_mutex_lock(&(rt->render.refresh_lock));
+	if (rmgr->rendertree)
+		rmrtree(&(rmgr->rendertree));
 	if (!(rt->render.flags & RTRMGR_REFRESH))
 		pthread_cond_wait(&(rt->render.refresh_cond),
 			&(rt->render.refresh_lock));
@@ -41,7 +43,7 @@ int			rdrmgr_sync(t_rt *rt, t_rtrmgr *rmgr)
 	}
 	if (!rmgr->rpx)
 		rmgr->rpx = malloc(rmgr->rsize.x * rmgr->rsize.y * sizeof(t_rgba));
-	rmgr->rendertree = rt->render.target;
+	rmgr->rendertree = mkrendertree(rt->render.target);
 	rt->render.target = NULL;
 	rt_state(rt, RTS_RENDER, RT_SET);
 	rmgr->rdrstate = RTRMGR_STARTRENDER;
@@ -75,6 +77,7 @@ void		*rt_rdrmgr_main(void *arg)
 	rt = (t_rt *)arg;
 	rmgr.rpx = NULL;
 	rmgr.rdrstate = RTRMGR_FINISHED;
+	rmgr.rendertree = NULL;
 	rt_state(rt, RTS_RDRMGR_INIT, RT_SET);
 	RT_DBGM("Render manager started.");
 	while (rdrmgr_isrendering(rt, &rmgr))

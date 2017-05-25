@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 02:00:51 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/25 17:37:28 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/25 19:11:52 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,11 @@ void			object_default_plan(t_rtobd *object)
 
 t_mat3x2f               object_bound_plan(t_rtobd *ob)
 {
-        t_mat3x2f       bound;
+	t_mat3x2f       bound;
 
 	(void)ob;
-        bound.x = (t_v2f){-INFINITY, INFINITY};
-        bound.y = (t_v2f){-INFINITY, INFINITY};
-        bound.z = (t_v2f){-0.0001, 0.0001};
-        return (bound);
+	bound.x = (t_v2f){-INFINITY, INFINITY};
+	bound.y = (t_v2f){-INFINITY, INFINITY};
+	bound.z = (t_v2f){-0.0001, 0.0001};
+	return (bound);
 }
-

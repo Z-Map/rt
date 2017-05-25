@@ -8,9 +8,6 @@ G_basicproperty = (
 	ObT("usercfg", "ul"),
 	ObT("name", "char"),
 	ObT("intersect", "void"),
-	ObT("limx", "t_v2f"),
-	ObT("limy", "t_v2f"),
-	ObT("limz", "t_v2f"),
 )
 
 G_groups =(
@@ -18,6 +15,9 @@ G_groups =(
 		"name" : "visible",
 		"group" : "valid",
 		"property" : (
+			ObT("limx", "t_v2f"),
+			ObT("limy", "t_v2f"),
+			ObT("limz", "t_v2f"),
 			ObT("material", "t_rtmat"),
 		)
 	},
@@ -63,7 +63,7 @@ G_objects = (
 		"name" : "camera",
 		"group" : "tool",
 		"property" : (
-			ObT("fov", "t_v2f"),
+			ObT("fov", "t_v2d"),
 			ObT("focus", "float"),
 			ObT("fstop", "float"),
 		)

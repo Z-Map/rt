@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mesh.c                                             :+:      :+:    :+:   */
+/*   instance_tool.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/22 01:59:37 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/25 19:28:18 by qloubier         ###   ########.fr       */
+/*   Created: 2017/05/25 19:20:25 by qloubier          #+#    #+#             */
+/*   Updated: 2017/05/25 19:25:19 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_tools.h"
+#include "generated/rt_typetab_gen.h"
 #include "rt_render.h"
 #include "rt_object.h"
 
-void			object_default_mesh(t_rtobd *object)
+t_mat3x2f		instance_getbound(t_rtobi *ob, const t_mattf *m)
 {
-	object->mesh.material = NULL;
-	object->mesh.vertex_len = 0;
-	object->mesh.poly_len = 0;
-	object->mesh.vertex = NULL;
-	object->mesh.normale = NULL;
-	object->mesh.uv = NULL;
-	object->mesh.poly = NULL;
-}
+	t_mat3x2f	bound;
 
-t_mat3x2f		object_bound_mesh(t_rtobd *ob)
-{
-	(void)ob;
-	return ((t_mat3x2f){nv2f(0.0f), nv2f(0.0f), nv2f(0.0f)});
+	bound = object_getbound(ob->obj);
+	if (!m)
+		m = &(ob->transform);
+	ob->bounds = bound;
+	bound = bound_transform(bound, *m);
+	return (bound);
 }

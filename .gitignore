@@ -8,3 +8,10 @@ rt
 .*.jpg
 .*.png
 .DS_Store
+
+data/scenes/default.sda
+oldsrc/**/*
+oldsrc/*
+
+**/__pycache__
+include/generated

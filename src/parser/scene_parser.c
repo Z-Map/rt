@@ -1,24 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tris.c                                             :+:      :+:    :+:   */
+/*   scene_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/22 01:59:45 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/25 19:28:58 by qloubier         ###   ########.fr       */
+/*   Created: 2017/05/24 23:17:58 by qloubier          #+#    #+#             */
+/*   Updated: 2017/05/25 17:01:54 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt_object.h"
+#include "rt_parser.h"
 
-void			object_default_tris(t_rtobd *object)
+t_rtree			*parse_scene(const char *filename)
 {
-	object->plan.material = NULL;
-}
+	const char	*ext;
+	t_rtree		*ret;
 
-t_mat3x2f		object_bound_tris(t_rtobd *ob)
-{
-	(void)ob;
-	return ((t_mat3x2f){nv2f(0.0f), nv2f(0.0f), nv2f(0.0f)});
+	ext = ft_strrchr(filename, '.');
+	if (!ext)
+		return (NULL);
+	ext++;
+	ret = NULL;
+	if (ft_strequ(ext, "sda"))
+		ret = sda_parser(filename);
+	return (ret);
 }

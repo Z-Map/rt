@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 21:07:42 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/25 18:08:11 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/25 19:23:21 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,14 @@ void			object_default(t_rtobj *object);
 void			obinst_default(t_rtobi *inst, t_rtobj *obj, const char *name);
 
 t_mat3x2f		object_bound_cuboid(t_rtobd *ob);
-t_mat3x2f		object_getbound(t_rtobi *ob);
+t_mat3x2f		object_bound_cone(t_rtobd *ob);
+t_mat3x2f		object_bound_cylinder(t_rtobd *ob);
+t_mat3x2f		object_bound_sphere(t_rtobd *ob);
+t_mat3x2f		object_bound_tris(t_rtobd *ob);
+t_mat3x2f		object_bound_mesh(t_rtobd *ob);
+t_mat3x2f		object_bound_plan(t_rtobd *ob);
+t_mat3x2f		object_getbound(t_rtobj *obj);
+t_mat3x2f		instance_getbound(t_rtobi *ob, const t_mattf *m);
 
 void			object_set(t_rtobj *object, FT_CC *vn, t_rt vt, void *vc);
 void			object_getsetter(t_rtobt type);

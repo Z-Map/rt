@@ -6,7 +6,7 @@
 /*   By: fanno <fanno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 15:04:58 by fanno             #+#    #+#             */
-/*   Updated: 2017/05/24 00:41:46 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/25 19:40:50 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,6 @@ t_mat3x2f		bound_transform(t_mat3x2f b, t_mattf m)
 	nb.x = (t_v2f){nb.x.x + m.offset.x, nb.x.y + m.offset.x};
 	nb.y = (t_v2f){nb.y.x + m.offset.y, nb.y.y + m.offset.y};
 	nb.z = (t_v2f){nb.z.x + m.offset.z, nb.z.y + m.offset.z};
-	t_mat3x2f	mb = nb;
-	ft_printf("bounds : x[%f,%f] y[%f,%f] z[%f,%f]}\n", (double)mb.x.x,
-		(double)mb.x.y, (double)mb.y.x, (double)mb.y.y, (double)mb.z.x, mb.z.y);
 	return (nb);
 }
 

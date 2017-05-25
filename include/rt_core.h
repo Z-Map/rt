@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 17:08:51 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 22:02:05 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/24 23:23:36 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int			rtd_ret(t_rt *rt, int retcode, int code, const char *msg,
 				int l, const char *file, const char *func);
 int			rtd_msg(t_rt *rt, unsigned long mask, const char *msg,
 				int l, const char *file, const char *func);
+
+int			rt_keypress(void *env, int k);
 
 int			rt_error(t_rt *rt, int code, const char *msg);
 int			rt_check_error(t_rt *rt);

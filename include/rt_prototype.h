@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/24 01:27:42 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/25 21:20:29 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 
 # define RTF_RDRDISP				0x1000ul
 # define RTF_RDRAUTO				0x2000ul
+# define RTF_RDRREFRESH				0x4000ul
 
 # define RTR_CG						0x100ul
 

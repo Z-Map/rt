@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 02:45:58 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/23 13:45:06 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/25 19:38:02 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,5 @@ t_rtrnode			*mkrendernode(t_rtobi *inst, t_mattf mtrx, t_mat3x2f lb)
 	node->transform = mtrx;
 	node->invert_transform = mattf_invert(&mtrx);
 	node->lbound = lb;
-	ft_printf("Create node %p : %s\n", node, inst->name);
 	return (node);
 }
