@@ -6,7 +6,7 @@
 /*   By: fanno <fanno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 15:04:58 by fanno             #+#    #+#             */
-/*   Updated: 2017/05/25 19:40:50 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/26 02:08:55 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,17 @@
 // 		vtab[max[i]].x = lim.y;
 // }
 
-static void		trans_dim(t_mat3x2f *b, t_v3f dim, t_v2f lim)
+static void		trans_dim(t_mat3x2f *b, t_mattf *mat, t_v3f v)
 {
-	t_v3f		v;
-
-	v = (t_v3f){dim.x * lim.x, dim.y * lim.x, dim.z * lim.x};
-	dim = (t_v3f){dim.x * lim.y, dim.y * lim.y, dim.z * lim.y};
-	b->x.x = mxminf(mxminf(v.x, dim.x), b->x.x);
-	b->y.x = mxminf(mxminf(v.y, dim.y), b->y.x);
-	b->z.x = mxminf(mxminf(v.z, dim.z), b->z.x);
-	b->x.y = mxmaxf(mxmaxf(v.x, dim.x), b->x.y);
-	b->y.y = mxmaxf(mxmaxf(v.y, dim.y), b->y.y);
-	b->z.y = mxmaxf(mxmaxf(v.z, dim.z), b->z.y);
-
+	v = (t_v3f){(mat->x.x * v.x) + (mat->y.x *v.y) + (mat->z.x * v.z),
+		(mat->x.y * v.x) + (mat->y.y * v.y) + (mat->z.y * v.z),
+		(mat->x.z * v.x) + (mat->y.z * v.y) + (mat->z.z * v.z)};
+	b->x.x = mxminf(v.x, b->x.x);
+	b->y.x = mxminf(v.y, b->y.x);
+	b->z.x = mxminf(v.z, b->z.x);
+	b->x.y = mxmaxf(v.x, b->x.y);
+	b->y.y = mxmaxf(v.y, b->y.y);
+	b->z.y = mxmaxf(v.z, b->z.y);
 }
 
 // t_mat3x2f		bound_transform(t_mat3x2f b, t_mattf m)
@@ -78,9 +76,14 @@ t_mat3x2f		bound_transform(t_mat3x2f b, t_mattf m)
 	t_mat3x2f	nb;
 
 	nb = b;
-	trans_dim(&nb, m.x, b.x);
-	trans_dim(&nb, m.y, b.y);
-	trans_dim(&nb, m.z, b.z);
+	trans_dim(&nb, &m, (t_v3f){b.x.x, b.y.x, b.z.x});
+	trans_dim(&nb, &m, (t_v3f){b.x.y, b.y.x, b.z.x});
+	trans_dim(&nb, &m, (t_v3f){b.x.y, b.y.y, b.z.x});
+	trans_dim(&nb, &m, (t_v3f){b.x.y, b.y.y, b.z.y});
+	trans_dim(&nb, &m, (t_v3f){b.x.x, b.y.y, b.z.y});
+	trans_dim(&nb, &m, (t_v3f){b.x.x, b.y.x, b.z.y});
+	trans_dim(&nb, &m, (t_v3f){b.x.y, b.y.x, b.z.y});
+	trans_dim(&nb, &m, (t_v3f){b.x.x, b.y.y, b.z.x});
 	nb.x = (t_v2f){nb.x.x + m.offset.x, nb.x.y + m.offset.x};
 	nb.y = (t_v2f){nb.y.x + m.offset.y, nb.y.y + m.offset.y};
 	nb.z = (t_v2f){nb.z.x + m.offset.z, nb.z.y + m.offset.z};

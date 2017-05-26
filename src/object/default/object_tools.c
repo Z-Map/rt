@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/25 17:57:24 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/25 19:54:07 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/25 22:38:31 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@ t_mat3x2f		object_getbound(t_rtobj *obj)
 	{
 		bound = g_obt_tab[i].bounds((t_rtobd *)(obj));
 		bound = bound_intersect(bound, *((t_mat3x2f *)&(obd->plan.limx)));
-		t_mat3x2f	mb = *((t_mat3x2f *)&(obd->plan.limx));
-		ft_printf("bounds : x[%f,%f] y[%f,%f] z[%f,%f]}\n", (double)mb.x.x,
-			(double)mb.x.y, (double)mb.y.x, (double)mb.y.y, (double)mb.z.x, mb.z.y);
 	}
 	return (bound);
 }

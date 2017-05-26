@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 18:23:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/24 21:36:40 by fanno            ###   ########.fr       */
+/*   Updated: 2017/05/26 02:15:57 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,20 @@ static int		calc_cylinder(t_rtobd *cylinder, t_rtray *ray, t_v2d *dist)
 int				intersect_cylinder(t_rtray ray, t_rtobd *cylinder, t_rtrgd *gd)
 {
 	t_v2d		dist;
+	int			ret;
 
+	ret = 0;
 	if (!calc_cylinder(cylinder, &ray, &dist))
 		return (0);
-	if (dist.x > gd->depth.x)
+	if ((dist.x > gd->depth.x) && (dist.x < gd->depth.y))
 	{
 		gd->depth.x = dist.x;
+		ret = 1;
 	}
-	if (dist.y < gd->depth.y)
+	if ((dist.y < gd->depth.y) && (dist.y > gd->depth.x))
 	{
 		gd->depth.y = dist.y;
+		ret = 1;
 	}
-	return (1);
+	return (ret);
 }

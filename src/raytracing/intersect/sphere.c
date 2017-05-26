@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 18:23:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/24 18:35:03 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/26 02:13:50 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ int				intersect_sphere(t_rtray ray, t_rtobd *sphere, t_rtrgd *gd)
 		|| (dist.y < 0.0))
 		return (0);
 	ret = 0;
-	if (dist.x > gd->depth.x)
+	if ((dist.x > gd->depth.x) && (dist.x < gd->depth.y))
 	{
 		gd->depth.x = dist.x;
 		ret = 1;
 	}
-	if (dist.y < gd->depth.y)
+	if ((dist.y < gd->depth.y) && (dist.y > gd->depth.x))
 	{
 		gd->depth.y = dist.y;
 		ret = 1;
