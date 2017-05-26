@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_tool.c                                         :+:      :+:    :+:   */
+/*   intersect_tool.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/22 19:56:27 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/26 16:06:09 by qloubier         ###   ########.fr       */
+/*   Created: 2017/05/26 16:11:06 by qloubier          #+#    #+#             */
+/*   Updated: 2017/05/26 20:10:28 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "rt_tools.h"
+#include "rt_render.h"
 
-t_v3f			ray_hitpoint(t_rtray ray, double depth)
+int		intersect_depth(t_rtrgd *gd, t_v2d dist, t_v3f hitp[2])
 {
-	return ((t_v3f){
-		(ray.direction.x * depth) + ray.start.x,
-		(ray.direction.y * depth) + ray.start.y,
-		(ray.direction.z * depth) + ray.start.z,
-	});
-}
+	int			ret;
 
-t_rtray			ray_trans(t_rtray ray, t_mattf m)
-{
-	pmattf_apply(&ray.start, &m);
-	m.offset = nv3f(0.0f);
-	pmattf_apply(&ray.direction, &m);
-	return (ray);
+	ret = 0;
+	if ((dist.x > gd->depth.x) && (dist.x < gd->depth.y))
+	{
+		gd->depth.x = dist.x;
+		ret = 1;
+	}
+	if ((dist.y < gd->depth.y) && (dist.y > gd->depth.x))
+	{
+		gd->depth.y = dist.y;
+		ret = 2;
+	}
+	return (ret);
 }
