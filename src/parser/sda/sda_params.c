@@ -89,6 +89,7 @@ static int			check_line2(t_rtnode *node, char *s)
 
 int					check_line(t_rtnode *node, char *s)
 {
+	RT_DBGM("Parsing...");
 	const t_rtobind	*tab = g_obt_tab;
 	size_t			len;
 
@@ -99,7 +100,7 @@ int					check_line(t_rtnode *node, char *s)
 	if (!ft_strconcur(s, "CUBE"))
 		len = obj_type_search(CUBOID);
 	if (len < RT_OBT_TAB_LEN)
-		return (sda_make_node(node, tab[len].type, get_name(s)));
+		return (sda_make_node_parser(node, tab[len].type, get_name(s)));
 	else if (node->content)
 		return (check_line2(node, s));
 	return (0);

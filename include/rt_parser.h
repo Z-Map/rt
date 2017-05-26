@@ -38,7 +38,8 @@ int			rt_parser_obj(char *file, t_obj *obj);
 int			check_line(t_rtnode *node, char *s);
 t_rtree		*sda_parser(const char *s);
 
-int			sda_make_node(t_rtnode *node, t_rtobt type, const char *s);
+t_rtnode		*make_node(t_rtobt type, const char *s);
+int			sda_make_node_parser(t_rtnode *node, t_rtobt type, const char *s);
 
 int			find_camera(t_rtree *tree);
 

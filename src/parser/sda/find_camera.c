@@ -36,7 +36,7 @@ int				find_camera(t_rtree *tree)
 	RT_DBGM("find cam");
 	cam = tree_find(&(tree->node), &is_camera);
 	RT_DBGM("tree_find");
-	if (!cam && !sda_make_node((t_rtnode *)tree, CAMERA, "camera"))
+	if (!cam && !sda_make_node_parser((t_rtnode *)tree, CAMERA, "camera"))
 	{
 		RT_DBGM("fail");
 		return (0);

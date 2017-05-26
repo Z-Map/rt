@@ -12,7 +12,18 @@
 
 #include "rt_parser.h"
 
-int			sda_make_node(t_rtnode *node, t_rtobt type, const char *name)
+int			sda_make_node_parser(t_rtnode *node, t_rtobt type, const char *name)
+{
+	t_rtnode	*new;
+
+	if ((new = make_node(type, name)) && tree_addchild(node, new))
+		return (1);
+	else
+		return (-1);
+
+}
+
+t_rtnode		*make_node(t_rtobt type, const char *name)
 {
 	t_rtnode		*new;
 	t_rtobi			*inst;
@@ -24,8 +35,8 @@ int			sda_make_node(t_rtnode *node, t_rtobt type, const char *name)
 	if ((obj = mkobject(type, name)) && (!(type & VISIBLE) ||
 		(((t_rtobd *)obj)->plan.material = mkmaterial("default"))) &&
 		(inst = mkinstance(obj, NULL)) &&
-		(new = mknode(inst)) && tree_addchild(node, new))
-		return (1);
+		(new = mknode(inst)))
+		return (new);
 	if (obj && (type & VISIBLE))
 		rmmaterial(((t_rtobd *)obj)->plan.material);
 	if (inst)
@@ -34,5 +45,5 @@ int			sda_make_node(t_rtnode *node, t_rtobt type, const char *name)
 		rmobject(obj);
 	if (new)
 		rmnode(&new);
-	return (-1);
+	return (NULL);
 }
