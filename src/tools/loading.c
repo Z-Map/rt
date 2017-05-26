@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
+/*   loading.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fanno <fanno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "rt_render.h"
+
+// Actuellement cette feature tourne sous la lib MLX. Je vais l'adapter asap
 
 void			adapt_pixel(t_win *win, int color, int x, int y)
 {
