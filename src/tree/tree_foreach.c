@@ -3,17 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   tree_foreach.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ealbert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/21 14:50:20 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/12 15:38:27 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/15 16:58:55 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#define FAILURE -1
-#define INFIX 1
-#define PREFIX 2
-#define SUFFIX 3
 
 #include "rt_tree.h"
 

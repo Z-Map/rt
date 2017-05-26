@@ -3,23 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   rdrmgr_img.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ealbert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 15:56:32 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/12 15:42:01 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/23 14:56:39 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "rt_render.h"
 
-static t_rgba		calc_pixel(t_rt *rt)
+static t_rgba		calc_pixel(t_ui x, t_ui y, t_rtrmgr *rmgr)
 {
-	t_rgba			rgba;
+	t_rtrd			rd;
 
-	rgba = (t_rgba){'0', '0', '0', '0'};
-	rt = NULL; // A FAIRE
-	return (rgba);
+	rd = raytrace(x, y, rmgr, rmgr->rendertree);
+	return (rd.color);
 }
 
 int					img_calc(t_rt *rt, t_rtrmgr *rmgr)
@@ -29,20 +28,17 @@ int					img_calc(t_rt *rt, t_rtrmgr *rmgr)
 	int				get;
 
 	x = 0;
-	while (x < (*rmgr).rsize.x)
+	while (x < rmgr->rsize.x)
 	{
 		y = 0;
-		while (y < (*rmgr).rsize.y)
+		while (y < rmgr->rsize.y)
 		{
-			(*rmgr).rpx[x * (*rmgr).rsize.x + y] = calc_pixel(rt);
-			get = rdrmgr_isrendering(rt, rmgr);
-			if (get & RTRMK_STOP)
-				return (rt_error(rt, 1, "Render quit"));
-			else if (get & RTRMK_CANCEL)
-				return (8);
+			rmgr->rpx[(y * rmgr->rsize.x) + x] = calc_pixel(x, y, rmgr);
+			if ((get = rdrmgr_isrendering(rt, rmgr)) < RTRMGR_FINISHED)
+				return (get);
 			y++;
 		}
 		x++;
 	}
-	return (1);
+	return (RTRMGR_FINISHED);
 }

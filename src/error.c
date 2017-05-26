@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 18:15:50 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 16:22:55 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/14 22:09:49 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ int			rt_check_error(t_rt *rt)
 {
 	if (!rt)
 		return (-1);
-	return (0);
+	return (rt->error);
 }

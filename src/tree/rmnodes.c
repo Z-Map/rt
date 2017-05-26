@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rmnodes.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 17:30:19 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/04/11 18:14:56 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/19 19:18:48 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			rmnodes(size_t num, ...)
 		return (0);
 	va_start(nodes, num);
 	while (num-- > 0)
-		rmnode(va_arg(nodes, t_rtnode *));
+		rmnode(va_arg(nodes, t_rtnode **));
 	va_end(nodes);
 	return (1);
 }

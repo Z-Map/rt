@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   rmnode.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 17:24:29 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/04/18 13:49:31 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/19 19:09:50 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "rt_tree.h"
 
-int			rmnode(t_rtnode *node)
+int			rmnode(t_rtnode **node)
 {
-	if (!node)
+	if (!node || !*node)
 		return (0);
-	free(node);
-	node = NULL;
+	free(*node);
+	*node = NULL;
 	return (1);
 }

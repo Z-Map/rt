@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 14:51:55 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 15:36:59 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/21 19:15:36 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,17 @@ int				rt_init_window(t_rt *rt)
 	pthread_mutex_lock(&(rt->viewer.refresh_lock));
 	rt->viewer.layer = (mglimg *)mglw_get2dlayer(rt->viewer.win);
 	ft_bzero(rt->viewer.layer->pixels, rt->viewer.layer->memlen);
+	rt_state(rt, RTS_VPREV, RT_SET);
 	pthread_mutex_unlock(&(rt->viewer.refresh_lock));
+	RT_DBGM("Viewer window started.");
 	return (0);
 }
 
 int				viewer_run(t_rt *rt, t_rtview *v)
 {
 	pthread_mutex_lock(&(v->refresh_lock));
+	if (rt->flags & RTF_RDRDISP)
+		mglw_draw_itow(v->win, v->rdrtarget, 0, 0);
 	mglwin_draw(v->win);
 	mglw_setGLContext(NULL);
 	if (!(v->keys & RTWK_REFRESH))
@@ -47,8 +51,10 @@ void			*viewer_exit(t_rt *rt, int code)
 	rt->error = code;
 	pthread_mutex_lock(&(rt->viewer.refresh_lock));
 	rt->viewer.keys |= RTWK_STOP | RTWK_REFRESH;
+	rt_state(rt, RTS_VPREV, RT_UNSET);
 	pthread_mutex_unlock(&(rt->viewer.refresh_lock));
 	viewer_run(rt, &(rt->viewer));
+	RT_DBGM("Viewer window stoped.");
 	return (NULL);
 }
 

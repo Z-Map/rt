@@ -7,6 +7,7 @@ G_basicproperty = (
 	ObT("type", "ul"),
 	ObT("usercfg", "ul"),
 	ObT("name", "char"),
+	ObT("intersect", "void"),
 )
 
 G_groups =(
@@ -14,6 +15,9 @@ G_groups =(
 		"name" : "visible",
 		"group" : "valid",
 		"property" : (
+			ObT("limx", "t_v2f"),
+			ObT("limy", "t_v2f"),
+			ObT("limz", "t_v2f"),
 			ObT("material", "t_rtmat"),
 		)
 	},
@@ -21,6 +25,7 @@ G_groups =(
 		"name" : "light",
 		"group" : "valid",
 		"property" : (
+			ObT("material", "t_rtmat"),
 			ObT("intensity", "f"),
 			ObT("radius", "f"),
 		)
@@ -51,15 +56,16 @@ G_objects = (
 		"group" : "tool",
 		"property" : (
 			ObT("subtree", "void"),
-			ObT("size", "float"),
+			ObT("size", "double"),
 		)
 	},
 	{
 		"name" : "camera",
 		"group" : "tool",
 		"property" : (
-			ObT("fov", "t_v2f"),
+			ObT("fov", "t_v2d"),
 			ObT("focus", "float"),
+			ObT("fstop", "float"),
 		)
 	},
 	{
@@ -71,6 +77,7 @@ G_objects = (
 		"group" : "visible",
 		"property" : (
 			ObT("radius", "float"),
+			ObT("padding", "int"),
 		)
 	},
 	{
@@ -78,6 +85,7 @@ G_objects = (
 		"group" : "visible",
 		"property" : (
 			ObT("angle", "float"),
+			ObT("padding", "int"),
 		)
 	},
 	{
@@ -85,13 +93,16 @@ G_objects = (
 		"group" : "visible",
 		"property" : (
 			ObT("radius", "float"),
+			ObT("padding", "int"),
 		)
 	},
 	{
 		"name" : "cuboid",
 		"group" : "visible",
 		"property" : (
-			ObT("radius", "float"),
+			ObT("sizex", "t_v2f"),
+			ObT("sizey", "t_v2f"),
+			ObT("sizez", "t_v2f"),
 		)
 	},
 	{
@@ -115,6 +126,7 @@ G_objects = (
 		"group" : "light",
 		"property" : (
 			ObT("angle", "float"),
+			ObT("padding", "int"),
 		)
 	},
 	{
@@ -186,6 +198,7 @@ def build_objects(groups = None):
 		else:
 			objs[akey]["id"] = anob["id"]
 		objs[akey]["cstruct"] = False
+		objs[akey]["intersect"] = False
 		objs[akey]["property"] = ()
 		if "group" in anob and anob["group"] in groups:
 			if anob["group"] == "valid" or "valid" in groups[anob["group"]]["parents"]:
@@ -193,6 +206,8 @@ def build_objects(groups = None):
 			groups[anob["group"]]["objects"].append(akey)
 			if "property" in groups[anob["group"]]:
 				objs[akey]["property"] = groups[anob["group"]]["property"]
+			if anob["group"] == "visible":
+				objs[akey]["intersect"] = True
 		if "property" in anob:
 			objs[akey]["property"] = objs[akey]["property"] + anob["property"]
 		if objs[akey]["property"] == ():

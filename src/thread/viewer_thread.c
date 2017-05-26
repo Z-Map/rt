@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 14:57:26 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/12 15:38:59 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/25 21:13:11 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int			rt_sync_viewerthread(t_rt *rt)
 	{
 		pthread_join(v->mainthread, NULL);
 		mglw_closewin(v->win);
-		rt->state &= ~RTS_VPREV;
 		if (rt->flags & RT_VISUALPREV)
 			rt->flags &= ~RT_VISUALPREV;
 	}
@@ -49,12 +48,12 @@ int			rt_init_viewerthread(t_rt *rt)
 		mglw_mkwin(MGLW_LEGACY_MODE, MGLW_2DLAYER), 1400, 900, "-=[ |RT| ]=-")))
 		return (rt_error(rt, 120, "Unable to open main window."));
 	mglw_setGLContext(NULL);
+	mglw_setkcb(rt->viewer.win, 3, &rt_keypress, rt);
 	rt->viewer.keys = RTWK_REFRESH;
 	rt->viewer.refresh_lock = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
 	rt->viewer.refresh_cond = (pthread_cond_t)PTHREAD_COND_INITIALIZER;
 	if (pthread_create(&(rt->viewer.mainthread), NULL, &rt_viewer_main, rt))
 		return (rt_error(rt, 122, "Unable to start viewer thread."));
-	rt->state |= RTS_VPREV;
 	// rt_init_window(rt);
 	return (1);
 }

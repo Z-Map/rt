@@ -6,7 +6,7 @@
 #    By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/23 05:08:22 by qloubier          #+#    #+#              #
-#    Updated: 2017/04/04 16:59:43 by qloubier         ###   ########.fr        #
+#    Updated: 2017/05/21 17:11:27 by qloubier         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME			= rt
 PROJECTNAME		= rt
 
 # Project vars
+RT_DEBUG		= on
 ifeq ($(RT_NATIVEMKLIB),on)
 	LIBSMK		= ../libft/libft.a ../mathex/libmathex.a ../mglw/libmglw.a
 else
@@ -25,7 +26,7 @@ INCDIR			= -Iinclude -Ilib/mglw/lib/glload/include
 SRCS			= src/main.c
 
 ifndef CFLAGS
-	CFLAGS		= -Wall -Wextra -Werror
+	CFLAGS		= -Wall -Wextra -Werror -Wpadded
 endif
 
 # Setup vars
@@ -47,10 +48,15 @@ ifndef config
 	config		= release
 endif
 ifeq ($(config),debug)
+  RT_DEBUG		= on
   CFLAGS		+= -O1 -g -fsanitize=address -fno-omit-frame-pointer -fno-optimize-sibling-calls
 endif
 ifeq ($(config),release)
   CFLAGS		+= -Ofast
+endif
+
+ifeq ($(RT_DEBUG),on)
+	CFLAGS		+= -DRT_DEBUG
 endif
 
 # Global vars
@@ -87,7 +93,7 @@ else
   LIBFLAGS		+= -framework Cocoa -framework OpenGL -framework IOKit -framework CoreVideo
 endif
 
-.PHONY: all clean fclean re libclean $(I_DEP) unicorn gitinit gitpull pull gitreinit $(I_PHONY)
+.PHONY: all clean fclean re libclean $(I_DEP) unicorn gitinit gitpull pull gitreinit $(I_PHONY) libs
 
 all: $(TARGETDIR)/$(NAME)
 
@@ -116,13 +122,20 @@ gitpull: gitinit
 
 pull: gitpull
 
-$(I_MKLIB):
+libs:
+
+$(I_MKLIB): libs
 	$(SILENT)$(MAKE) --no-print-directory -C $(dir $(filter %/$(notdir $@),$(LIBSMK))) $(I_MKTARGET)\
 		TARGETDIR=$(CURDIR)/$(I_BD) BUILDDIR=$(I_BD) PROJECTPATH=$(CURDIR)\
 		config=$(config) SILENT=$(SILENT)
 
 $(I_BD):
 	$(SILENT)mkdir -p $(I_BD)
+
+include/object_factory/objects.py include/object_factory/generator.py:;
+
+include/generated/%.h: include/object_factory/objects.py include/object_factory/generator.py
+	$(SILENT)cd include && python3 obf_test.py > /dev/null
 
 $(I_OBJS):
 ifeq ($(I_BUILDTIME),yes)
@@ -190,6 +203,9 @@ unicorn:
 |\e[48;5;235m                                 \e[35m            <.'_.''          \e[m|\n\
 |\e[48;5;235m                                 \e[95m              <'             \e[m|\n\
  ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n"
+
+flib:
+	$(SILENT)$(MAKE) -Bs $(I_MKLIB) I_MKTARGET=all
 
 libclean:
 	$(SILENT)$(MAKE) -Bs $(I_MKLIB) I_MKTARGET=fclean

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mktree.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 19:20:09 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/04/20 16:52:15 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/25 21:38:08 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@ t_rtree			*mktree(size_t num, ...)
 
 	if (!(tree = (t_rtree *)malloc(sizeof(t_rtree))))
 		return (NULL);
-	tree->node.parent = &(tree->node);
-	tree->node.next = NULL;
-	if (num == 0)
-		tree->node.childs = NULL;
-	else
+	tree->buffer = NULL;
+	tree->node = (t_rtnode){.parent = (t_rtnode *)tree, .next = NULL,
+		.childs = NULL, .content = NULL, .flags = 0, .type = TREET_TREE};
+	if (num)
 	{
 		va_start(nodes, num);
 		tree->node.childs = va_arg(nodes, t_rtnode *);

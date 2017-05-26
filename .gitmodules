@@ -1,9 +1,9 @@
 [submodule "lib/libft"]
 	path = lib/libft
-	url = git@gitlab.com:Z-Map/libft.git
+	url = https://gitlab.com/Z-Map/libft.git
 [submodule "lib/mglw"]
 	path = lib/mglw
-	url = git@github.com:Z-Map/mglw.git
+	url = https://github.com/Z-Map/mglw.git
 [submodule "lib/mathex"]
 	path = lib/mathex
-	url = git@gitlab.com:Z-Map/mathex.git
+	url = https://gitlab.com/Z-Map/mathex.git

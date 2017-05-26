@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 15:03:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/03 20:34:45 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/24 17:24:53 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,33 +29,34 @@ struct					s_rt_render_ray
 
 struct					s_rt_render_gdata
 {
-	t_rgba				color;
-	t_ui				flags;
-	double				depth;
-	t_v3f				hit_point;
-	t_v3f				hit_nor;
+	t_ul				flags;
+	t_v2d				depth;
+	t_v4f				hit_point;
 	t_mat2x3f			hit_tangent;
+	t_v3f				hit_nor[2];
+	t_rtobi				*inst;
 };
 
 struct					s_rt_render_fdata
 {
 	t_rgba				color;
 	t_ui				flags;
-	double				depth;
-
+	float				depth;
+	t_v3f				hit_nor;
 };
 
 struct					s_rt_render_data
 {
 	t_rgba				color;
-	t_ui				flags;
-	double				depth;
+	float				depth;
 };
 
 typedef struct			s_rt_render_manager
 {
+	unsigned long		rdrstate;
 	t_v2ui				rsize;
 	t_rgba				*rpx;
+	t_rtree				*rendertree;
 }						t_rtrmgr;
 
 struct					s_rt_render
@@ -64,7 +65,7 @@ struct					s_rt_render
 	pthread_mutex_t		refresh_lock;
 	pthread_cond_t		refresh_cond;
 	t_ul				flags;
-	t_rtree				*rendertree;
+	t_rtree				*target;
 	t_v2ui				render_size;
 	t_rgba				*render_px;
 };

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree_addchild.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 17:31:28 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/04/10 17:51:37 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/15 22:42:28 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_rtnode		*tree_addchild(t_rtnode *parent, t_rtnode *node)
 {
-	if (!parent)
+	if (!parent || !node)
 		return (NULL);
 	node->next = parent->childs;
 	parent->childs = node;

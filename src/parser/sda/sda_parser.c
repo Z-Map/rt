@@ -6,13 +6,13 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/24 22:50:08 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/12 17:34:55 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/24 21:34:54 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <stdlib.h>
-#include "data/data_sda.h"
+#include "rt_parser.h"
 
 /*
 ** tab_diff :
@@ -53,14 +53,16 @@ static int			tab_diff(int *tab, char *s)
 	return (ret);
 }
 
-static void			move_node(int n, t_rtnode **node)
+static int			move_node(int n, t_rtnode **node)
 {
-	if (n == 1)
+	if ((n == 1) && (*node)->childs)
 	{
 		*node = (*node)->childs;
-		while ((*node)->next)
-			*node = (*node)->next;
+		// while ((*node)->next)
+		// 	*node = (*node)->next;
 	}
+	else if (n >= 1)
+		return (0);
 	else if (n < 0)
 	{
 		while (n != 0)
@@ -69,52 +71,62 @@ static void			move_node(int n, t_rtnode **node)
 			n++;
 		}
 	}
+	return (1);
 }
 
 static t_rtree		*read_file(t_sda_env *env, t_rtree *tree)
 {
 	int		i;
+	int		j;
 	int		ret;
 
+	j = 1;
 	while ((ret = ft_get_line(env->fd, &(env->line))))
 	{
+		RT_DBGP(j, "Pass line");
 		i = 0;
 		env->move = tab_diff(&(env->tab), env->line);
-		if (env->move > 1)
-			return (ft_mfree_ret(tree, 1, &(env->line))); /* a changer */
-		move_node(env->move, &(env->curr));
+		if (!RT_DBGR(move_node(env->move, &(env->curr)), 1, "Wrong indent"))
+			return (ft_mfree_ret(tree, 1, &(env->line)));
 		while (env->line[i] == '\t')
 			i++;
-		if (check_line(env->curr, &(env->line[i])) < 0)
+		if (RT_DBGR(check_line(env->curr,
+						&(env->line[i])), 1, "Invalid line") < 0)
 			break ;
 		ft_memdel((void **)&(env->line));
+		j++;
 	}
 	if (env->line)
 		ft_memdel((void **)&(env->line));
 	return (tree);
 }
 
-static int		env_init(char *s, t_sda_env *env)
+static t_rtree		*env_init(const char *s, t_sda_env *env)
 {
-	if ((env->fd = open(s, O_RDONLY)) == -1)
-		return (-1); /* a changer */
+	RT_DBGP(-1, "Opening file");
+	if ((env->fd = open(s, O_RDONLY)) < 0)
+		return (NULL);
 	env->move = 0;
 	env->tab = 0;
-	env->curr = NULL;
 	env->line = NULL;
-	return (1);
+	RT_DBGP(-2, "Malloc tree");
+	if (!(env->curr = (t_rtnode *)mktree(0)))
+		return (NULL);
+	return ((t_rtree *)env->curr);
 }
 
-t_rtree				*sda_parser(char *s)
+t_rtree				*sda_parser(const char *s)
 {
 	t_rtree			*tree;
-	t_sda_env		*env;
+	t_sda_env		env;
 
-	if (!(env = (t_sda_env *)malloc(sizeof(t_sda_env))))
-		return (NULL); /* a changer */
-	if (!(tree = mktree(0)))
-		return (NULL); /* a changer */
-	env_init(s, env);
-	env->curr = &(tree->node);
-	return (read_file(env, tree));
+	if ((tree = env_init(s, &env)))
+	{
+		tree = read_file(&env, tree);
+		print_tree(tree);
+		find_camera(tree);
+		close(env.fd);
+	}
+	RT_DBGR((tree) ? 1 : 0, 1, "Parsing fail");
+	return (tree);
 }
