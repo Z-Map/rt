@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 22:47:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/25 17:29:26 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/27 05:09:24 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int			rdrmgr_isrendering(t_rt *rt, t_rtrmgr *rmgr);
 
 int			rdrmgr_render_request(t_rt *rt, t_rtree *tree);
 
-int			intersect_cylinder(t_rtray ray, t_rtobd *cylinder, t_rtrgd *gd);
+int			intersect_cylinder(t_rtray ray, t_rtobd *cy, t_rtrgd *gd);
 int			intersect_sphere(t_rtray ray, t_rtobd *sphere, t_rtrgd *gd);
 int			intersect_cuboid(t_rtray ray, t_rtobd *o, t_rtrgd *gd);
 int			intersect_plan(t_rtray ray, t_rtobd *plan, t_rtrgd *gd);

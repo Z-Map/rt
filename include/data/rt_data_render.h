@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 15:03:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/26 20:10:23 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/27 00:58:44 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ struct					s_rt_render_ray
 
 struct					s_rt_render_gdata
 {
-	t_ray				ray;
 	t_ul				flags;
 	t_v2d				depth;
 	t_v4f				hit_point;
@@ -48,6 +47,10 @@ struct					s_rt_render_fdata
 
 struct					s_rt_render_data
 {
+	t_rtray				ray;
+	t_rtray				lray;
+	t_rtrgd				geo;
+	t_rtrgd				lgeo;
 	float				fdepth;
 	t_rgba				fcolor;
 };

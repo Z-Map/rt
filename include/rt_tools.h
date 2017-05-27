@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 01:52:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/23 22:42:39 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/27 04:40:59 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,9 @@ t_mat3x2f		infinity_bound(void);
 int				bound_raycast(t_rtray *r, t_mat3x2f b, t_rtrgd *gd);
 
 t_rtray			ray_trans(t_rtray ray, t_mattf m);
+t_v3f			ray_hitpoint(t_rtray ray, double depth);
+
+int				intersect_depth(t_rtrgd *gd, t_rtray r, t_v2d d, t_v3f hp[2]);
+
 
 #endif

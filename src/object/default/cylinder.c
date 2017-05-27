@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 02:00:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/26 02:18:00 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/27 04:52:26 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ t_mat3x2f		object_bound_cylinder(t_rtobd *ob)
 
 	bound.x = (t_v2f){-(ob->cylinder.radius) - 0.0001f,
 		ob->cylinder.radius + 0.0001f};
-	bound.y = (t_v2f){-INFINITY, INFINITY};
-	bound.z = (t_v2f){-(ob->cylinder.radius) - 0.0001f,
+	bound.y = (t_v2f){-(ob->cylinder.radius) - 0.0001f,
 		ob->cylinder.radius + 0.0001f};
+	bound.z = (t_v2f){-INFINITY,INFINITY};
 	return (bound);
 }
