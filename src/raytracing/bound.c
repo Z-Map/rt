@@ -6,7 +6,7 @@
 /*   By: fanno <fanno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 15:04:58 by fanno             #+#    #+#             */
-/*   Updated: 2017/05/26 02:08:55 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/27 15:19:24 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ static int		bound_rcdim(t_v2f rd, t_v3f nor, t_v2f b, t_rtrgd *gd)
 			(double)((b.y - rd.x) / rd.y)});
 	else
 	{
-		lim = (t_v2d){(double)(b.x - rd.x), (double)(b.y - rd.y)};
+		lim = (t_v2d){(double)(b.x - rd.x), (double)(b.y - rd.x)};
 		return (((lim.x > 0.0) || (lim.y < 0.0)) ? 0 : 1);
 	}
 	if ((lim.y < gd->depth.x) || (lim.x > gd->depth.y))

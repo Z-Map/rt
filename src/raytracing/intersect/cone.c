@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 18:23:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/27 06:41:25 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/27 14:51:27 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,11 @@ static int		calc_cone(t_rtobd *cone, t_rtray *ray, t_v2d *dist)
 
 static int		is_in_cone(float da, t_v3f hitp)
 {
+	const float	c = cosf(da);
+	const float	s = sinf(da);
 	const float	nor = sqrtf(hitp.x * hitp.x + hitp.y * hitp.y);
 
-	da = tanf(da * 2);
-	if (nor <= (hitp.z * hitp.z * da))
+	if ((nor / s) <= (mxabsf(hitp.z) / c))
 		return (1);
 	return (0);
 }
@@ -66,13 +67,13 @@ int				intersect_cone(t_rtray ray, t_rtobd *cone, t_rtrgd *gd)
 		gd->hit_nor[0] = v3faddv3f(v3fdivv3f(normalize3f((t_v3f){hitp[0].x,
 			hitp[0].y, 0.0}), nv3f(cosf(a))), (t_v3f){0.0f, 0.0f,
 			((hitp[0].z < 0.0) ? 1.0f : -1.0f) * sinf(a)});
-	else if (is_in_cone(a, hitp[0]))
+	else if (is_in_cone(mxabsf(cone->cone.angle), hitp[0]))
 		ret |= 1;
 	if (ret & 2)
 		gd->hit_nor[1] = v3faddv3f(v3fdivv3f(normalize3f((t_v3f){hitp[1].x,
 			hitp[1].y, 0.0}), nv3f(cosf(a))), (t_v3f){0.0f, 0.0f,
 			((hitp[1].z < 0.0) ? 1.0f : -1.0f) * sinf(a)});
-	else if (is_in_cone(a, hitp[1]))
+	else if (is_in_cone(mxabsf(cone->cone.angle), hitp[1]))
 		ret |= 2;
 	return (ret);
 }
