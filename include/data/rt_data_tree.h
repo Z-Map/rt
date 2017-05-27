@@ -34,6 +34,8 @@ struct				s_rt_tree
 	unsigned int	nodelen;
 	t_blst			*buffer;
 	t_rtnode		*camera;
+	t_rtobj			*scene;
+
 };
 
 struct				s_rt_rtreenode

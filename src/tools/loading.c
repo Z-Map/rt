@@ -13,7 +13,7 @@
 #include "rt_render.h"
 
 // Actuellement cette feature tourne sous la lib MLX. Je vais l'adapter asap
-
+/*
 void			adapt_pixel(t_win *win, int color, int x, int y)
 {
 	unsigned int	stock;
@@ -77,4 +77,4 @@ void			calc_line(t_win *win)
 		i++;
 	}
 	loading(cp, win);
-}
+}*/
