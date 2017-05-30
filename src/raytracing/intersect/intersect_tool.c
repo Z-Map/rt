@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 16:11:06 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/27 04:41:00 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/30 18:58:02 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,19 @@ int		intersect_depth(t_rtrgd *gd, t_rtray r, t_v2d d, t_v3f hp[2])
 	hp[0] = ray_hitpoint(r, gd->depth.x);
 	hp[1] = ray_hitpoint(r, gd->depth.y);
 	return (ret);
+}
+
+int		geo_setdepth(t_rtrgd *gd, int dim, double depth)
+{
+	if (dim & 1)
+	{
+		gd->depth.x = depth;
+		gd->flags |= RAY_GDEPTH0;
+	}
+	if (dim & 2)
+	{
+		gd->depth.y = depth;
+		gd->flags |= RAY_GDEPTH1;
+	}
+	return (dim);
 }

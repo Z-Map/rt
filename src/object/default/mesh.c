@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 01:59:37 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/25 19:28:18 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/27 16:02:55 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ void			object_default_mesh(t_rtobd *object)
 	object->mesh.poly = NULL;
 }
 
-t_mat3x2f		object_bound_mesh(t_rtobd *ob)
+t_mat3x2f		object_bound_mesh(t_rtobd *ob, t_mat3x2f bound)
 {
 	(void)ob;
-	return ((t_mat3x2f){nv2f(0.0f), nv2f(0.0f), nv2f(0.0f)});
+	return (bound_intersect(
+		(t_mat3x2f){nv2f(0.0f), nv2f(0.0f), nv2f(0.0f)}, bound));
 }

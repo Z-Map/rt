@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/19 16:59:57 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/25 20:12:44 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/30 18:47:18 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,17 @@ struct				s_rt_tree
 	t_blst			*buffer;
 	t_rtnode		*camera;
 	t_rtobj			*scene;
+};
 
+struct				s_rt_rtree
+{
+	t_rtree			tree;
+	size_t			visible_len;
+	size_t			negative_len;
+	size_t			lights_len;
+	t_rtnode		*visible;
+	t_rtnode		*negative;
+	t_rtnode		*lights;
 };
 
 struct				s_rt_rtreenode

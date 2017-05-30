@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 01:59:52 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/25 18:20:07 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/27 15:57:58 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,9 @@ void			object_default_cuboid(t_rtobd *object)
 	object->cuboid.sizez = (t_v2f){-0.5f, 0.5f};
 }
 
-t_mat3x2f		object_bound_cuboid(t_rtobd *ob)
+t_mat3x2f		object_bound_cuboid(t_rtobd *ob, t_mat3x2f bound)
 {
-	t_mat3x2f	bound;
-
 	// le cuboid est particulier vu qu'on peux définir sa bound dans le sda
-	bound = *((t_mat3x2f *)&(ob->cuboid.sizex));
+	bound = bound_intersect(*((t_mat3x2f *)&(ob->cuboid.sizex)), bound);
 	return (bound);
 }
