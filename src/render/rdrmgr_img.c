@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 15:56:32 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/27 04:49:33 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/31 18:16:19 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,24 @@ static t_rgba		calc_pixel(t_ui x, t_ui y, t_rtrmgr *rmgr)
 
 	rd = raytrace(x, y, rmgr, rmgr->rendertree);
 	return (rd.fcolor);
+}
+
+int					render_worker(t_ui px, t_ui step, t_rt *rt, t_rtrmgr *rmgr)
+{
+	const size_t	mlen = rmgr->rsize.x * rmgr->rsize.y;
+	int				get;
+	t_ui			i;
+
+	while ((px < mlen)
+		&& ((get = rdrmgr_isrendering(rt, rmgr)) > RTRMGR_FINISHED))
+	{
+		i = px / rmgr->rsize.x;
+		rmgr->rpx[px] = calc_pixel(px % rmgr->rsize.x, i, rmgr);
+		px += step;
+	}
+	if (get > RTRMGR_FINISHED)
+		get = RTRMGR_FINISHED;
+	return (get);
 }
 
 int					img_calc(t_rt *rt, t_rtrmgr *rmgr)

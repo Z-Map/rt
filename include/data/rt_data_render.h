@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 15:03:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/27 00:58:44 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/31 18:03:24 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,18 @@ typedef struct			s_rt_render_manager
 	t_v2ui				rsize;
 	t_rgba				*rpx;
 	t_rtree				*rendertree;
+	t_rt				*rt;
 }						t_rtrmgr;
+
+typedef struct			s_worker_arg
+{
+	t_rtrmgr			*rmgr;
+	t_rt				*rt;
+	t_ui				start;
+	t_ui				step;
+	int					ret;
+	int					padding;
+}						t_rdrwrk;
 
 struct					s_rt_render
 {

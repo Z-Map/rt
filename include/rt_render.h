@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 22:47:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/27 05:09:24 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/31 18:05:00 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include "rt_tree.h"
 
 # include "data/rt_data_render.h"
+
+# define RDR_MAXWORKER 8
 
 void		*rt_rdrmgr_main(void *arg);
 int			rdrmgr_isalive(t_rt *rt);
@@ -47,4 +49,9 @@ t_rtrd		rdr_filter(t_rtrfd frag, t_rtree *tree);
 t_rtrd		raytrace(t_ui x, t_ui y, t_rtrmgr *mgr, t_rtree *tree);
 
 int			img_calc(t_rt *rt, t_rtrmgr *rmgr);
+
+int			render_worker(t_ui px, t_ui step, t_rt *rt, t_rtrmgr *rmgr);
+int			rdr_start_workers(t_rt *rt, t_rtrmgr *mgr);
+
+
 #endif
