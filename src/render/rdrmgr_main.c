@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/23 01:42:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/31 19:39:44 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/31 20:39:24 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int			rdrmgr_done(t_rt *rt, t_rtrmgr *rmgr)
 	pthread_mutex_lock(&(rt->render.refresh_lock));
 	rt_state(rt, RTS_RENDER, RT_UNSET);
 	rt->render.render_px = rmgr->rpx;
+	rt->render.render_size = rmgr->rsize;
 	rmgr->rpx = NULL;
 	rmgr->rdrstate = RTRMGR_FINISHED;
 	rt->render.flags |= RTRMK_DONE;
