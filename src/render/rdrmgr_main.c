@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/23 01:42:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/25 21:36:01 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/31 18:01:10 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void		*rt_rdrmgr_main(void *arg)
 		if (!rdrmgr_sync(rt, &rmgr))
 			break ;
 /* Modifications (Eddy) à vérifier */
-		if (img_calc(rt, &rmgr) < RTRMGR_FINISHED)
+		if (rdr_start_workers(rt, &rmgr) < RTRMGR_FINISHED)
 			continue ;
 		rdrmgr_done(rt, &rmgr);
 	}

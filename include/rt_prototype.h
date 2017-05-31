@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/25 21:20:29 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/31 18:23:18 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@
 # define RTRMK_STOP					0x2ul
 # define RTRMK_CANCEL				0x4ul
 # define RTRMK_DONE					0x10ul
+# define RTRMK_ERROR				0x20ul
 
 /*
 ** Ray flags
@@ -111,6 +112,8 @@
 # define RT_DBGF_RETCP				0x80ul
 
 # define RT_DBGM_GLOBALE			0x1ul
+# define RT_DBGM_RENDER				0x1ul
+# define RT_DBGM_WORKER				0x1ul
 # define RT_DBGM_PARSER				0x2ul
 
 typedef struct s_rt_root			t_rt;
