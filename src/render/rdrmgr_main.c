@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/23 01:42:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/31 18:01:10 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/31 19:39:44 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int			rdrmgr_sync(t_rt *rt, t_rtrmgr *rmgr)
 	rt->render.flags &= ~(RTRMK_CANCEL | RTRMK_DONE | RTRMGR_REFRESH);
 	if (!rdrmgr_isrendering(rt, rmgr))
 		return (0);
-	if (*((t_ul *)&(rmgr->rsize)) != *((t_ul *)&(rt->render.render_size)))
+	if (*((t_ul *)&(rmgr->rsize)) != *((t_ul *)&(rt->render.target_size)))
 	{
-		rmgr->rsize = rt->render.render_size;
+		rmgr->rsize = rt->render.target_size;
 		ft_memdel((void **)&(rmgr->rpx));
 	}
 	if (!rmgr->rpx)

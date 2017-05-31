@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tree_find_test.c                                   :+:      :+:    :+:   */
+/*   tree_find.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 17:01:12 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/05/24 22:02:55 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/31 19:13:30 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,26 @@
 #include "rt_parser.h"
 
 
-static t_rtnode	*findn(t_rtnode *node, int (*f)(void *env), t_rtnode **nxt)
+static t_rtnode	*findn(t_rtnode *node, int (*f)(void *, void *),
+					t_rtnode **nxt, void *env)
 {
 	t_rtnode	*ret;
-	RT_DBGM("recursive.");
 
 	if (!node)
 		return (NULL);
-	if ((!nxt || (*nxt != node)) && f(node->content))
+	if ((!nxt || (*nxt != node)) && f(node->content, env))
 		return (node);
 	while (nxt && ((*nxt)->parent != *nxt) && (!(*nxt)->next))
 		*nxt = node->parent;
 	ret = NULL;
 	if (node->childs)
-		ret = findn(node->childs, f, NULL);
+		ret = findn(node->childs, f, NULL, env);
 	if (!ret)
-		ret = findn(node->next, f, NULL);
-	RT_DBGM("end recursive");
+		ret = findn(node->next, f, NULL, env);
 	return (ret);
 }
 
-t_rtnode		*tree_find(t_rtnode *node, int (*f)(void *env))
+t_rtnode		*tree_find(t_rtnode *node, int (*f)(void *, void *), void *env)
 {
 	t_rtnode	*ret;
 	t_rtnode	*it;
@@ -47,10 +46,8 @@ t_rtnode		*tree_find(t_rtnode *node, int (*f)(void *env))
 	it = node;
 	while (!ret && node)
 	{
-		ret = findn(node, f, &it);
+		ret = findn(node, f, &it, env);
 		node = it->next;
 	}
-	RT_DBGM("THE END");
-
 	return (ret);
 }

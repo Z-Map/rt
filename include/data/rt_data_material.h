@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 16:52:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/22 01:07:57 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/31 18:55:09 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ static const t_elm		g_el_mat = {"mat", sizeof(t_rtmat),
 struct					s_rt_texture
 {
 	char				*name;
-	unsigned long			flags;
-	mglimg				*img;	
+	unsigned long		flags;
+	mglimg				*img;
 };
 
 #endif

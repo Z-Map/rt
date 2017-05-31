@@ -6,7 +6,7 @@
 /*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 20:30:06 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/05/24 21:52:37 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/05/31 19:52:21 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 #include "rt_tree.h"
 #include "rt_parser.h"
 
-static int		is_camera(void *env)
+static int		is_camera(void *nd, void *env)
 {
 	t_rtobi		*inst;
 
-	inst = (t_rtobi *)env;
-
+	inst = (t_rtobi *)nd;
+	(void)env;
 	if (inst && (inst->obj) && (inst->obj->type == CAMERA))
 		return (1);
 	else
@@ -34,7 +34,7 @@ int				find_camera(t_rtree *tree)
 	if (!tree)
 		return (-1);
 	RT_DBGM("find cam");
-	cam = tree_find(&(tree->node), &is_camera);
+	cam = tree_find(&(tree->node), &is_camera, NULL);
 	RT_DBGM("tree_find");
 	if (!cam && !sda_make_node_parser((t_rtnode *)tree, CAMERA, "camera"))
 	{

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 15:03:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/31 18:03:24 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/31 19:38:33 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ struct					s_rt_render
 	pthread_mutex_t		refresh_lock;
 	pthread_cond_t		refresh_cond;
 	t_ul				flags;
+	t_v2ui				target_size;
 	t_rtree				*target;
 	t_v2ui				render_size;
 	t_rgba				*render_px;

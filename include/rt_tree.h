@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 15:45:36 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/25 21:09:16 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/05/31 19:03:37 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void				tree_stats(t_rtree *tree);
 t_rtnode			*tree_chr(t_rtree *tree, void *content);
 // Search throught a tree for node with content that valid f(node.content)
 // The search can be continued if the node last find node is passed to "node"
-t_rtnode			*tree_find(t_rtnode *node, int (*f)(void *));
+t_rtnode			*tree_find(t_rtnode *node,
+						int (*f)(void *, void *), void *env);
 //*/
 
 // Set "parent" as parent of node and remove "node" from his parent before
