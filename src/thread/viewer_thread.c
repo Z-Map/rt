@@ -49,6 +49,7 @@ int			rt_init_viewerthread(t_rt *rt)
 		return (rt_error(rt, 120, "Unable to open main window."));
 	mglw_setGLContext(NULL);
 	mglw_setkcb(rt->viewer.win, 3, &rt_keypress, rt);
+	mglw_setsizecb(rt->viewer.win, &rt_resize, rt);
 	rt->viewer.keys = RTWK_REFRESH;
 	rt->viewer.refresh_lock = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
 	rt->viewer.refresh_cond = (pthread_cond_t)PTHREAD_COND_INITIALIZER;
