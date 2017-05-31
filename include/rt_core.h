@@ -57,6 +57,7 @@ int			rtd_msg(t_rt *rt, unsigned long mask, const char *msg,
 				int l, const char *file, const char *func);
 
 int			rt_keypress(void *env, int k);
+void			rt_resize(void *env, int x, int y);
 
 int			rt_error(t_rt *rt, int code, const char *msg);
 int			rt_check_error(t_rt *rt);
