@@ -15,6 +15,7 @@
 
 # include "mathex/vector.h"
 # include "mathex/matrix.h"
+# include "mglw/mglw.h"
 # include "rt_prototype.h"
 
 # define RTMAT_MEMBUF_SIZE		128
@@ -26,6 +27,10 @@ struct					s_rt_material
 	t_rgba				color2;
 	float				reflectivity;
 	float				refraction;
+	t_rtex				*texture;
+	t_rtex				*diffuse;
+	t_rtex				*normal;
+	t_rtex				*reflective;
 };
 
 static const t_val		g_vtab_rtmat[5] = {
@@ -41,5 +46,12 @@ static const t_val		g_vtab_rtmat[5] = {
 static const t_elm		g_el_mat = {"mat", sizeof(t_rtmat),
 	3, 4, (t_val *)(t_ul)g_vtab_rtmat,
 	NULL, NULL, NULL, NULL};
+
+struct					s_rt_texture
+{
+	char				*name;
+	unsigned long			flags;
+	mglimg				*img;	
+};
 
 #endif
