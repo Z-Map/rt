@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   del_material.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/25 18:41:48 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/04/25 18:41:54 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/01 02:04:28 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_object.h"
-#include "data/rt_data_material.h"
+
 
 int				rmmaterial(t_rtmat *mat)
 {

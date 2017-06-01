@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/23 01:42:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/31 20:39:24 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/01 23:23:45 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int			rdrmgr_sync(t_rt *rt, t_rtrmgr *rmgr)
 {
 	pthread_mutex_lock(&(rt->render.refresh_lock));
 	if (rmgr->rendertree)
-		rmrtree(&(rmgr->rendertree));
+		rmrtree((t_rtree **)&(rmgr->rendertree));
 	if (!(rt->render.flags & RTRMGR_REFRESH))
 		pthread_cond_wait(&(rt->render.refresh_cond),
 			&(rt->render.refresh_lock));

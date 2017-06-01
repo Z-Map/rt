@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/31 18:23:18 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/01 23:25:35 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 # define RT_GET						2
 # define RT_SET						1
+# define RT_LEN						4
 # define RT_UNSET					0
 
 /*
@@ -82,6 +83,15 @@
 # define RAY_GVALID					0x1000ul
 
 /*
+** Objects flags
+*/
+
+# define LIGTH_MAKESHADOW			0x100ul
+# define LIGTH_GLOW					0x200ul
+# define LIGTH_DIFFUSE				0x400ul
+# define LIGTH_NEGATIVE				0x800ul
+
+/*
 ** Window key
 */
 
@@ -112,22 +122,23 @@
 # define RT_DBGF_RETCP				0x80ul
 
 # define RT_DBGM_GLOBALE			0x1ul
-# define RT_DBGM_RENDER				0x1ul
-# define RT_DBGM_WORKER				0x1ul
-# define RT_DBGM_PARSER				0x2ul
+# define RT_DBGM_RENDER				0x2ul
+# define RT_DBGM_WORKER				0x4ul
+# define RT_DBGM_PARSER				0x8ul
 
 typedef struct s_rt_root			t_rt;
 typedef struct s_rt_viewer			t_rtview;
 typedef struct s_rt_render			t_rtr;
 
 typedef struct s_rt_tree			t_rtree;
+typedef struct s_rt_rdr_rtree		t_rdrtree;
 typedef struct s_rt_treenode		t_rtnode;
 typedef struct s_rt_rtreenode		t_rtrnode;
 typedef struct s_rt_object_instance	t_rtobi;
 typedef struct s_rt_object_index	t_rtobind;
 typedef struct s_rt_object			t_rtobj;
 typedef struct s_rt_material		t_rtmat;
-typedef struct s_rt_texture		t_rtex;
+typedef struct s_rt_texture			t_rtex;
 typedef union u_rt_objectdata		t_rtobd;
 
 /*

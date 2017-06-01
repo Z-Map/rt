@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   new_material.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcarreel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/25 17:59:47 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/05/12 15:48:16 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/01 02:03:28 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_object.h"
-#include "data/rt_data_material.h"
 
 t_rtmat				*mkmaterial(const char *name)
 {
