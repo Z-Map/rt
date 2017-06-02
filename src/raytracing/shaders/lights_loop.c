@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 13:21:20 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/02 19:20:47 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/02 20:12:52 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@
 static float	shadow_test(t_rtrgd geo, t_rtrld l, t_rdrtree *tree)
 {
 	t_rtrgd	gd;
+	float	a;
 
 	gd = rdr_raycast(ray_bounceto(geo, *(t_v3f *)(&l.v)), (t_rtree *)tree);
-	if (gd.flags & RAY_GVALID && (
-		((gd.depth.x < 0.0) ? gd.depth.y : gd.depth.x) < l.depth))
+	a = (float)(gd.depth.x < 0.0) ? gd.depth.y : gd.depth.x;
+	if ((gd.flags & RAY_GVALID) && (l.depth > a))
 		return (0.0f);
 	return (l.pwr);
 }
@@ -39,8 +40,8 @@ static float	sunlight(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree)
 	if (nod->node.content->obj->type & SUNLIGHT)
 		l.v = nod->invert_transform.z;
 	else
-		l.v = normalize3f(v3fsubv3f(nod->transform.offset,
-			*(t_v3f *)(&geo.hit_point)));
+		l.v = normlen3f(v3fsubv3f(nod->transform.offset,
+			*(t_v3f *)(&geo.hit_point)), &l.depth);
 	l.pwr = (v.x * l.v.x + v.y * l.v.y + v.z * l.v.z);
 	return ((l.pwr < 0.0f) ? 0.0f : shadow_test(geo, l, tree));
 }

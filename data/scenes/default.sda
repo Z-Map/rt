@@ -3,6 +3,7 @@ CAMERA: cam1
 	position:	0		-10		0
 
 CYLINDER: cy
+	limz : -3 3
 	color :	#50246f
 	pos: -3 0 0
 	rot: 0 0 0
@@ -38,6 +39,7 @@ CUBE: cube_moon
 	pos:	1		0		1.3
 
 CONE: conayou
+	limz : -3 3
 	color :	#d51313
 	angle: 0.5
 	rot: 0 0 0
@@ -51,4 +53,4 @@ SUNLIGHT: sun
 	rot: 0 -10 90
 
 POINTLIGHT: point
-	position:	-1	-1.3		0
+	position:	0	-2		0

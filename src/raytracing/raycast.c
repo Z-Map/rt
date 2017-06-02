@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:38:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/02 13:49:12 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/02 20:04:24 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ static int	depth_test(t_rtrgd geo, t_rtrgd *gd, t_rtrnode *nod)
 {
 	double	d;
 
-	d = (gd->depth.x < 0.0) ? gd->depth.y : gd->depth.x;
 	if (geo.depth.y < 0.0)
 		return (0);
-	else if (geo.depth.x > d)
+	d = (gd->depth.x < 0.0) ? gd->depth.y : gd->depth.x;
+	if (geo.depth.x > d)
 		return (0);
 	else if ((geo.depth.x < 0.0) && (geo.depth.y > d))
 		return (0);
