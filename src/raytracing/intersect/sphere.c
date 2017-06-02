@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 18:23:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/26 02:13:50 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/02 13:02:55 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,25 @@ static int		calc_sphere(t_rtobd *ob, t_rtray *ray, t_v2d *dist)
 	return (0);
 }
 
-int				intersect_sphere(t_rtray ray, t_rtobd *sphere, t_rtrgd *gd)
+int				intersect_sphere(t_rtray ray, t_rtobd *ob, t_rtrgd *gd)
 {
 	t_v2d		dist;
 	int			ret;
+	t_v3f		hitp[2];
 
-	if (!calc_sphere(sphere, &ray, &dist) || (dist.x > gd->depth.y)
+	if (!calc_sphere(ob, &ray, &dist) || (dist.x > gd->depth.y)
 		|| (dist.y < 0.0))
 		return (0);
-	ret = 0;
-	if ((dist.x > gd->depth.x) && (dist.x < gd->depth.y))
-	{
-		gd->depth.x = dist.x;
-		ret = 1;
-	}
-	if ((dist.y < gd->depth.y) && (dist.y > gd->depth.x))
-	{
-		gd->depth.y = dist.y;
-		ret = 1;
-	}
+	ret = intersect_depth(gd, ray, dist, hitp);
+	if (ret & 1)
+		gd->hit_nor[0] = v3fdivv3f(hitp[0], nv3f(ob->sphere.radius));
+	else if (sqrtf(hitp[0].x * hitp[0].x + hitp[0].y * hitp[0].y
+		+ hitp[1].z * hitp[1].z) <= ob->sphere.radius)
+		ret |= 1;
+	if (ret & 2)
+		gd->hit_nor[1] = v3fdivv3f(hitp[1], nv3f(ob->sphere.radius));
+	else if (sqrtf(hitp[1].x * hitp[1].x + hitp[1].y * hitp[1].y
+		+ hitp[1].z * hitp[1].z) <= ob->sphere.radius)
+		ret |= 2;
 	return (ret);
 }

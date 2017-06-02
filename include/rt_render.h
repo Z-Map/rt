@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 22:47:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/31 18:05:00 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/02 13:30:17 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "data/rt_data_render.h"
 
 # define RDR_MAXWORKER 8
+# define MAXLIGHTINTENSITY 3.0f
 
 void		*rt_rdrmgr_main(void *arg);
 int			rdrmgr_isalive(t_rt *rt);
@@ -41,6 +42,7 @@ int			intersect_cone(t_rtray ray, t_rtobd *cone, t_rtrgd *gd);
 int			intersect_tris(t_rtray ray, t_rtobd *cone, t_rtrgd *gd);
 int			intersect_mesh(t_rtray ray, t_rtobd *plan, t_rtrgd *gd);
 
+float		shade_lightsloop(t_rtrgd geo, t_rdrtree *tree);
 
 t_rtray		rdr_pxray(t_ui x, t_ui y, t_rtrmgr *rmgr, t_rtrnode *camnode);
 t_rtrgd		rdr_raycast(t_rtray ray, t_rtree *tree);

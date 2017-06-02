@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 22:15:56 by ealbert           #+#    #+#             */
-/*   Updated: 2017/06/01 23:18:35 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/02 13:20:12 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			node_isoftype(t_rtobi *inst, void *env)
 
 	flags = ((t_ui *)env)[0];
 	type = ((t_ui *)env)[1];
-	if (inst && (inst->obj->type | type))
+	if (inst && (inst->obj->type & type))
 	{
 		if (flags & RT_LEN)
 			((t_ui *)env)[2] += 1;

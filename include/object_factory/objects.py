@@ -25,7 +25,6 @@ G_groups =(
 		"name" : "light",
 		"group" : "valid",
 		"property" : (
-			ObT("material", "t_rtmat"),
 			ObT("intensity", "f"),
 			ObT("radius", "f"),
 		)

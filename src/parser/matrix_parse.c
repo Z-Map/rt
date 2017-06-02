@@ -6,7 +6,7 @@
 /*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 18:19:18 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/05/24 21:02:33 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/02 14:09:14 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ int				vparse_trans(t_val *val, void *mem, t_gparse parser)
 	ret = ft_vparse_vec((t_val *)(t_ul)&cv, &vec, parser);
 	if (ret < 0)
 		return (ret);
-	pmattf_trans((t_mattf *)((t_ul)mem + val->offset), vec);
+	((t_mattf *)((t_ul)mem + val->offset))->offset = vec;
 	return (ret);
 }
