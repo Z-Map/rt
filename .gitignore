@@ -9,7 +9,6 @@ rt
 .*.png
 .DS_Store
 
-data/scenes/default.sda
 oldsrc/**/*
 oldsrc/*
 

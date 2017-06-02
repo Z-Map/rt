@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:38:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/27 17:53:00 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/02 00:11:40 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,17 @@
 
 static int	depth_test(t_rtrgd geo, t_rtrgd *gd)
 {
-	if (((geo.depth.x > 0.0) && (geo.depth.x < gd->depth.x))
-		|| ((geo.depth.x < 0.0) && (geo.depth.y > 0.0)
-			&& (geo.depth.y < gd->depth.y)))
-	{
-		*gd = geo;
-		return (1);
-	}
-	return (0);
+	double	d;
+
+	d = (gd->depth.x < 0.0) ? gd->depth.y : gd->depth.x;
+	if (geo.depth.y < 0.0)
+		return (0);
+	else if (geo.depth.x > d)
+		return (0);
+	else if ((geo.depth.x < 0.0) && (geo.depth.y > d))
+		return (0);
+	*gd = geo;
+	return (1);
 }
 
 static int	intersect_obj(t_rtray ray, t_rtobi *obi, t_rtrgd *geo)
