@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 01:52:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/02 14:01:25 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/02 17:57:51 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int				bound_raycast(t_rtray *r, t_mat3x2f b, t_rtrgd *gd);
 
 t_rtray			ray_trans(t_rtray ray, t_mattf m);
 t_v3f			ray_hitpoint(t_rtray ray, double depth);
+t_rtray			ray_bounceto(t_rtrgd geo, t_v3f dir);
 
 int				intersect_depth(t_rtrgd *gd, t_rtray r, t_v2d d, t_v3f hp[2]);
 int				geo_setdepth(t_rtrgd *gd, int dim, double depth);

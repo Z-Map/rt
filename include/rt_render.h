@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 22:47:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/02 13:30:17 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/02 17:57:12 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 
 # define RDR_MAXWORKER 8
 # define MAXLIGHTINTENSITY 3.0f
+# define MARGIN 0.001f
 
 void		*rt_rdrmgr_main(void *arg);
 int			rdrmgr_isalive(t_rt *rt);

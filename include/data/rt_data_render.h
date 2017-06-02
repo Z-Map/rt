@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 15:03:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/02 13:47:35 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/02 18:57:24 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,16 @@ struct					s_rt_render_gdata
 	t_v3f				hit_nor[2];
 	t_rtobi				*inst;
 	t_rtrnode			*node;
+};
+
+struct					s_rt_light_data
+{
+	t_ul				flags;
+	t_v3f				v;
+	float				depth;
+	float				pwr;
+	float				padding;
+	t_rtrnode			*nod;
 };
 
 struct					s_rt_render_fdata
