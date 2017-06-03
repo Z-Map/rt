@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/02 19:17:13 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/02 22:30:35 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,7 @@ typedef enum						e_rt_object_type
 
 typedef struct s_rt_render_ray		t_rtray;
 typedef struct s_rt_render_gdata	t_rtrgd;
+typedef struct s_rt_fastrdr_gdata	t_rtfrgd;
 typedef struct s_rt_light_data		t_rtrld;
 typedef struct s_rt_render_fdata	t_rtrfd;
 typedef struct s_rt_render_data		t_rtrd;

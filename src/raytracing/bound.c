@@ -6,7 +6,7 @@
 /*   By: fanno <fanno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 15:04:58 by fanno             #+#    #+#             */
-/*   Updated: 2017/05/27 15:19:24 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/02 23:32:47 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,13 @@ t_mat3x2f		bound_transform(t_mat3x2f b, t_mattf m)
 
 static int		bound_rcdim(t_v2f rd, t_v3f nor, t_v2f b, t_rtrgd *gd)
 {
-	t_v2d		lim;
+	t_v2f		lim;
 
 	if (rd.y != 0.0f)
-		lim = sortv2d((t_v2d){(double)((b.x - rd.x) / rd.y),
-			(double)((b.y - rd.x) / rd.y)});
+		lim = sortv2f((t_v2f){(b.x - rd.x) / rd.y, (b.y - rd.x) / rd.y});
 	else
 	{
-		lim = (t_v2d){(double)(b.x - rd.x), (double)(b.y - rd.x)};
+		lim = (t_v2f){b.x - rd.x, b.y - rd.x};
 		return (((lim.x > 0.0) || (lim.y < 0.0)) ? 0 : 1);
 	}
 	if ((lim.y < gd->depth.x) || (lim.x > gd->depth.y))
@@ -122,13 +121,13 @@ static int		bound_rcdim(t_v2f rd, t_v3f nor, t_v2f b, t_rtrgd *gd)
 int				bound_raycast(t_rtray *r, t_mat3x2f b, t_rtrgd *gd)
 {
 	if (!bound_rcdim((t_v2f){r->start.x, r->direction.x},
-			(t_v3f){1.0f, 0.0f, 0.0f}, b.x, gd) || (gd->depth.y < 0.0))
+			(t_v3f){1.0f, 0.0f, 0.0f}, b.x, gd) || (gd->depth.y < 0.0f))
 		return (0);
 	if (!bound_rcdim((t_v2f){r->start.y, r->direction.y},
-			(t_v3f){0.0f, 1.0f, 0.0f}, b.y, gd) || (gd->depth.y < 0.0))
+			(t_v3f){0.0f, 1.0f, 0.0f}, b.y, gd) || (gd->depth.y < 0.0f))
 		return (0);
 	if (!bound_rcdim((t_v2f){r->start.z, r->direction.z},
-			(t_v3f){0.0f, 0.0f, 1.0f}, b.z, gd) || (gd->depth.y < 0.0))
+			(t_v3f){0.0f, 0.0f, 1.0f}, b.z, gd) || (gd->depth.y < 0.0f))
 		return (0);
 	return (1);
 }

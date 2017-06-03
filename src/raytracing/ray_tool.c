@@ -6,14 +6,14 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 19:56:27 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/02 17:57:13 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/02 23:40:13 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_render.h"
 #include "rt_tools.h"
 
-t_v3f			ray_hitpoint(t_rtray ray, double depth)
+t_v3f			ray_hitpoint(t_rtray ray, float depth)
 {
 	return ((t_v3f){
 		(ray.direction.x * depth) + ray.start.x,
@@ -24,8 +24,9 @@ t_v3f			ray_hitpoint(t_rtray ray, double depth)
 
 t_rtray			ray_trans(t_rtray ray, t_mattf m)
 {
-	pmattf_apply(&ray.start, &m);
+	pv3faddv3f(&ray.start, m.offset);
 	m.offset = nv3f(0.0f);
+	pmattf_apply(&ray.start, &m);
 	pmattf_apply(&ray.direction, &m);
 	return (ray);
 }

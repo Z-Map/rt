@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:38:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/02 20:04:24 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/03 03:34:40 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 static int	depth_test(t_rtrgd geo, t_rtrgd *gd, t_rtrnode *nod)
 {
-	double	d;
+	float	d;
 
 	if (geo.depth.y < 0.0)
 		return (0);
@@ -41,11 +41,12 @@ static int	intersect_obj(t_rtray ray, t_rtobi *obi, t_rtrgd *geo)
 	if (bound_raycast(&ray, obi->bounds, geo) && inter
 		&& inter(ray, (t_rtobd *)(obi->obj), geo))
 	{
+		geo->ray = ray;
 		geo->inst = obi;
 		geo->flags = flags;
-		if (geo->flags & RAY_GHNOR0)
+		if (geo->flags & RAY_GDEPTH0)
 			geo->flags |= RAY_GHNOR0 | RAY_LOCAL0;
-		if (geo->flags & RAY_GHNOR1)
+		if (geo->flags & RAY_GDEPTH0)
 			geo->flags |= RAY_GHNOR1 | RAY_LOCAL1;
 		return (1);
 	}
@@ -55,47 +56,36 @@ static int	intersect_obj(t_rtray ray, t_rtobi *obi, t_rtrgd *geo)
 
 static int	raycast_rnod(t_rtray ray, t_rtrnode *nod, t_rtrgd geo, t_rtrgd *gd)
 {
-	t_rtnode	*nc;
-	t_rtrgd		ogd;
 	int			ret;
 
 	ret = 0;
-	// if (!bound_raycast(&ray, nod->bound, &geo))
-	// 	return (0);
-	ogd = geo;
-	if ((((t_rtobi *)(nod->node.content))->obj->type & VISIBLE) &&
-		intersect_obj(ray_trans(ray, nod->invert_transform),
-		(t_rtobi *)(nod->node.content), &ogd))
-		ret = depth_test(ogd, gd, nod);
-	nc = nod->node.childs;
-	while (nc)
-	{
-		if (raycast_rnod(ray, (t_rtrnode *)nc, geo, gd))
-			ret = 2;
-		nc = nc->next;
-	}
+	(void)intersect_obj;
+	(void)depth_test;
+	if (!nod)
+		return (0);
+	if (intersect_obj(ray_trans(ray, nod->invert_transform),
+		(t_rtobi *)(nod->node.content), &geo))
+		ret = depth_test(geo, gd, nod);
 	return (ret);
 }
 
-t_rtrgd			rdr_raycast(t_rtray ray, t_rtree *tree)
+t_rtrgd			rdr_raycast(t_rtray ray, t_rdrtree *tree, float lim)
 {
 	t_rtrgd		geo;
 	t_rtrgd		gd;
-	t_rtnode	*nc;
+	t_rtnode	**nc;
+	size_t		i;
 
-	geo = (t_rtrgd){ .flags = 0, .depth = (t_v2d){(double)-INFINITY,
-		(double)INFINITY}, .hit_point = nv4f(0.0f)};
-	gd = (t_rtrgd){ .flags = 0, .depth = (t_v2d){(double)INFINITY,
-		(double)INFINITY}, .hit_point = nv4f(0.0f)};
-	if (tree->node.flags & TREET_RENDER)
-	{
-		nc = tree->node.childs;
-		while (nc)
-		{
-			if (raycast_rnod(ray, (t_rtrnode *)nc, geo, &gd))
-				gd.flags |= RAY_GVALID;
-			nc = nc->next;
-		}
-	}
+	geo = (t_rtrgd){ .flags = 0, .depth = (t_v2f){-INFINITY,
+		lim}, .hit_point = nv4f(0.0f)};
+	gd = (t_rtrgd){ .flags = 0, .depth = (t_v2f){lim,
+		lim}, .hit_point = nv4f(0.0f)};
+	if (!(tree->tree.node.type & TREET_RENDER) || !(tree->visible))
+		return (gd);
+	i = tree->visible_len;
+	nc = tree->visible;
+	while (i--)
+		if (nc[i] && raycast_rnod(ray, (t_rtrnode *)(nc[i]), geo, &gd))
+			gd.flags |= RAY_GVALID;
 	return (gd);
 }

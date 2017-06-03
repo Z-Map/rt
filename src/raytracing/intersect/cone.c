@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 18:23:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/31 01:15:10 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/02 22:55:55 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 #include "rt_tools.h"
 #include "rt_render.h"
 
-static int		calc_cone(t_rtobd *cone, t_rtray *ray, t_v2d *dist)
+static int		calc_cone(t_rtobd *cone, t_rtray *ray, t_v2f *dist)
 {
-	t_v3d	coef;
-	double	delta;
-	double	angle;
+	t_v3f	coef;
+	float	delta;
+	float	angle;
 
-	angle = pow(tan(cone->cone.angle / 2), 2);
+	angle = tanf(cone->cone.angle / 2.0f);
+	angle = angle * angle;
 	coef.x = (ray->direction.x * ray->direction.x)
 		+ (ray->direction.y * ray->direction.y)
 		- (angle * (ray->direction.z * ray->direction.z));
@@ -33,13 +34,14 @@ static int		calc_cone(t_rtobd *cone, t_rtray *ray, t_v2d *dist)
 	coef.x *= 2;
 	if (delta > 0.0f)
 	{
-		delta = sqrt(delta);
-		*dist = sortv2d((t_v2d){(-coef.y - delta) / coef.x,
+		delta = sqrtf(delta);
+		*dist = sortv2f((t_v2f){(-coef.y - delta) / coef.x,
 			(-coef.y + delta) / coef.x});
 		return (1);
 	}
 	else if (delta == 0.0f)
-		*dist = (t_v2d){(-coef.y - delta) / coef.x, (-coef.y - delta) / coef.x};
+		*dist = sortv2f((t_v2f){(-coef.y - delta) / coef.x,
+			(-coef.y - delta) / coef.x});
 	return (0);
 }
 
@@ -55,7 +57,7 @@ static int		is_in_cone(float da, t_v3f hitp)
 }
 
 
-static int		cone_depth(t_rtrgd *gd, t_rtray r, t_v2d d, t_v3f hp[2])
+static int		cone_depth(t_rtrgd *gd, t_rtray r, t_v2f d, t_v3f hp[2])
 {
 	int			ret;
 
@@ -84,7 +86,7 @@ static int		cone_depth(t_rtrgd *gd, t_rtray r, t_v2d d, t_v3f hp[2])
 
 int				intersect_cone(t_rtray ray, t_rtobd *cone, t_rtrgd *gd)
 {
-	t_v2d		dist;
+	t_v2f		dist;
 	int			ret;
 	t_v3f		hitp[2];
 	float		a;
@@ -101,11 +103,11 @@ int				intersect_cone(t_rtray ray, t_rtobd *cone, t_rtrgd *gd)
 	hitp[0].x = a;
 	ret = cone_depth(gd, ray, dist, hitp);
 	if (ret & 1)
-		gd->hit_nor[0] = v3faddv3f(v3fdivv3f(normalize3f((t_v3f){hitp[0].x,
+		gd->hit_nor[0] = v3faddv3f(v3fdivv3f(normalized3f((t_v3f){hitp[0].x,
 			hitp[0].y, 0.0}), nv3f(cosf(a))), (t_v3f){0.0f, 0.0f,
 			((hitp[0].z < 0.0) ? 1.0f : -1.0f) * sinf(a)});
 	if (ret & 2)
-		gd->hit_nor[1] = v3faddv3f(v3fdivv3f(normalize3f((t_v3f){hitp[1].x,
+		gd->hit_nor[1] = v3faddv3f(v3fdivv3f(normalized3f((t_v3f){hitp[1].x,
 			hitp[1].y, 0.0}), nv3f(cosf(a))), (t_v3f){0.0f, 0.0f,
 			((hitp[1].z < 0.0) ? 1.0f : -1.0f) * sinf(a)});
 	return (ret);

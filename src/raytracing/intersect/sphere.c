@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 18:23:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/02 13:02:55 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/02 22:53:59 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include "rt_tools.h"
 #include "rt_render.h"
 
-static int		calc_sphere(t_rtobd *ob, t_rtray *ray, t_v2d *dist)
+static int		calc_sphere(t_rtobd *ob, t_rtray *ray, t_v2f *dist)
 {
-	t_v3d	coef;
-	double	delta;
+	t_v3f	coef;
+	float	delta;
 
 	coef.x = (ray->direction.x * ray->direction.x) + (ray->direction.y
 		* ray->direction.y) + (ray->direction.z * ray->direction.z);
@@ -29,8 +29,8 @@ static int		calc_sphere(t_rtobd *ob, t_rtray *ray, t_v2d *dist)
 	delta = coef.y * coef.y - 4 * coef.x * coef.z;
 	if (delta >= 0)
 	{
-		delta = sqrt(delta);
-		*dist = sortv2d((t_v2d){(-coef.y + delta) / (2 * coef.x),
+		delta = sqrtf(delta);
+		*dist = sortv2f((t_v2f){(-coef.y + delta) / (2 * coef.x),
 			(-coef.y - delta) / (2 * coef.x)});
 		return (1);
 	}
@@ -39,7 +39,7 @@ static int		calc_sphere(t_rtobd *ob, t_rtray *ray, t_v2d *dist)
 
 int				intersect_sphere(t_rtray ray, t_rtobd *ob, t_rtrgd *gd)
 {
-	t_v2d		dist;
+	t_v2f		dist;
 	int			ret;
 	t_v3f		hitp[2];
 

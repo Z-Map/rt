@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 16:11:06 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/02 14:01:27 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/02 22:57:40 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "rt_render.h"
 #include "rt_tools.h"
 
-int			intersect_depth(t_rtrgd *gd, t_rtray r, t_v2d d, t_v3f hp[2])
+int			intersect_depth(t_rtrgd *gd, t_rtray r, t_v2f d, t_v3f hp[2])
 {
 	int			ret;
 
@@ -28,7 +28,7 @@ int			intersect_depth(t_rtrgd *gd, t_rtray r, t_v2d d, t_v3f hp[2])
 	return (ret);
 }
 
-int			geo_setdepth(t_rtrgd *gd, int dim, double depth)
+int			geo_setdepth(t_rtrgd *gd, int dim, float depth)
 {
 	if (dim & 1)
 	{

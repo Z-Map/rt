@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 22:47:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/02 20:12:55 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/02 23:12:34 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,14 @@ int			intersect_cone(t_rtray ray, t_rtobd *cone, t_rtrgd *gd);
 int			intersect_tris(t_rtray ray, t_rtobd *cone, t_rtrgd *gd);
 int			intersect_mesh(t_rtray ray, t_rtobd *plan, t_rtrgd *gd);
 
+float		shadow_test(t_rtrgd geo, t_rtrld l, t_rdrtree *tree);
 float		shade_lightsloop(t_rtrgd geo, t_rdrtree *tree);
+float		shade_sunlight(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree);
+float		shade_light(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree);
+float		shade_spotlight(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree);
 
 t_rtray		rdr_pxray(t_ui x, t_ui y, t_rtrmgr *rmgr, t_rtrnode *camnode);
-t_rtrgd		rdr_raycast(t_rtray ray, t_rtree *tree);
+t_rtrgd		rdr_raycast(t_rtray ray, t_rdrtree *tree, float lim);
 t_rtrfd		rdr_shade(t_rtrgd geometry, t_rtree *tree);
 t_rtrd		rdr_filter(t_rtrfd frag, t_rtree *tree);
 t_rtrd		raytrace(t_ui x, t_ui y, t_rtrmgr *mgr, t_rtree *tree);

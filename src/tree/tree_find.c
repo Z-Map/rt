@@ -6,7 +6,7 @@
 /*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 17:01:12 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/06/02 13:15:54 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/03 03:28:44 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static t_rtnode	*findn(t_rtnode *node, int (*f)(void *, void *),
 		return (NULL);
 	if ((!nxt || (*nxt != node)) && f(node->content, env))
 		return (node);
-	while (nxt && *nxt && ((*nxt)->parent != *nxt) && (!(*nxt)->next))
-		*nxt = node->parent;
+	while (nxt && ((*nxt)->parent != *nxt) && (!(*nxt)->next))
+		*nxt = (*nxt)->parent;
 	ret = NULL;
 	if (node->childs)
 		ret = findn(node->childs, f, NULL, env);
