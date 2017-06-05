@@ -139,6 +139,7 @@ typedef struct s_rt_object_index	t_rtobind;
 typedef struct s_rt_object			t_rtobj;
 typedef struct s_rt_material		t_rtmat;
 typedef struct s_rt_texture			t_rtex;
+typedef struct s_rt_texture_instance		t_rtexi;
 typedef union u_rt_objectdata		t_rtobd;
 
 /*
