@@ -6,7 +6,7 @@
 /*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 17:01:12 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/06/03 03:28:44 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/03 16:06:13 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ static t_rtnode	*findn(t_rtnode *node, int (*f)(void *, void *),
 		return (NULL);
 	if ((!nxt || (*nxt != node)) && f(node->content, env))
 		return (node);
+	if (nxt)
+		*nxt = (*nxt)->parent;
 	while (nxt && ((*nxt)->parent != *nxt) && (!(*nxt)->next))
 		*nxt = (*nxt)->parent;
 	ret = NULL;
@@ -47,7 +49,7 @@ t_rtnode		*tree_find(t_rtnode *node, int (*f)(void *, void *), void *env)
 	while (!ret && node)
 	{
 		ret = findn(node, f, &it, env);
-		if (it == NULL)
+		if (!it)
 			break;
 		node = it->next;
 	}

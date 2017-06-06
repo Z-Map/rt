@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 18:42:52 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/03 03:40:12 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/03 16:04:50 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ static t_rtnode	*rdrdn(t_rtnode *p, t_rtnode *node, t_mattf m, t_mat3x2f *b)
 	rnc = &(rnode->node.childs);
 	while (n)
 	{
-		if (!(*rnc = rdrdn((t_rtnode *)rnode, node->childs, m, &lb)))
+		if (!(*rnc = rdrdn((t_rtnode *)rnode, n, m, &lb)))
 			return (clean((t_rtnode *)rnode));
 		n = n->next;
 		rnc = &((*rnc)->next);

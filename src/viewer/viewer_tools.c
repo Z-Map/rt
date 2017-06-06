@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   resize.c                                           :+:      :+:    :+:   */
+/*   viewer_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/31 20:54:32 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/06/03 05:41:00 by qloubier         ###   ########.fr       */
+/*   Created: 2017/06/03 05:21:30 by qloubier          #+#    #+#             */
+/*   Updated: 2017/06/03 05:40:18 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt_core.h"
+#include "rt_viewer.h"
 
-void		rt_resize(void *env, int x, int y)
+void			viewer_clearlayer(t_rt *rt)
 {
-	t_rt	*rt;
-
-	if (!env)
-		return ;
-	rt = (t_rt *)env;
-
-	rt->render.target_size = (t_v2ui){x, y};
-	rt->flags |= RTF_RDRREFRESH|RTF_CLEARLAYER;
+	rt->viewer.layer = (mglimg *)mglw_get2dlayer(rt->viewer.win);
+	ft_bzero(rt->viewer.layer->pixels, rt->viewer.layer->memlen);
+	rt->flags &= ~RTF_CLEARLAYER;
 }

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 16:52:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/01 02:05:24 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/06 21:17:13 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@
 struct					s_rt_texture_instance
 {
 	char				*name;
-	unsigned long			flags;
+	unsigned long		flags;
 	t_rtex				*texture;
 };
 
 struct					s_rt_texture
 {
 	char				*name;
-	unsigned long			flags;
+	unsigned long		flags;
 	t_v2f				offset;
 	mglimg				*img;
 };
@@ -61,13 +61,13 @@ struct					s_rt_material
 };
 
 static const t_val		g_vtab_rtmat[4] = {
-	{VT_COLOR, 0, 0, 0,
+	{VT_COLOR, 8, 0, 0,
 		"color", (t_elm *)(t_ul)&g_el_col},
-	{VT_COLOR, 4, 1, 0,
+	{VT_COLOR, 12, 1, 0,
 		"color2", (t_elm *)(t_ul)&g_el_col},
-	{VT_FLOAT, 8, 2, 0,
+	{VT_FLOAT, 16, 2, 0,
 		"reflectivity", (t_elm *)(t_ul)&g_el_float},
-	{VT_FLOAT, 12, 3, 0,
+	{VT_FLOAT, 20, 3, 0,
 		"refraction", (t_elm *)(t_ul)&g_el_float}};
 
 static const t_elm		g_el_mat = {"mat", sizeof(t_rtmat),

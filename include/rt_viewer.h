@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 14:44:59 by qloubier          #+#    #+#             */
-/*   Updated: 2017/03/19 14:26:48 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/03 05:41:28 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ int				viewer_releasekcb(void *arg, int key);
 int				viewer_run(t_rt *rt, t_rtview *v);
 int				viewer_loop(t_rt *rt);
 void			*viewer_exit(t_rt *rt, int code);
+
+void			viewer_clearlayer(t_rt *rt);
 
 #endif

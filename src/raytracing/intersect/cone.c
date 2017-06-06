@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 18:23:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/02 22:55:55 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/03 16:38:19 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ static int		cone_depth(t_rtrgd *gd, t_rtray r, t_v2f d, t_v3f hp[2])
 	int			ret;
 
 	ret = 0;
+	if (((d.y < gd->depth.y) && (d.y > gd->depth.x)) ||
+		is_in_cone(hp[0].x, ray_hitpoint(r, gd->depth.y)))
+		ret = 8;
 	if ((gd->depth.x >= 0.0f)
 		&& is_in_cone(hp[0].x, ray_hitpoint(r, gd->depth.x)))
 	{
@@ -75,13 +78,13 @@ static int		cone_depth(t_rtrgd *gd, t_rtray r, t_v2f d, t_v3f hp[2])
 			ret |= geo_setdepth(gd, 1, d.y);
 			d.y = INFINITY;
 	}
-	else if ((d.x > gd->depth.x) && (d.x < gd->depth.y))
+	else if ((d.x > gd->depth.x) && (d.x < gd->depth.y) && (ret & 8))
 		ret |= geo_setdepth(gd, 1, d.x);
 	if ((d.y < gd->depth.y) && (d.y > gd->depth.x))
 		ret |= geo_setdepth(gd, 2, d.y);
 	hp[0] = ray_hitpoint(r, gd->depth.x);
 	hp[1] = ray_hitpoint(r, gd->depth.y);
-	return (ret);
+	return (ret & ~8);
 }
 
 int				intersect_cone(t_rtray ray, t_rtobd *cone, t_rtrgd *gd)
