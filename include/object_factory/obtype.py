@@ -3,6 +3,7 @@ class Obtype(object):
 
 	def __init__(self, name, typestr, num = 1, etype = "VT_NONE"):
 		self.name = name
+		self.cname = name.replace(".", "")
 		self.pointer = True if num < 0 else False
 		self.e_len = num if num > 1 else 1
 		self.csufix = "[" + str(num) + "]" if num > 1 else ""
@@ -126,7 +127,7 @@ class Obtype(object):
 
 	def mkcvar(self, name = None, atab = 6, btab = 1):
 		if not name:
-			name = self.name
+			name = self.cname
 		text = '\t' * btab
 		text += self.ctype
 		atab -= btab + int(len(self.ctype) / 4)

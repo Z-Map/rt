@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 19:06:35 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/24 20:38:35 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/07 21:25:30 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int			rt_init_scenerdr(t_rt *rt)
 	rt_state(rt, RTS_INIT, RT_SET);
 	RT_DBGM("Start tree parsing.");
 	RT_DBGM(rt->scene);
-	rt->tree = sda_parser(rt->scene);
+	rt->tree = parse_scene(rt->scene);
 	RT_DBGM("Tree parsed.");
 	print_tree(rt->tree);
 	rt_init_rdrmgrthread(rt);
@@ -31,7 +31,7 @@ int			rt_init_scenerdr(t_rt *rt)
 int			rt_init_mglw(t_rt *rt)
 {
 	if (!mglw_init())
-		return (rt_error(rt, 121, "Unable to init mglw."));
+		return (rt_error(121, "Unable to init mglw."));
 	rt->viewer.rdrtarget = mglw_mkimage((int)rt->render.render_size.x,
 		(int)rt->render.render_size.y, MGLW_RGBA, MGLWI_USERALLOC);
 	rt_state(rt, RTS_MGLW_INIT, RT_SET);

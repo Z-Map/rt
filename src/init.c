@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 21:51:11 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/31 19:39:06 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/07 22:03:42 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int			rt_init_main(t_rt *rt)
 			.cpfunc = NULL}
 	};
 	ft_bzero(rt->errors, sizeof(rt->errors));
+	rt_error(0, (const char *)rt);
 	RT_DBGM("RT started.");
 	return (1);
 }

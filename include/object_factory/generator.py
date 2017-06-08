@@ -100,8 +100,8 @@ def generate_headers(dirname):
 				+ cprstext[:-1] + "\n};\n\n")
 			cprstext += (alignOnTab("static const t_elm", G_tabalign, 0)
 				+ "g_elm_"+akey + "= {" + '"'+akey+'",\n'
-				+ 'sizeof(struct s_'+anob["cname"]+'), ' + str(validx) + ', '
-				+ str(validx - 1) + ', (t_val *)(t_ul)g_vtab_'+akey
+				+ 'sizeof(struct s_'+anob["cname"]+'), ' + str(validx - 1) + ', '
+				+ str(validx) + ', (t_val *)(t_ul)g_vtab_'+akey
 				+ ',\nNULL, NULL, ft_vparse_null, NULL};\n\n')
 			f.write(cprstext)
 		ftype.write(alignOnTab(anob["cenum"], G_tabalignenum, 1) + "= " + hex(anob["id"]) + ",\n")

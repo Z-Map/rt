@@ -6,7 +6,7 @@
 /*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/25 17:59:47 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/06/01 02:03:28 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/08 06:26:24 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ t_rtmat				*mkmaterial(const char *name)
 	if (!(newmat = (t_rtmat *)ft_vmemalloc(vm, sizeof(t_rtmat))))
 		return (NULL);
 	*newmat = (t_rtmat){.name = ft_vsdup(name),
-		.color1 = (t_rgba){0, 0, 0, 0}, .color2 = (t_rgba){0, 0, 0, 0},
+		.color1 = (t_rgba){255, 255, 255, 255},
+		.color2 = (t_rgba){0, 0, 0, 255},
 		.reflectivity = 0, .refraction = 0};
 	return (newmat);
 }

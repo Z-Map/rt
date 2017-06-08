@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 18:15:50 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/14 22:09:49 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/07 22:04:04 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,16 @@
 // 		errors[]
 // }
 
-int			rt_error(t_rt *rt, int code, const char *msg)
+int				rt_error(int code, const char *msg)
 {
+	static t_rt	*rt = NULL;
+
 	if (!code)
+	{
+		if (!rt && msg)
+			rt = (t_rt *)(t_ul)msg;
 		return (0);
+	}
 	if (!rt)
 		return (-1);
 	if (msg)

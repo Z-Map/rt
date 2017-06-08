@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 17:35:04 by ealbert           #+#    #+#             */
-/*   Updated: 2017/05/24 21:52:12 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/07 00:09:41 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ static int			check_line2(t_rtnode *node, char *s)
 
 int					check_line(t_rtnode *node, char *s)
 {
-	RT_DBGM("Parsing...");
 	const t_rtobind	*tab = g_obt_tab;
 	size_t			len;
 

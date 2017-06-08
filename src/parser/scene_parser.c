@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 23:17:58 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/25 17:01:54 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/06 23:41:19 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,9 @@ t_rtree			*parse_scene(const char *filename)
 	ret = NULL;
 	if (ft_strequ(ext, "sda"))
 		ret = sda_parser(filename);
+	if (ret)
+	{
+		find_camera(ret);
+	}
 	return (ret);
 }

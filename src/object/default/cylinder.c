@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 02:00:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/27 16:02:16 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/08 07:46:04 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void			object_default_cylinder(t_rtobd *object)
 t_mat3x2f		object_bound_cylinder(t_rtobd *ob, t_mat3x2f bound)
 {
 	bound = bound_intersect((t_mat3x2f){
-		(t_v2f){-(ob->cylinder.radius), ob->cylinder.radius},
-		(t_v2f){-(ob->cylinder.radius), ob->cylinder.radius},
+		(t_v2f){-(ob->cylinder.radius + 0.001), ob->cylinder.radius + 0.001},
+		(t_v2f){-(ob->cylinder.radius + 0.001), ob->cylinder.radius + 0.001},
 		(t_v2f){-INFINITY,INFINITY}}, bound);
 	return (bound);
 }

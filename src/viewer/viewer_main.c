@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 14:51:55 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/03 05:40:33 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/07 21:39:41 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void			*rt_viewer_main(void *arg)
 	rt = (t_rt *)arg;
 	if (rt_init_window(rt))
 		pthread_exit(viewer_exit(rt,
-			rt_error(rt, -124, "error on viewer init")));
+			rt_error(-124, "error on viewer init")));
 	while (viewer_run(rt, &(rt->viewer)))
 	{
 		viewer_loop(rt);

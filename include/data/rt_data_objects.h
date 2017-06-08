@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 18:56:24 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/27 16:07:32 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/08 06:50:48 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ struct				s_rt_object_instance
 	char			*name;
 	t_mattf			transform;
 	t_mat3x2f		bounds;
+	t_mat3x2f		lbounds;
 	t_rtobj			*obj;
 };
 
@@ -49,9 +50,10 @@ static const t_val	g_vtab_inst[8] = {
 	{VT_MATTF, 16, 1, 0, "rotation", (t_elm *)(t_ul)&g_el_mattfrot},
 	{VT_MATTF, 16, 2, 0, "pos", (t_elm *)(t_ul)&g_el_mattftrans},
 	{VT_MATTF, 16, 2, 0, "position", (t_elm *)(t_ul)&g_el_mattftrans},
-	{VT_MATTF, 16, 3, 0, "sca", (t_elm *)(t_ul)&g_el_mattfscale},
-	{VT_MATTF, 16, 3, 0, "scale", (t_elm *)(t_ul)&g_el_mattfscale},
-	{VT_MATTF, 16, 3, 0, "size", (t_elm *)(t_ul)&g_el_mattfscale}};
+	{VT_FLOAT, 80, 3, 0,"bound.x", (t_elm *)(t_ul)&g_el_vec2f},
+	{VT_FLOAT, 88, 4, 0,"bound.y", (t_elm *)(t_ul)&g_el_vec2f},
+	{VT_FLOAT, 96, 5, 0,"bound.z", (t_elm *)(t_ul)&g_el_vec2f},
+};
 
 static const t_elm	g_elm_inst = {"inst", sizeof(t_rtobi), 3, 8,
 (t_val *)(t_ul)g_vtab_inst, NULL, NULL, NULL, NULL};

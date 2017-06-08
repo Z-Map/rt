@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 14:57:26 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/01 23:15:32 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/07 21:39:32 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int			rt_init_viewerthread(t_rt *rt)
 		return (rt->error);
 	if (!(rt->viewer.win = mglw_openwin(
 		mglw_mkwin(MGLW_LEGACY_MODE, MGLW_2DLAYER), 1400, 900, "-=[ |RT| ]=-")))
-		return (rt_error(rt, 120, "Unable to open main window."));
+		return (rt_error(120, "Unable to open main window."));
 	mglw_setGLContext(NULL);
 	mglw_setkcb(rt->viewer.win, 3, &rt_keypress, rt);
 	mglw_setsizecb(rt->viewer.win, &rt_resize, rt);
@@ -55,7 +55,7 @@ int			rt_init_viewerthread(t_rt *rt)
 	rt->viewer.refresh_lock = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER;
 	rt->viewer.refresh_cond = (pthread_cond_t)PTHREAD_COND_INITIALIZER;
 	if (pthread_create(&(rt->viewer.mainthread), NULL, &rt_viewer_main, rt))
-		return (rt_error(rt, 122, "Unable to start viewer thread."));
+		return (rt_error(122, "Unable to start viewer thread."));
 	// rt_init_window(rt);
 	return (1);
 }

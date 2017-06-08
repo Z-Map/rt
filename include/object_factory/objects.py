@@ -15,9 +15,9 @@ G_groups =(
 		"name" : "visible",
 		"group" : "valid",
 		"property" : (
-			ObT("limx", "t_v2f"),
-			ObT("limy", "t_v2f"),
-			ObT("limz", "t_v2f"),
+			ObT("lim.x", "t_v2f"),
+			ObT("lim.y", "t_v2f"),
+			ObT("lim.z", "t_v2f"),
 			ObT("material", "t_rtmat"),
 		)
 	},
@@ -98,11 +98,6 @@ G_objects = (
 	{
 		"name" : "cuboid",
 		"group" : "visible",
-		"property" : (
-			ObT("sizex", "t_v2f"),
-			ObT("sizey", "t_v2f"),
-			ObT("sizez", "t_v2f"),
-		)
 	},
 	{
 		"name" : "tris",

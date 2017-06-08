@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:38:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/03 03:34:40 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/08 07:33:43 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	intersect_obj(t_rtray ray, t_rtobi *obi, t_rtrgd *geo)
 	flags = geo->flags;
 	geo->flags = 0;
 	inter = obi->obj->intersect;
-	if (bound_raycast(&ray, obi->bounds, geo) && inter
+	if (bound_raycast(&ray, obi->lbounds, geo) && inter
 		&& inter(ray, (t_rtobd *)(obi->obj), geo))
 	{
 		geo->ray = ray;
@@ -63,7 +63,8 @@ static int	raycast_rnod(t_rtray ray, t_rtrnode *nod, t_rtrgd geo, t_rtrgd *gd)
 	(void)depth_test;
 	if (!nod)
 		return (0);
-	if (intersect_obj(ray_trans(ray, nod->invert_transform),
+	if (bound_raycast(&ray, nod->lbound, &geo) &&
+		intersect_obj(ray_trans(ray, nod->invert_transform),
 		(t_rtobi *)(nod->node.content), &geo))
 		ret = depth_test(geo, gd, nod);
 	return (ret);

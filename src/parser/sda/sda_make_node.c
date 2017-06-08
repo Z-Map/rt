@@ -6,13 +6,14 @@
 /*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 20:15:49 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/05/24 21:51:58 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/06 23:43:54 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_parser.h"
 
-int			sda_make_node_parser(t_rtnode *node, t_rtobt type, const char *name)
+int				sda_make_node_parser(t_rtnode *node, t_rtobt type,
+					const char *name)
 {
 	t_rtnode	*new;
 
@@ -25,9 +26,9 @@ int			sda_make_node_parser(t_rtnode *node, t_rtobt type, const char *name)
 
 t_rtnode		*make_node(t_rtobt type, const char *name)
 {
-	t_rtnode		*new;
-	t_rtobi			*inst;
-	t_rtobj			*obj;
+	t_rtnode	*new;
+	t_rtobi		*inst;
+	t_rtobj		*obj;
 
 	new = NULL;
 	inst = NULL;
