@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 22:47:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/02 23:12:34 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/08 19:33:23 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,11 @@ float		shade_light(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree);
 float		shade_spotlight(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree);
 
 t_rtray		rdr_pxray(t_ui x, t_ui y, t_rtrmgr *rmgr, t_rtrnode *camnode);
+
 t_rtrgd		rdr_raycast(t_rtray ray, t_rdrtree *tree, float lim);
 t_rtrfd		rdr_shade(t_rtrgd geometry, t_rtree *tree);
 t_rtrd		rdr_filter(t_rtrfd frag, t_rtree *tree);
-t_rtrd		raytrace(t_ui x, t_ui y, t_rtrmgr *mgr, t_rtree *tree);
+t_rtrd		raytrace(t_rtray ray, t_rtree *tree, t_ui depth);
 
 int			img_calc(t_rt *rt, t_rtrmgr *rmgr);
 
