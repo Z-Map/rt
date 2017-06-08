@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/03 05:40:10 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/07 23:18:47 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,13 @@
 # define LIGTH_GLOW					0x200ul
 # define LIGTH_DIFFUSE				0x400ul
 # define LIGTH_NEGATIVE				0x800ul
+
+/*
+** Objects flags
+*/
+
+# define TEX_VALID					0x1u
+# define TEX_LOADED					0x2u
 
 /*
 ** Window key
