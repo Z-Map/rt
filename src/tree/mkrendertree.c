@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 18:42:52 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/03 16:04:50 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/11 20:52:54 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ t_rdrtree		*mkrendertree(t_rtree *tree)
 		.content = NULL, .flags = TREET_RENDER,
 		.type = TREET_TREE | TREET_RENDER},
 		.max_depth = tree->max_depth, .nodelen = tree->nodelen, .buffer = NULL,
-		.camera = NULL, .scene = NULL},
+		.camera = NULL, .scene = tree->scene},
 		.visible = NULL, .negative = NULL, .lights = NULL};
 	if (!startloop(tree, (t_rtnode *)ntree))
 		free(&ntree);

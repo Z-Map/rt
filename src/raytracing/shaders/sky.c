@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lights_shadow.c                                    :+:      :+:    :+:   */
+/*   sky.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/02 20:26:37 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/11 10:59:57 by qloubier         ###   ########.fr       */
+/*   Created: 2017/06/11 16:44:35 by qloubier          #+#    #+#             */
+/*   Updated: 2017/06/12 00:17:05 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "mathex/utils.h"
 #include "mathex/vector.h"
-#include "rt_tools.h"
 #include "rt_render.h"
 
-float		shadow_test(t_rtrgd geo, t_rtrld l, t_rdrtree *tree)
+t_rtrfd		shade_sky(t_rtrd rdata, t_rdrtree *tree)
 {
-	t_rtrgd	gd;
-	float	a;
+	t_rtmat	*mat;
+	t_rtrfd	frag;
+	t_v2f	uv;
 
-	gd = shadowtrace(ray_bounceto(geo, *(t_v3f *)(&l.v)), l, tree, 0).lgeo;
-	a = (float)(gd.depth.x < 0.0) ? gd.depth.y : gd.depth.x;
-	if ((gd.flags & RAY_GVALID) && (l.depth > a))
-		return (0.0f);
-	return (l.pwr);
+	(void)rdata;
+	mat = ((t_rtobd *)(tree->tree.scene))->scene.sky;
+	frag.color = rgbatov4f(mat->color1);
+	uv = v2fmulv2f(v2faddv2f(nortouv(rdata.ray.direction), mat->diffuse.offset),
+		mat->diffuse.size);
+	if ((mat->diffuse.flags & TEX_VALID)
+		&& (mat->diffuse.tex->flags & TEX_LOADED))
+		frag.color = mat->diffuse.tex->getcol(mat->diffuse.tex, uv);
+	frag.color.w = 1.0f;
+	return (frag);
 }

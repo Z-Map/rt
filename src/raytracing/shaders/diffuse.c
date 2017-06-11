@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lights_shadow.c                                    :+:      :+:    :+:   */
+/*   diffuse.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/02 20:26:37 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/11 10:59:57 by qloubier         ###   ########.fr       */
+/*   Created: 2017/06/11 11:01:45 by qloubier          #+#    #+#             */
+/*   Updated: 2017/06/11 23:02:20 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "mathex/utils.h"
 #include "mathex/vector.h"
-#include "rt_tools.h"
 #include "rt_render.h"
 
-float		shadow_test(t_rtrgd geo, t_rtrld l, t_rdrtree *tree)
+t_rtrfd		shade_diffuse(t_rtrd rdata, t_rtmat *mat, t_rdrtree *tree)
 {
-	t_rtrgd	gd;
-	float	a;
+	t_rtrfd	frag;
+	t_v2f	uv;
 
-	gd = shadowtrace(ray_bounceto(geo, *(t_v3f *)(&l.v)), l, tree, 0).lgeo;
-	a = (float)(gd.depth.x < 0.0) ? gd.depth.y : gd.depth.x;
-	if ((gd.flags & RAY_GVALID) && (l.depth > a))
-		return (0.0f);
-	return (l.pwr);
+	(void)tree;
+	frag.color = rgbatov4f(mat->color1);
+	uv = (t_v2f){rdata.geo.hit_point.x + rdata.geo.hit_point.z,
+		rdata.geo.hit_point.y + rdata.geo.hit_point.z};
+	if (mat->diffuse.flags & TEX_VALID)
+		frag.color = mat->diffuse.tex->getcol(mat->diffuse.tex, uv);
+	return (frag);
 }

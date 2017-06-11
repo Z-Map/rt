@@ -6,7 +6,7 @@
 /*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 19:20:09 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/05/25 21:38:08 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/11 20:40:46 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ t_rtree			*mktree(size_t num, ...)
 
 	if (!(tree = (t_rtree *)malloc(sizeof(t_rtree))))
 		return (NULL);
-	tree->buffer = NULL;
-	tree->node = (t_rtnode){.parent = (t_rtnode *)tree, .next = NULL,
-		.childs = NULL, .content = NULL, .flags = 0, .type = TREET_TREE};
+	*tree = (t_rtree){.node = (t_rtnode){.parent = (t_rtnode *)tree,
+		.next = NULL, .childs = NULL, .content = NULL, .flags = 0,
+		.type = TREET_TREE}, .buffer = NULL, .camera = NULL, .scene = NULL};
 	if (num)
 	{
 		va_start(nodes, num);

@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 15:56:32 by ealbert           #+#    #+#             */
-/*   Updated: 2017/06/08 19:33:31 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/12 00:17:15 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,8 @@ static t_rgba		calc_pixel(t_ui x, t_ui y, t_rtrmgr *rmgr)
 	t_rtrd			rd;
 
 	rd = raytrace(rdr_pxray(x, y, rmgr,
-		(t_rtrnode *)(rmgr->rendertree->tree.camera)),
-		(t_rtree *)(rmgr->rendertree), 0);
-	return (rd.fcolor);
+		(t_rtrnode *)(rmgr->rendertree->tree.camera)),rmgr->rendertree, 2);
+	return (v4ftorgba(rd.frag.color));
 }
 
 int					render_worker(t_ui px, t_ui step, t_rt *rt, t_rtrmgr *rmgr)

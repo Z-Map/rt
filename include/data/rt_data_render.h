@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 15:03:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/02 23:18:11 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/11 23:03:28 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,17 +51,16 @@ struct					s_rt_light_data
 	t_ul				flags;
 	t_v3f				v;
 	float				depth;
+	t_v3f				color;
 	float				pwr;
-	float				padding;
 	t_rtrnode			*nod;
 };
 
 struct					s_rt_render_fdata
 {
-	t_rgba				color;
-	t_ui				flags;
-	float				depth;
+	t_v4f				color;
 	t_v3f				hit_nor;
+	float				ndepth;
 };
 
 struct					s_rt_render_data
@@ -70,6 +69,8 @@ struct					s_rt_render_data
 	t_rtray				lray;
 	t_rtrgd				geo;
 	t_rtrgd				lgeo;
+	t_rtrfd				frag;
+	t_rdrtree			*tree;
 	float				fdepth;
 	t_rgba				fcolor;
 };

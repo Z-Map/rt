@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/08 02:24:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/08 05:49:34 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/09 10:17:00 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ t_rtex			*rtex_mktex(const char *name, size_t len)
 	tex->instances = 0;
 	tex->name = ft_vsndup(name, len);
 	tex->img = NULL;
+	tex->getcol = &rtex_nocol;
+	tex->getnor = &rtex_nonor;
 	return (tex);
 }
 
@@ -48,7 +50,9 @@ int				rtex_rmtex(t_rtex *tex)
 		return (0);
 	if (tex->img)
 		mglw_rmimg(tex->img);
+	tex->img = NULL;
 	ft_vfree(tex->name);
+	tex->name = NULL;
 	return (1);
 }
 

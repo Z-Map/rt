@@ -6,7 +6,7 @@
 /*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 20:15:49 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/06/06 23:43:54 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/11 17:10:27 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_rtnode		*make_node(t_rtobt type, const char *name)
 	new = NULL;
 	inst = NULL;
 	obj = NULL;
-	if ((obj = mkobject(type, name)) && (!(type & VISIBLE) ||
+	if ((obj = mkobject(type, name)) && (!(type & (VISIBLE|SCENE)) ||
 		(((t_rtobd *)obj)->plan.material = mkmaterial("default"))) &&
 		(inst = mkinstance(obj, NULL)) &&
 		(new = mknode(inst)))

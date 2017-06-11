@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 22:47:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/08 19:33:23 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/11 22:48:12 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,25 @@ int			intersect_cone(t_rtray ray, t_rtobd *cone, t_rtrgd *gd);
 int			intersect_tris(t_rtray ray, t_rtobd *cone, t_rtrgd *gd);
 int			intersect_mesh(t_rtray ray, t_rtobd *plan, t_rtrgd *gd);
 
-float		shadow_test(t_rtrgd geo, t_rtrld l, t_rdrtree *tree);
+t_rtrfd		shade_sky(t_rtrd rdata, t_rdrtree *tree);
+t_rtrfd		shade_diffuse(t_rtrd rdata, t_rtmat *mat, t_rdrtree *tree);
 float		shade_lightsloop(t_rtrgd geo, t_rdrtree *tree);
 float		shade_sunlight(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree);
 float		shade_light(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree);
 float		shade_spotlight(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree);
 
+t_rtrd		shadow_transmit(t_rtrd rdata, t_rdrtree *tree, t_ui raycount);
+t_rtrd		shadowtrace(t_rtray ray, t_rtrld l, t_rdrtree *tree, t_ui raycount);
+float		shadow_test(t_rtrgd geo, t_rtrld l, t_rdrtree *tree);
+
 t_rtray		rdr_pxray(t_ui x, t_ui y, t_rtrmgr *rmgr, t_rtrnode *camnode);
 
 t_rtrgd		rdr_raycast(t_rtray ray, t_rdrtree *tree, float lim);
-t_rtrfd		rdr_shade(t_rtrgd geometry, t_rtree *tree);
+t_rtrfd		rdr_shade(t_rtrd rdata, t_rdrtree *tree);
+t_rtrd		rdr_transmit(t_rtrd rdata, t_rdrtree *tree, t_ui raycount);
+t_rtrd		raytrace(t_rtray ray, t_rdrtree *tree, t_ui raycount);
+
 t_rtrd		rdr_filter(t_rtrfd frag, t_rtree *tree);
-t_rtrd		raytrace(t_rtray ray, t_rtree *tree, t_ui depth);
 
 int			img_calc(t_rt *rt, t_rtrmgr *rmgr);
 

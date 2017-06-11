@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.c                                            :+:      :+:    :+:   */
+/*   texture_load.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/22 02:01:06 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/11 22:46:49 by qloubier         ###   ########.fr       */
+/*   Created: 2017/06/09 10:16:41 by qloubier          #+#    #+#             */
+/*   Updated: 2017/06/09 10:17:04 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt_object.h"
+#include "mglw/mglw.h"
+#include "rt_texture.h"
 
-void			object_default_scene(t_rtobd *object)
+t_rtex			*rtex_load(t_rtex *tex)
 {
-	object->scene.sky = NULL;
-	object->scene.ambient_light = (t_rgba){0,0,0,0};
+	if (!tex || !tex->name || (tex->flags & (TEX_LOADED|TEX_PROCEDURALE)))
+		return (tex);
+	if (tex->img)
+		mglw_rmimg(tex->img);
+	if (!(tex->img = mglw_loadimage(tex->name, MGLWI_NONE, 4)))
+		return (tex);
+	tex->flags |= TEX_LOADED;
+	tex->getcol = &rtex_uvimage_col;
+	tex->getnor = &rtex_uvimage_nor;
+	return (tex);
 }

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 01:32:47 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/08 06:30:41 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/11 11:18:21 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,17 @@
 # include "mglw/mglw.h"
 # include "rt_prototype.h"
 
-# define TEXPROC_NUM			5
-
-static const char			*g_procedural_texlist[] = {
-	"perlin", "trigo", "circle", "strip", "chess"};
-
 struct					s_rt_texture
 {
 	char				*name;
 	unsigned int		instances;
 	unsigned int		flags;
 	mglimg				*img;
+	t_v4f				(*getcol)(t_rtex *, t_v2f);
+	t_v3f				(*getnor)(t_rtex *, t_v2f);
 };
 
-struct					s_rt_texture_instance
+struct					s_rt_texinstance
 {
 	unsigned int		id;
 	unsigned int		flags;

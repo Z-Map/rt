@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 18:23:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/02 22:53:59 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/09 17:51:40 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int				intersect_sphere(t_rtray ray, t_rtobd *ob, t_rtrgd *gd)
 	if (ret & 1)
 		gd->hit_nor[0] = v3fdivv3f(hitp[0], nv3f(ob->sphere.radius));
 	else if (sqrtf(hitp[0].x * hitp[0].x + hitp[0].y * hitp[0].y
-		+ hitp[1].z * hitp[1].z) <= ob->sphere.radius)
+		+ hitp[0].z * hitp[0].z) <= ob->sphere.radius)
 		ret |= 1;
 	if (ret & 2)
 		gd->hit_nor[1] = v3fdivv3f(hitp[1], nv3f(ob->sphere.radius));

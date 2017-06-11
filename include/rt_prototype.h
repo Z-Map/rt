@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/07 23:18:47 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/11 23:23:34 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include "libft.h"
 
 # include "generated/rt_proto_gen.h"
+
+# define RT_DEFAULT_RSIZE_X			512
+# define RT_DEFAULT_RSIZE_Y			512
 
 /*
 ** RT Tool
@@ -98,6 +101,7 @@
 
 # define TEX_VALID					0x1u
 # define TEX_LOADED					0x2u
+# define TEX_PROCEDURALE			0x4u
 
 /*
 ** Window key
@@ -147,7 +151,7 @@ typedef struct s_rt_object_index	t_rtobind;
 typedef struct s_rt_object			t_rtobj;
 typedef struct s_rt_material		t_rtmat;
 typedef struct s_rt_texture			t_rtex;
-typedef struct s_rt_texture_instance		t_rtexi;
+typedef struct s_rt_texinstance		t_rtexi;
 typedef union u_rt_objectdata		t_rtobd;
 
 /*

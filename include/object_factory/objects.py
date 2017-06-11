@@ -15,10 +15,10 @@ G_groups =(
 		"name" : "visible",
 		"group" : "valid",
 		"property" : (
+			ObT("material", "t_rtmat"),
 			ObT("lim.x", "t_v2f"),
 			ObT("lim.y", "t_v2f"),
 			ObT("lim.z", "t_v2f"),
-			ObT("material", "t_rtmat"),
 		)
 	},
 	{
@@ -46,8 +46,11 @@ G_objects = (
 		"name" : "scene",
 		"group" : "valid",
 		"property" : (
-			ObT("ambient_light", "t_rtmat"),
-			ObT("skybox", "t_rtmat"),
+			ObT("sky", "t_rtmat"),
+			ObT("ambient_light", "t_rgba"),
+			ObT("maxray.transmission", "ui"),
+			ObT("maxray.reflection", "ui"),
+			ObT("maxray.shadow", "ui")
 		)
 	},
 	{

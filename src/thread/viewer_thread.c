@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 14:57:26 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/07 21:39:32 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/11 23:35:52 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int			rt_init_viewerthread(t_rt *rt)
 	if (!(rt->state & RTS_MGLW_INIT) && (rt_init_mglw(rt) <= 0))
 		return (rt->error);
 	if (!(rt->viewer.win = mglw_openwin(
-		mglw_mkwin(MGLW_LEGACY_MODE, MGLW_2DLAYER), 1400, 900, "-=[ |RT| ]=-")))
+		mglw_mkwin(MGLW_LEGACY_MODE, MGLW_2DLAYER), rt->render.target_size.x,
+		rt->render.target_size.y, "-=[ |RT| ]=-")))
 		return (rt_error(120, "Unable to open main window."));
 	mglw_setGLContext(NULL);
 	mglw_setkcb(rt->viewer.win, 3, &rt_keypress, rt);

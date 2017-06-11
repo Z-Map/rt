@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.c                                            :+:      :+:    :+:   */
+/*   perlin.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/22 02:01:06 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/11 22:46:49 by qloubier         ###   ########.fr       */
+/*   Created: 2017/06/11 13:46:02 by qloubier          #+#    #+#             */
+/*   Updated: 2017/06/11 22:33:38 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt_object.h"
+#include "rt_texture.h"
 
-void			object_default_scene(t_rtobd *object)
+float		rtex_proc_perlin(t_v3f vec)
 {
-	object->scene.sky = NULL;
-	object->scene.ambient_light = (t_rgba){0,0,0,0};
+	(void)vec;
+	return (0.0f);
 }
