@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 15:03:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/11 23:03:28 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/14 04:54:45 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ struct					s_rt_render_ray
 	t_v3f				start;
 	t_v3f				direction;
 	t_rgba				color;
-	int					intensity;
+	float				intensity;
 };
 
 struct					s_rt_render_gdata
@@ -33,7 +33,8 @@ struct					s_rt_render_gdata
 	t_v2f				depth;
 	t_v4f				hit_point;
 	t_mat2x3f			hit_tangent;
-	t_v3f				hit_nor[2];
+	t_v3f				hit_nor;
+	t_v3f				hit_nor2;
 	t_rtray				ray;
 	t_rtobi				*inst;
 	t_rtrnode			*node;
@@ -48,6 +49,7 @@ struct					s_rt_fastrdr_gdata
 
 struct					s_rt_light_data
 {
+	t_rtobd				*ob;
 	t_ul				flags;
 	t_v3f				v;
 	float				depth;

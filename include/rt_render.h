@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 22:47:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/11 22:48:12 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/13 15:25:41 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,21 @@ int			intersect_plan(t_rtray ray, t_rtobd *plan, t_rtrgd *gd);
 int			intersect_cone(t_rtray ray, t_rtobd *cone, t_rtrgd *gd);
 int			intersect_tris(t_rtray ray, t_rtobd *cone, t_rtrgd *gd);
 int			intersect_mesh(t_rtray ray, t_rtobd *plan, t_rtrgd *gd);
+
+int			getnor_cylinder(t_rtobd *ob, t_rtrd *rdata);
+int			gettan_cylinder(t_rtobd *ob, t_rtrd *rdata);
+int			getnor_sphere(t_rtobd *ob, t_rtrd *rdata);
+int			gettan_sphere(t_rtobd *ob, t_rtrd *rdata);
+int			getnor_cuboid(t_rtobd *ob, t_rtrd *rdata);
+int			gettan_cuboid(t_rtobd *ob, t_rtrd *rdata);
+int			getnor_plan(t_rtobd *ob, t_rtrd *rdata);
+int			gettan_plan(t_rtobd *ob, t_rtrd *rdata);
+int			getnor_cone(t_rtobd *ob, t_rtrd *rdata);
+int			gettan_cone(t_rtobd *ob, t_rtrd *rdata);
+int			getnor_tris(t_rtobd *ob, t_rtrd *rdata);
+int			gettan_tris(t_rtobd *ob, t_rtrd *rdata);
+int			getnor_mesh(t_rtobd *ob, t_rtrd *rdata);
+int			gettan_mesh(t_rtobd *ob, t_rtrd *rdata);
 
 t_rtrfd		shade_sky(t_rtrd rdata, t_rdrtree *tree);
 t_rtrfd		shade_diffuse(t_rtrd rdata, t_rtmat *mat, t_rdrtree *tree);

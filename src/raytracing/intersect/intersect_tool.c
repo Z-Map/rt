@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 16:11:06 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/09 17:49:09 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/14 04:48:37 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,10 @@ int			intersect_depth(t_rtrgd *gd, t_rtray r, t_v2f d, t_v3f hp[2])
 		ret |= geo_setdepth(gd, 2, d.y);
 	hp[0] = ray_hitpoint(r, gd->depth.x);
 	hp[1] = ray_hitpoint(r, gd->depth.y);
+	if (gd->depth.x < 0.0)
+		gd->hit_point = (t_v4f){hp[1].x, hp[1].y, hp[1].z, gd->depth.y};
+	else
+		gd->hit_point = (t_v4f){hp[0].x, hp[0].y, hp[0].z, gd->depth.x};
 	return (ret);
 }
 
@@ -33,14 +37,14 @@ int			geo_setdepth(t_rtrgd *gd, int dim, float depth)
 	if (dim & 1)
 	{
 		gd->depth.x = depth;
-		gd->flags |= RAY_GDEPTH0;
-		gd->flags |= RAY_GHNOR0;
+		gd->flags &= ~RAY_E0;
+		gd->flags |= RAY_GDEPTH0|RAY_INTER0;
 	}
 	if (dim & 2)
 	{
 		gd->depth.y = depth;
-		gd->flags |= RAY_GDEPTH1;
-		gd->flags |= RAY_GHNOR1;
+		gd->flags &= ~RAY_E1;
+		gd->flags |= RAY_GDEPTH1|RAY_INTER1;
 	}
 	return (dim);
 }
@@ -51,21 +55,12 @@ t_rtrgd		geo_getglobal(t_rtrgd gd, t_rtray r)
 
 	if (!(gd.flags & RAY_GVALID))
 		return (gd);
-	m = gd.node->transform;
-	m.offset = nv3f(0.0f);
-	if (gd.flags & RAY_LOCAL0)
-		pmattf_apply(gd.hit_nor, &m);
-	if (gd.flags & RAY_LOCAL1)
-		pmattf_apply(gd.hit_nor + 1, &m);
-	if (gd.depth.x >= 0.0f)
+	if (gd.flags & RAY_GLOCAL)
 	{
-		*(t_v3f *)(&gd.hit_point) = ray_hitpoint(r, gd.depth.x);
-		gd.hit_point.w = gd.depth.x;
+		m = gd.node->transform;
+		m.offset = nv3f(0.0f);
+		pmattf_apply(&(gd.hit_nor), &m);
 	}
-	else
-	{
-		*(t_v3f *)(&gd.hit_point) = ray_hitpoint(r, gd.depth.y);
-		gd.hit_point.w = gd.depth.y;
-	}
+	*(t_v3f *)(&gd.hit_point) = ray_hitpoint(r, gd.hit_point.w);
 	return (gd);
 }

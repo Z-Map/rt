@@ -88,9 +88,10 @@ def generate_headers(dirname):
 			else:
 				obttab += '\nNULL, object_default_' + akey + ',\n'
 			if anob["intersect"]:
-				obttab += 'intersect_'+akey+', object_bound_'+akey+'},\n'
+				obttab += ('intersect_'+akey+', getnor_'+akey+', gettan_'+akey
+					+', object_bound_'+akey+'},\n')
 			else:
-				obttab += 'NULL, NULL},\n'
+				obttab += 'NULL, NULL, NULL, NULL},\n'
 			obttablen += 1;
 		if ctext:
 			f.write(ctext)

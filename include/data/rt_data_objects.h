@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 18:56:24 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/08 06:50:48 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/13 15:25:02 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ struct					s_rt_object_index
 	const t_elm			*parse_elm;
 	void				(*init)(t_rtobd *);
 	int					(*geometry)(t_rtray, t_rtobd *, t_rtrgd *);
+	int					(*normal)(t_rtobd *, t_rtrd *);
+	int					(*tagentspace)(t_rtobd *, t_rtrd *);
 	t_mat3x2f			(*bounds)(t_rtobd *, t_mat3x2f);
 };
 

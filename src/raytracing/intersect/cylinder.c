@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 18:23:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/08 07:34:14 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/13 15:55:42 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,11 @@ int				intersect_cylinder(t_rtray ray, t_rtobd *cy, t_rtrgd *gd)
 	if (!calc_cylinder(cy, &ray, &dist))
 		return (0);
 	ret = intersect_depth(gd, ray, dist, hitp);
-	if (ret & 1)
-		gd->hit_nor[0] = normalized3f((t_v3f){hitp[0].x, hitp[0].y, 0.0});
-	else if (sqrtf(hitp[0].x * hitp[0].x
-		+ hitp[0].y * hitp[0].y) <= cy->cylinder.radius)
+	if (!(ret & 1) && (sqrtf(hitp[0].x * hitp[0].x
+		+ hitp[0].y * hitp[0].y) <= cy->cylinder.radius))
 		ret |= 1;
-	if (ret & 2)
-		gd->hit_nor[1] = normalized3f((t_v3f){hitp[1].x, hitp[1].y, 0.0});
-	else if (sqrtf(hitp[1].x * hitp[1].x
-		+ hitp[1].y * hitp[1].y) <= cy->cylinder.radius)
+	if (!(ret & 2) && (sqrtf(hitp[1].x * hitp[1].x
+		+ hitp[1].y * hitp[1].y) <= cy->cylinder.radius))
 		ret |= 2;
 	return (ret);
 }

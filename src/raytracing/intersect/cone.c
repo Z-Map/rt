@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 18:23:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/03 16:38:19 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/13 17:44:22 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,27 +91,19 @@ int				intersect_cone(t_rtray ray, t_rtobd *cone, t_rtrgd *gd)
 {
 	t_v2f		dist;
 	int			ret;
-	t_v3f		hitp[2];
-	float		a;
+	t_v3f		hp[2];
 
 	(void)is_in_cone;
 	(void)cone_depth;
-	ret = 1;
-	// return (1);
-	a = mxabsf(cone->cone.angle) / 2;
-	gd->flags &= ~(RAY_GDEPTH0|RAY_GDEPTH1);
 	if (!calc_cone(cone, &ray, &dist) || (dist.x > gd->depth.y)
 		|| (dist.y < 0.0))
 		return (0);
-	hitp[0].x = a;
-	ret = cone_depth(gd, ray, dist, hitp);
-	if (ret & 1)
-		gd->hit_nor[0] = v3faddv3f(v3fdivv3f(normalized3f((t_v3f){hitp[0].x,
-			hitp[0].y, 0.0}), nv3f(cosf(a))), (t_v3f){0.0f, 0.0f,
-			((hitp[0].z < 0.0) ? 1.0f : -1.0f) * sinf(a)});
-	if (ret & 2)
-		gd->hit_nor[1] = v3faddv3f(v3fdivv3f(normalized3f((t_v3f){hitp[1].x,
-			hitp[1].y, 0.0}), nv3f(cosf(a))), (t_v3f){0.0f, 0.0f,
-			((hitp[1].z < 0.0) ? 1.0f : -1.0f) * sinf(a)});
+	hp[0].x = mxabsf(cone->cone.angle) / 2;
+	if (!(ret = cone_depth(gd, ray, dist, hp)))
+		return (0);
+	if (gd->depth.x < 0.0)
+		gd->hit_point = (t_v4f){hp[1].x, hp[1].y, hp[1].z, gd->depth.y};
+	else
+		gd->hit_point = (t_v4f){hp[0].x, hp[0].y, hp[0].z, gd->depth.x};
 	return (ret);
 }

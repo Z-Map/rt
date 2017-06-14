@@ -1,6 +1,10 @@
+SUNLIGHT: sun
+	rot: -60 0 0
+
 SCENE: sky
 	color: #32d4de
-	diffuse: data/textures/sky.jpg
+	diffuse: data/textures/sunset.jpg
+	diffuse.offset: 0.5
 
 CAMERA: cam1
 	rotation: 90.0		180.0		0
@@ -19,7 +23,7 @@ SPHERE: moon
 	radius: 0.3
 	SPHERE: moonlx
 		lim.x :	-0.2 0.2
-		color :	#a3a3a3
+		color :	#50a3a3a3
 		pos: 0 0 -1
 		radius: 0.3
 	SPHERE: moonlz
@@ -57,11 +61,12 @@ CONE: conayou
 
 PLAN: ground
 	color:		#5d8737
-	diffuse: data/textures/grass.jpg
+	diffuse:	data/textures/grass.jpg
 	position:	0	0		-2
-
-SUNLIGHT: sun
-	rot: 0 -10 90
 
 POINTLIGHT: point
 	position:	0	-2		0
+
+SPOT: spot
+	rot: 0 0 0
+	position:	5	0		2

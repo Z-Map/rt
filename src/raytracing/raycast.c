@@ -6,13 +6,27 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:38:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/11 11:00:01 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/14 04:35:27 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "rt_render.h"
 #include "rt_tools.h"
+
+static t_ul	get_flags(t_ul flags, int dim)
+{
+	t_ul	ret;
+
+	ret = (RAY_GDEPTH0 >> dim) | RAY_GHPOINT;
+	if (flags & (RAY_GDEPTH0 << dim))
+		ret |= RAY_GLOCAL;
+	if (flags & (RAY_INTER0 << dim))
+		ret |= RAY_GINTER;
+	else
+		ret |= RAY_GHNOR;
+	return (ret);
+}
 
 static int	depth_test(t_rtrgd geo, t_rtrgd *gd, t_rtrnode *nod)
 {
@@ -27,30 +41,29 @@ static int	depth_test(t_rtrgd geo, t_rtrgd *gd, t_rtrnode *nod)
 		return (0);
 	*gd = geo;
 	gd->node = nod;
+	if (geo.depth.x < 0.0)
+	{
+		gd->flags = get_flags(gd->flags, 1) | RAY_GVALID;
+		gd->hit_nor = gd->hit_nor2;
+	}
+	else
+		gd->flags = get_flags(gd->flags, 0) | RAY_GVALID;
 	return (1);
 }
 
 static int	intersect_obj(t_rtray ray, t_rtobi *obi, t_rtrgd *geo)
 {
 	int		(*inter)(t_rtray, t_rtobd *, t_rtrgd *);
-	t_ul		flags;
 
-	flags = geo->flags;
-	geo->flags = 0;
+	geo->flags &= ~(RAY_GDEPTH0|RAY_GDEPTH1);
 	inter = obi->obj->intersect;
 	if (bound_raycast(&ray, obi->lbounds, geo) && inter
 		&& inter(ray, (t_rtobd *)(obi->obj), geo))
 	{
 		geo->ray = ray;
 		geo->inst = obi;
-		geo->flags = flags;
-		if (geo->flags & RAY_GDEPTH0)
-			geo->flags |= RAY_GHNOR0 | RAY_LOCAL0;
-		if (geo->flags & RAY_GDEPTH0)
-			geo->flags |= RAY_GHNOR1 | RAY_LOCAL1;
 		return (1);
 	}
-	geo->flags = flags;
 	return (0);
 }
 
@@ -59,8 +72,6 @@ static int	raycast_rnod(t_rtray ray, t_rtrnode *nod, t_rtrgd geo, t_rtrgd *gd)
 	int			ret;
 
 	ret = 0;
-	(void)intersect_obj;
-	(void)depth_test;
 	if (!nod)
 		return (0);
 	if (bound_raycast(&ray, nod->lbound, &geo) &&
@@ -86,7 +97,14 @@ t_rtrgd			rdr_raycast(t_rtray ray, t_rdrtree *tree, float lim)
 	i = tree->visible_len;
 	nc = tree->visible;
 	while (i--)
+	{
 		if (nc[i] && raycast_rnod(ray, (t_rtrnode *)(nc[i]), geo, &gd))
-			gd.flags |= RAY_GVALID;
+		{
+			if (gd.depth.x >= 0.0)
+				geo.depth.y = gd.depth.x;
+			else
+				geo.depth.y = gd.depth.y;
+		}
+	}
 	return (gd);
 }

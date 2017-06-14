@@ -6,7 +6,7 @@
 /*   By: fanno <fanno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 15:04:58 by fanno             #+#    #+#             */
-/*   Updated: 2017/06/08 07:42:20 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/13 16:15:42 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,13 +106,13 @@ static int		bound_rcdim(t_v2f rd, t_v3f nor, t_v2f b, t_rtrgd *gd)
 	if (lim.x > gd->depth.x)
 	{
 		gd->depth.x = lim.x;
-		gd->hit_nor[0] = (rd.y > 0.0f) ? v3fmulv3f(nor, nv3f(-1.0f)) : nor;
+		gd->hit_nor = (rd.y > 0.0f) ? v3fmulv3f(nor, nv3f(-1.0f)) : nor;
 		gd->flags |= RAY_GDEPTH0 | RAY_GHNOR0;
 	}
 	if (lim.y < gd->depth.y)
 	{
 		gd->depth.y = lim.y;
-		gd->hit_nor[1] = (rd.y > 0.0f) ? nor : v3fmulv3f(nor, nv3f(-1.0f));
+		gd->hit_nor2 = (rd.y > 0.0f) ? nor : v3fmulv3f(nor, nv3f(-1.0f));
 		gd->flags |= RAY_GDEPTH1 | RAY_GHNOR1;
 	}
 	return (1);

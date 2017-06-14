@@ -8,6 +8,8 @@ G_basicproperty = (
 	ObT("usercfg", "ul"),
 	ObT("name", "char"),
 	ObT("intersect", "void"),
+	ObT("get_nor", "void"),
+	ObT("get_tan", "void"),
 )
 
 G_groups =(
@@ -25,8 +27,10 @@ G_groups =(
 		"name" : "light",
 		"group" : "valid",
 		"property" : (
+			ObT("color", "t_rgba"),
 			ObT("intensity", "f"),
 			ObT("radius", "f"),
+			ObT("angle", "float"),
 		)
 	},
 	{
@@ -121,10 +125,6 @@ G_objects = (
 	{
 		"name" : "spot",
 		"group" : "light",
-		"property" : (
-			ObT("angle", "float"),
-			ObT("padding", "int"),
-		)
 	},
 	{
 		"name" : "pointlight",

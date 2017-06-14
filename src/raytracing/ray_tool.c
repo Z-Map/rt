@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 19:56:27 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/02 23:40:13 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/12 01:11:33 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,16 @@ t_rtray			ray_bounceto(t_rtrgd geo, t_v3f dir)
 	ray.direction = dir;
 	ray.start = *(t_v3f *)(&geo.hit_point);
 	ray.start = v3faddv3f(ray.start, v3fmulv3f(ray.direction, nv3f(MARGIN)));
+	return (ray);
+}
+
+t_rtray			ray_transmit(t_rtrgd geo, t_v3f dir)
+{
+	t_rtray		ray;
+
+	ray.direction = dir;
+	ray.start = *(t_v3f *)(&geo.hit_point);
+	ray.start = v3faddv3f(ray.start, v3fmulv3f(geo.ray.direction,
+		nv3f(MARGIN)));
 	return (ray);
 }
