@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 15:03:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/14 04:54:45 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/15 08:45:38 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,11 @@ struct					s_rt_render_data
 	t_rdrtree			*tree;
 	float				fdepth;
 	t_rgba				fcolor;
+	struct				s_rt_raynum
+	{
+		t_ui			transmit;
+		t_ui			reflect;
+	}					raynum;
 };
 
 typedef struct			s_rt_render_manager

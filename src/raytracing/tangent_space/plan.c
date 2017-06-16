@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 09:11:45 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/13 17:54:23 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/15 21:50:18 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,23 @@ int			getnor_plan(t_rtobd *ob, t_rtrd *rdata)
 int			gettan_plan(t_rtobd *ob, t_rtrd *rdata)
 {
 	(void)ob;
-	(void)rdata;
+	if (rdata->lgeo.hit_nor.z < 0.0f)
+	{
+		rdata->lgeo.hit_tangent.x = (t_v3f){-1.0, 0.0, 0.0};
+		rdata->lgeo.hit_tangent.y = (t_v3f){0.0, -1.0, 0.0};
+		rdata->geo.hit_tangent.x = v3fmulv3f(rdata->lgeo.node->transform.x,
+			nv3f(-1.0f));
+		rdata->geo.hit_tangent.y =v3fmulv3f(rdata->lgeo.node->transform.y,
+			nv3f(-1.0f));
+	}
+	else
+	{
+		rdata->lgeo.hit_tangent.x = (t_v3f){-1.0, 0.0, 0.0};
+		rdata->lgeo.hit_tangent.y = (t_v3f){0.0, -1.0, 0.0};
+		rdata->geo.hit_tangent.x = rdata->lgeo.node->transform.x;
+		rdata->geo.hit_tangent.y = rdata->lgeo.node->transform.y;
+	}
+	rdata->lgeo.flags |= RAY_GHTANG;
+	rdata->geo.flags |= RAY_GHTANG;
 	return (1);
 }
