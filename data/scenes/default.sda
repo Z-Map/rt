@@ -3,7 +3,7 @@ SUNLIGHT: sun
 
 SCENE: sky
 	color: #32d4de
-	diffuse: data/textures/bigsky.jpg
+	diffuse: data/textures/sunset.jpg
 	diffuse.offset: 0.25
 
 CAMERA: cam1
@@ -19,6 +19,7 @@ CYLINDER: cy
 
 SPHERE: moon
 	color :	#c2c2c2
+	#normal:		data/textures/mineral_normal.jpg
 	pos: -1
 	radius: 0.3
 	SPHERE: moonlx
@@ -40,7 +41,7 @@ CUBE: cube_moon
 
 CUBE: cube_moon
 	color :	#985f12
-	diffuse: data/textures/floor1.jpg
+	diffuse:	data/textures/floor1.jpg
 	rot: 20 35 0
 	pos:	1		0		-1.3
 
@@ -60,8 +61,12 @@ CONE: conayou
 	pos:	3		0		0
 
 PLAN: ground
-	color:		#5d8737
-	diffuse:	data/textures/grass.jpg
+	bound.x: -50 50
+	bound.y: -50 50
+	color:		#7edff5
+	diffuse:	data/textures/grassflower.jpg
+	normal:		data/textures/velour_normal.jpg
+	normal.scale: 0.3 0.3
 	position:	0	0		-2
 
 POINTLIGHT: point

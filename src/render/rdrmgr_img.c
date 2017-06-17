@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 15:56:32 by ealbert           #+#    #+#             */
-/*   Updated: 2017/06/17 16:51:08 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 18:45:52 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 static t_rgba		calc_pixel(t_ui x, t_ui y, t_rtrmgr *rmgr)
 {
 	t_rtrd			rd;
-	t_v3f			col;
+	// t_v3f			col;
 
 	rd = raytrace(rdr_pxray(x, y, rmgr,
 		(t_rtrnode *)(rmgr->rendertree->tree.camera)),rmgr->rendertree, 2);
-	col = v3faddv3f(v3fmulv3f(rd.geo.hit_tangent.x, nv3f(0.5f)), nv3f(0.5f));
+	// col = v3faddv3f(v3fmulv3f(rd.geo.hit_tangent.y, nv3f(0.5f)), nv3f(0.5f));
 	return (v4ftorgba(rd.frag.color));
 }
 

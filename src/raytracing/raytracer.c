@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/16 13:52:21 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/17 16:52:36 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 18:47:15 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_rtrd		raytrace(t_rtray ray, t_rdrtree *tree, t_ui raycount)
 {
 	t_rtrd	rdata;
 
+	(void)raycount;
 	rdata.tree = tree;
 	rdata.ray = ray;
 	rdata.lgeo = rdr_raycast(ray, tree, INFINITY);
@@ -61,4 +62,5 @@ t_rtrd		raytrace(t_rtray ray, t_rdrtree *tree, t_ui raycount)
 	rdata.geo = geo_getglobal(rdata.lgeo, ray);
 	rdata.frag = rdr_shade(rdata, tree);
 	return (rdr_transmit(rdata, tree, raycount));
+	// return (rdata);
 }

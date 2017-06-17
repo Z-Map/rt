@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 22:47:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/17 16:19:30 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/17 18:32:48 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int			gettan_mesh(t_rtobd *ob, t_rtrd *rdata);
 
 t_rtrfd		shade_sky(t_rtrd rdata, t_rdrtree *tree);
 t_rtrfd		shade_diffuse(t_rtrd rdata, t_rtmat *mat, t_rdrtree *tree);
+t_v3f		shade_normale(t_rtrd *rdata, t_rtmat *mat);
 t_rtrfd		shade_reflect(t_rtrd rdata, t_rtmat *mat, t_rdrtree *tree);
 float		shade_lightsloop(t_rtrgd geo, t_rdrtree *tree);
 float		shade_sunlight(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree);
