@@ -3,11 +3,11 @@ SUNLIGHT: sun
 
 SCENE: sky
 	color: #32d4de
-	diffuse: data/textures/sunset.jpg
-	diffuse.offset: 0.5
+	diffuse: data/textures/bigsky.jpg
+	diffuse.offset: 0.25
 
 CAMERA: cam1
-	rotation: 90.0		180.0		0
+	rotation: -90		0		0
 	position:	0		-10		0
 
 CYLINDER: cy

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 09:12:23 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/13 18:42:52 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 16:41:58 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,13 @@ int			getnor_cone(t_rtobd *ob, t_rtrd *rdata)
 
 int			gettan_cone(t_rtobd *ob, t_rtrd *rdata)
 {
+	t_v3f	v;
+
 	(void)ob;
-	(void)rdata;
+	v = *(t_v3f *)&(rdata->lgeo.hit_point);
+	rdata->lgeo.hit_tangent.x = normalized3f((t_v3f){-v.x, -v.y, -v.z});
+	v = normalized3f((t_v3f){v.x, v.y, 0.0f});
+	rdata->lgeo.hit_tangent.y = (t_v3f){v.y, -v.x, 0.0};
+	rdata->lgeo.flags |= RAY_GHTANG;
 	return (1);
 }

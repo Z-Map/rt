@@ -6,7 +6,7 @@
 /*   By: fanno <fanno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/16 13:52:21 by fanno             #+#    #+#             */
-/*   Updated: 2017/06/14 04:45:39 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 15:46:59 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ t_rtrd		raytrace(t_rtray ray, t_rdrtree *tree, t_ui raycount)
 	rdata.lgeo = rdr_raycast(ray, tree, INFINITY);
 	rdata.lray = rdata.lgeo.ray;
 	geo_gnor(&rdata);
+	geo_tan(&rdata);
 	rdata.geo = geo_getglobal(rdata.lgeo, ray);
 	rdata.frag = rdr_shade(rdata, tree);
 	return (rdr_transmit(rdata, tree, raycount));

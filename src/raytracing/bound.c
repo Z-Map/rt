@@ -6,7 +6,7 @@
 /*   By: fanno <fanno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 15:04:58 by fanno             #+#    #+#             */
-/*   Updated: 2017/06/13 16:15:42 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 15:31:35 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ int				bound_raycast(t_rtray *r, t_mat3x2f b, t_rtrgd *gd)
 		return (0);
 	return (1);
 }
+
 
 /*
 static int	rt_bounds_update_in(t_obj *obj, int mode, void *userdata)

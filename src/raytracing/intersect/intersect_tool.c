@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 16:11:06 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/14 04:48:37 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 16:03:34 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,13 @@ t_rtrgd		geo_getglobal(t_rtrgd gd, t_rtray r)
 	{
 		m = gd.node->transform;
 		m.offset = nv3f(0.0f);
-		pmattf_apply(&(gd.hit_nor), &m);
+		if (gd.flags & RAY_GHTANG)
+		{
+			pmattf_apply(&(gd.hit_tangent.x), &m);
+			pmattf_apply(&(gd.hit_tangent.y), &m);
+		}
+		if (gd.flags & RAY_GHNOR)
+			pmattf_apply(&(gd.hit_nor), &m);
 	}
 	*(t_v3f *)(&gd.hit_point) = ray_hitpoint(r, gd.hit_point.w);
 	return (gd);

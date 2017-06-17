@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 01:23:17 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/25 21:44:10 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 16:46:44 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ int			rt_keypress(void *env, int k)
 	else if (k == MGLW_KEY_DOWN)
 		pmattf_rotx(&(cam->transform), -0.1);
 	else if (k == MGLW_KEY_LEFT)
-		pmattf_rotz(&(cam->transform), -0.1);
-	else if (k == MGLW_KEY_RIGHT)
 		pmattf_rotz(&(cam->transform), 0.1);
+	else if (k == MGLW_KEY_RIGHT)
+		pmattf_rotz(&(cam->transform), -0.1);
 	else if (k == MGLW_KEY_W)
-		vec = v3faddv3f(vec, mattf_apply((t_v3f){0.0, 0.0, 0.2},
+		vec = v3faddv3f(vec, mattf_apply((t_v3f){0.0, 0.0, -0.2},
 			cam->transform));
 	else if (k == MGLW_KEY_S)
-		vec = v3faddv3f(vec, mattf_apply((t_v3f){0.0, 0.0, -0.2},
+		vec = v3faddv3f(vec, mattf_apply((t_v3f){0.0, 0.0, 0.2},
 			cam->transform));
 	else if (k == MGLW_KEY_A)
 		vec = v3faddv3f(vec, mattf_apply((t_v3f){-0.2, 0.0, 0.0},

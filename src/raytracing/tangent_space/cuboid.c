@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 09:12:17 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/13 17:50:19 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 15:53:56 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ int			getnor_cuboid(t_rtobd *ob, t_rtrd *rdata)
 int			gettan_cuboid(t_rtobd *ob, t_rtrd *rdata)
 {
 	(void)ob;
-	(void)rdata;
+	rdata->lgeo.hit_tangent = geo_cubic_tangentspace(rdata->lgeo.hit_nor,
+		(t_v3f){1.0, 0.0, 0.0}, (t_v3f){0.0, 1.0, 0.0}, (t_v3f){0.0, 0.0, 1.0});
+	// rdata->geo.hit_tangent = geo_cubic_tangentspace(rdata->geo.hit_nor,
+	// 	rdata->geo.node->transform.x, rdata->geo.node->transform.y,
+	// 	rdata->geo.node->transform.z);
+	rdata->lgeo.flags |= RAY_GHTANG;
+	// rdata->geo.flags |= RAY_GHTANG;
 	return (1);
 }

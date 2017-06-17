@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 09:12:11 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/13 17:49:56 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 16:32:37 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,12 @@ int			getnor_cylinder(t_rtobd *ob, t_rtrd *rdata)
 
 int			gettan_cylinder(t_rtobd *ob, t_rtrd *rdata)
 {
+	t_v3f	v;
+
 	(void)ob;
-	(void)rdata;
+	rdata->lgeo.hit_tangent.x = (t_v3f){0.0, 0.0, 1.0};
+	v = rdata->lgeo.hit_nor;
+	rdata->lgeo.hit_tangent.y = (t_v3f){v.y, -v.x, 0.0};
+	rdata->lgeo.flags |= RAY_GHTANG;
 	return (1);
 }
