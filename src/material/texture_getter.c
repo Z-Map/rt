@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 07:39:03 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/12 00:14:01 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 15:30:24 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ t_v4f			rtex_uvimage_col(t_rtex *tex, t_v2f uv)
 	cols[2] = rgbatov4f(((t_rgba *)(t->pixels))[uvtolen(uvi, t->x)]);
 	uvi.x = (uvi.x + 1) % t->x;
 	cols[3] = rgbatov4f(((t_rgba *)(t->pixels))[uvtolen(uvi, t->x)]);
-	uv = (t_v2f){fmodf(uv.x,1.0f), fmodf(uv.y,1.0f)};
+	uv = (t_v2f){fmodf(uv.x, 1.0f), fmodf(uv.y, 1.0f)};
 	cols[0] = v4faddv4f(v4fmulv4f(cols[0], nv4f((1.0f - uv.x))),
 		v4fmulv4f(cols[1], nv4f(uv.x)));
 	cols[1] = v4faddv4f(v4fmulv4f(cols[2], nv4f(1.0f - uv.x)),
@@ -76,5 +76,5 @@ t_v3f			rtex_uvimage_nor(t_rtex *tex, t_v2f uv)
 
 	v = rtex_uvimage_col(tex, uv);
 	pv4fmulv4f(pv4fsubv4f(&v, nv4f(0.5f)), nv4f(2.0f));
-	return(*((t_v3f *)&v));
+	return (*((t_v3f *)&v));
 }

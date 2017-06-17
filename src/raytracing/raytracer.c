@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raytracer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fanno <fanno@student.42.fr>                +#+  +:+       +#+        */
+/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/16 13:52:21 by fanno             #+#    #+#             */
-/*   Updated: 2017/06/17 15:46:59 by qloubier         ###   ########.fr       */
+/*   Created: 2017/05/16 13:52:21 by qloubier          #+#    #+#             */
+/*   Updated: 2017/06/17 16:52:36 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ t_rtrd		shadowtrace(t_rtray ray, t_rtrld l, t_rdrtree *tree, t_ui raycount)
 		rdata.frag.color.w = a.w;
 	return (rdata);
 }
-
 
 t_rtrd		raytrace(t_rtray ray, t_rdrtree *tree, t_ui raycount)
 {

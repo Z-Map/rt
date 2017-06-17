@@ -6,15 +6,13 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/25 15:28:51 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/25 15:36:45 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 16:21:50 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_DATA_PARSER
-#define RT_DATA_PARSER
+# define RT_DATA_PARSER
 
 # include "rt_prototype.h"
-
-
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/19 18:42:52 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/11 20:52:54 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/16 15:17:09 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static void		*clean(t_rtnode *node)
 		clean(n);
 		n = c;
 	}
-	free (node);
+	free(node);
 	return (NULL);
 }
 

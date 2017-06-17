@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 21:07:42 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/01 02:05:23 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 16:19:50 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # include "rt_prototype.h"
 # include "data/rt_data_objects.h"
-#include "data/rt_data_material.h"
+# include "data/rt_data_material.h"
 # include "rt_core.h"
 
 # define RTOBJ_MEMBUF_SIZE		128

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 22:47:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/15 08:38:10 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 16:19:30 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define RDR_MAXWORKER 8
 # define MAXLIGHTINTENSITY 3.0f
 # define MARGIN 0.001f
+
 // # define SHADOWLIMIT 1000.0f
 
 void		*rt_rdrmgr_main(void *arg);
@@ -84,6 +85,5 @@ int			img_calc(t_rt *rt, t_rtrmgr *rmgr);
 
 int			render_worker(t_ui px, t_ui step, t_rt *rt, t_rtrmgr *rmgr);
 int			rdr_start_workers(t_rt *rt, t_rtrmgr *mgr);
-
 
 #endif

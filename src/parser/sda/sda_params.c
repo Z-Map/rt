@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 17:35:04 by ealbert           #+#    #+#             */
-/*   Updated: 2017/06/11 17:21:43 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 15:26:56 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int			check_line3(t_rtnode *node, t_gparse gparse)
 	if (tab[tid].parse_elm &&
 		ft_eparse(gparse, (t_elm *)(t_ul)tab[tid].parse_elm, obj) != -1)
 		return (1);
-	if (tab[tid].type & (VISIBLE|SCENE))
+	if (tab[tid].type & (VISIBLE | SCENE))
 	{
 		mat = ((t_rtobd *)obj)->plan.material;
 		gparse.cfgbits = NULL;

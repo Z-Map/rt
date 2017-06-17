@@ -6,7 +6,7 @@
 /*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 20:54:32 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/06/08 22:07:18 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 15:20:01 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@ void		rt_resize(void *env, int x, int y)
 	if (!env)
 		return ;
 	rt = (t_rt *)env;
-
 	pthread_mutex_lock(&(rt->render.refresh_lock));
 	rt->render.target_size = (t_v2ui){x, y};
-	rt->flags |= RTF_RDRREFRESH|RTF_CLEARLAYER;
+	rt->flags |= RTF_RDRREFRESH | RTF_CLEARLAYER;
 	pthread_mutex_unlock(&(rt->render.refresh_lock));
 }

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 18:23:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/13 17:44:22 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 16:25:49 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ static int		is_in_cone(float da, t_v3f hitp)
 	return (0);
 }
 
-
 static int		cone_depth(t_rtrgd *gd, t_rtray r, t_v2f d, t_v3f hp[2])
 {
 	int			ret;
@@ -75,8 +74,8 @@ static int		cone_depth(t_rtrgd *gd, t_rtray r, t_v2f d, t_v3f hp[2])
 	else if ((gd->depth.x >= 0.0f) && (d.x < gd->depth.x) &&
 		(d.y > gd->depth.x) && (d.y < gd->depth.y))
 	{
-			ret |= geo_setdepth(gd, 1, d.y);
-			d.y = INFINITY;
+		ret |= geo_setdepth(gd, 1, d.y);
+		d.y = INFINITY;
 	}
 	else if ((d.x > gd->depth.x) && (d.x < gd->depth.y) && (ret & 8))
 		ret |= geo_setdepth(gd, 1, d.x);

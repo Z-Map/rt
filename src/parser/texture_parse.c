@@ -6,13 +6,12 @@
 /*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 18:05:08 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/06/08 06:34:16 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 15:27:36 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_texture.h"
 
-//*
 static int	tp_parse(const char *name, size_t len, t_val *val, void *mem)
 {
 	size_t	i;
@@ -52,4 +51,3 @@ int		texture_parse(t_val *val, void *mem, t_gparse parser)
 		ret = ti_parse(parser.value, parser.v_len, val, mem);
 	return (ret);
 }
-//*/

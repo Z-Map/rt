@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 16:11:06 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/17 16:03:34 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 16:53:53 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ int			geo_setdepth(t_rtrgd *gd, int dim, float depth)
 	{
 		gd->depth.x = depth;
 		gd->flags &= ~RAY_E0;
-		gd->flags |= RAY_GDEPTH0|RAY_INTER0;
+		gd->flags |= RAY_GDEPTH0 | RAY_INTER0;
 	}
 	if (dim & 2)
 	{
 		gd->depth.y = depth;
 		gd->flags &= ~RAY_E1;
-		gd->flags |= RAY_GDEPTH1|RAY_INTER1;
+		gd->flags |= RAY_GDEPTH1 | RAY_INTER1;
 	}
 	return (dim);
 }

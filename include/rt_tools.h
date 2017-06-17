@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 01:52:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/17 15:38:13 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 16:54:40 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,5 @@ void			geo_gnor(t_rtrd *rdata);
 void			geo_tan(t_rtrd *rdata);
 t_rtrgd			geo_getglobal(t_rtrgd gd, t_rtray r);
 t_mat2x3f		geo_cubic_tangentspace(t_v3f nor, t_v3f x, t_v3f y, t_v3f z);
-
 
 #endif

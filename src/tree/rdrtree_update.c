@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/01 07:14:35 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/11 23:12:56 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/16 16:16:12 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ static int		load_tex(void *inst, void *env)
 
 int				rtree_update(t_rdrtree *tree)
 {
-	// size_t		i;
-
+	// size_t	i;
 	tree->visible = node_tabfromtype((t_rtree *)tree, VISIBLE,
 		&(tree->visible_len));
 	tree->lights = node_tabfromtype((t_rtree *)tree, LIGHT,

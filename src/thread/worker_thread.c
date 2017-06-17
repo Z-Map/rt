@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/31 16:41:54 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/31 18:23:19 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/16 16:55:31 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void		*rdr_workermain(t_rdrwrk *wrk)
 {
-	RT_DBGMC(RT_DBGM_WORKER|RT_DBGM_RENDER,"Render worker started.");
+	RT_DBGMC(RT_DBGM_WORKER | RT_DBGM_RENDER, "Render worker started.");
 	wrk->ret = render_worker(wrk->start, wrk->step, wrk->rt, wrk->rmgr);
 	pthread_exit(NULL);
 }
@@ -26,7 +26,7 @@ int				rdr_start_workers(t_rt *rt, t_rtrmgr *mgr)
 	size_t		i;
 	int			ret;
 
-	RT_DBGMC(RT_DBGM_WORKER|RT_DBGM_RENDER, "Render workers creation.");
+	RT_DBGMC(RT_DBGM_WORKER | RT_DBGM_RENDER, "Render workers creation.");
 	ret = RTRMGR_FINISHED;
 	i = RDR_MAXWORKER;
 	while (i--)

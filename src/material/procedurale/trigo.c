@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 13:47:04 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/11 22:33:58 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 16:17:10 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ float		rtex_proc_bubble(t_v3f vec)
 		a = 0.0f;
 	return (a);
 }
-
 
 float		rtex_proc_circle(t_v3f vec)
 {
