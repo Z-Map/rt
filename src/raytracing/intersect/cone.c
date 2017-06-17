@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 18:23:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/13 17:44:22 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 15:25:14 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static int		is_in_cone(float da, t_v3f hitp)
 		return (1);
 	return (0);
 }
-
 
 static int		cone_depth(t_rtrgd *gd, t_rtray r, t_v2f d, t_v3f hp[2])
 {

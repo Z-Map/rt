@@ -6,12 +6,12 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 01:31:45 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/11 14:49:12 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 16:20:19 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_TEXTURE_H
-#define RT_TEXTURE_H
+# define RT_TEXTURE_H
 
 # include "rt_prototype.h"
 # include "data/rt_data_texture.h"

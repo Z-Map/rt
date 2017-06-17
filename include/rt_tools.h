@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 01:52:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/13 19:12:03 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 16:20:07 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,5 @@ int				geo_setdepth(t_rtrgd *gd, int dim, float depth);
 void			geo_gnor(t_rtrd *rdata);
 void			geo_tan(t_rtrd *rdata);
 t_rtrgd			geo_getglobal(t_rtrgd gd, t_rtray r);
-
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 20:15:49 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/06/11 17:10:27 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 15:28:47 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int				sda_make_node_parser(t_rtnode *node, t_rtobt type,
 		return (1);
 	else
 		return (-1);
-
 }
 
 t_rtnode		*make_node(t_rtobt type, const char *name)
@@ -33,7 +32,7 @@ t_rtnode		*make_node(t_rtobt type, const char *name)
 	new = NULL;
 	inst = NULL;
 	obj = NULL;
-	if ((obj = mkobject(type, name)) && (!(type & (VISIBLE|SCENE)) ||
+	if ((obj = mkobject(type, name)) && (!(type & (VISIBLE | SCENE)) ||
 		(((t_rtobd *)obj)->plan.material = mkmaterial("default"))) &&
 		(inst = mkinstance(obj, NULL)) &&
 		(new = mknode(inst)))

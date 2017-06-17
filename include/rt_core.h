@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 17:08:51 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/07 22:02:41 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 16:21:03 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "data/rt_data_core.h"
 
 # ifdef RT_DEBUG
+
 extern t_rt	*g_rt_root;
 #  define RT_DBGI __LINE__, __FILE__, __func__
 #  define RT_DBGP(code, name) rtd_point(g_rt_root, code, name, RT_DBGI)

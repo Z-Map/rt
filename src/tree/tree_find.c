@@ -6,18 +6,16 @@
 /*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 17:01:12 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/06/03 16:06:13 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/16 16:15:45 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "rt_object.h"
 #include "rt_tree.h"
 #include "rt_parser.h"
 
-
 static t_rtnode	*findn(t_rtnode *node, int (*f)(void *, void *),
-					t_rtnode **nxt, void *env)
+		t_rtnode **nxt, void *env)
 {
 	t_rtnode	*ret;
 
@@ -50,7 +48,7 @@ t_rtnode		*tree_find(t_rtnode *node, int (*f)(void *, void *), void *env)
 	{
 		ret = findn(node, f, &it, env);
 		if (!it)
-			break;
+			break ;
 		node = it->next;
 	}
 	return (ret);

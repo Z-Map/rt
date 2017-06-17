@@ -6,12 +6,11 @@
 /*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/25 18:41:48 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/06/01 02:04:28 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 16:17:48 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_object.h"
-
 
 int				rmmaterial(t_rtmat *mat)
 {

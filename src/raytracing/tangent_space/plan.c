@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 09:11:45 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/15 21:50:18 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/16 16:56:34 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int			gettan_plan(t_rtobd *ob, t_rtrd *rdata)
 		rdata->lgeo.hit_tangent.y = (t_v3f){0.0, -1.0, 0.0};
 		rdata->geo.hit_tangent.x = v3fmulv3f(rdata->lgeo.node->transform.x,
 			nv3f(-1.0f));
-		rdata->geo.hit_tangent.y =v3fmulv3f(rdata->lgeo.node->transform.y,
+		rdata->geo.hit_tangent.y = v3fmulv3f(rdata->lgeo.node->transform.y,
 			nv3f(-1.0f));
 	}
 	else

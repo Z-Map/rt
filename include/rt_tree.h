@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 15:45:36 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/01 23:16:34 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 16:18:55 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ t_rtnode			*tree_find(t_rtnode *node,
 						int (*f)(void *, void *), void *env);
 //*/
 int					node_isoftype(t_rtobi *inst, void *env);
-t_rtnode			**node_tabfromtype(t_rtree *tree, t_rtobt type, size_t *len);
-
+t_rtnode			**node_tabfromtype(t_rtree *tree, t_rtobt type,
+		size_t *len);
 
 // Set "parent" as parent of node and remove "node" from his parent before
 // if needed - return node or null if error

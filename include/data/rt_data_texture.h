@@ -6,12 +6,12 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 01:32:47 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/11 11:18:21 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 16:21:34 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_DATA_TEXTURE_H
-#define RT_DATA_TEXTURE_H
+# define RT_DATA_TEXTURE_H
 
 # include "mathex/vector.h"
 # include "mglw/mglw.h"

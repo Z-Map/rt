@@ -6,7 +6,7 @@
 /*   By: fanno <fanno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 15:04:58 by fanno             #+#    #+#             */
-/*   Updated: 2017/06/13 16:15:42 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 15:25:43 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 static void		trans_dim(t_mat3x2f *b, t_mattf *mat, t_v3f v)
 {
-	v = (t_v3f){(mat->x.x * v.x) + (mat->y.x *v.y) + (mat->z.x * v.z),
+	v = (t_v3f){(mat->x.x * v.x) + (mat->y.x * v.y) + (mat->z.x * v.z),
 		(mat->x.y * v.x) + (mat->y.y * v.y) + (mat->z.y * v.z),
 		(mat->x.z * v.x) + (mat->y.z * v.y) + (mat->z.z * v.z)};
 	b->x.x = mxminf(v.x, b->x.x);

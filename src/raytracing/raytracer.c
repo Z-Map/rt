@@ -6,7 +6,7 @@
 /*   By: fanno <fanno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/16 13:52:21 by fanno             #+#    #+#             */
-/*   Updated: 2017/06/14 04:45:39 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/17 15:23:15 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ t_rtrd		shadowtrace(t_rtray ray, t_rtrld l, t_rdrtree *tree, t_ui raycount)
 		rdata.frag.color.w = a.w;
 	return (rdata);
 }
-
 
 t_rtrd		raytrace(t_rtray ray, t_rdrtree *tree, t_ui raycount)
 {

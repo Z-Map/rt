@@ -6,10 +6,11 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/30 22:15:56 by ealbert           #+#    #+#             */
-/*   Updated: 2017/06/02 13:20:12 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/16 15:10:33 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include "rt_tree.h"
 
 int			node_isoftype(t_rtobi *inst, void *env)
