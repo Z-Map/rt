@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 22:47:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/18 18:26:31 by ealbert          ###   ########.fr       */
+/*   Updated: 2017/06/18 21:29:45 by ealbert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,9 @@ t_rtrd		raytrace(t_rtray ray, t_rdrtree *tree, t_ui raycount);
 t_rtrd		rdr_filter(t_rtrfd frag, t_rtree *tree);
 
 int			img_calc(t_rt *rt, t_rtrmgr *rmgr);
+
+t_mat3d		kernel_which(int knl);
+t_v4f		*kernel_calc(t_v4f *img, t_mat3d knl, t_v2ui max);
 
 int			render_worker(t_ui px, t_ui step, t_rt *rt, t_rtrmgr *rmgr);
 int			rdr_start_workers(t_rt *rt, t_rtrmgr *mgr);
