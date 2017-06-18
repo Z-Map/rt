@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 09:03:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/17 15:44:33 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/18 19:22:37 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,9 @@ int			gettan_sphere(t_rtobd *ob, t_rtrd *rdata)
 		rdata->lgeo.hit_nor));
 	rdata->lgeo.flags |= RAY_GHTANG;
 	return (1);
+}
+
+t_v2f		getuv_sphere(t_rtrgd gd)
+{
+	return (nortouv(gd.hit_nor));
 }
