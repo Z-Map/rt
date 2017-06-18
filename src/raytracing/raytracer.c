@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/16 13:52:21 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/18 19:18:05 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/18 20:29:42 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ t_rtrd		shadowtrace(t_rtray ray, t_rtrld l, t_rdrtree *tree, t_ui raycount)
 	mat = ((t_rtobd *)(rdata.geo.inst->obj))->plan.material;
 	rdata.frag = shade_diffuse(rdata, mat, tree);
 	rdata.frag.color.w = 1.0f - rdata.frag.color.w;
+	a.x = mxmaxf(rdata.frag.color.z,
+		mxmaxf(rdata.frag.color.x, rdata.frag.color.y));
 	if (rdata.frag.color.w <= 0.0f)
 		return (rdata);
+	pv4faddv4f(&rdata.frag.color, nv4f((1.0 - a.x) * 0.3));
 	a = rdata.frag.color;
 	l.color = v4to3f(rdata.frag.color);
 	l.depth -= rdata.geo.hit_point.w;
