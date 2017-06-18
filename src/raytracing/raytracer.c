@@ -6,12 +6,13 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/16 13:52:21 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/17 18:47:15 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/18 19:18:05 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "mathex/utils.h"
+#include "mathex/vector.h"
 #include "rt_tools.h"
 #include "rt_render.h"
 
@@ -21,6 +22,7 @@ t_rtrd		shadowtrace(t_rtray ray, t_rtrld l, t_rdrtree *tree, t_ui raycount)
 	t_rtrd	rdata;
 	t_v4f	a;
 
+	rdata.frag.color = (t_v4f){l.color.x, l.color.y, l.color.z, 1.0f};
 	rdata.lgeo = rdr_raycast(ray, tree, l.depth);
 	rdata.frag.color.w = (rdata.lgeo.flags & RAY_GVALID) ? 0.0f : 1.0f;
 	rdata.lgeo.flags &= ~RAY_GLOCAL;
@@ -34,6 +36,7 @@ t_rtrd		shadowtrace(t_rtray ray, t_rtrld l, t_rdrtree *tree, t_ui raycount)
 	if (rdata.frag.color.w <= 0.0f)
 		return (rdata);
 	a = rdata.frag.color;
+	l.color = v4to3f(rdata.frag.color);
 	l.depth -= rdata.geo.hit_point.w;
 	rdata = shadowtrace(ray_transmit(rdata.geo, l.v), l, tree, raycount - 1);
 	if (rdata.geo.hit_point.w < l.depth)
