@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 20:28:15 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/18 18:29:03 by ealbert          ###   ########.fr       */
+/*   Updated: 2017/06/18 19:54:43 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_v3f			shade_sunlight(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree)
 	l.depth = INFINITY;
 	l.v = nod->invert_transform.z;
 	l.pwr = (v.x * l.v.x + v.y * l.v.y + v.z * l.v.z);
+	l.pwr *= l.ob->pointlight.intensity;
 	return ((l.pwr < 0.0f) ? nv3f(0.0f) : shadow_test(geo, l, tree));
 }
 

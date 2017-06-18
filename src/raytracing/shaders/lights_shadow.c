@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 20:26:37 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/18 18:58:33 by ealbert          ###   ########.fr       */
+/*   Updated: 2017/06/18 20:02:55 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@
 t_v3f		shadow_test(t_rtrgd geo, t_rtrld l, t_rdrtree *tree)
 {
 	t_rtrd	rdata;
-	
-	rdata = shadowtrace(ray_bounceto(geo, *(t_v3f *)(&l.v)), l, tree, 3);
-	return (*pv3fmulv3f((t_v3f *)&rdata.frag.color, nv3f(rdata.frag.color.w)));
+
+	l.color = rgbatov3f(l.ob->pointlight.color);
+	rdata = shadowtrace(ray_bounceto(geo, *(t_v3f *)(&l.v)), l, tree, 5);
+	return (*pv3fmulv3f((t_v3f *)&rdata.frag.color,
+		nv3f(rdata.frag.color.w * l.pwr)));
+	// return (nv3f(rdata.frag.color.w * l.pwr));
 }
