@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 20:28:15 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/13 15:27:27 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/18 18:29:03 by ealbert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@
 #include "rt_tools.h"
 #include "rt_render.h"
 
-float	shade_sunlight(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree)
+t_v3f			shade_sunlight(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree)
 {
 	t_v3f		v;
 	t_rtrld		l;
 
 	l.ob = (t_rtobd *)(nod->node.content->obj);
 	if (!nod)
-		return (0.0f);
+		return (nv3f(0.0f));
 	v = geo.hit_nor;
 	l.depth = INFINITY;
 	l.v = nod->invert_transform.z;
 	l.pwr = (v.x * l.v.x + v.y * l.v.y + v.z * l.v.z);
-	return ((l.pwr < 0.0f) ? 0.0f : shadow_test(geo, l, tree));
+	return ((l.pwr < 0.0f) ? nv3f(0.0f) : shadow_test(geo, l, tree));
 }
 
-float	shade_spotlight(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree)
+t_v3f			shade_spotlight(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree)
 {
 	t_v3f		v;
 	t_rtrld		l;
@@ -39,7 +39,7 @@ float	shade_spotlight(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree)
 
 	l.ob = (t_rtobd *)(nod->node.content->obj);
 	if (!nod)
-		return (0.0f);
+		return (nv3f(0.0f));
 	l.v = normlen3f(v3fsubv3f(nod->transform.offset,
 		*(t_v3f *)(&geo.hit_point)), &l.depth);
 	l.pwr = 1.0f;
@@ -52,17 +52,17 @@ float	shade_spotlight(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree)
 	v = nod->transform.z;
 	l.pwr *= ((v.x * l.v.x + v.y * l.v.y + v.z * l.v.z) - a) / (1.0f - a);
 	l.pwr *= l.ob->pointlight.intensity;
-	return ((l.pwr < 0.0f) ? 0.0f : shadow_test(geo, l, tree));
+	return ((l.pwr < 0.0f) ? nv3f(0.0f) : shadow_test(geo, l, tree));
 }
 
-float	shade_light(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree)
+t_v3f			shade_light(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree)
 {
 	t_v3f		v;
 	t_rtrld		l;
 
 	l.ob = (t_rtobd *)(nod->node.content->obj);
 	if (!nod)
-		return (0.0f);
+		return (nv3f(0.0f));
 	l.v = normlen3f(v3fsubv3f(nod->transform.offset,
 		*(t_v3f *)(&geo.hit_point)), &l.depth);
 	l.pwr = 1.0f;
@@ -71,5 +71,5 @@ float	shade_light(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree)
 	v = geo.hit_nor;
 	l.pwr *= (v.x * l.v.x + v.y * l.v.y + v.z * l.v.z);
 	l.pwr *= l.ob->pointlight.intensity;
-	return ((l.pwr < 0.0f) ? 0.0f : shadow_test(geo, l, tree));
+	return ((l.pwr < 0.0f) ? nv3f(0.0f) : shadow_test(geo, l, tree));
 }

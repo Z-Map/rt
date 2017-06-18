@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 22:47:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/17 18:32:48 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/18 18:26:31 by ealbert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,14 @@ t_rtrfd		shade_sky(t_rtrd rdata, t_rdrtree *tree);
 t_rtrfd		shade_diffuse(t_rtrd rdata, t_rtmat *mat, t_rdrtree *tree);
 t_v3f		shade_normale(t_rtrd *rdata, t_rtmat *mat);
 t_rtrfd		shade_reflect(t_rtrd rdata, t_rtmat *mat, t_rdrtree *tree);
-float		shade_lightsloop(t_rtrgd geo, t_rdrtree *tree);
-float		shade_sunlight(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree);
-float		shade_light(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree);
-float		shade_spotlight(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree);
+t_v3f		shade_lightsloop(t_rtrgd geo, t_rdrtree *tree);
+t_v3f		shade_sunlight(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree);
+t_v3f		shade_light(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree);
+t_v3f		shade_spotlight(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree);
 
 t_rtrd		shadow_transmit(t_rtrd rdata, t_rdrtree *tree, t_ui raycount);
 t_rtrd		shadowtrace(t_rtray ray, t_rtrld l, t_rdrtree *tree, t_ui raycount);
-float		shadow_test(t_rtrgd geo, t_rtrld l, t_rdrtree *tree);
+t_v3f		shadow_test(t_rtrgd geo, t_rtrld l, t_rdrtree *tree);
 
 t_rtray		rdr_pxray(t_ui x, t_ui y, t_rtrmgr *rmgr, t_rtrnode *camnode);
 
