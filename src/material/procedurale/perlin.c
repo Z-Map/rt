@@ -123,5 +123,5 @@ float			turbulance(t_v3f vec, float freq, float depth)
 
 float			rtex_proc_perlin(t_v3f vec)
 {
-	return (turbulance(vec, 0.1, 4.0));
+	return (turbulance(vec, 0.1, 4.0) * 255.0);
 }
