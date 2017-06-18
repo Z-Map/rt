@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 15:03:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/15 08:45:38 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/18 18:14:01 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ typedef struct			s_rt_render_manager
 {
 	unsigned long		rdrstate;
 	t_v2ui				rsize;
-	t_rgba				*rpx;
+	t_v4f				*rpx;
 	t_rdrtree			*rendertree;
 	t_rt				*rt;
 }						t_rtrmgr;
@@ -110,7 +110,7 @@ struct					s_rt_render
 	t_v2ui				target_size;
 	t_rtree				*target;
 	t_v2ui				render_size;
-	t_rgba				*render_px;
+	t_v4f				*render_px;
 };
 
 #endif
