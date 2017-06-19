@@ -6,12 +6,13 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 18:56:47 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/17 16:26:17 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/19 17:43:22 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mathex/utils.h"
 #include "rt_tools.h"
+#include "rt_render.h"
 
 t_mat2x3f	geo_cubic_tangentspace(t_v3f nor, t_v3f x, t_v3f y, t_v3f z)
 {
@@ -67,4 +68,22 @@ void		geo_tan(t_rtrd *rdata)
 			return ;
 		gtan((t_rtobd *)(lgd->inst->obj), rdata);
 	}
+}
+
+t_v2f		geo_uv(t_rtrd *rd)
+{
+	t_v2f	uv;
+	t_ul	type;
+
+	type = rd->lgeo.inst->obj->type;
+	uv = (t_v2f){0.0f, 0.0f};
+	if (!(rd->lgeo.flags & RAY_GLOCAL))
+		uv = getuv_cuboid(rd->geo);
+	else if ((type & (CUBOID | PLAN | CONE)) || !(rd->lgeo.flags & RAY_GINTER))
+		uv = getuv_cuboid(rd->lgeo);
+	else if (type & SPHERE)
+		uv = getuv_sphere(rd->lgeo);
+	else if (type & CYLINDER)
+		uv = getuv_cylinder(rd->lgeo);
+	return (uv);
 }

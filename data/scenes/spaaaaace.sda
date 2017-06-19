@@ -1,0 +1,36 @@
+SUNLIGHT: sun
+	rot:	90	0	90
+
+SCENE: space
+	diffuse: data/textures/skybox_space.jpg
+
+CAMERA:
+	rotation:	-90		0		0
+	position:	100		-20		0
+
+
+	
+SPHERE: earth
+	normal:		data/textures/earth_normal.jpg
+	diffuse:	data/textures/earthhd.jpg
+	pos:		0	0	0
+	radius:		42
+	SPHERE: atmosphere
+		normal:		data/textures/clouds_earth_normal.jpg
+		diffuse:	data/textures/clouds_earth.png
+		pos:		0	0	0
+		radius:		41
+		
+	
+SPHERE: moon
+	normal:		data/textures/moon_normal.jpg
+	diffuse:	data/textures/moon.jpg
+	pos:		100	0	0
+	radius:		3
+	POINTLIGHT: lapinquibrille
+		pos: 4 0 2
+	CUBE: lapin
+		diffuse : data/textures/lapin.jpg
+		diffuse.offset: 0.5 0.5 
+		pos: 4 0 0
+

@@ -6,11 +6,15 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/17 18:31:50 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/18 14:39:48 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/19 18:18:21 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
+#include "mathex/utils.h"
+#include "mathex/vector.h"
 #include "rt_render.h"
+#include "rt_tools.h"
 
 t_v3f		shade_normale(t_rtrd *rdata, t_rtmat *mat)
 {
@@ -21,9 +25,8 @@ t_v3f		shade_normale(t_rtrd *rdata, t_rtmat *mat)
 	nor = rdata->geo.hit_nor;
 	if (!(mat->normal.flags & TEX_VALID))
 		return (nor);
-	uv = v2fmulv2f(v2faddv2f((t_v2f){rdata->lgeo.hit_point.x
-		+ rdata->lgeo.hit_point.z, rdata->lgeo.hit_point.y
-		+ rdata->lgeo.hit_point.z}, mat->normal.offset), mat->normal.size);
+	uv = v2fmulv2f(v2faddv2f(geo_uv(rdata), mat->normal.offset),
+		mat->normal.size);
 	nor = mat->normal.tex->getnor(mat->normal.tex, uv);
 	// nor.x *= -1.0f;
 	nor.y *= -1.0f;
