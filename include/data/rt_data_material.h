@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 16:52:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/11 10:59:49 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/18 14:50:49 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 # define RTMAT_MEMBUF_SIZE		128
 
-static const t_elm			g_el_texi = {"texi", sizeof(t_rtexi),
+static const t_elm		g_el_texi = {"texi", sizeof(t_rtexi),
 	0, 0, NULL, NULL, NULL, texture_parse, NULL};
 
 struct					s_rt_material

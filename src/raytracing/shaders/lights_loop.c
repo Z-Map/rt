@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/02 13:21:20 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/11 23:01:46 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/18 19:02:15 by ealbert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "rt_tools.h"
 #include "rt_render.h"
 
-static float	typelight(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree)
+static t_v3f	typelight(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree)
 {
 	if (nod->node.content->obj->type & SUNLIGHT)
 		return (shade_sunlight(geo, nod, tree));
@@ -25,16 +25,17 @@ static float	typelight(t_rtrgd geo, t_rtrnode *nod, t_rdrtree *tree)
 	return (shade_light(geo, nod, tree));
 }
 
-float			shade_lightsloop(t_rtrgd geo, t_rdrtree *tree)
+t_v3f			shade_lightsloop(t_rtrgd geo, t_rdrtree *tree)
 {
 	size_t		i;
-	float		intensity;
+	t_v3f		intensity;
 
 	i = tree->lights_len;
-	intensity = 0.0f;
+	intensity = (t_v3f){.x = 0.0f, .y = 0.0f, .z = 0.0f};
 	if (!i)
-		return (0.0f);
+		return (intensity);
 	while (i--)
-		intensity += typelight(geo, (t_rtrnode *)(tree->lights[i]), tree);
+		pv3faddv3f(&intensity,
+			typelight(geo, (t_rtrnode *)(tree->lights[i]), tree));
 	return (intensity);
 }

@@ -6,22 +6,22 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 15:56:32 by ealbert           #+#    #+#             */
-/*   Updated: 2017/06/17 18:45:52 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/18 20:35:48 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "rt_render.h"
 
-static t_rgba		calc_pixel(t_ui x, t_ui y, t_rtrmgr *rmgr)
+static t_v4f		calc_pixel(t_ui x, t_ui y, t_rtrmgr *rmgr)
 {
 	t_rtrd			rd;
 	// t_v3f			col;
 
 	rd = raytrace(rdr_pxray(x, y, rmgr,
-		(t_rtrnode *)(rmgr->rendertree->tree.camera)),rmgr->rendertree, 2);
+		(t_rtrnode *)(rmgr->rendertree->tree.camera)),rmgr->rendertree, 6);
 	// col = v3faddv3f(v3fmulv3f(rd.geo.hit_tangent.y, nv3f(0.5f)), nv3f(0.5f));
-	return (v4ftorgba(rd.frag.color));
+	return (rd.frag.color);
 }
 
 int					render_worker(t_ui px, t_ui step, t_rt *rt, t_rtrmgr *rmgr)

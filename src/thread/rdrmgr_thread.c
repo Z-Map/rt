@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/23 01:42:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/08 22:59:10 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/18 18:10:44 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ static void	rt_sync_rdrdone(t_rt *rt)
 			free(img->pixels);
 		img->x = rt->render.render_size.x;
 		img->y = rt->render.render_size.y;
-		img->memlen = img->x * img->y * sizeof(t_rgba);
+		img->bpp = sizeof(t_v4f);
+		img->format = MGLW_RGBA;
+		img->type = MGLW_FLOAT;
+		img->memlen = img->x * img->y * sizeof(t_v4f);
 		img->pixels = (t_uc *)(rt->render.render_px);
 		rt->render.render_px = NULL;
 		rt->flags |= RTF_RDRDISP;
