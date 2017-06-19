@@ -6,14 +6,14 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 16:52:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/18 14:50:49 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/19 15:36:09 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_DATA_MATERIAL_H
 # define RT_DATA_MATERIAL_H
 
-# include "mathex/vector.h"
+# include "mathex/color.h"
 # include "mathex/matrix.h"
 # include "mglw/mglw.h"
 # include "rt_prototype.h"

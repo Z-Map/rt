@@ -6,12 +6,13 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/09 07:39:03 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/17 15:30:24 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/19 15:36:40 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
 #include "mathex/vector.h"
+#include "mathex/color.h"
 #include "mathex/utils.h"
 #include "rt_texture.h"
 

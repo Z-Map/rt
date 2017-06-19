@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 15:03:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/18 18:14:01 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/19 15:35:41 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <pthread.h>
 # include "mathex/vector.h"
+# include "mathex/color.h"
 # include "mathex/matrix.h"
 
 # include "rt_prototype.h"
