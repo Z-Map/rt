@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 22:47:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/19 12:24:59 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/19 15:22:23 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int			gettan_mesh(t_rtobd *ob, t_rtrd *rdata);
 
 t_v2f		getuv_sphere(t_rtrgd gd);
 t_v2f		getuv_cuboid(t_rtrgd gd);
+t_v2f		getuv_cylinder(t_rtrgd gd);
 
 t_rtrfd		shade_sky(t_rtrd rdata, t_rdrtree *tree);
 t_rtrfd		shade_diffuse(t_rtrd rdata, t_rtmat *mat, t_rdrtree *tree);
