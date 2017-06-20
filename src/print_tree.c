@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 17:59:51 by ealbert           #+#    #+#             */
-/*   Updated: 2017/06/17 16:42:15 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/20 14:43:35 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ static int		print_node(t_rtobi *obi, int i)
 	ft_printf(" '%s' : Obj(type: %X, prop: %b)\n", obj->name, obj->type,
 		obj->usercfg);
 	j = i;
-	while (j--)
-		ft_putchar('\t');
-	m = obi->lbounds;
 	if (obj->type & VISIBLE)
 	{
+		while (j--)
+			ft_putchar('\t');
+		m = obi->lbounds;
 		m = *((t_mat3x2f *)(t_ul)&(((t_rtobd *)obj)->plan.limx));
 		ft_printf("bounds : x[%v2f] y[%v2f] z[%v2f]}\n", &m.x, &m.y, &m.z);
 	}

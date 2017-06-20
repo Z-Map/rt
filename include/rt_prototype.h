@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/13 17:32:20 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/20 16:55:04 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@
 # define RAY_GINTER					0x200ul
 # define RAY_INTER0					0x1000ul
 # define RAY_INTER1					0x2000ul
-# define RAY_E0						0x5006ul
-# define RAY_E1						0xA009ul
+# define RAY_E0						0x1006ul
+# define RAY_E1						0x2009ul
 # define RAY_GVALID					0x1000ul
 
 /*

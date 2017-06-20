@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 15:03:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/19 15:35:41 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/20 20:39:00 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 
 # include "rt_prototype.h"
 
+# define RDR_GEOSTACK 16
+
 struct					s_rt_render_ray
 {
 	t_v3f				start;
@@ -31,11 +33,10 @@ struct					s_rt_render_ray
 struct					s_rt_render_gdata
 {
 	t_ul				flags;
-	t_v2f				depth;
-	t_v4f				hit_point;
+	t_v3f				hit_point;
+	float				depth;
 	t_mat2x3f			hit_tangent;
 	t_v3f				hit_nor;
-	t_v3f				hit_nor2;
 	t_rtray				ray;
 	t_rtobi				*inst;
 	t_rtrnode			*node;
@@ -76,12 +77,17 @@ struct					s_rt_render_data
 	t_rdrtree			*tree;
 	float				fdepth;
 	t_rgba				fcolor;
-	struct				s_rt_raynum
-	{
-		t_ui			transmit;
-		t_ui			reflect;
-	}					raynum;
 };
+
+typedef struct			s_rt_ray_data
+{
+	t_rdrtree			*tree;
+	t_rtray				ray;
+	t_ui				transmission;
+	t_ui				reflecion;
+	float				depth;
+	t_rtrgd				geostack[RDR_GEOSTACK];
+}						t_rayd;
 
 typedef struct			s_rt_render_manager
 {

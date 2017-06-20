@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:38:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/17 15:21:20 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/20 14:38:44 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ t_rtrgd			rdr_raycast(t_rtray ray, t_rdrtree *tree, float lim)
 	size_t		i;
 
 	geo = (t_rtrgd){ .flags = 0, .depth = (t_v2f){-INFINITY,
-		lim}, .hit_point = nv4f(0.0f)};
+		lim}, .hit_point = nv4f(0.0f), .inst = NULL, .node = NULL};
 	gd = (t_rtrgd){ .flags = 0, .depth = (t_v2f){lim,
-		lim}, .hit_point = nv4f(0.0f)};
+		lim}, .hit_point = nv4f(0.0f), .inst = NULL, .node = NULL};
 	if (!(tree->tree.node.type & TREET_RENDER) || !(tree->visible))
 		return (gd);
 	i = tree->visible_len;

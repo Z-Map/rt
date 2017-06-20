@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 22:47:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/19 15:22:23 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/20 21:34:04 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,11 @@ int			gettan_tris(t_rtobd *ob, t_rtrd *rdata);
 int			getnor_mesh(t_rtobd *ob, t_rtrd *rdata);
 int			gettan_mesh(t_rtobd *ob, t_rtrd *rdata);
 
-
 t_v2f		getuv_sphere(t_rtrgd gd);
 t_v2f		getuv_cuboid(t_rtrgd gd);
 t_v2f		getuv_cylinder(t_rtrgd gd);
+
+int			ray_setgeo(t_rayd *rayd, t_rtrgd gd);
 
 t_rtrfd		shade_sky(t_rtrd rdata, t_rdrtree *tree);
 t_rtrfd		shade_diffuse(t_rtrd rdata, t_rtmat *mat, t_rdrtree *tree);
@@ -83,7 +84,8 @@ t_rtray		rdr_pxray(t_ui x, t_ui y, t_rtrmgr *rmgr, t_rtrnode *camnode);
 t_rtrgd		rdr_raycast(t_rtray ray, t_rdrtree *tree, float lim);
 t_rtrfd		rdr_shade(t_rtrd rdata, t_rdrtree *tree);
 t_rtrd		rdr_transmit(t_rtrd rdata, t_rdrtree *tree, t_ui raycount);
-t_rtrd		raytrace(t_rtray ray, t_rdrtree *tree, t_ui raycount);
+t_rtrd		rayshade(t_rtrgd *gd, t_rayd *rayd);
+t_rtrd		raytrace(t_rayd *rayd);
 
 t_rtrd		rdr_filter(t_rtrfd frag, t_rtree *tree);
 

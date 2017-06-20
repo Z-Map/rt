@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lights_shadow.c                                    :+:      :+:    :+:   */
+/*   geometry.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/02 20:26:37 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/20 13:56:10 by qloubier         ###   ########.fr       */
+/*   Created: 2017/06/20 21:13:06 by qloubier          #+#    #+#             */
+/*   Updated: 2017/06/20 22:43:57 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
 #include "mathex/utils.h"
-#include "mathex/vector.h"
 #include "rt_tools.h"
 #include "rt_render.h"
 
-t_v3f		shadow_test(t_rtrgd geo, t_rtrld l, t_rdrtree *tree)
+int			ray_setgeo(t_rayd *rayd, t_rtrgd gd)
 {
-	t_rtrd	rdata;
-	t_v3f	pwr;
+	int		i;
+	int		ret;
+	t_rtrgd	tmp;
+	t_rtrgd	*tab;
 
-	(void)tree;
-	(void)geo;
-	l.color = rgbatov3f(l.ob->pointlight.color);
-	// rdata = shadowtrace(ray_bounceto(geo, *(t_v3f *)(&l.v)), l, tree, 5);
-	pwr = nv3f(rdata.frag.color.w * l.pwr);
-	// return (*pv3fmulv3f((t_v3f *)&rdata.frag.color, pwr));
-	return (nv3f(l.pwr));
-	// return (nv3f(rdata.frag.color.w * l.pwr));
+	i = 0;
+	ret = 0;
+	tab = rayd->geostack;
+	while (i < RDR_GEOSTACK)
+	{
+		tmp = tab[i];
+		if ((gd.depth > 0.0) && (gd.depth < tab[i].depth))
+		{
+			tmp = gd;
+			gd = tab[i];
+			ret = 1;
+		}
+		tab[i] = tmp;
+	}
+	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/16 13:52:21 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/19 18:30:52 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/20 15:11:48 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_rtrd		shadowtrace(t_rtray ray, t_rtrld l, t_rdrtree *tree, t_ui raycount)
 	rdata.frag.color = (t_v4f){l.color.x, l.color.y, l.color.z, 1.0f};
 	rdata.lgeo = rdr_raycast(ray, tree, l.depth);
 	rdata.frag.color.w = (rdata.lgeo.flags & RAY_GVALID) ? 0.0f : 1.0f;
-	rdata.lgeo.flags &= ~RAY_GLOCAL;
+	geo_gnor(&rdata);
 	rdata.geo = geo_getglobal(rdata.lgeo, ray);
 	if (!raycount || !(rdata.lgeo.flags & RAY_GVALID)
 		|| (rdata.geo.hit_point.w > l.depth))
@@ -67,6 +67,8 @@ t_rtrd		raytrace(t_rtray ray, t_rdrtree *tree, t_ui raycount)
 	geo_tan(&rdata);
 	rdata.geo = geo_getglobal(rdata.lgeo, ray);
 	rdata.frag = rdr_shade(rdata, tree);
+	if (raycount == 5 && (rdata.lgeo.flags & RAY_GVALID))
+		ft_printf("Obj : %s col : %v4f \n", rdata.lgeo.inst->name, &rdata.frag);
 	return (rdr_transmit(rdata, tree, raycount));
 	// return (rdata);
 }

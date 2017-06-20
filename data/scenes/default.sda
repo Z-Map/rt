@@ -1,9 +1,6 @@
-SUNLIGHT: sun
-	rot: -60 0 0
-
 SCENE: sky
 	color: #32d4de
-	diffuse: data/textures/sunset.jpg
+	diffuse: data/textures/skybox_space.jpg
 	diffuse.offset: 0.25
 
 CAMERA: cam1
@@ -12,7 +9,7 @@ CAMERA: cam1
 
 CYLINDER: cy
 	lim.z : -3 3
-	color :	#50246f
+	color :	#8850246f
 	pos: -3 0.0 0
 	rot: 0 0 0
 	radius : 1.0
@@ -24,7 +21,7 @@ SPHERE: moon
 	radius: 0.3
 	SPHERE: moonlx
 		lim.x :	-0.2 0.2
-		color :	#50a3a3a3
+		color :	#10ff0000
 		pos: 0 0 -1
 		radius: 0.3
 	SPHERE: moonlz
@@ -63,15 +60,29 @@ CONE: conayou
 PLAN: ground
 	bound.x: -50 50
 	bound.y: -50 50
-	color:		#7edff5
+	#color:		#7edff5
 	diffuse:	data/textures/grassflower.jpg
 	normal:		data/textures/velour_normal.jpg
 	normal.scale: 0.3 0.3
 	position:	0	0		-2
 
 POINTLIGHT: point
+	color: #ff5972
+	radius: 5.0
 	position:	0	-2		0
+	intensity: 1.0
+
+POINTLIGHT: point
+	color: #8eff59
+	position:	4	0		1
+	intensity: 1.0
+
+POINTLIGHT: point
+	color: #009ae6
+	position:	-5	0		1
+	intensity: 0.5
 
 SPOT: spot
-	rot: 0 0 0
+	rot: 0 -50 0
+	intensity: 2
 	position:	5	0		2

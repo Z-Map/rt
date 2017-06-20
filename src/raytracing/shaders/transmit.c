@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 22:01:25 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/12 00:32:17 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/20 14:48:03 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,20 @@ t_rtrd		rdr_transmit(t_rtrd rdata, t_rdrtree *tree, t_ui raycount)
 {
 	t_rtrd	trd;
 	float	alpha;
+	t_v3f	col;
 
-	if (rdata.frag.color.w >= 1.0)
+	alpha = mxrangef(rdata.frag.color.w, 0.0f, 1.0f);
+	if (alpha >= 1.0f)
 		return (rdata);
-	alpha = rdata.frag.color.w;
-	trd = rdata;
-	trd.ray = ray_bounceto(rdata.geo, rdata.ray.direction);
+	// trd = rdata;
+	trd.ray = ray_transmit(rdata.geo, rdata.ray.direction);
 	if (raycount)
 		trd = raytrace(trd.ray, tree, raycount - 1);
 	else
 		trd.frag = shade_sky(rdata, tree);
-	pv3fmulv3f((t_v3f *)&trd.frag.color, nv3f(1.0f - alpha));
-	pv3faddv3f(pv3fmulv3f((t_v3f *)&rdata.frag.color, nv3f(alpha)),
-		*(t_v3f *)(&trd.frag.color));
+	col = *(t_v3f *)&(trd.frag.color);
+	pv3faddv3f(pv3fmulv3f((t_v3f *)&(rdata.frag.color), nv3f(alpha)),
+		v3fmulv3f(col, nv3f(1.0f - alpha)));
 	rdata.frag.color.w = 1.0f;
 	return (rdata);
 }
