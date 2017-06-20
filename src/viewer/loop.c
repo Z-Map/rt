@@ -14,6 +14,7 @@
 
 int				viewer_loop(t_rt *rt)
 {
+	//rt->viewwer->layer
 	(void)rt;
 	return (0);
 }

@@ -6,11 +6,12 @@
 /*   By: alhelson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/20 19:58:22 by alhelson          #+#    #+#             */
-/*   Updated: 2017/06/20 19:58:37 by alhelson         ###   ########.fr       */
+/*   Updated: 2017/06/20 20:12:50 by alhelson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_ui.h"
+#include "rt_tree.h"
 #include <stdlib.h>
 
 t_layer_rect		*mklayer_rect(t_v2f pos, t_v2f dim, t_v4i color,\
@@ -25,4 +26,18 @@ t_layer_rect		*mklayer_rect(t_v2f pos, t_v2f dim, t_v4i color,\
 	rect->color = (t_v4i){color.x, color.y, color.z, color.w};
 	rect->placement = placement;
 	return (rect);
+}
+
+t_rtnode			*mknlayer_rect(t_v2f pos, t_v2f dim, t_v4i color,\
+	int placement)
+{
+	t_layer_rect	*rect;
+	t_rtnode		*node;
+
+	if (!(rect = mklayer_rect(pos, dim, color, placement)))
+		return (0);
+	node = mknode((t_rtobi *)(rect));
+	node->type = TE_RECT;
+	node->flags = get_id_ui_node();
+	return (node);
 }
