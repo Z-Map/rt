@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_ui.c                                          :+:      :+:    :+:   */
+/*   mklayer_root.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alhelson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/20 17:41:46 by alhelson          #+#    #+#             */
-/*   Updated: 2017/06/20 20:01:15 by alhelson         ###   ########.fr       */
+/*   Created: 2017/06/20 20:00:27 by alhelson          #+#    #+#             */
+/*   Updated: 2017/06/20 20:00:44 by alhelson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt_ui.h"
-#include "rt_tree.h"
+#include "./rt_ui.h"
 #include <stdlib.h>
-#include <stdio.h>
 
-t_rtnode			*init_ui(t_v2i dim)
+t_layer_root		*mklayer_root(t_v2i dim)
 {
-	t_rtnode		*node;
-	t_layer_root	*root;
+	t_layer_root	*l;
 
-	if (!(root = mklayer_root(dim)))
+	if (!(l = malloc(sizeof(t_layer_root))))
 		return (0);
-	node = mknode((t_rtobi *)(root));
-	node->type = TE_ROOT;
-	node->flags = get_id_ui_node();
-	return (node);
+	l->gen.id = 0;
+	l->gen.dim = dim;
+	l->gen.pos = (t_v2i){0, 0};
+	return (l);
 }

@@ -3,10 +3,12 @@
 
 # include "data/data_ui.h"
 
-t_rtnode	*init_ui(void);
+int		get_id_ui_node(void);
 
-t_layer_root	*init_layer_root(t_v2i dim);
+t_rtnode	*init_ui(t_v2i dim);
 
-t_layer_rect	*init_layer_rect(t_v2f pos, t_v2f dim, t_v4i color, int placement);
+t_layer_root	*mklayer_root(t_v2i dim);
+
+t_layer_rect	*mklayer_rect(t_v2f pos, t_v2f dim, t_v4i color, int placement);
 
 #endif
