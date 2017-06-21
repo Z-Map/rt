@@ -6,7 +6,7 @@
 /*   By: alhelson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/21 17:49:55 by alhelson          #+#    #+#             */
-/*   Updated: 2017/06/21 17:50:12 by alhelson         ###   ########.fr       */
+/*   Updated: 2017/06/21 23:03:27 by alhelson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 #include "rt_tree.h"
 #include <stdlib.h>
 
-t_layer_border		*mklayer_border(t_v2f pos, t_v2f dim, t_v4i color, int placement)
+t_layer_border			*mklayer_border(t_v2f pos, t_v2f dim, t_v4i color,\
+int placement)
 {
-	t_layer_border	*border;
+	t_layer_border		*border;
 
 	if (!(border = malloc(sizeof(t_layer_border))))
 		return (0);
@@ -30,11 +31,11 @@ t_layer_border		*mklayer_border(t_v2f pos, t_v2f dim, t_v4i color, int placement
 	return (border);
 }
 
-t_rtnode		*mknlayer_border(t_v2f pos, t_v2f dim, t_v4i color,\
-        int placement)
+t_rtnode				*mknlayer_border(t_v2f pos, t_v2f dim, t_v4i color,\
+int placement)
 {
-	t_layer_border	*border;
-	t_rtnode	*node;
+	t_layer_border		*border;
+	t_rtnode			*node;
 
 	if (!(border = mklayer_border(pos, dim, color, placement)))
 		return (0);
