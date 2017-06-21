@@ -13,14 +13,12 @@ static t_layer_gen	*get_gen_parent(t_rtnode *node)
 /*
 ** mis a jours de la position et de la dimension de la forme
 */
-static void	update_rect(t_layer_rect *rect, t_layer_gen *gen_father)
+static void	update_rect_pos(t_layer_rect *rect, t_layer_gen *gen_father)
 {
-	rect->gen.pos.x = (int)(rect->pos.x * gen_father->dim.x);
-        rect->gen.pos.y = (int)(rect->pos.y * gen_father->dim.y);
+	rect->gen.pos.x = gen_father->pos.x + (int)(rect->pos.x * gen_father->dim.x);
+        rect->gen.pos.y = gen_father->pos.y + (int)(rect->pos.y * gen_father->dim.y);
 	rect->gen.dim.x = (int)(rect->dim.x * gen_father->dim.x);
 	rect->gen.dim.y = (int)(rect->dim.y * gen_father->dim.y);
-	printf("--> %d | %d | %d | %d\n", rect->gen.pos.x, rect->gen.pos.y,\
-	rect->gen.dim.x, rect->gen.dim.y);
 }
 
 /*
@@ -33,13 +31,13 @@ static void update(t_rtnode *node)
 	if (!(node->parent))
 		return ;
 	gen = get_gen_parent(node);
-	if (node->type == TE_RECT)
-	{
-		printf("Update rect.\n");
-		update_rect(((t_layer_rect *)(node->content)), gen);
-	}
+	if (node->type == TE_RECT) // mis a jour de la position
+		update_rect_pos(((t_layer_rect *)(node->content)), gen);
 }
 
+/*
+* recursif : verifier son bon deroulement
+*/
 void	update_ui(t_rtnode *tree)
 {
 	t_rtnode **tmp;
@@ -49,8 +47,7 @@ void	update_ui(t_rtnode *tree)
 	{
 		update(tree);
 		if ((*tmp)->childs)
-			update_ui((*tmp)->childs);
+			update_ui((*tmp)->childs); //rappel recursif
 		tmp = &((*tmp)->next);
 	}
-	return ;
 }

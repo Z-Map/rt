@@ -3,7 +3,6 @@
 
 static int tree_found(void *a, void *b)
 {
-	printf("Pass bitch ...\n");
 	if (*(int *)a == *(int *)b)
 		return (1);
 	return (0);
@@ -16,18 +15,13 @@ static t_rtnode *findn(t_rtnode *node, int (*f)(void *, void *),
 
         if (!node)
                 return (NULL);
-	printf("*****\n");
-	if (!nxt || *nxt != node)
-		printf("-----|||||----\n");
         if ((!nxt || (*nxt != node)) && f(&(node->flags), env))
                 return (node);
-	printf(":::::::\n");
         if (nxt)
                 *nxt = (*nxt)->parent;
         while (nxt && ((*nxt)->parent != *nxt) && (!(*nxt)->next))
                 *nxt = (*nxt)->parent;
         ret = NULL;
-	printf("-----------\n");
         if (node->childs)
                 ret = findn(node->childs, f, NULL, env);
         if (!ret)
@@ -51,8 +45,6 @@ static t_rtnode                *tree_findd(t_rtnode *node, int (*f)(void *, void
                          break ;
                 node = it->next;
         }
-	if (!ret)
-		printf("<---------->\n");
         return (ret);
 }
 
