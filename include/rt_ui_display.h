@@ -22,6 +22,8 @@
 */
 void	draw_rect(mglimg *img, t_layer_rect *rect);
 
+void	draw_border(mglimg *img, t_layer_border *rect);
+
 /*
 ** add pixel in the image
 */

@@ -31,7 +31,7 @@ static void update(t_rtnode *node)
 	if (!(node->parent))
 		return ;
 	gen = get_gen_parent(node);
-	if (node->type == TE_RECT) // mis a jour de la position
+	if (node->type == TE_RECT || node->type == TE_BORDER) // mis a jour de la position
 		update_rect_pos(((t_layer_rect *)(node->content)), gen);
 }
 
@@ -40,14 +40,12 @@ static void update(t_rtnode *node)
 */
 void	update_ui(t_rtnode *tree)
 {
-	t_rtnode **tmp;
+	t_rtnode *tmp;
 
-	tmp = &tree;
-	while (*tmp)
-	{
-		update(tree);
-		if ((*tmp)->childs)
-			update_ui((*tmp)->childs); //rappel recursif
-		tmp = &((*tmp)->next);
-	}
+	tmp = tree;
+	update(tree);
+	if (tmp->next)
+		update_ui(tmp->next); //rappel recursif
+	if (tmp->childs)
+		update_ui(tmp->childs);
 }

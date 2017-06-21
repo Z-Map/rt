@@ -21,6 +21,7 @@ enum			e_type_element
 	TE_ROOT,
 	TE_RECT,
 	TE_CARRY,
+	TE_BORDER,
 	TE_ERR
 };
 
@@ -47,6 +48,17 @@ struct			s_layer_rect
 	t_v2f		dim; //dimension relative en %
 	t_v4i		color; //couleur
 	int			placement; //type de placement
+};
+
+struct			s_layer_border
+{
+	t_layer_gen	gen;
+	t_v2f		pos;
+	t_v2f		dim;
+	t_v4i		color;
+	int		placement;
+	int		border_display;
+	int		dim_border;
 };
 
 #endif

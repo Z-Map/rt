@@ -43,6 +43,12 @@ t_layer_rect		*mklayer_rect(t_v2f pos, t_v2f dim,\
 t_rtnode			*mknlayer_rect(t_v2f pos, t_v2f dim,\
 		t_v4i color, int placement);
 
+t_layer_border          *mklayer_border(t_v2f pos, t_v2f dim, t_v4i color,\
+int placement);
+
+t_rtnode                *mknlayer_border(t_v2f pos, t_v2f dim, t_v4i color,\
+	int placement);
+
 /*
 ** update
 */

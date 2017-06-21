@@ -200,7 +200,7 @@ typedef struct s_obj				t_obj;
 typedef struct s_layer_generic t_layer_gen;
 
 typedef struct s_layer_root	t_layer_root;
-
 typedef struct s_layer_rect	t_layer_rect;
+typedef struct s_layer_border	t_layer_border;
 
 #endif

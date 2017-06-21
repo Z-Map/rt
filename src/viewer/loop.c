@@ -19,28 +19,22 @@
 
 void				draw_f(t_rtnode *ui, mglimg *layer)
 {
-//	printf("\t ---> %d | %d\n", ui->flags, ui->type);
 	if (ui->type == TE_RECT)
-	{
-		printf("Draw rect ... : %d\n", ui->flags);
 		draw_rect(layer, (t_layer_rect *)(ui->content));
-	}
+	else if (ui->type == TE_BORDER)
+		draw_border(layer, (t_layer_border *)(ui->content));
 }
 
 void				draw_all(t_rtnode *ui, mglimg *layer)
 {
-        t_rtnode **tmp;
+        t_rtnode *tmp;
 
-        tmp = &ui;
-        while (*tmp)
-        {
-                //update(tree);
-		printf("--> %d\n", ui->flags);
-		draw_f(ui, layer);
-                if ((*tmp)->childs)
-                        draw_all((*tmp)->childs, layer); //rappel recursif
-                tmp = &((*tmp)->next);
-        }
+        tmp = ui;
+	draw_f(ui, layer);
+	if (tmp->next)
+		draw_all(tmp->next, layer); //rappel recursif
+	if (tmp->childs)
+		draw_all(tmp->childs, layer);
 }
 
 int				viewer_loop(t_rt *rt)
