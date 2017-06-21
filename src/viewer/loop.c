@@ -40,7 +40,7 @@ void				draw_all(t_rtnode *ui, mglimg *layer)
 int				viewer_loop(t_rt *rt)
 {
 	//desactivation de l affichage
-	((t_layer_root *)(rt->viewer.ui->content))->gen.show = 0;
+	((t_layer_root *)(rt->viewer.ui->content))->gen.show = 1;
 	update_ui_root_dim(rt);
 	update_ui(rt->viewer.ui);
 	draw_all(rt->viewer.ui, rt->viewer.layer);

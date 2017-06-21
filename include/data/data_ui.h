@@ -25,6 +25,16 @@ enum			e_type_element
 	TE_ERR
 };
 
+enum			e_type_placement
+{
+	PL_NONE,
+	PL_TOP,
+	PL_BOTTOM,
+	PL_LEFT,
+	PL_RIGHT,
+	PL_MIDDLE
+};
+
 /*
 ** generic data
 */
@@ -34,6 +44,7 @@ struct			s_layer_generic
 	int			show;
 	t_v2i		pos;
 	t_v2i		dim;
+	int		placement;
 };
 
 struct			s_layer_root
@@ -47,7 +58,6 @@ struct			s_layer_rect
 	t_v2f		pos; //position relative en %
 	t_v2f		dim; //dimension relative en %
 	t_v4i		color; //couleur
-	int			placement; //type de placement
 };
 
 struct			s_layer_border
@@ -56,9 +66,9 @@ struct			s_layer_border
 	t_v2f		pos;
 	t_v2f		dim;
 	t_v4i		color;
-	int		placement;
 	int		border_display;
-	int		dim_border;
+	float		dim_border;
+	int		valid_border;
 };
 
 #endif

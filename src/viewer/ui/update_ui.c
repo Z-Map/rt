@@ -19,6 +19,7 @@ static void	update_rect_pos(t_layer_rect *rect, t_layer_gen *gen_father)
         rect->gen.pos.y = gen_father->pos.y + (int)(rect->pos.y * gen_father->dim.y);
 	rect->gen.dim.x = (int)(rect->dim.x * gen_father->dim.x);
 	rect->gen.dim.y = (int)(rect->dim.y * gen_father->dim.y);
+	main_pts_placement(rect->gen.placement, &(rect->gen.pos), gen_father->dim, rect->gen.dim);
 }
 
 /*

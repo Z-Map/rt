@@ -23,9 +23,10 @@ t_layer_border		*mklayer_border(t_v2f pos, t_v2f dim, t_v4i color, int placement
 	border->pos = (t_v2f){pos.x, pos.y};
 	border->dim = (t_v2f){dim.x, dim.y};
 	border->color = (t_v4i){color.x, color.y, color.z, color.w};
-	border->placement = placement;
-	border->dim_border = 2;
+	border->valid_border = 15;
+	border->dim_border = 0.02;
 	border->gen.show = 1;
+	border->gen.placement = placement;
 	return (border);
 }
 

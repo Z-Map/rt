@@ -3,17 +3,22 @@
 
 int	is_border(t_layer_border *b, int x, int y)
 {
+	int vx;
+	int vy;
+
+	vx = b->dim_border * b->gen.dim.x;
+	vy = b->dim_border * b->gen.dim.y;
 	//top test
-	if (y < b->dim_border)
+	if (y < vy && (b->valid_border & 1))
 		return (1);
 	//left test
-	if (x < b->dim_border)
+	if (x < vx && (b->valid_border & 2))
 		return (1);
 	//right
-	if (x > b->gen.dim.x - b->dim_border)
+	if (x >= b->gen.dim.x - vx && (b->valid_border & 4))
 		return (1);
 	//bottom test
-	if (y > b->gen.dim.y - b->dim_border)
+	if (y >= b->gen.dim.y - vy && (b->valid_border & 8))
 		return (1);
 	return (0);
 }

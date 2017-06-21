@@ -30,18 +30,52 @@ t_rtnode			*init_ui(t_v2i dim)
 	node->parent = node;
 
 	//debut d ajout des elements
-	if (!(tmp = tree_addchild(node, mknlayer_rect((t_v2f){0.4,0.4}, (t_v2f){0.2, 0.2},\
-	(t_v4i){200,100,100,255}, 0))))
+	if (!(tmp = tree_addchild(node, mknlayer_rect((t_v2f){0.0,0.0}, (t_v2f){0.2, 1.0},\
+	(t_v4i){200,100,100,200}, PL_LEFT))))
 		return (0);
-	//((t_layer_root *)(node->content))->gen.show = 0;
-        if (!(tree_addchild_wid(node, mknlayer_rect((t_v2f){0.1,0.1}, (t_v2f){0.2, 0.2},\
-          (t_v4i){0,0,255,255}, 0), 1)))
+        if (!(tree_addchild_wid(node, mknlayer_rect((t_v2f){0.0,0.0}, (t_v2f){0.2, 0.8},\
+          (t_v4i){0,0,255,200}, PL_MIDDLE), 1)))
          	return (0);
-	//tets d ajout de bordure sur l image principal
+	//tets d ajout de bordure sur l image principal id : 3
         if (!(tree_addchild_wid(node, mknlayer_border((t_v2f){0.0,0.0}, (t_v2f){1.0, 1.0},\
- 	      (t_v4i){0, 255, 0, 255}, 0), 1)))
+ 	      (t_v4i){0, 255, 0, 200}, PL_MIDDLE), 1)))
 		return (0);
 	//node->childs->parent = node;
-	tmp = tree_found_node_with_id(node, 2);
+	//tmp = tree_found_node_with_id(node, 2);
+
+	/*
+	** modif of property of border : 3
+	*/
+	tmp = tree_found_node_with_id(node, 3);
+	((t_layer_border *)(tmp->content))->valid_border = 4;
+
+	//creation de l element de droit 4 - 6
+	if (!(tmp = tree_addchild(node, mknlayer_rect((t_v2f){0.0,0.0}, (t_v2f){0.2, 1.0},\
+	(t_v4i){200,100,100,200}, PL_RIGHT))))
+		return (0);
+        if (!(tree_addchild_wid(node, mknlayer_rect((t_v2f){0.0,0.0}, (t_v2f){0.2, 0.8},\
+          (t_v4i){0,0,255,200}, PL_MIDDLE), 4)))
+                return (0);
+        //tets d ajout de bordure sur l image principal id : 3
+        if (!(tree_addchild_wid(node, mknlayer_border((t_v2f){0.0,0.0}, (t_v2f){1.0, 1.0},\
+              (t_v4i){0, 255, 0, 200}, PL_MIDDLE), 4)))
+                return (0);
+	tmp = tree_found_node_with_id(node, 6);
+        ((t_layer_border *)(tmp->content))->valid_border = 2;
+
+	/*
+	** create de l element du haut : 7 - 9
+	*/
+        if (!(tmp = tree_addchild(node, mknlayer_rect((t_v2f){0.0,0.0}, (t_v2f){0.36, 0.25},\
+        (t_v4i){200,100,100,200}, PL_TOP))))
+                return (0);
+        if (!(tree_addchild_wid(node, mknlayer_border((t_v2f){0.0,0.0}, (t_v2f){1.0, 1.0},\
+              (t_v4i){0, 255, 0, 200}, PL_MIDDLE), 7)))
+                return (0);
+        if (!(tree_addchild_wid(node, mknlayer_rect((t_v2f){0.0,0.0}, (t_v2f){0.8, 0.8},\
+          (t_v4i){0,0,255,200}, PL_MIDDLE), 7)))
+                return (0);
+	tmp = tree_found_node_with_id(node, 8);
+	((t_layer_border *)(tmp->content))->valid_border = 14;
 	return (node);
 }

@@ -69,4 +69,13 @@ t_rtnode			*tree_found_node_with_id(t_rtnode *node, int id);
 */
 int					tree_addchild_wid(t_rtnode *tree, t_rtnode *node, int id);
 
+/*
+** manage of the position : postion relative
+*/
+void					center_pts(t_v2i *pos, t_v2i dim_p, t_v2i dim_c);
+void					top_pts(t_v2i *pos, t_v2i dim_p, t_v2i dim_c);
+void					bottom_pts(t_v2i *pos, t_v2i dim_p, t_v2i dim_c);
+void                                    left_pts(t_v2i *pos, t_v2i dim_p, t_v2i dim_c);
+void                                    right_pts(t_v2i *pos, t_v2i dim_p, t_v2i dim_c);
+void					main_pts_placement(int placement, t_v2i *pos, t_v2i dim_p, t_v2i dim_c);
 #endif
