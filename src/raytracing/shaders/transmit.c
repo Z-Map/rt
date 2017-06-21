@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 22:01:25 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/12 00:32:17 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/21 20:25:18 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_rtrd		rdr_transmit(t_rtrd rdata, t_rdrtree *tree, t_ui raycount)
 		return (rdata);
 	alpha = rdata.frag.color.w;
 	trd = rdata;
-	trd.ray = ray_bounceto(rdata.geo, rdata.ray.direction);
+	trd.ray = ray_bounceto(rdata.geo, calc_refraction(rdata.lgeo));
 	if (raycount)
 		trd = raytrace(trd.ray, tree, raycount - 1);
 	else
@@ -42,4 +42,24 @@ t_rtrd		rdr_transmit(t_rtrd rdata, t_rdrtree *tree, t_ui raycount)
 		*(t_v3f *)(&trd.frag.color));
 	rdata.frag.color.w = 1.0f;
 	return (rdata);
+}
+
+t_v3f		calc_refraction(t_rtrgd gd)
+{
+	float	ref;
+	float	n;
+	float	c1;
+	float	c2;
+	float	coef;
+
+	ref = ((t_rtobd *)(gd.inst->obj))->plan.material->refraction;
+	if (ref != 1.0)
+		ft_printf("ref = %f\n", ref);
+	n = 1 / ref;
+	c1 = v3fdotv3f(gd.ray.direction, gd.hit_nor);
+	c2 = sqrtf(1 - ((1 * ref) * (1 * ref)) * (1.0 - (c1 * c1)));
+	coef = (c1 > 0) ? -1.0f : 0.0f;
+	gd.ray.direction = v3faddv3f(v3fmulv3f(nv3f(n), gd.ray.direction),
+		v3fmulv3f(nv3f((n * c1) - (c2 * coef)),	gd.hit_nor));
+	return (gd.ray.direction);
 }
