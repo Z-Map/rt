@@ -22,5 +22,6 @@ t_layer_root		*mklayer_root(t_v2i dim)
 	l->gen.id = 0;
 	l->gen.dim = dim;
 	l->gen.pos = (t_v2i){0, 0};
+	l->gen.show = 1;
 	return (l);
 }

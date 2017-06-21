@@ -31,14 +31,16 @@ void				draw_all(t_rtnode *ui, mglimg *layer)
 
         tmp = ui;
 	draw_f(ui, layer);
-	if (tmp->next)
+	if (tmp->next && (((t_layer_root *)(tmp->content))->gen.show))
 		draw_all(tmp->next, layer); //rappel recursif
-	if (tmp->childs)
+	if (tmp->childs && (((t_layer_root *)(tmp->content))->gen.show))
 		draw_all(tmp->childs, layer);
 }
 
 int				viewer_loop(t_rt *rt)
 {
+	//desactivation de l affichage
+	((t_layer_root *)(rt->viewer.ui->content))->gen.show = 0;
 	update_ui_root_dim(rt);
 	update_ui(rt->viewer.ui);
 	draw_all(rt->viewer.ui, rt->viewer.layer);
