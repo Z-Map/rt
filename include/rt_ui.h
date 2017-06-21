@@ -81,4 +81,10 @@ void						right_pts(t_v2i *pos, t_v2i dim_p, t_v2i dim_c);
 void						main_pts_placement(int placement, t_v2i *pos,\
 		t_v2i dim_p, t_v2i dim_c);
 
+/*
+** savoir si une position est comprise dans un element node
+*/
+
+int     ui_check_hit(t_rtnode *node, t_v2i *pos_cursor);
+
 #endif
