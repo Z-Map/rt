@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 15:38:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/20 14:38:44 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/21 20:14:24 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,97 +14,45 @@
 #include "rt_render.h"
 #include "rt_tools.h"
 
-static t_ul	get_flags(t_ul flags, int dim)
+static int	raycast_rnod(t_rayd *rayd, t_rtrnode *nod, t_v2f lim)
 {
-	t_ul	ret;
+	t_rtray	ray;
+	t_rtrgd	gd[2];
+	int		(*inter)(t_rtray, t_rtobd *, t_rtrgd *);
+	t_rtobi *obi;
 
-	ret = (RAY_GDEPTH0 >> dim) | RAY_GHPOINT;
-	if (flags & (RAY_GDEPTH0 << dim))
-		ret |= RAY_GLOCAL;
-	if (flags & (RAY_INTER0 << dim))
-		ret |= RAY_GINTER;
-	else
-		ret |= RAY_GHNOR;
-	return (ret);
-}
-
-static int	depth_test(t_rtrgd geo, t_rtrgd *gd, t_rtrnode *nod)
-{
-	float	d;
-
-	if (geo.depth.y < 0.0)
+	obi = (t_rtobi *)(nod->node.content);
+	inter = obi->obj->intersect;
+	gd[0] = (t_rtrgd){.flags = 0, .depth = lim.x, .hit_point = nv3f(0.0f),
+		.inst = NULL, .node = NULL};
+	gd[0] = (t_rtrgd){.flags = 0, .depth = lim.y, .hit_point = nv3f(0.0f),
+		.inst = NULL, .node = NULL};
+	if (!inter || !nod)
 		return (0);
-	d = (gd->depth.x < 0.0) ? gd->depth.y : gd->depth.x;
-	if (geo.depth.x > d)
+	if (!bound_raycast(&(rayd->ray), nod->lbound, gd))
 		return (0);
-	else if ((geo.depth.x < 0.0) && (geo.depth.y > d))
+	ray = ray_trans(rayd->ray, nod->invert_transform);
+	if (!bound_raycast(&ray, obi->lbounds, gd) ||
+		!inter(ray, (t_rtobd *)(obi->obj), gd))
 		return (0);
-	*gd = geo;
-	gd->node = nod;
-	if (geo.depth.x < 0.0)
-	{
-		gd->flags = get_flags(gd->flags, 1) | RAY_GVALID;
-		gd->hit_nor = gd->hit_nor2;
-	}
-	else
-		gd->flags = get_flags(gd->flags, 0) | RAY_GVALID;
 	return (1);
 }
 
-static int	intersect_obj(t_rtray ray, t_rtobi *obi, t_rtrgd *geo)
+int			rdr_raycast(t_rayd *rayd, t_rdrtree *tree, t_v2f lim)
 {
-	int		(*inter)(t_rtray, t_rtobd *, t_rtrgd *);
-
-	geo->flags &= ~(RAY_GDEPTH0 | RAY_GDEPTH1);
-	inter = obi->obj->intersect;
-	if (bound_raycast(&ray, obi->lbounds, geo) && inter
-		&& inter(ray, (t_rtobd *)(obi->obj), geo))
-	{
-		geo->ray = ray;
-		geo->inst = obi;
-		return (1);
-	}
-	return (0);
-}
-
-static int	raycast_rnod(t_rtray ray, t_rtrnode *nod, t_rtrgd geo, t_rtrgd *gd)
-{
-	int			ret;
-
-	ret = 0;
-	if (!nod)
-		return (0);
-	if (bound_raycast(&ray, nod->lbound, &geo) &&
-		intersect_obj(ray_trans(ray, nod->invert_transform),
-		(t_rtobi *)(nod->node.content), &geo))
-		ret = depth_test(geo, gd, nod);
-	return (ret);
-}
-
-t_rtrgd			rdr_raycast(t_rtray ray, t_rdrtree *tree, float lim)
-{
-	t_rtrgd		geo;
-	t_rtrgd		gd;
 	t_rtnode	**nc;
 	size_t		i;
+	int			ret;
 
-	geo = (t_rtrgd){ .flags = 0, .depth = (t_v2f){-INFINITY,
-		lim}, .hit_point = nv4f(0.0f), .inst = NULL, .node = NULL};
-	gd = (t_rtrgd){ .flags = 0, .depth = (t_v2f){lim,
-		lim}, .hit_point = nv4f(0.0f), .inst = NULL, .node = NULL};
-	if (!(tree->tree.node.type & TREET_RENDER) || !(tree->visible))
-		return (gd);
+	if (!rayd || !(tree->tree.node.type & TREET_RENDER) || !(tree->visible))
+		return (0);
 	i = tree->visible_len;
 	nc = tree->visible;
+	ret = 0;
 	while (i--)
 	{
-		if (nc[i] && raycast_rnod(ray, (t_rtrnode *)(nc[i]), geo, &gd))
-		{
-			if (gd.depth.x >= 0.0)
-				geo.depth.y = gd.depth.x;
-			else
-				geo.depth.y = gd.depth.y;
-		}
+		if (nc[i] && raycast_rnod(rayd, (t_rtrnode *)(nc[i]), lim))
+			ret = 1;
 	}
-	return (gd);
+	return (0);
 }

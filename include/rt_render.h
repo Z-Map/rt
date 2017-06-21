@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 22:47:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/20 21:34:04 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/21 20:14:12 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_v3f		shadow_test(t_rtrgd geo, t_rtrld l, t_rdrtree *tree);
 
 t_rtray		rdr_pxray(t_ui x, t_ui y, t_rtrmgr *rmgr, t_rtrnode *camnode);
 
-t_rtrgd		rdr_raycast(t_rtray ray, t_rdrtree *tree, float lim);
+int			rdr_raycast(t_rayd *rayd, t_rdrtree *tree, t_v2f lim);
 t_rtrfd		rdr_shade(t_rtrd rdata, t_rdrtree *tree);
 t_rtrd		rdr_transmit(t_rtrd rdata, t_rdrtree *tree, t_ui raycount);
 t_rtrd		rayshade(t_rtrgd *gd, t_rayd *rayd);
