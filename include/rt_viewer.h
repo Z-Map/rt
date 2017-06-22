@@ -18,6 +18,7 @@
 
 # include "rt_prototype.h"
 # include "rt_core.h"
+# include "rt_ui.h"
 
 void			*rt_viewer_main(void *arg);
 int				rt_init_window(t_rt *rt);

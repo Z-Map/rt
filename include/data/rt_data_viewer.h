@@ -28,6 +28,7 @@ struct					s_rt_viewer
 	mglwin				**wins;
 	mglimg				*layer;
 	mglimg				*rdrtarget;
+	t_rtnode			*ui;
 };
 
 #endif

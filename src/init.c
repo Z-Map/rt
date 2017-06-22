@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "rt_core.h"
+#include "rt_ui.h"
 
 #ifdef RT_DEBUG
 t_rt		*g_rt_root = NULL;
@@ -38,6 +39,8 @@ int			rt_init_main(t_rt *rt)
 			.codepoint = 0, .cpline = 0, .cpname = NULL, .cpfile = NULL,
 			.cpfunc = NULL}
 	};
+	rt->viewer.ui = init_ui((t_v2i){RT_DEFAULT_RSIZE_X, RT_DEFAULT_RSIZE_Y});
+	update_ui(rt->viewer.ui);
 	ft_bzero(rt->errors, sizeof(rt->errors));
 	rt_error(0, (const char *)rt);
 	RT_DBGM("RT started.");
