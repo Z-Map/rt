@@ -24,6 +24,8 @@ void	draw_rect(mglimg *img, t_layer_rect *rect);
 
 void	draw_border(mglimg *img, t_layer_border *rect);
 
+void	draw_checkbox(mglimg *img, t_layer_checkbox *rect);
+
 /*
 ** add pixel in the image
 */

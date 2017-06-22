@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 14:51:55 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/07 21:39:41 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/22 19:19:29 by alhelson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int				viewer_run(t_rt *rt, t_rtview *v)
 	if (rt->flags & RTF_RDRDISP)
 		mglw_draw_itow(v->win, v->rdrtarget, 0, 0);
 	mglwin_draw(v->win);
-	mglw_setGLContext(NULL);
+mglw_setGLContext(NULL);
 	if (!(v->keys & RTWK_REFRESH))
 		pthread_cond_wait(&(v->refresh_cond), &(v->refresh_lock));
 	if (rt->flags & RTF_CLEARLAYER)

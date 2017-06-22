@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ui_check_hit.c                                     :+:      :+:    :+:   */
+/*   event_ui.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alhelson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/22 19:14:27 by alhelson          #+#    #+#             */
-/*   Updated: 2017/06/22 19:25:22 by alhelson         ###   ########.fr       */
+/*   Created: 2017/06/22 19:21:36 by alhelson          #+#    #+#             */
+/*   Updated: 2017/06/22 19:21:38 by alhelson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_ui.h"
+#include "rt_ui_display.h"
+#include "mglw/mglw.h"
+#include "rt_object.h"
+#include "rt_core.h"
 #include "rt_tree.h"
-#include <stdio.h>
 
-int				ui_is_event(t_layer_gen gen)
+void			event_ui(t_rt *rt)
 {
-	if (gen.event)
-		return (1);
-	return (0);
-}
+	t_rtnode	*tmp;
 
-int				ui_check_hit(t_rtnode *node, t_v2i *pos_cursor)
-{
-	t_layer_gen	gen;
-
-	gen = ((t_layer_root *)(node->content))->gen;
-	if (pos_cursor->x < gen.pos.x + gen.dim.x && pos_cursor->x > gen.pos.x &&\
-	pos_cursor->y < gen.pos.y + gen.dim.y && pos_cursor->y > gen.pos.y)
-		return (1);
-	return (0);
+	tmp = 0;
+	rt->viewer.keys |= RTWK_REFRESH;
+	ui_found_elem_with_pos(rt->viewer.ui, &tmp,\
+&((t_v2i){(int)rt->viewer.mouse.x, (int)rt->viewer.mouse.y}));
+	if (tmp && tmp->type == TE_CHECKBOX)
+		event_click_checkbox((t_layer_checkbox *)(tmp->content));
 }

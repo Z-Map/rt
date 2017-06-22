@@ -27,6 +27,7 @@ int placement)
 	border->valid_border = 15;
 	border->dim_border = 0.02;
 	border->gen.show = 1;
+	border->gen.event = 0;
 	border->gen.placement = placement;
 	return (border);
 }
