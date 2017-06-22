@@ -41,7 +41,6 @@ t_rtnode			*init_ui(t_v2i dim)
         if (!(tree_addchild_wid(node, mknlayer_border((t_v2f){0.0, 0.0}, (t_v2f){1.0, 1.0},\
  	      (t_v4i){0, 255, 0, 200}, PL_MIDDLE), 1)))
 		return (0);
-
 	/*
 	** modif of property of border : 3
 	*/
@@ -72,6 +71,9 @@ t_rtnode			*init_ui(t_v2i dim)
 		return (0);
 	if (!(tree_addchild_wid(node, mknlayer_rect((t_v2f){0.0, 0.0}, (t_v2f){0.8, 0.8},\
 	(t_v4i){0, 0, 255, 200}, PL_MIDDLE), 7)))
+		return (0);
+	if (!(tree_addchild_wid(node, mknlayer_checkbox((t_v2f){0.0, 0.0}, (t_v2f){0.2, 0.2},\
+	(t_v4i){0, 255, 0, 200}, PL_MIDDLE), 9)))
 		return (0);
 	tmp = tree_found_node_with_id(node, 8);
 	((t_layer_border *)(tmp->content))->valid_border = 14;

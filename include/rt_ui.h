@@ -6,7 +6,7 @@
 /*   By: alhelson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/20 20:14:10 by alhelson          #+#    #+#             */
-/*   Updated: 2017/06/21 23:15:42 by alhelson         ###   ########.fr       */
+/*   Updated: 2017/06/22 19:31:36 by alhelson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,18 @@ t_rtnode					*mknlayer_rect(t_v2f pos, t_v2f dim,\
 t_layer_border				*mklayer_border(t_v2f pos, t_v2f dim, t_v4i color,\
 int placement);
 
-t_rtnode					*mknlayer_border(t_v2f pos, t_v2f dim, t_v4i color,\
-	int placement);
+t_rtnode					*mknlayer_border(t_v2f pos, t_v2f dim,\
+t_v4i color, int placement);
+
+t_layer_checkbox			*mklayer_checkbox(t_v2f pos, t_v2f dim,\
+t_v4i color, int placement);
+
+t_rtnode					*mknlayer_checkbox(t_v2f pos, t_v2f dim,\
+t_v4i color, int placement);
+
+void						event_click_checkbox(t_layer_checkbox *cb);
+
+void						event_ui(t_rt *rt);
 
 /*
 ** update
@@ -85,6 +95,15 @@ void						main_pts_placement(int placement, t_v2i *pos,\
 ** savoir si une position est comprise dans un element node
 */
 
-int     ui_check_hit(t_rtnode *node, t_v2i *pos_cursor);
+int							ui_check_hit(t_rtnode *node, t_v2i *pos_cursor);
+
+int							ui_is_event(t_layer_gen gen);
+
+/*
+** trouver  evenement element associe a l aposition de la souris
+** eviter les evenement superpose sinon risque de bug
+*/
+void						ui_found_elem_with_pos(t_rtnode *node,\
+		t_rtnode **found, t_v2i *pos_cursor);
 
 #endif

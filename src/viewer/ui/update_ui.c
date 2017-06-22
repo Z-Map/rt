@@ -26,7 +26,8 @@ static t_layer_gen	*get_gen_parent(t_rtnode *node)
 ** mis a jours de la position et de la dimension de la forme
 */
 
-static void			update_rect_pos(t_layer_rect *rect, t_layer_gen *gen_father)
+static void			update_rect_pos(t_layer_rect *rect,\
+t_layer_gen *gen_father)
 {
 	rect->gen.pos.x = gen_father->pos.x +\
 	(int)(rect->pos.x * gen_father->dim.x);
@@ -51,7 +52,8 @@ static void			update(t_rtnode *node)
 	if (!(node->parent))
 		return ;
 	gen = get_gen_parent(node);
-	if (node->type == TE_RECT || node->type == TE_BORDER)
+	if (node->type == TE_RECT || node->type == TE_BORDER ||\
+node->type == TE_CHECKBOX)
 		update_rect_pos(((t_layer_rect *)(node->content)), gen);
 }
 

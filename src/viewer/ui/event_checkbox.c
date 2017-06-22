@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mklayer_root.c                                     :+:      :+:    :+:   */
+/*   event_checkbox.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alhelson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/20 20:00:27 by alhelson          #+#    #+#             */
-/*   Updated: 2017/06/20 20:00:44 by alhelson         ###   ########.fr       */
+/*   Created: 2017/06/22 19:21:02 by alhelson          #+#    #+#             */
+/*   Updated: 2017/06/22 19:21:08 by alhelson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./rt_ui.h"
-#include <stdlib.h>
+#include "rt_ui.h"
+#include "rt_ui_display.h"
 
-t_layer_root		*mklayer_root(t_v2i dim)
+void	event_click_checkbox(t_layer_checkbox *cb)
 {
-	t_layer_root	*l;
-
-	if (!(l = malloc(sizeof(t_layer_root))))
-		return (0);
-	l->gen.id = 0;
-	l->gen.dim = dim;
-	l->gen.pos = (t_v2i){0, 0};
-	l->gen.show = 1;
-	l->gen.event = 0;
-	return (l);
+	if (cb->state == 1)
+		cb->state = 0;
+	else
+		cb->state = 1;
 }

@@ -14,6 +14,7 @@
 #include "rt_tree.h"
 #include "rt_object.h"
 #include "rt_core.h"
+#include "rt_ui.h"
 
 int			rt_keypress(void *env, int k)
 {
@@ -24,6 +25,11 @@ int			rt_keypress(void *env, int k)
 	rt = (t_rt *)env;
 	if (!rt->tree->camera)
 		return (0);
+	if (k == MGLW_MOUSE_BUTTON_1)
+	{
+		event_ui(rt);
+		return (0);
+	}
 	cam = rt->tree->camera->content;
 	vec = cam->transform.offset;
 	cam->transform.offset = nv3f(0.0f);
