@@ -22,6 +22,7 @@ enum			e_type_element
 	TE_RECT,
 	TE_CARRY,
 	TE_BORDER,
+	TE_CHECKBOX,
 	TE_ERR
 };
 
@@ -45,6 +46,7 @@ struct			s_layer_generic
 	t_v2i		pos;
 	t_v2i		dim;
 	int			placement;
+	int			event;
 };
 
 /*
@@ -73,6 +75,16 @@ struct			s_layer_border
 	int			border_display;
 	float		dim_border;
 	int			valid_border;
+};
+
+struct			s_layer_checkbox
+{
+	t_layer_gen	gen;
+	t_v2f		pos;
+	t_v2f		dim;
+	t_v4i		color;
+	t_v4i		color2;
+	int		state; // 1 : valid | 0 : not valid
 };
 
 #endif
