@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 14:57:26 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/11 23:35:52 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/22 16:15:34 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int			rt_init_viewerthread(t_rt *rt)
 		return (rt_error(120, "Unable to open main window."));
 	mglw_setGLContext(NULL);
 	mglw_setkcb(rt->viewer.win, 3, &rt_keypress, rt);
+	mglw_setmcb(rt->viewer.win, 0, &rt_mousemove, rt);
 	mglw_setsizecb(rt->viewer.win, &rt_resize, rt);
 	rt->viewer.layer = (mglimg *)mglw_get2dlayer(rt->viewer.win);
 	rt->viewer.keys = RTWK_REFRESH;
