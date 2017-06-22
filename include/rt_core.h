@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 17:08:51 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/17 16:21:03 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/22 16:12:03 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ int			rtd_msg(t_rt *rt, unsigned long mask, const char *msg,
 				int l, const char *file, const char *func);
 
 int			rt_keypress(void *env, int k);
-void			rt_resize(void *env, int x, int y);
+int			rt_mousemove(void *env, double x, double y);
+void		rt_resize(void *env, int x, int y);
 
 int			rt_error(int code, const char *msg);
 int			rt_check_error(t_rt *rt);
