@@ -66,7 +66,7 @@ t_rtnode		*mknlayer_variator(t_v2f pos, t_v2f dim, t_v4i color[2], int placement
 
 void						event_click_checkbox(t_layer_checkbox *cb);
 
-void						event_click_variator(t_layer_variator *v);
+void						event_click_variator(t_rt *rt, t_rtnode *node);
 
 void						event_ui(t_rt *rt);
 
