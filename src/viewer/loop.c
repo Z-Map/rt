@@ -27,6 +27,8 @@ void				draw_f(t_rtnode *ui, mglimg *layer)
 		draw_checkbox(layer, (t_layer_checkbox *)(ui->content));
 	else if (ui->type == TE_LOADBAR)
 		draw_loadbar(layer, (t_layer_loadbar *)(ui->content));
+	else if (ui->type == TE_VARIATOR)
+		draw_variator(layer, (t_layer_variator *)(ui->content));
 }
 
 void				draw_all(t_rtnode *ui, mglimg *layer)

@@ -68,6 +68,10 @@ void						event_click_checkbox(t_layer_checkbox *cb);
 
 void						event_click_variator(t_rt *rt, t_rtnode *node);
 
+void						event_noclick_variator(t_rt *rt);
+
+void						event_onclick_variator(t_rt *rt);
+
 void						event_ui(t_rt *rt);
 
 /*

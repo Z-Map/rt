@@ -25,5 +25,10 @@ int			rt_mousemove(void *env, double x, double y)
 	rt->viewer.mouse = (t_v2f){
 		mxrangef((float)x, 0.0, (float)(rt->viewer.win->data->screen_w)),
 		mxrangef((float)y, 0.0, (float)(rt->viewer.win->data->screen_h))};
+	if (rt->viewer.layer_event_focus)
+	{
+		event_onclick_variator(rt);
+		rt->viewer.keys |= RTWK_REFRESH;
+	}
 	return (0);
 }

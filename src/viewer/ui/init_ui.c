@@ -21,9 +21,10 @@ t_rtnode			*init_ui(t_v2i dim)
 	t_rtnode		*node;
 	t_layer_root	*root;
 	t_v4i color[3];
+	t_v4i color2[2];
 
-	color[0] = (t_v4i){255, 255, 0, 200};
-	color[1] = (t_v4i){10, 255, 10, 200};
+	color2[0] = color[0] = (t_v4i){0, 255, 255, 255};
+	color2[1] = color[1] = (t_v4i){0, 0, 0, 255};
 	color[2] = (t_v4i){84, 84, 255, 200};
 	//CREATION DU PREMIER ELEMENT
 	if (!(root = mklayer_root(dim)))
@@ -40,9 +41,12 @@ t_rtnode			*init_ui(t_v2i dim)
 	//	return (0);
 
 	//tets laodbar
-	if (!(tmp = tree_addchild(node,\
-	mknlayer_loadbar((t_v2f){0.0, 0.0}, (t_v2f){0.6, 0.1}, color, PL_MIDDLE))))
-		return (0);
+	//if (!(tmp = tree_addchild(node,\
+	//mknlayer_loadbar((t_v2f){0.0, 0.0}, (t_v2f){0.6, 0.1}, color, PL_MIDDLE))))
+	//	return (0);
+        if (!(tmp = tree_addchild(node,\
+        mknlayer_variator((t_v2f){0.0, 0.0}, (t_v2f){0.6, 0.1}, color2, PL_MIDDLE))))
+                return (0);
 	/*
         if (!(tree_addchild_wid(node, mknlayer_rect((t_v2f){0.0, 0.0}, (t_v2f){0.2, 0.8},\
           (t_v4i){0, 0, 255, 200}, PL_MIDDLE), 1)))

@@ -69,6 +69,20 @@ static void			update_loadbar(t_layer_loadbar *load, t_layer_gen *gen_father)
 	update_pos(&(load->gen[2]), &(load->gen[1]), load->pos, dim[1]);
 }
 
+static void			update_variator(t_layer_variator *var, t_layer_gen *gen_father)
+{
+	t_v2f dim;
+	t_v2f pos;
+
+	dim.x = var->dim.x * 0.05; // size of 5%
+	dim.y = 1.0; //dimension de la bar
+	pos.x =  var->load;
+	pos.y = 0.0;
+	update_pos(gen_father, &(var->gen[0]), var->pos, var->dim);
+	update_pos(&(var->gen[0]), &(var->gen[1]), pos, dim);
+	printf("----------------> %f\n", var->load);
+}
+
 /*
 ** mis a jour de al dimension et de la position en function du parent
 */
@@ -85,6 +99,8 @@ static void			update(t_rtnode *node)
 		update_rect_pos(((t_layer_rect *)(node->content)), gen);
 	else if (node->type == TE_LOADBAR)
 		update_loadbar(((t_layer_loadbar *)(node->content)), gen);
+	else if (node->type == TE_VARIATOR)
+		update_variator(((t_layer_variator *)(node->content)), gen);
 }
 
 /*
