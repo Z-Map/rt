@@ -55,6 +55,12 @@ t_v4i color, int placement);
 t_rtnode					*mknlayer_checkbox(t_v2f pos, t_v2f dim,\
 t_v4i color, int placement);
 
+t_layer_loadbar	*mklayer_loadbar(t_v2f pos, t_v2f dim, t_v4i color[2],\
+	int placement);
+
+t_rtnode	*mknlayer_loadbar(t_v2f pos, t_v2f dim, t_v4i color[2],\
+        int placement);
+
 void						event_click_checkbox(t_layer_checkbox *cb);
 
 void						event_ui(t_rt *rt);

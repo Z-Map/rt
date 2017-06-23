@@ -41,6 +41,34 @@ t_layer_gen *gen_father)
 	gen_father->dim, rect->gen.dim);
 }
 
+static void			update_pos(t_layer_gen *father, t_layer_gen *stock,\
+t_v2f pos, t_v2f dim)
+{
+	stock->pos.x = father->pos.x +\
+	(int)(pos.x * father->dim.x);
+	stock->pos.y = father->pos.y +\
+	(int)(pos.y * father->dim.y);
+	stock->dim.x = (int)(dim.x *\
+	father->dim.x);
+	stock->dim.y = (int)(dim.y *\
+	father->dim.y);
+	main_pts_placement(stock->placement, &(stock->pos),\
+	father->dim, stock->dim);
+}
+
+static void			update_loadbar(t_layer_loadbar *load, t_layer_gen *gen_father)
+{
+	t_v2f dim[2];
+
+	dim[0].x = load->load;
+	dim[1].x = 1.0 - dim[0].x;
+	dim[0].y = 1.0;
+	dim[1].y = 1.0;
+	update_pos(gen_father, &(load->gen[2]), load->pos, load->dim);
+	update_pos(&(load->gen[2]), &(load->gen[0]), load->pos, dim[0]);
+	update_pos(&(load->gen[2]), &(load->gen[1]), load->pos, dim[1]);
+}
+
 /*
 ** mis a jour de al dimension et de la position en function du parent
 */
@@ -53,8 +81,10 @@ static void			update(t_rtnode *node)
 		return ;
 	gen = get_gen_parent(node);
 	if (node->type == TE_RECT || node->type == TE_BORDER ||\
-node->type == TE_CHECKBOX)
+	node->type == TE_CHECKBOX)
 		update_rect_pos(((t_layer_rect *)(node->content)), gen);
+	else if (node->type == TE_LOADBAR)
+		update_loadbar(((t_layer_loadbar *)(node->content)), gen);
 }
 
 /*

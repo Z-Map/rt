@@ -26,6 +26,8 @@ void	draw_border(mglimg *img, t_layer_border *rect);
 
 void	draw_checkbox(mglimg *img, t_layer_checkbox *rect);
 
+void	draw_loadbar(mglimg *img, t_layer_loadbar *loadbar);
+
 /*
 ** add pixel in the image
 */
