@@ -6,7 +6,7 @@
 /*   By: alhelson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/21 22:59:38 by alhelson          #+#    #+#             */
-/*   Updated: 2017/06/21 23:10:38 by alhelson         ###   ########.fr       */
+/*   Updated: 2017/06/24 21:19:04 by alhelson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_layer_gen *gen_father)
 	gen_father->dim, rect->gen.dim);
 }
 
-void			update_pos(t_layer_gen *father, t_layer_gen *stock,\
+void				update_pos(t_layer_gen *father, t_layer_gen *stock,\
 t_v2f pos, t_v2f dim)
 {
 	stock->pos.x = father->pos.x +\
