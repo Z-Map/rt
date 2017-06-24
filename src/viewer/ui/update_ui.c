@@ -41,7 +41,7 @@ t_layer_gen *gen_father)
 	gen_father->dim, rect->gen.dim);
 }
 
-static void			update_pos(t_layer_gen *father, t_layer_gen *stock,\
+void			update_pos(t_layer_gen *father, t_layer_gen *stock,\
 t_v2f pos, t_v2f dim)
 {
 	stock->pos.x = father->pos.x +\
@@ -54,33 +54,6 @@ t_v2f pos, t_v2f dim)
 	father->dim.y);
 	main_pts_placement(stock->placement, &(stock->pos),\
 	father->dim, stock->dim);
-}
-
-static void			update_loadbar(t_layer_loadbar *load, t_layer_gen *gen_father)
-{
-	t_v2f dim[2];
-
-	dim[0].x = load->load;
-	dim[1].x = 1.0 - dim[0].x;
-	dim[0].y = 1.0;
-	dim[1].y = 1.0;
-	update_pos(gen_father, &(load->gen[2]), load->pos, load->dim);
-	update_pos(&(load->gen[2]), &(load->gen[0]), load->pos, dim[0]);
-	update_pos(&(load->gen[2]), &(load->gen[1]), load->pos, dim[1]);
-}
-
-static void			update_variator(t_layer_variator *var, t_layer_gen *gen_father)
-{
-	t_v2f dim;
-	t_v2f pos;
-
-	dim.x = var->dim.x * 0.05; // size of 5%
-	dim.y = 1.0; //dimension de la bar
-	pos.x =  var->load;
-	pos.y = 0.0;
-	update_pos(gen_father, &(var->gen[0]), var->pos, var->dim);
-	update_pos(&(var->gen[0]), &(var->gen[1]), pos, dim);
-	printf("----------------> %f\n", var->load);
 }
 
 /*
