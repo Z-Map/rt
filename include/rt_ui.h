@@ -55,7 +55,22 @@ t_v4i color, int placement);
 t_rtnode					*mknlayer_checkbox(t_v2f pos, t_v2f dim,\
 t_v4i color, int placement);
 
+t_layer_loadbar	*mklayer_loadbar(t_v2f pos, t_v2f dim, t_v4i color[2],\
+	int placement);
+
+t_rtnode	*mknlayer_loadbar(t_v2f pos, t_v2f dim, t_v4i color[2],\
+        int placement);
+
+t_layer_variator		*mklayer_variator(t_v2f pos, t_v2f dim, t_v4i color[2], int placement);
+t_rtnode		*mknlayer_variator(t_v2f pos, t_v2f dim, t_v4i color[2], int placement);
+
 void						event_click_checkbox(t_layer_checkbox *cb);
+
+void						event_click_variator(t_rt *rt, t_rtnode *node);
+
+void						event_noclick_variator(t_rt *rt);
+
+void						event_onclick_variator(t_rt *rt);
 
 void						event_ui(t_rt *rt);
 
@@ -63,6 +78,13 @@ void						event_ui(t_rt *rt);
 ** update
 */
 void						update_ui(t_rtnode *tree);
+
+void						update_loadbar(t_layer_loadbar *load, t_layer_gen *gen_father);
+
+void						update_variator(t_layer_variator *var, t_layer_gen *gen_father);
+
+void						update_pos(t_layer_gen *father, t_layer_gen *stock,\
+						t_v2f pos, t_v2f dim);
 
 /*
 ** update dim of the first node (root)

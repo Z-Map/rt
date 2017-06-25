@@ -31,6 +31,7 @@ struct					s_rt_viewer
 	mglimg				*layer;
 	mglimg				*rdrtarget;
 	t_rtnode			*ui;
+	t_rtnode			*layer_event_focus;
 };
 
 #endif

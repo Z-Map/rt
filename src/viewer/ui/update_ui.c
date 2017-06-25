@@ -6,7 +6,7 @@
 /*   By: alhelson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/21 22:59:38 by alhelson          #+#    #+#             */
-/*   Updated: 2017/06/21 23:10:38 by alhelson         ###   ########.fr       */
+/*   Updated: 2017/06/24 21:19:04 by alhelson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,21 @@ t_layer_gen *gen_father)
 	gen_father->dim, rect->gen.dim);
 }
 
+void				update_pos(t_layer_gen *father, t_layer_gen *stock,\
+t_v2f pos, t_v2f dim)
+{
+	stock->pos.x = father->pos.x +\
+	(int)(pos.x * father->dim.x);
+	stock->pos.y = father->pos.y +\
+	(int)(pos.y * father->dim.y);
+	stock->dim.x = (int)(dim.x *\
+	father->dim.x);
+	stock->dim.y = (int)(dim.y *\
+	father->dim.y);
+	main_pts_placement(stock->placement, &(stock->pos),\
+	father->dim, stock->dim);
+}
+
 /*
 ** mis a jour de al dimension et de la position en function du parent
 */
@@ -53,8 +68,12 @@ static void			update(t_rtnode *node)
 		return ;
 	gen = get_gen_parent(node);
 	if (node->type == TE_RECT || node->type == TE_BORDER ||\
-node->type == TE_CHECKBOX)
+	node->type == TE_CHECKBOX)
 		update_rect_pos(((t_layer_rect *)(node->content)), gen);
+	else if (node->type == TE_LOADBAR)
+		update_loadbar(((t_layer_loadbar *)(node->content)), gen);
+	else if (node->type == TE_VARIATOR)
+		update_variator(((t_layer_variator *)(node->content)), gen);
 }
 
 /*

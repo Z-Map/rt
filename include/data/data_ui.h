@@ -23,6 +23,8 @@ enum			e_type_element
 	TE_CARRY,
 	TE_BORDER,
 	TE_CHECKBOX,
+	TE_LOADBAR,
+	TE_VARIATOR,
 	TE_ERR
 };
 
@@ -85,6 +87,24 @@ struct			s_layer_checkbox
 	t_v4i		color;
 	t_v4i		color2;
 	int		state; // 1 : valid | 0 : not valid
+};
+
+struct			s_layer_loadbar
+{
+	t_layer_gen	gen[3];
+	t_v2f		pos;
+	t_v2f		dim;
+	t_v4i		color[3];
+	float		load; //pourcentage de loading
+};
+
+struct			s_layer_variator
+{
+	t_layer_gen	gen[2];
+	t_v2f		pos;
+	t_v2f		dim;
+	t_v4i		color[2];
+	float		load;
 };
 
 #endif

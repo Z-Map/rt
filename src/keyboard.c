@@ -30,6 +30,12 @@ int			rt_keypress(void *env, int k)
 		event_ui(rt);
 		return (0);
 	}
+	// desactivation du variator : fail
+	else if (k == MGLW_MOUSE_BUTTON_3)
+	{
+		event_noclick_variator(rt);
+		return (0);
+	}
 	cam = rt->tree->camera->content;
 	vec = cam->transform.offset;
 	cam->transform.offset = nv3f(0.0f);

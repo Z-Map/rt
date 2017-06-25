@@ -30,11 +30,11 @@ int				viewer_run(t_rt *rt, t_rtview *v)
 	if (rt->flags & RTF_RDRDISP)
 		mglw_draw_itow(v->win, v->rdrtarget, 0, 0);
 	mglwin_draw(v->win);
-mglw_setGLContext(NULL);
+	mglw_setGLContext(NULL);
 	if (!(v->keys & RTWK_REFRESH))
 		pthread_cond_wait(&(v->refresh_cond), &(v->refresh_lock));
 	if (rt->flags & RTF_CLEARLAYER)
-                viewer_clearlayer(rt);
+		viewer_clearlayer(rt);
 	v->keys &= ~RTWK_REFRESH;
 	pthread_mutex_unlock(&(v->refresh_lock));
 	if ((v->keys & RTWK_STOP) || !rt_isrunning(rt))

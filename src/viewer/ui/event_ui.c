@@ -27,4 +27,6 @@ void			event_ui(t_rt *rt)
 &((t_v2i){(int)rt->viewer.mouse.x, (int)rt->viewer.mouse.y}));
 	if (tmp && tmp->type == TE_CHECKBOX)
 		event_click_checkbox((t_layer_checkbox *)(tmp->content));
+	else if (tmp && tmp->type == TE_VARIATOR)
+		event_click_variator(rt, tmp);
 }
