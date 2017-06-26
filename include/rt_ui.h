@@ -69,6 +69,14 @@ void            mklayer_main_term(t_layer_term *term, int size);
 t_rtnode        *mknlayer_term(t_v2f pos, t_v2f dim, t_v4i color,\
 int placement);
 
+t_layer_label   *mklayer_label(t_v2f pos, t_v2f dim, t_v4i color,\
+int placement);
+
+void            layer_label_add(t_layer_label *label, char *str);
+
+t_rtnode        *mknlayer_label(t_v2f pos, t_v2f dim, t_v4i color,\
+	int placement);
+
 void						event_click_checkbox(t_layer_checkbox *cb);
 
 void						event_click_variator(t_rt *rt, t_rtnode *node);

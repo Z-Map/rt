@@ -206,6 +206,7 @@ typedef struct s_layer_checkbox	t_layer_checkbox;
 typedef struct s_layer_loadbar	t_layer_loadbar;
 typedef struct s_layer_variator	t_layer_variator;
 typedef struct s_layer_term	t_layer_term;
+typedef struct s_layer_label	t_layer_label;
 
 typedef struct s_term		t_term;
 

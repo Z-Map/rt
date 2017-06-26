@@ -122,4 +122,16 @@ struct			s_layer_term
 	t_term		*term;
 };
 
+/*
+** label
+*/
+struct			s_layer_label
+{
+	t_layer_gen	gen;
+	t_v2f		pos;
+	t_v2f		dim;
+	t_v4i		color;
+	char		*label;
+};
+
 #endif
