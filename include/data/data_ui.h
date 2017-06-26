@@ -15,6 +15,7 @@
 
 # include "mathex/vector.h"
 # include "rt_prototype.h"
+# include "data_term.h"
 
 enum			e_type_element
 {
@@ -25,6 +26,8 @@ enum			e_type_element
 	TE_CHECKBOX,
 	TE_LOADBAR,
 	TE_VARIATOR,
+	TE_LABEL,
+	TE_TERM,
 	TE_ERR
 };
 
@@ -105,6 +108,17 @@ struct			s_layer_variator
 	t_v2f		dim;
 	t_v4i		color[2];
 	float		load;
+};
+
+/*
+** term + bordure
+*/
+struct			s_layer_term
+{
+	t_layer_gen	gen;
+	t_v2f		pos;
+	t_v2f		dim;
+	t_term		*term;
 };
 
 #endif
