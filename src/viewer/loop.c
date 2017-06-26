@@ -31,6 +31,8 @@ void				draw_f(t_rtnode *ui, mglimg *layer)
 		draw_variator(layer, (t_layer_variator *)(ui->content));
 	else if (ui->type == TE_TERM)
 		draw_term(layer, (t_layer_term *)(ui->content));
+	else if (ui->type == TE_LABEL)
+		draw_label(layer, (t_layer_label *)(ui->content));
 }
 
 void				draw_all(t_rtnode *ui, mglimg *layer)

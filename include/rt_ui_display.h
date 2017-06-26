@@ -32,6 +32,8 @@ void	draw_variator(mglimg *img, t_layer_variator *variator);
 
 void	draw_term(mglimg *img, t_layer_term *term);
 
+void	draw_label(mglimg *img, t_layer_label *label);
+
 /*
 ** add pixel in the image
 */
