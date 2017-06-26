@@ -29,4 +29,8 @@ void			event_ui(t_rt *rt)
 		event_click_checkbox((t_layer_checkbox *)(tmp->content));
 	else if (tmp && tmp->type == TE_VARIATOR)
 		event_click_variator(rt, tmp);
+	else if (tmp && tmp->type == TE_TERM)
+	{
+		// gestiond de l evenement terminal si click
+	}
 }

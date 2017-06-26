@@ -68,7 +68,7 @@ static void			update(t_rtnode *node)
 		return ;
 	gen = get_gen_parent(node);
 	if (node->type == TE_RECT || node->type == TE_BORDER ||\
-	node->type == TE_CHECKBOX)
+	node->type == TE_CHECKBOX || node->type == TE_TERM)
 		update_rect_pos(((t_layer_rect *)(node->content)), gen);
 	else if (node->type == TE_LOADBAR)
 		update_loadbar(((t_layer_loadbar *)(node->content)), gen);

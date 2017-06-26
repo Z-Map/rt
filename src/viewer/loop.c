@@ -29,6 +29,8 @@ void				draw_f(t_rtnode *ui, mglimg *layer)
 		draw_loadbar(layer, (t_layer_loadbar *)(ui->content));
 	else if (ui->type == TE_VARIATOR)
 		draw_variator(layer, (t_layer_variator *)(ui->content));
+	else if (ui->type == TE_TERM)
+		draw_term(layer, (t_layer_term *)(ui->content));
 }
 
 void				draw_all(t_rtnode *ui, mglimg *layer)
