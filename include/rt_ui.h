@@ -128,4 +128,6 @@ int							ui_is_event(t_layer_gen gen);
 void						ui_found_elem_with_pos(t_rtnode *node,\
 		t_rtnode **found, t_v2i *pos_cursor);
 
+void		delui(t_rtnode *node);
+
 #endif
