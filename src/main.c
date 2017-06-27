@@ -12,6 +12,19 @@
 
 #include <stdlib.h>
 #include "rt.h"
+#include <stdio.h>
+
+/*
+** int main()
+** {
+**	t_rtnode *node;
+**
+**	node = init_ui((t_v2i){100, 100});
+**	update_ui(node);
+**	//printf("--> %d | %d\n", node->flags, node->childs->flags);
+**	return (1);
+**}
+*/
 
 int			main(int argc, char **argv)
 {

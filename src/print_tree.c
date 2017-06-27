@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 17:59:51 by ealbert           #+#    #+#             */
-/*   Updated: 2017/06/17 16:42:15 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/27 19:13:40 by alhelson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int		print_node(t_rtobi *obi, int i)
 	m = obi->lbounds;
 	if (obj->type & VISIBLE)
 	{
-		m = *((t_mat3x2f *)(t_ul)&(((t_rtobd *)obj)->plan.limx));
+		m = *((t_mat3x2f *)(t_ul) & (((t_rtobd *)obj)->plan.limx));
 		ft_printf("bounds : x[%v2f] y[%v2f] z[%v2f]}\n", &m.x, &m.y, &m.z);
 	}
 	return (1);
@@ -60,7 +60,7 @@ static int		recursive(t_v2i *p, t_rtnode *node, int i)
 	return (1);
 }
 
-int			print_tree(t_rtree *tree)
+int				print_tree(t_rtree *tree)
 {
 	int			i;
 	t_v2i		p;

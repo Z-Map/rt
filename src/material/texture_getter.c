@@ -55,7 +55,6 @@ t_v4f			rtex_uvimage_col(t_rtex *tex, t_v2f uv)
 	uv = mkuv(uv, (t_v2ui){t->x, t->y});
 	uvi = (t_v2ui){(t_ui)(uv.x) % t->x, (t_ui)(uv.y) % t->y};
 	cols[0] = rgbatov4f(((t_rgba *)(t->pixels))[uvtolen(uvi, t->x)]);
-	// return (cols[0]);
 	uvi.x = (uvi.x + 1) % t->x;
 	cols[1] = rgbatov4f(((t_rgba *)(t->pixels))[uvtolen(uvi, t->x)]);
 	uvi = (t_v2ui){(t_ui)(uv.x) % t->x, (uvi.y + 1) % t->y};
