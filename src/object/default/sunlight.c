@@ -14,7 +14,7 @@
 
 void			object_default_sunlight(t_rtobd *object)
 {
-	object->sunlight.color = (t_rgba){255,255,255,255};
+	object->sunlight.color = (t_rgba){255, 255, 255, 255};
 	object->sunlight.radius = 0.0;
 	object->sunlight.intensity = 1.0;
 }
