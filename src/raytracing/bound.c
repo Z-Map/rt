@@ -15,17 +15,19 @@
 #include "mathex/vector.h"
 #include "rt_tools.h"
 
-// static void		set_vec(t_v3f *vtab, int min[4], int max[4], t_v2f lim)
-// {
-// 	int		i;
-//
-// 	i = 4;
-// 	while (i--)
-// 		vtab[min[i]].x = lim.x;
-// 	i = 4;
-// 	while (i--)
-// 		vtab[max[i]].x = lim.y;
-// }
+/*
+** static void		set_vec(t_v3f *vtab, int min[4], int max[4], t_v2f lim)
+** {
+** 	int		i;
+**
+** 	i = 4;
+** 	while (i--)
+** 		vtab[min[i]].x = lim.x;
+** 	i = 4;
+** 	while (i--)
+** 		vtab[max[i]].x = lim.y;
+** }
+*/
 
 static void		trans_dim(t_mat3x2f *b, t_mattf *mat, t_v3f v)
 {
@@ -40,36 +42,38 @@ static void		trans_dim(t_mat3x2f *b, t_mattf *mat, t_v3f v)
 	b->z.y = mxmaxf(v.z, b->z.y);
 }
 
-// t_mat3x2f		bound_transform(t_mat3x2f b, t_mattf m)
-// {
-// 	t_v3f	v[8];
-// 	int		i;
-//
-// 	set_vec(v, (int[4]){0, 3, 4, 7}, (int[4]){1, 2, 5, 6}, b.x);
-// 	set_vec((t_v3f *)((t_ul)v + 4), (int[4]){2, 3, 6, 7},
-// 		(int[4]){0, 1, 4, 5}, b.y);
-// 	set_vec((t_v3f *)((t_ul)v + 4), (int[4]){4, 5, 6, 7},
-// 		(int[4]){0, 1, 2, 3}, b.z);
-// 	i = 8;
-// 	while (i--)
-// 		pmattf_apply(v + i, &m);
-// 	i = 7;
-// 	b = (t_mat3x2f){.x = {v[7].x, v[7].x}, .y = {v[7].y, v[7].y},
-// 		.z = {v[7].z, v[7].z}};
-// 	while (i--)
-// 	{
-// 		b.x.x = mxminf(v[i].x, b.x.x);
-// 		b.x.y = mxmaxf(v[i].x, b.x.y);
-// 		b.y.x = mxminf(v[i].y, b.y.x);
-// 		b.y.y = mxmaxf(v[i].y, b.y.y);
-// 		b.z.x = mxminf(v[i].z, b.z.x);
-// 		b.z.y = mxmaxf(v[i].z, b.z.y);
-// 	}
-// 	t_mat3x2f	mb = b;
-// 	ft_printf("bounds : x[%f,%f] y[%f,%f] z[%f,%f]}\n", (double)mb.x.x,
-// 		(double)mb.x.y, (double)mb.y.x, (double)mb.y.y, (double)mb.z.x, mb.z.y);
-// 	return (b);
-// }
+/*
+** t_mat3x2f		bound_transform(t_mat3x2f b, t_mattf m)
+** {
+** 	t_v3f	v[8];
+** 	int		i;
+**
+** 	set_vec(v, (int[4]){0, 3, 4, 7}, (int[4]){1, 2, 5, 6}, b.x);
+** 	set_vec((t_v3f *)((t_ul)v + 4), (int[4]){2, 3, 6, 7},
+** 		(int[4]){0, 1, 4, 5}, b.y);
+** 	set_vec((t_v3f *)((t_ul)v + 4), (int[4]){4, 5, 6, 7},
+** 		(int[4]){0, 1, 2, 3}, b.z);
+** 	i = 8;
+** 	while (i--)
+** 		pmattf_apply(v + i, &m);
+** 	i = 7;
+** 	b = (t_mat3x2f){.x = {v[7].x, v[7].x}, .y = {v[7].y, v[7].y},
+** 		.z = {v[7].z, v[7].z}};
+** 	while (i--)
+** 	{
+** 		b.x.x = mxminf(v[i].x, b.x.x);
+** 		b.x.y = mxmaxf(v[i].x, b.x.y);
+** 		b.y.x = mxminf(v[i].y, b.y.x);
+** 		b.y.y = mxmaxf(v[i].y, b.y.y);
+** 		b.z.x = mxminf(v[i].z, b.z.x);
+** 		b.z.y = mxmaxf(v[i].z, b.z.y);
+** 	}
+** 	t_mat3x2f	mb = b;
+** 	ft_printf("bounds : x[%f,%f] y[%f,%f] z[%f,%f]}\n", (double)mb.x.x,
+** 		(double)mb.x.y, (double)mb.y.x, (double)mb.y.y, (double)mb.z.x, mb.z.y);
+** 	return (b);
+** }
+*/
 
 t_mat3x2f		bound_transform(t_mat3x2f b, t_mattf m)
 {
@@ -132,20 +136,19 @@ int				bound_raycast(t_rtray *r, t_mat3x2f b, t_rtrgd *gd)
 	return (1);
 }
 
-
 /*
-static int	rt_bounds_update_in(t_obj *obj, int mode, void *userdata)
-{
-	(void)userdata;
-	if (mode == PREFIX)
-		obj->bounds = obj->hitbox;
-	else if (obj->parent)
-		update_cube(&obj->parent->bounds, &obj->bounds);
-	return (0);
-}
-
-void		rt_bounds_update(t_obj *node)
-{
-	rt_node_foreach(node, SUFFIX | PREFIX, &rt_bounds_update_in, NULL);
-}
-//*/
+**static int	rt_bounds_update_in(t_obj *obj, int mode, void *userdata)
+**{
+**	(void)userdata;
+**	if (mode == PREFIX)
+**		obj->bounds = obj->hitbox;
+**	else if (obj->parent)
+**		update_cube(&obj->parent->bounds, &obj->bounds);
+**	return (0);
+**}
+**
+**void		rt_bounds_update(t_obj *node)
+**{
+**	rt_node_foreach(node, SUFFIX | PREFIX, &rt_bounds_update_in, NULL);
+**}
+*/
