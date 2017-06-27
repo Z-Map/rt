@@ -6,7 +6,7 @@
 /*   By: alhelson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/20 20:14:10 by alhelson          #+#    #+#             */
-/*   Updated: 2017/06/22 19:31:36 by alhelson         ###   ########.fr       */
+/*   Updated: 2017/06/27 18:47:36 by alhelson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,27 +55,30 @@ t_v4i color, int placement);
 t_rtnode					*mknlayer_checkbox(t_v2f pos, t_v2f dim,\
 t_v4i color, int placement);
 
-t_layer_loadbar	*mklayer_loadbar(t_v2f pos, t_v2f dim, t_v4i color[2],\
-	int placement);
+t_layer_loadbar				*mklayer_loadbar(t_v2f pos,\
+t_v2f dim, t_v4i color[2], int placement);
 
-t_rtnode	*mknlayer_loadbar(t_v2f pos, t_v2f dim, t_v4i color[2],\
-        int placement);
+t_rtnode					*mknlayer_loadbar(t_v2f pos,\
+t_v2f dim, t_v4i color[2], int placement);
 
-t_layer_variator		*mklayer_variator(t_v2f pos, t_v2f dim, t_v4i color[2], int placement);
-t_rtnode		*mknlayer_variator(t_v2f pos, t_v2f dim, t_v4i color[2], int placement);
+t_layer_variator			*mklayer_variator(t_v2f pos,\
+t_v2f dim, t_v4i color[2], int placement);
 
-void            mklayer_main_term(t_layer_term *term, int size);
+t_rtnode					*mknlayer_variator(t_v2f pos,\
+t_v2f dim, t_v4i color[2], int placement);
 
-t_rtnode        *mknlayer_term(t_v2f pos, t_v2f dim, t_v4i color,\
+void						mklayer_main_term(t_layer_term *term, int size);
+
+t_rtnode					*mknlayer_term(t_v2f pos, t_v2f dim, t_v4i color,\
 int placement);
 
-t_layer_label   *mklayer_label(t_v2f pos, t_v2f dim, t_v4i color,\
+t_layer_label				*mklayer_label(t_v2f pos, t_v2f dim, t_v4i color,\
 int placement);
 
-void            layer_label_add(t_layer_label *label, char *str);
+void						layer_label_add(t_layer_label *label, char *str);
 
-t_rtnode        *mknlayer_label(t_v2f pos, t_v2f dim, t_v4i color,\
-	int placement);
+t_rtnode					*mknlayer_label(t_v2f pos, t_v2f dim, t_v4i color,\
+int placement);
 
 void						event_click_checkbox(t_layer_checkbox *cb);
 
@@ -92,9 +95,11 @@ void						event_ui(t_rt *rt);
 */
 void						update_ui(t_rtnode *tree);
 
-void						update_loadbar(t_layer_loadbar *load, t_layer_gen *gen_father);
+void						update_loadbar(t_layer_loadbar *load,\
+t_layer_gen *gen_father);
 
-void						update_variator(t_layer_variator *var, t_layer_gen *gen_father);
+void						update_variator(t_layer_variator *var,\
+t_layer_gen *gen_father);
 
 void						update_pos(t_layer_gen *father, t_layer_gen *stock,\
 						t_v2f pos, t_v2f dim);
@@ -141,6 +146,6 @@ int							ui_is_event(t_layer_gen gen);
 void						ui_found_elem_with_pos(t_rtnode *node,\
 		t_rtnode **found, t_v2i *pos_cursor);
 
-void		delui(t_rtnode *node);
+void						delui(t_rtnode *node);
 
 #endif

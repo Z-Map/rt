@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_TOOL_H
-# define RT_TOOL_H
+#ifndef RT_TOOLS_H
+# define RT_TOOLS_H
 
 # include "rt_prototype.h"
 # include "rt_core.h"

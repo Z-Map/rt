@@ -26,7 +26,9 @@
 # define MAXLIGHTINTENSITY 3.0f
 # define MARGIN 0.001f
 
-// # define SHADOWLIMIT 1000.0f
+/*
+** # define SHADOWLIMIT 1000.0f
+*/
 
 void		*rt_rdrmgr_main(void *arg);
 int			rdrmgr_isalive(t_rt *rt);
@@ -59,7 +61,6 @@ int			getnor_tris(t_rtobd *ob, t_rtrd *rdata);
 int			gettan_tris(t_rtobd *ob, t_rtrd *rdata);
 int			getnor_mesh(t_rtobd *ob, t_rtrd *rdata);
 int			gettan_mesh(t_rtobd *ob, t_rtrd *rdata);
-
 
 t_v2f		getuv_sphere(t_rtrgd gd);
 t_v2f		getuv_cuboid(t_rtrgd gd);
