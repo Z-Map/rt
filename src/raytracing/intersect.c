@@ -6,7 +6,7 @@
 /*   By: fanno <fanno@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/16 13:52:21 by fanno             #+#    #+#             */
-/*   Updated: 2017/05/20 13:23:44 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/27 19:33:39 by alhelson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,47 +15,48 @@
 #include "rt_object.h"
 #include "rt_tree.h"
 
-//#include "rt_render.h"
 /*
-void			**node_prefix(t_rtnode *node)
-{
-	t_rtnode	**tmp;
-	t_rtobi		*inst;
-
-	tmp = &node;
-	while (*tmp)
-	{
-		if (!(*tmp)->childs)
-		{
-			inst = (t_rtobi *)(*tmp)->content;
-			if (inst->obj->type | SPHERE)
-				tmp++ = calc_sphere();
-			if (inst->obj->type | CONE)
-				tmp++ = calc_cone();
-			if (inst->obj->type | PLAN)
-				tmp++ = calc_plan();
-			if (inst->obj->type | CYLINDER)
-				tmp++ = calc_cylinder();
-		}
-		if (!(*tmp)->next)
-		{
-			inst = (t_rtobi *)(*tmp)->content;
-			if (inst->obj->type | SPHERE)
-				tmp++ = calc_sphere();
-			if (inst->obj->type | CONE)
-				tmp++ = calc_cone();
-			if (inst->obj->type | PLAN)
-				tmp++ = calc_plan();
-			if (inst->obj->type | CYLINDER)
-				tmp++ = calc_cylinder();
-		}
-	}
-}*/
-// Pour le moment la fonction est en iteratif. Il faut je pense la passer en
-// recursive, cela s'adaptera mieux a la structure du nodetree.
-// mon void** est un type par default, a creuser.
-
-double		positive_smallest(double a, double b)
+**#include "rt_render.h"
+**
+**void			**node_prefix(t_rtnode *node)
+**{
+**	t_rtnode	**tmp;
+**	t_rtobi		*inst;
+**
+**	tmp = &node;
+**	while (*tmp)
+**	{
+**		if (!(*tmp)->childs)
+**		{
+**			inst = (t_rtobi *)(*tmp)->content;
+**			if (inst->obj->type | SPHERE)
+**				tmp++ = calc_sphere();
+**			if (inst->obj->type | CONE)
+**				tmp++ = calc_cone();
+**			if (inst->obj->type | PLAN)
+**				tmp++ = calc_plan();
+**			if (inst->obj->type | CYLINDER)
+**				tmp++ = calc_cylinder();
+**		}
+**		if (!(*tmp)->next)
+**		{
+**			inst = (t_rtobi *)(*tmp)->content;
+**			if (inst->obj->type | SPHERE)
+**				tmp++ = calc_sphere();
+**			if (inst->obj->type | CONE)
+**				tmp++ = calc_cone();
+**			if (inst->obj->type | PLAN)
+**				tmp++ = calc_plan();
+**			if (inst->obj->type | CYLINDER)
+**				tmp++ = calc_cylinder();
+**		}
+**	}
+**}
+** Pour le moment la fonction est en iteratif. Il faut je pense la passer en
+** recursive, cela s'adaptera mieux a la structure du nodetree.
+** mon void** est un type par default, a creuser.
+*/
+double			positive_smallest(double a, double b)
 {
 	if (a < 0)
 	{
@@ -74,23 +75,23 @@ double		positive_smallest(double a, double b)
 	return (b);
 }
 
-double		calc_cone(t_rtobd *cone, t_rtray *ray)
+double			calc_cone(t_rtobd *cone, t_rtray *ray)
 {
-	double	a;
-	double	b;
-	double	c;
-	double	delta;
-	double	angle;
+	double		a;
+	double		b;
+	double		c;
+	double		delta;
+	double		angle;
 
 	(void)cone;
 	angle = cone->cone.angle * (M_PI / 180);
 	a = ray->direction.x * ray->direction.x + ray->direction.y * ray->direction.y - ray->direction.z * ray->direction.z * tan(angle) * tan(angle);
 	b = 2 * (ray->start.x * ray->direction.x +
-			ray->start.y * ray->direction.y -
-			ray->direction.x * 0/*t_cone->orgine.x*/ -
-			ray->direction.y * 0/*t_cone->origin.y*/ +
-			(ray->direction.z * (0/*t_cone->origin.z*/ -
-			ray->start.z)) * tan(angle) * tan(angle));
+	ray->start.y * ray->direction.y -
+	ray->direction.x * 0/*t_cone->orgine.x*/ -
+	ray->direction.y * 0/*t_cone->origin.y*/ +
+	(ray->direction.z * (0/*t_cone->origin.z*/ -
+	ray->start.z)) * tan(angle) * tan(angle));
 	c = ray->start.x * ray->start.x + ray->start.y * ray->start.y + 0/*t_cone->origin.x*/ * 0/*t_cone->origin.x*/ + 0/*t_cone->origin.y*/ * 0/*t_cone->origin.y*/ - 2 * (ray->start.x * 0/*t_cone->origin.x*/ + ray->start.y * 0/*t_cone->origin.y*/) - (ray->start.z * ray->start.z - 2 * (ray->start.z * 0/*t_cone->origin.z*/) + 0/*t_cone->origin.z*/ * 0/*t_cone.origin.z*/) * tan(angle) * tan(angle);
 	delta = b * b - 4 * a * c;
 	if (delta >= 0)
@@ -101,12 +102,12 @@ double		calc_cone(t_rtobd *cone, t_rtray *ray)
 	return (INFINITY);
 }
 
-double		calc_plane(t_rtobd *plane, t_rtray *ray)
+double			calc_plane(t_rtobd *plane, t_rtray *ray)
 {
-	double	n;
-	double	d;
-	double	ret;
-	t_v3f	nor;
+	double		n;
+	double		d;
+	double		ret;
+	t_v3f		nor;
 
 	nor = (t_v3f){0.0f, 0.0f, 1.0f};
 	(void)plane;
@@ -118,13 +119,13 @@ double		calc_plane(t_rtobd *plane, t_rtray *ray)
 	return (INFINITY);
 }
 
-double		calc_cylinder(t_rtobd *cylinder, t_rtray *ray)
+double			calc_cylinder(t_rtobd *cylinder, t_rtray *ray)
 {
-	double	a;
-	double	b;
-	double	c;
-	double	delta;
-	double	ret;
+	double		a;
+	double		b;
+	double		c;
+	double		delta;
+	double		ret;
 
 	(void)cylinder;
 	a = ray->direction.x * ray->direction.x + ray->direction.y * ray->direction.y;
@@ -161,11 +162,11 @@ static double	sphere_eq_delta(t_rtobd *sphere, t_rtray *ray, double *a, double *
 
 double			calc_sphere(t_rtobd *sphere, t_rtray *ray)
 {
-	double	ret;
-	double	a;
-	double	b;
-	double	c;
-	double	delta;
+	double		ret;
+	double		a;
+	double		b;
+	double		c;
+	double		delta;
 
 	(void)sphere;
 	c = sphere_eq_delta(sphere, ray, &a, &b);
