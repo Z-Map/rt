@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mklayer_label.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alhelson <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/06/27 12:07:29 by alhelson          #+#    #+#             */
+/*   Updated: 2017/06/27 12:09:22 by alhelson         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt_ui.h"
 #include "rt_tree.h"
 #include <stdlib.h>
 
-t_layer_label	*mklayer_label(t_v2f pos, t_v2f dim, t_v4i color,\
+t_layer_label			*mklayer_label(t_v2f pos, t_v2f dim, t_v4i color,\
 	int placement)
 {
-	t_layer_label	*label;
+	t_layer_label		*label;
 
 	if (!(label = malloc(sizeof(t_layer_label))))
 		return (0);
@@ -18,16 +30,16 @@ t_layer_label	*mklayer_label(t_v2f pos, t_v2f dim, t_v4i color,\
 	return (label);
 }
 
-void		layer_label_add(t_layer_label *label, char *str)
+void					layer_label_add(t_layer_label *label, char *str)
 {
 	label->label = str;
 }
 
-t_rtnode	*mknlayer_label(t_v2f pos, t_v2f dim, t_v4i color,\
+t_rtnode				*mknlayer_label(t_v2f pos, t_v2f dim, t_v4i color,\
 	int placement)
 {
-        t_layer_label	*label;
-        t_rtnode	*node;
+	t_layer_label		*label;
+	t_rtnode			*node;
 
 	if (!(label = mklayer_label(pos, dim, color, placement)))
 		return (0);
