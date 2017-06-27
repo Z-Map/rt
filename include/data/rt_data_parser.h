@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_DATA_PARSER
-# define RT_DATA_PARSER
+#ifndef RT_DATA_PARSER_H
+# define RT_DATA_PARSER_H
 
 # include "rt_prototype.h"
 

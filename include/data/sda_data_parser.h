@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SDA_DATA_PARSER
-# define SDA_DATA_PARSER
+#ifndef SDA_DATA_PARSER_H
+# define SDA_DATA_PARSER_H
 
 # include "rt_prototype.h"
 # include "data/rt_data_tree.h"
