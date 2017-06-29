@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 15:03:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/20 20:39:00 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/29 16:10:50 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ struct					s_rt_render_ray
 
 struct					s_rt_render_gdata
 {
-	t_ul				flags;
 	t_v3f				hit_point;
 	float				depth;
 	t_mat2x3f			hit_tangent;
 	t_v3f				hit_nor;
+	t_ui				flags;
 	t_rtray				ray;
 	t_rtobi				*inst;
 	t_rtrnode			*node;
@@ -85,7 +85,7 @@ typedef struct			s_rt_ray_data
 	t_rtray				ray;
 	t_ui				transmission;
 	t_ui				reflecion;
-	float				depth;
+	t_v2f				lim;
 	t_rtrgd				geostack[RDR_GEOSTACK];
 }						t_rayd;
 

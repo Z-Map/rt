@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 15:04:58 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/21 18:28:41 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/29 16:36:12 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,27 @@ int				bound_raycast(t_rtray *r, t_mat3x2f b, t_rtrgd *gd)
 			(t_v3f){0.0f, 0.0f, 1.0f}, b.z, gd) || (gd[1].depth < 0.0f))
 		return (0);
 	return (1);
+}
+
+int				bound_lraycast(t_rtray *r, t_mat3x2f b, t_rtrgd *gd)
+{
+	t_ul		flags[2];
+	int			ret;
+
+	flags[0] = gd[0].flags;
+	flags[1] = gd[1].flags;
+	gd[0].flags &= ~(RAY_GDEPTH | RAY_GHNOR);
+	gd[1].flags &= ~(RAY_GDEPTH | RAY_GHNOR);
+	ret = bound_raycast(r, b, gd);
+	if (gd[0].flags & RAY_GDEPTH)
+		gd[0].flags |= RAY_GLOCAL;
+	else
+		gd[0].flags = flags[0];
+	if (gd[1].flags & RAY_GDEPTH)
+		gd[1].flags |= RAY_GLOCAL;
+	else
+		gd[1].flags = flags[1];
+	return(ret);
 }
 
 /*
