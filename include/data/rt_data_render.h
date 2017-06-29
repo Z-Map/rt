@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 15:03:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/19 15:35:41 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/29 17:37:03 by ghubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ struct					s_rt_render_ray
 	t_rgba				color;
 	float				intensity;
 };
+
+typedef struct			s_rt_render_filter
+{
+	t_rgba				color;
+	int					pad;
+}						t_filter;
 
 struct					s_rt_render_gdata
 {
@@ -90,6 +96,7 @@ typedef struct			s_rt_render_manager
 	t_v4f				*rpx;
 	t_rdrtree			*rendertree;
 	t_rt				*rt;
+	t_filter			filter;
 }						t_rtrmgr;
 
 typedef struct			s_worker_arg
