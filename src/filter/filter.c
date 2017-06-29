@@ -6,13 +6,13 @@
 /*   By: ghubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 16:29:22 by ghubert           #+#    #+#             */
-/*   Updated: 2017/06/29 18:42:20 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/29 18:58:37 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt_render.h"
 
-void		filter_apply(t_rtrmgr	*rmgr)
+void		filter_apply(t_rtrmgr *rmgr)
 {
 	unsigned int	x;
 	unsigned int	y;

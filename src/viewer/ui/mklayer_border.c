@@ -6,7 +6,7 @@
 /*   By: alhelson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/21 17:49:55 by alhelson          #+#    #+#             */
-/*   Updated: 2017/06/21 23:03:27 by alhelson         ###   ########.fr       */
+/*   Updated: 2017/06/29 18:56:54 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int placement)
 		return (0);
 	border->pos = (t_v2f){pos.x, pos.y};
 	border->dim = (t_v2f){dim.x, dim.y};
-	border->color = (t_v4f){(float)color.x, (float)color.y, (float)color.z, (float)color.w};
+	border->color = (t_v4f){
+		(float)color.x, (float)color.y, (float)color.z, (float)color.w};
 	border->valid_border = 15;
 	border->dim_border = 0.02;
 	border->gen.show = 1;
