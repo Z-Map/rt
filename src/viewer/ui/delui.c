@@ -14,11 +14,14 @@
 #include "rt_tree.h"
 #include <stdlib.h>
 
+/*
+** ajout du free du label et du term : to do
+*/
+
 static void		free_node(t_rtnode *node)
 {
 	if (node->type == TE_TERM || node->type == TE_LABEL)
 	{
-		//free les sous structure du term
 	}
 	if (node->content)
 		free(node->content);
