@@ -43,6 +43,10 @@ int			rt_keyrelease(void *env, int k)
 	t_rt	*rt;
 
 	rt = (t_rt *)env;
-	(void)k;
+        if (k == MGLW_MOUSE_BUTTON_1)
+        {
+                event_noclick_variator(rt);
+                return (1);
+        }
 	return (0);
 }
