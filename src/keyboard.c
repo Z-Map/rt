@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 01:23:17 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/29 16:21:45 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/29 17:52:23 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ int			rt_keyrelease(void *env, int k)
 	t_rt	*rt;
 
 	rt = (t_rt *)env;
-        if (k == MGLW_MOUSE_BUTTON_1)
-        {
-                event_noclick_variator(rt);
-                return (1);
-        }
+	if (k == MGLW_MOUSE_BUTTON_1)
+	{
+		event_noclick_variator(rt);
+		return (1);
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 02:48:07 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/17 16:38:46 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/29 17:51:11 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_rtray		rdr_pxray(t_ui x, t_ui y, t_rtrmgr *rmgr, t_rtrnode *camnode)
 	pv3fmulv3f(&ray.direction, nv3f(-cos(fov / 2)));
 	// fov = sinf(fov);
 	pv3faddv3f(&ray.direction, v3fmulv3f(camnode->transform.x,
-		nv3f((((float)x / (float)(rmgr->rsize.x))) - 0.5f )));
+		nv3f((((float)x / (float)(rmgr->rsize.x))) - 0.5f)));
 	fov = (double)(rmgr->rsize.y) / (double)(rmgr->rsize.x);
 	pv3faddv3f(&ray.direction, v3fmulv3f(camnode->transform.y,
 		nv3f((0.5f - ((float)y / (float)(rmgr->rsize.y))) * (float)fov)));

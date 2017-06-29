@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 22:01:25 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/21 20:25:18 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/29 17:50:23 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ t_v3f		calc_refraction(t_rtrgd gd)
 	c2 = sqrtf(1 - ((1 * ref) * (1 * ref)) * (1.0 - (c1 * c1)));
 	coef = (c1 > 0) ? -1.0f : 0.0f;
 	gd.ray.direction = v3faddv3f(v3fmulv3f(nv3f(n), gd.ray.direction),
-		v3fmulv3f(nv3f((n * c1) - (c2 * coef)),	gd.hit_nor));
+			v3fmulv3f(nv3f((n * c1) - (c2 * coef)), gd.hit_nor));
 	return (gd.ray.direction);
 }
