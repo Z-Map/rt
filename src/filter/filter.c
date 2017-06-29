@@ -6,7 +6,7 @@
 /*   By: ghubert <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 16:29:22 by ghubert           #+#    #+#             */
-/*   Updated: 2017/06/29 17:40:59 by ghubert          ###   ########.fr       */
+/*   Updated: 2017/06/29 18:42:20 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void		filter_apply(t_rtrmgr	*rmgr)
 
 	color = rgbatov4f(rmgr->filter.color);
 	y = 0;
-	while (y <= rmgr->rsize.y)
+	while (y < rmgr->rsize.y)
 	{
 		x = 0;
-		while (x <= rmgr->rsize.x)
+		while (x < rmgr->rsize.x)
 		{
 			pos = x + (y * rmgr->rsize.x);
 			rmgr->rpx[pos].x += (color.x * color.w);
