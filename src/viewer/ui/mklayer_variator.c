@@ -23,9 +23,9 @@ t_v4i color[2], int placement)
 		return (0);
 	variator->pos = (t_v2f){pos.x, pos.y};
 	variator->dim = (t_v2f){dim.x, dim.y};
-	variator->color[0] = (t_v4i){color[0].x,\
+	variator->color[0] = (t_v4f){color[0].x,\
 	color[0].y, color[0].z, color[0].w};
-	variator->color[1] = (t_v4i){color[1].x, color[1].y,\
+	variator->color[1] = (t_v4f){color[1].x, color[1].y,\
 	color[1].z, color[1].w};
 	variator->gen[0].placement = placement;
 	variator->gen[0].show = 1;

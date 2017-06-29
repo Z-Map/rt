@@ -13,7 +13,7 @@
 #include "rt_ui_display.h"
 #include "mathex/vector.h"
 
-void	draw_label(mglimg *img, t_layer_label *label)
+void	draw_label(mglwin *img, t_layer_label *label)
 {
 	(void)img;
 	(void)label;

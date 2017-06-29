@@ -23,7 +23,7 @@ int placement)
 		return (0);
 	border->pos = (t_v2f){pos.x, pos.y};
 	border->dim = (t_v2f){dim.x, dim.y};
-	border->color = (t_v4i){color.x, color.y, color.z, color.w};
+	border->color = (t_v4f){(float)color.x, (float)color.y, (float)color.z, (float)color.w};
 	border->valid_border = 15;
 	border->dim_border = 0.02;
 	border->gen.show = 1;

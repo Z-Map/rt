@@ -12,7 +12,7 @@
 
 #include "rt_ui_display.h"
 #include "mathex/vector.h"
-
+/*
 static int			is_border(t_layer_border *b, int x, int y)
 {
 	int				vx;
@@ -30,10 +30,12 @@ static int			is_border(t_layer_border *b, int x, int y)
 		return (1);
 	return (0);
 }
-
-void				draw_border(mglimg *img, t_layer_border *grid)
+*/
+void				draw_border(mglwin *img, t_layer_border *grid)
 {
-	int				cx;
+	(void)img;
+	(void)grid;
+/*	int				cx;
 	int				cy;
 	unsigned int	index;
 
@@ -53,5 +55,5 @@ void				draw_border(mglimg *img, t_layer_border *grid)
 		}
 		cy++;
 		cx = 0;
-	}
+	}*/
 }

@@ -23,9 +23,9 @@ t_v4i color, int placement)
 		return (0);
 	checkbox->pos = (t_v2f){pos.x, pos.y};
 	checkbox->dim = (t_v2f){dim.x, dim.y};
-	checkbox->color = (t_v4i){color.x, color.y, color.z, color.w};
-	checkbox->color2 = (t_v4i){255 - color.x,\
-	255 - color.y, 255 - color.z, color.w};
+	checkbox->color = (t_v4f){color.x, color.y, color.z, color.w};
+	checkbox->color2 = (t_v4f){255.0 - color.x,\
+	255.0 - color.y, 255.0 - color.z, color.w};
 	checkbox->gen.placement = placement;
 	checkbox->gen.show = 1;
 	checkbox->gen.event = 1;

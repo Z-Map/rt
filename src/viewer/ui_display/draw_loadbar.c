@@ -13,17 +13,14 @@
 #include "rt_ui_display.h"
 #include "mathex/vector.h"
 
-void				draw_loadbar(mglimg *img, t_layer_loadbar *loadbar)
+void				draw_loadbar(mglwin *img, t_layer_loadbar *loadbar)
 {
-	t_layer_border	border;
-	t_layer_rect	rect[2];
+	mglrect	rect_d;
 
-	rect[0] = (t_layer_rect){.gen = loadbar->gen[0],\
-	.color = loadbar->color[0]};
-	rect[1] = (t_layer_rect){.gen = loadbar->gen[1],\
-	.dim = (t_v2f){loadbar->dim.x * (1.0 * loadbar->load), loadbar->dim.y},\
-	.color = loadbar->color[1]};
-	draw_rect(img, &(rect[0]));
-	draw_rect(img, &(rect[1]));
-	draw_border(img, &border);
+	(void)img;
+
+	rect_d = gen_to_rect(loadbar->gen[0], loadbar->color[0]);
+	mgl_drawrect(img, rect_d);
+	rect_d = gen_to_rect(loadbar->gen[1], loadbar->color[1]);
+	mgl_drawrect(img, rect_d);
 }

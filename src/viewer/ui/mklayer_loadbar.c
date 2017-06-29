@@ -23,9 +23,9 @@ t_layer_loadbar		*mklayer_loadbar(t_v2f pos, t_v2f dim, t_v4i color[3],\
 		return (0);
 	load->pos = (t_v2f){pos.x, pos.y};
 	load->dim = (t_v2f){dim.x, dim.y};
-	load->color[0] = (t_v4i){color[0].x, color[0].y, color[0].z, color[0].w};
-	load->color[1] = (t_v4i){color[1].x, color[1].y, color[1].z, color[1].w};
-	load->color[2] = (t_v4i){color[2].x, color[2].y, color[2].z, color[2].w};
+	load->color[0] = (t_v4f){color[0].x, color[0].y, color[0].z, color[0].w};
+	load->color[1] = (t_v4f){color[1].x, color[1].y, color[1].z, color[1].w};
+	load->color[2] = (t_v4f){color[2].x, color[2].y, color[2].z, color[2].w};
 	load->gen[0].placement = PL_LEFT;
 	load->gen[0].show = 1;
 	load->gen[0].event = 0;

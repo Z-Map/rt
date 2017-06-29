@@ -14,12 +14,12 @@
 #include "mathex/vector.h"
 #include <stdio.h>
 
-void				draw_variator(mglimg *img, t_layer_variator *var)
+void				draw_variator(mglwin *img, t_layer_variator *var)
 {
-	t_layer_rect	c[2];
+	mglrect	rect_d;
 
-	c[0] = (t_layer_rect){.gen = var->gen[0], .color = var->color[0]};
-	c[1] = (t_layer_rect){.gen = var->gen[1], .color = var->color[1]};
-	draw_rect(img, &(c[0]));
-	draw_rect(img, &(c[1]));
+	rect_d = gen_to_rect(var->gen[0], var->color[0]);
+	mgl_drawrect(img, rect_d);
+	rect_d = gen_to_rect(var->gen[1], var->color[1]);
+	mgl_drawrect(img, rect_d);
 }

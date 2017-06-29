@@ -23,7 +23,7 @@ t_layer_rect		*mklayer_rect(t_v2f pos, t_v2f dim, t_v4i color,\
 		return (0);
 	rect->pos = (t_v2f){pos.x, pos.y};
 	rect->dim = (t_v2f){dim.x, dim.y};
-	rect->color = (t_v4i){color.x, color.y, color.z, color.w};
+	rect->color = (t_v4f){color.x, color.y, color.z, color.w};
 	rect->gen.placement = placement;
 	rect->gen.show = 1;
 	rect->gen.event = 0;

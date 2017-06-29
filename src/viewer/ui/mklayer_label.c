@@ -23,7 +23,7 @@ t_layer_label			*mklayer_label(t_v2f pos, t_v2f dim, t_v4i color,\
 		return (0);
 	label->pos = (t_v2f){pos.x, pos.y};
 	label->dim = (t_v2f){dim.x, dim.y};
-	label->color = (t_v4i){color.x, color.y, color.z, color.w};
+	label->color = (t_v4f){color.x, color.y, color.z, color.w};
 	label->gen.placement = placement;
 	label->gen.show = 1;
 	label->gen.event = 0;
