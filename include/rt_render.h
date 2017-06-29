@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 22:47:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/19 15:22:23 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/29 17:19:25 by ghubert          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,7 @@ t_v4f		*kernel_calc(t_v4f *img, t_mat3d knl, t_v2ui max);
 
 int			render_worker(t_ui px, t_ui step, t_rt *rt, t_rtrmgr *rmgr);
 int			rdr_start_workers(t_rt *rt, t_rtrmgr *mgr);
+
+void		filter_apply(t_rtrmgr *rmgr);
 
 #endif
