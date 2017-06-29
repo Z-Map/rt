@@ -13,28 +13,14 @@
 #include "rt_ui_display.h"
 #include "mathex/vector.h"
 
-void					draw_checkbox(mglimg *img, t_layer_checkbox *cb)
+void					draw_checkbox(mglwin *img, t_layer_checkbox *cb)
 {
-	int					cx;
-	int					cy;
-	unsigned int		index;
-	t_v4i				color;
+	t_v4f				color;
+	mglrect				rect_d;
 
-	cx = 0;
-	cy = 0;
 	color = cb->color2;
 	if (cb->state)
 		color = cb->color;
-	while (cy < cb->gen.dim.y)
-	{
-		while (cx < cb->gen.dim.x)
-		{
-			index = img->x * (cb->gen.pos.y + cy) * 4 +\
-			(cb->gen.pos.x + cx) * 4;
-			add_rgb_in_img(img, index, color);
-			cx++;
-		}
-		cy++;
-		cx = 0;
-	}
+	rect_d = gen_to_rect(cb->gen, color);
+	mgl_drawrect(img, rect_d);
 }

@@ -24,7 +24,7 @@ t_rtnode			*init_ui(t_v2i dim)
 	t_v4i color2[2];
 
 	color2[0] = color[0] = (t_v4i){0, 255, 255, 255};
-	color2[1] = color[1] = (t_v4i){0, 0, 0, 255};
+	color2[1] = color[1] = (t_v4i){255, 0, 255, 255};
 	color[2] = (t_v4i){84, 84, 255, 200};
 	//CREATION DU PREMIER ELEMENT
 	if (!(root = mklayer_root(dim)))
@@ -40,18 +40,18 @@ t_rtnode			*init_ui(t_v2i dim)
 	//	return (0);
 
 	//tets laodbar
-	//if (!(tmp = tree_addchild(node,\
-	//mknlayer_loadbar((t_v2f){0.0, 0.0}, (t_v2f){0.6, 0.1}, color, PL_BOTTOM))))
-	//	return (0);
+	if (!(tmp = tree_addchild(node,\
+	mknlayer_loadbar((t_v2f){0.0, 0.0}, (t_v2f){0.6, 0.1}, color, PL_TOP))))
+		return (0);
 	if (!(tmp = tree_addchild(node, mknlayer_variator((t_v2f){0.0, 0.0}, (t_v2f){0.6, 0.1}, color2, PL_MIDDLE))))
 		return (0);
-	tmp = 0;
-	if (!(tree_addchild(node, mknlayer_checkbox((t_v2f){0.0, 0.0}, (t_v2f){0.2, 0.2},\
-	(t_v4i){0, 0, 255, 200}, PL_TOP))))
-		return (0);
+	//if (!(tree_addchild(node, mknlayer_checkbox((t_v2f){0.0, 0.0}, (t_v2f){0.2, 0.2},\
+	//(t_v4i){0, 0, 255, 200}, PL_TOP))))
+	//	return (0);
+	/*
 	if (!(tree_addchild(node, mknlayer_checkbox((t_v2f){0.0, 0.2}, (t_v2f){0.2, 0.2},\
 	(t_v4i){0, 255, 0, 200}, PL_MIDDLE))))
-		return (0);
+		return (0);*/
 	//printf(". : %d\n childs : %d\n childs->next : %d\n", node->flags, node->childs->flags, node->childs->next->flags);
 	//tets d ajout de bordure sur l image principal id : 3
 	/*	if (!(tree_addchild_wid(node, mknlayer_border((t_v2f){0.0, 0.0}, (t_v2f){1.0, 1.0},\

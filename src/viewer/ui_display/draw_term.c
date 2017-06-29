@@ -13,10 +13,10 @@
 #include "rt_ui_display.h"
 #include "mathex/vector.h"
 
-void			draw_term(mglimg *img, t_layer_term *term)
+void			draw_term(mglwin *img, t_layer_term *term)
 {
 	t_layer_rect	rect;
 
+	(void)img;
 	rect = (t_layer_rect){.gen = term->gen, .color = term->color};
-	draw_rect(img, &rect);
 }

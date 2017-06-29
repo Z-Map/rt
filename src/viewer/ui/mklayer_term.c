@@ -24,7 +24,7 @@ int placement)
 		return (0);
 	term->pos = (t_v2f){pos.x, pos.y};
 	term->dim = (t_v2f){dim.x, dim.y};
-	term->color = (t_v4i){color.x, color.y, color.z, color.w};
+	term->color = (t_v4f){color.x, color.y, color.z, color.w};
 	term->gen.placement = placement;
 	term->gen.show = 1;
 	term->gen.event = 1;

@@ -17,6 +17,10 @@
 #include "rt_core.h"
 #include "rt_tree.h"
 
+/*
+** to do: add event in terminal click
+*/
+
 void			event_ui(t_rt *rt)
 {
 	t_rtnode	*tmp;
@@ -31,6 +35,5 @@ void			event_ui(t_rt *rt)
 		event_click_variator(rt, tmp);
 	else if (tmp && tmp->type == TE_TERM)
 	{
-		// gestiond de l evenement terminal si click
 	}
 }

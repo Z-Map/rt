@@ -68,7 +68,7 @@ struct			s_layer_rect
 	t_layer_gen	gen;
 	t_v2f		pos;
 	t_v2f		dim;
-	t_v4i		color;
+	t_v4f		color;
 };
 
 struct			s_layer_border
@@ -76,7 +76,7 @@ struct			s_layer_border
 	t_layer_gen	gen;
 	t_v2f		pos;
 	t_v2f		dim;
-	t_v4i		color;
+	t_v4f		color;
 	int			border_display;
 	float		dim_border;
 	int			valid_border;
@@ -87,8 +87,8 @@ struct			s_layer_checkbox
 	t_layer_gen	gen;
 	t_v2f		pos;
 	t_v2f		dim;
-	t_v4i		color;
-	t_v4i		color2;
+	t_v4f		color;
+	t_v4f		color2;
 	int			state;
 };
 
@@ -97,7 +97,7 @@ struct			s_layer_loadbar
 	t_layer_gen	gen[3];
 	t_v2f		pos;
 	t_v2f		dim;
-	t_v4i		color[3];
+	t_v4f		color[3];
 	float		load;
 };
 
@@ -106,7 +106,7 @@ struct			s_layer_variator
 	t_layer_gen	gen[2];
 	t_v2f		pos;
 	t_v2f		dim;
-	t_v4i		color[2];
+	t_v4f		color[2];
 	float		load;
 };
 
@@ -118,7 +118,7 @@ struct			s_layer_term
 	t_layer_gen	gen;
 	t_v2f		pos;
 	t_v2f		dim;
-	t_v4i		color;
+	t_v4f		color;
 	t_term		*term;
 };
 
@@ -130,7 +130,7 @@ struct			s_layer_label
 	t_layer_gen	gen;
 	t_v2f		pos;
 	t_v2f		dim;
-	t_v4i		color;
+	t_v4f		color;
 	char		*label;
 };
 
