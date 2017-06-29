@@ -27,8 +27,8 @@ int				rt_init_window(t_rt *rt)
 int				viewer_run(t_rt *rt, t_rtview *v)
 {
 	pthread_mutex_lock(&(v->refresh_lock));
-	if (rt->flags & RTF_RDRDISP)
-		mglw_draw_itow(v->win, v->rdrtarget, 0, 0);
+	//if (rt->flags & RTF_RDRDISP)
+	//	mglw_draw_itow(v->win, v->rdrtarget, 0, 0);
 	mglwin_draw(v->win);
 	mglw_setGLContext(NULL);
 	if (!(v->keys & RTWK_REFRESH))
@@ -44,6 +44,8 @@ int				viewer_run(t_rt *rt, t_rtview *v)
 	}
 	mglwin_clear(v->win);
 	mglw_setGLContext(v->win);
+	if (rt->flags & RTF_RDRDISP)
+		mglw_draw_itow(v->win, v->rdrtarget, 0, 0);
 	return (1);
 }
 
