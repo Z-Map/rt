@@ -25,5 +25,4 @@ t_v3f		shadow_test(t_rtrgd geo, t_rtrld l, t_rdrtree *tree)
 	rdata = shadowtrace(ray_bounceto(geo, *(t_v3f *)(&l.v)), l, tree, 5);
 	pwr = nv3f(rdata.frag.color.w * l.pwr);
 	return (*pv3fmulv3f((t_v3f *)&rdata.frag.color, pwr));
-	// return (nv3f(rdata.frag.color.w * l.pwr));
 }

@@ -40,6 +40,10 @@ int			rt_sync_viewerthread(t_rt *rt)
 	return (0);
 }
 
+/*
+** rt_init_window(rt);
+*/
+
 int			rt_init_viewerthread(t_rt *rt)
 {
 	if (!(rt->state & RTS_MGLW_INIT) && (rt_init_mglw(rt) <= 0))
@@ -58,6 +62,5 @@ int			rt_init_viewerthread(t_rt *rt)
 	rt->viewer.refresh_cond = (pthread_cond_t)PTHREAD_COND_INITIALIZER;
 	if (pthread_create(&(rt->viewer.mainthread), NULL, &rt_viewer_main, rt))
 		return (rt_error(122, "Unable to start viewer thread."));
-	// rt_init_window(rt);
 	return (1);
 }

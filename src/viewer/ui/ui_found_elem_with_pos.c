@@ -14,7 +14,7 @@
 #include "rt_tree.h"
 #include <stdio.h>
 
-void			ui_found_elem_with_pos(t_rtnode *node,\
+void	ui_found_elem_with_pos(t_rtnode *node,\
 t_rtnode **found, t_v2i *pos_cursor)
 {
 	t_rtnode	*tmp;
@@ -22,12 +22,11 @@ t_rtnode **found, t_v2i *pos_cursor)
 	if (*found)
 		return ;
 	tmp = node;
-	if (tmp->next && (((t_layer_root *)(tmp->next->content))->gen.show) &&\
-	ui_check_hit(tmp->next, pos_cursor))
+	if (tmp->next)
 		ui_found_elem_with_pos(tmp->next, found, pos_cursor);
-	if (tmp->childs && (((t_layer_root *)(tmp->childs->content))->gen.show) &&\
-	ui_check_hit(tmp->childs, pos_cursor))
+	if (tmp->childs)
 		ui_found_elem_with_pos(tmp->childs, found, pos_cursor);
-	if (ui_is_event(((t_layer_root *)(tmp->content))->gen))
+	if (ui_is_event(((t_layer_root *)(tmp->content))->gen) &&\
+	ui_check_hit(tmp, pos_cursor))
 		*found = tmp;
 }

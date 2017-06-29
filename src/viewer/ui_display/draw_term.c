@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_data_parser.h                                   :+:      :+:    :+:   */
+/*   draw_term.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhelson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/25 15:28:51 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/17 16:21:50 by lcarreel         ###   ########.fr       */
+/*   Created: 2017/06/26 15:55:19 by alhelson          #+#    #+#             */
+/*   Updated: 2017/06/26 15:55:22 by alhelson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_DATA_PARSER_H
-# define RT_DATA_PARSER_H
+#include "rt_ui_display.h"
+#include "mathex/vector.h"
 
-# include "rt_prototype.h"
+void			draw_term(mglimg *img, t_layer_term *term)
+{
+	t_layer_rect	rect;
 
-#endif
+	rect = (t_layer_rect){.gen = term->gen, .color = term->color};
+	draw_rect(img, &rect);
+}

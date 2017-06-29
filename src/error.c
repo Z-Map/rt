@@ -6,24 +6,26 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 18:15:50 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/07 22:04:04 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/27 19:09:51 by alhelson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "rt.h"
 
-// static void	error_push(t_rt *rt)
-// {
-// 	int		*errors;
-// 	int		tmp;
-// 	int		i;
-//
-// 	i = 14
-// 	errors = rt->errors;
-// 	while (i-- && *errors)
-// 		errors[]
-// }
+/*
+** static void	error_push(t_rt *rt)
+** {
+** 	int		*errors;
+** 	int		tmp;
+** 	int		i;
+**
+** 	i = 14
+** 	errors = rt->errors;
+** 	while (i-- && *errors)
+** 		errors[]
+** }
+*/
 
 int				rt_error(int code, const char *msg)
 {
@@ -39,7 +41,6 @@ int				rt_error(int code, const char *msg)
 		return (-1);
 	if (msg)
 		ft_printf("Error #%i : \"%s\"\n", code, msg);
-// if (rt->error)
 	rt->error = code;
 	if (code < 0)
 	{
@@ -50,7 +51,7 @@ int				rt_error(int code, const char *msg)
 	return (code);
 }
 
-int			rt_check_error(t_rt *rt)
+int				rt_check_error(t_rt *rt)
 {
 	if (!rt)
 		return (-1);

@@ -26,14 +26,19 @@ void		update_loadbar(t_layer_loadbar *load, t_layer_gen *gen_father)
 	update_pos(&(load->gen[2]), &(load->gen[1]), load->pos, dim[1]);
 }
 
+/*
+** dim.x : taille de la bar
+** dim.x : hauteur de la bar
+*/
+
 void		update_variator(t_layer_variator *var, t_layer_gen *gen_father)
 {
 	t_v2f	dim;
 	t_v2f	pos;
 
-	dim.x = var->dim.x * 0.05; // size of 5%
-	dim.y = 1.0; //dimension de la bar
-	pos.x =  var->load;
+	dim.x = var->dim.x * 0.05;
+	dim.y = 1.0;
+	pos.x = var->load;
 	pos.y = 0.0;
 	update_pos(gen_father, &(var->gen[0]), var->pos, var->dim);
 	update_pos(&(var->gen[0]), &(var->gen[1]), pos, dim);

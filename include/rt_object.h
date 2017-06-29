@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_OBJECTS_H
-# define RT_OBJECTS_H
+#ifndef RT_OBJECT_H
+# define RT_OBJECT_H
 
 # include <stdarg.h>
 

@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rt_data_parser.h                                   :+:      :+:    :+:   */
+/*   draw_label.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhelson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/25 15:28:51 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/17 16:21:50 by lcarreel         ###   ########.fr       */
+/*   Created: 2017/06/26 17:48:39 by alhelson          #+#    #+#             */
+/*   Updated: 2017/06/26 17:48:41 by alhelson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_DATA_PARSER_H
-# define RT_DATA_PARSER_H
+#include "rt_ui_display.h"
+#include "mathex/vector.h"
 
-# include "rt_prototype.h"
-
-#endif
+void	draw_label(mglimg *img, t_layer_label *label)
+{
+	(void)img;
+	(void)label;
+}

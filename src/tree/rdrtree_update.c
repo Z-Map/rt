@@ -31,29 +31,32 @@ static int		load_tex(void *inst, void *env)
 	return (0);
 }
 
+/*
+**	size_t       i;
+**	tree->negative = node_tabfromtype(tree, VISIBLE, &(tree->negative_len));
+**	if (tree->visible)
+**	{
+**	i = tree->visible_len;
+**	while (i-- > 1)
+**	{
+**		if (tree->visible[i])
+**		ft_printf("(%s), ", tree->visible[i]->content->obj->name);
+**	else
+**	ft_printf("!ERROR!, ");
+**	}
+**	if (tree->visible[i])
+**	ft_printf("(%s)\n", tree->visible[i]->content->obj->name);
+**	else
+**	ft_printf("!ERROR!, ");
+**	}
+*/
+
 int				rtree_update(t_rdrtree *tree)
 {
-	// size_t	i;
 	tree->visible = node_tabfromtype((t_rtree *)tree, VISIBLE,
 		&(tree->visible_len));
 	tree->lights = node_tabfromtype((t_rtree *)tree, LIGHT,
 		&(tree->lights_len));
 	tree_find((t_rtnode *)tree, &load_tex, NULL);
-	// tree->negative = node_tabfromtype(tree, VISIBLE, &(tree->negative_len));
-	// if (tree->visible)
-	// {
-	// 	i = tree->visible_len;
-	// 	while (i-- > 1)
-	// 	{
-	// 		if (tree->visible[i])
-	// 			ft_printf("(%s), ", tree->visible[i]->content->obj->name);
-	// 		else
-	// 			ft_printf("!ERROR!, ");
-	// 	}
-	// 	if (tree->visible[i])
-	// 		ft_printf("(%s)\n", tree->visible[i]->content->obj->name);
-	// 	else
-	// 		ft_printf("!ERROR!, ");
-	// }
 	return (1);
 }

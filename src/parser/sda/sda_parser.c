@@ -53,13 +53,16 @@ static int			tab_diff(int *tab, char *s)
 	return (ret);
 }
 
+/*
+** while ((*node)->next)
+**  *node = (*node)->next;
+*/
+
 static int			move_node(int n, t_rtnode **node)
 {
 	if ((n == 1) && (*node)->childs)
 	{
 		*node = (*node)->childs;
-		// while ((*node)->next)
-		// 	*node = (*node)->next;
 	}
 	else if (n >= 1)
 		return (0);

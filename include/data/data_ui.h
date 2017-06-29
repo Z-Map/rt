@@ -6,7 +6,7 @@
 /*   By: alhelson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/20 16:54:21 by alhelson          #+#    #+#             */
-/*   Updated: 2017/06/21 23:17:36 by alhelson         ###   ########.fr       */
+/*   Updated: 2017/06/27 18:11:07 by alhelson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "mathex/vector.h"
 # include "rt_prototype.h"
+# include "data_term.h"
 
 enum			e_type_element
 {
@@ -25,6 +26,8 @@ enum			e_type_element
 	TE_CHECKBOX,
 	TE_LOADBAR,
 	TE_VARIATOR,
+	TE_LABEL,
+	TE_TERM,
 	TE_ERR
 };
 
@@ -86,7 +89,7 @@ struct			s_layer_checkbox
 	t_v2f		dim;
 	t_v4i		color;
 	t_v4i		color2;
-	int		state; // 1 : valid | 0 : not valid
+	int			state;
 };
 
 struct			s_layer_loadbar
@@ -95,7 +98,7 @@ struct			s_layer_loadbar
 	t_v2f		pos;
 	t_v2f		dim;
 	t_v4i		color[3];
-	float		load; //pourcentage de loading
+	float		load;
 };
 
 struct			s_layer_variator
@@ -105,6 +108,30 @@ struct			s_layer_variator
 	t_v2f		dim;
 	t_v4i		color[2];
 	float		load;
+};
+
+/*
+** term + bordure
+*/
+struct			s_layer_term
+{
+	t_layer_gen	gen;
+	t_v2f		pos;
+	t_v2f		dim;
+	t_v4i		color;
+	t_term		*term;
+};
+
+/*
+** label
+*/
+struct			s_layer_label
+{
+	t_layer_gen	gen;
+	t_v2f		pos;
+	t_v2f		dim;
+	t_v4i		color;
+	char		*label;
 };
 
 #endif
