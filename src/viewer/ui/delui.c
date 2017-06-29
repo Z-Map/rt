@@ -12,6 +12,7 @@
 
 #include "rt_ui.h"
 #include "rt_tree.h"
+#include "rt_term.h"
 #include <stdlib.h>
 
 /*
@@ -20,9 +21,10 @@
 
 static void		free_node(t_rtnode *node)
 {
-	if (node->type == TE_TERM || node->type == TE_LABEL)
-	{
-	}
+	if (node->type == TE_TERM)
+		delterm(((t_layer_term *)node->content)->term);
+	if (node->type == TE_LABEL && node->content)
+		free(((t_layer_label *)node->content)->label);
 	if (node->content)
 		free(node->content);
 	if (node)
