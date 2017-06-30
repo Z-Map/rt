@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 19:06:35 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/07 21:25:30 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/30 14:37:55 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int			rt_init_scenerdr(t_rt *rt)
 	rt_state(rt, RTS_INIT, RT_SET);
 	RT_DBGM("Start tree parsing.");
 	RT_DBGM(rt->scene);
-	rt->tree = parse_scene(rt->scene);
+	if (rt->tree = parse_scene(rt->scene))
+		rt_error(-1, "Parsing error");
 	RT_DBGM("Tree parsed.");
 	print_tree(rt->tree);
 	rt_init_rdrmgrthread(rt);
