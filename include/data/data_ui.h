@@ -133,7 +133,7 @@ struct			s_layer_label
 	t_v2f		dim;
 	t_v4f		color;
 	mglca		police;
-	mglstr		data;
+	mglstr		*data;
 	char		*label;
 };
 

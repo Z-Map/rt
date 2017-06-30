@@ -15,6 +15,9 @@
 #include <stdlib.h>
 #include "mglw/mgl.h"
 
+/*
+** bouger la function update_ui
+*/
 t_layer_label			*mklayer_label(t_v2f pos, t_v2f dim, t_v4i color,\
 	int placement)
 {
@@ -28,7 +31,8 @@ t_layer_label			*mklayer_label(t_v2f pos, t_v2f dim, t_v4i color,\
 	label->gen.placement = placement;
 	label->gen.show = 1;
 	label->gen.event = 0;
-	//label->
+	label->police = mgl_ttf_to_charatlas("lib/mglw/font.ttf", NULL, 0);
+	label->data = mgl_cstrtomglstr(&(label->police), "coucou", 0.2, 0.35);
 	return (label);
 }
 

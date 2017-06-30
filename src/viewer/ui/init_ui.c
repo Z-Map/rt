@@ -29,7 +29,10 @@ t_rtnode			*init_ui(t_rt *rt,  t_v2i dim)
 	node->type = TE_ROOT;
 	node->flags = get_id_ui_node();
 	node->parent = node;
-	if (!(tree_addchild(node,\
+/*	if (!(tree_addchild(node,\
+	mknlayer_label((t_v2f){0.0, 0.0}, (t_v2f){0.3, 0.3}, (t_v4i){100.0, 200.0, 10.0, 200.0}, PL_MIDDLE))))
+		return (0);*/
+	/*if (!(tree_addchild(node,\
 	mknlayer_rect((t_v2f){0.0, 0.0}, (t_v2f){0.3, 0.3}, (t_v4i){100.0, 200.0, 10.0, 200.0}, PL_LEFT))))
 		return (0);
 	if (!(tree_addchild_wid(node, mknlayer_variator((t_v2f){0.0, 0.0}, (t_v2f){1.0, 0.33}, color, PL_TOP), 1)))
@@ -38,6 +41,7 @@ t_rtnode			*init_ui(t_rt *rt,  t_v2i dim)
                 return (0);
         if (!(tree_addchild_wid(node, mknlayer_variator((t_v2f){0.0, 0.0}, (t_v2f){1.0, 0.33}, color, PL_BOTTOM), 1)))
                 return (0);
+	*/
         if (!(rt->viewer.layer_main_loadbar = tree_addchild(node,\
         mknlayer_loadbar((t_v2f){0.0, 0.0}, (t_v2f){1.0, 0.15666}, color, PL_BOTTOM))))
                 return (0);
