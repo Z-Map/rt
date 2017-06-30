@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 18:23:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/13 15:55:42 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/30 09:55:32 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,24 @@ static int		calc_cylinder(t_rtobd *cylinder, t_rtray *ray, t_v2f *dist)
 	return (0);
 }
 
-int				intersect_cylinder(t_rtray ray, t_rtobd *cy, t_rtrgd *gd)
+int				intersect_cylinder(t_rayd *rayd, t_rtobd *cy, t_rtrgd *gd)
 {
 	t_v2f		dist;
 	int			ret;
+	int			dim;
 	t_v3f		hitp[2];
 
-	if (!calc_cylinder(cy, &ray, &dist))
+	ret = 0;
+	if (!calc_cylinder(cy, &(rayd->ray), &dist))
 		return (0);
-	ret = intersect_depth(gd, ray, dist, hitp);
-	if (!(ret & 1) && (sqrtf(hitp[0].x * hitp[0].x
+	dim = intersect_depth(gd, rayd->ray, dist);
+	hitp[0] = gd[0].hit_point;
+	hitp[1] = gd[1].hit_point;
+	if ((dim & 1) || (sqrtf(hitp[0].x * hitp[0].x
 		+ hitp[0].y * hitp[0].y) <= cy->cylinder.radius))
-		ret |= 1;
-	if (!(ret & 2) && (sqrtf(hitp[1].x * hitp[1].x
+		ret |= ray_setgeo(rayd, gd[0]);
+	if ((dim & 2) || (sqrtf(hitp[1].x * hitp[1].x
 		+ hitp[1].y * hitp[1].y) <= cy->cylinder.radius))
-		ret |= 2;
+		ret |= ray_setgeo(rayd, gd[1]);
 	return (ret);
 }

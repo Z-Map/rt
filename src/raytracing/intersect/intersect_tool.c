@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 16:11:06 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/29 18:30:21 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/29 21:07:20 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int			intersect_depth(t_rtrgd *gd, t_rtray r, t_v2f d)
 	if ((d.x > gd[0].depth) && (d.x < gd[1].depth))
 		ret |= geo_setdepth(gd, 1, d.x);
 	if ((d.y < gd[1].depth) && (d.y > gd[0].depth))
-		ret |= geo_setdepth(gd, 2, d.y);
+		ret |= geo_setdepth(gd + 1, 2, d.y);
 	gd[0].hit_point = ray_hitpoint(r, gd[0].depth);
 	gd[1].hit_point = ray_hitpoint(r, gd[1].depth);
 	return (ret);

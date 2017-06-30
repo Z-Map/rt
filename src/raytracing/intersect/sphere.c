@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 18:23:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/29 18:57:03 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/30 09:18:52 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,25 @@ static int		calc_sphere(t_rtobd *ob, t_rtray *ray, t_v2f *dist)
 	return (0);
 }
 
-int				intersect_sphere(t_rtray ray, t_rtobd *ob, t_rtrgd *gd)
+int				intersect_sphere(t_rayd *rayd, t_rtobd *ob, t_rtrgd *gd)
 {
 	t_v2f		dist;
 	int			ret;
 	int			dim;
 	t_v3f		hitp[2];
 
-	if (!calc_sphere(ob, &ray, &dist) || (dist.x > gd[1].depth)
+	ret = 0;
+	if (!calc_sphere(ob, &(rayd->ray), &dist) || (dist.x > gd[1].depth)
 		|| (dist.y < 0.0))
 		return (0);
-	dim = intersect_depth(gd, ray, dist);
+	dim = intersect_depth(gd, rayd->ray, dist);
 	hitp[0] = gd[0].hit_point;
 	hitp[1] = gd[1].hit_point;
 	if ((dim & 1) || (sqrtf(hitp[0].x * hitp[0].x + hitp[0].y * hitp[0].y
 		+ hitp[0].z * hitp[0].z) <= ob->sphere.radius))
-		ret |= ray_setgeo(t_rayd *rayd, gd[0]);
+		ret |= ray_setgeo(rayd, gd[0]);
 	if ((dim & 2) || sqrtf(hitp[1].x * hitp[1].x + hitp[1].y * hitp[1].y
 		+ hitp[1].z * hitp[1].z) <= ob->sphere.radius)
-		ret |= ;
+		ret |= ray_setgeo(rayd, gd[1]);
 	return (ret);
 }

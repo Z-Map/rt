@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/29 21:57:30 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/20 21:11:26 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/30 10:32:54 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,35 @@
 #include "mathex/utils.h"
 #include "mathex/vector.h"
 #include "rt_render.h"
+#include "rt_tools.h"
 
-t_rtrfd		rayshade(t_rtrgd *gd, t_rayd rayd)
+t_rtrd		raysky(t_rtrd rdata, t_rayd *rayd)
 {
-	geo_gnor(&rdata);
-	geo_tan(&rdata);
-	rdata.geo = geo_getglobal(rdata.lgeo, ray);
-	rdata.frag = rdr_shade(rdata, tree);
+	rdata.geo.flags = 0;
+	rdata.lgeo.flags = 0;
+	rdata.frag = shade_sky(&rdata, rayd->tree);
+	return (rdata);
 }
 
-t_rtrfd		rdr_shade(t_rtrd rdata, t_rdrtree *tree)
+t_rtrd		rayshade(t_rtrd rdata, t_rtrgd gd, t_rayd *rayd)
+{
+	if (!(gd.flags & RAY_GVALID))
+		return (raysky(rdata, rayd));
+	rdata.lgeo = gd;
+	rdata.lray = gd.ray;
+	geo_gnor(&rdata);
+	geo_tan(&rdata);
+	rdata.geo = geo_getglobal(rdata.lgeo, rayd->ray);
+	rdata.frag = rdr_shade(&rdata, rayd->tree);
+	return (rdata);
+}
+
+t_rtrfd		rdr_shade(t_rtrd *rdata, t_rdrtree *tree)
 {
 	t_rtmat	*mat;
 	t_rtrfd	frag;
 
-	if (!(rdata.lgeo.flags & RAY_GVALID))
-		return (shade_sky(rdata, tree));
-	mat = ((t_rtobd *)(rdata.lgeo.inst->obj))->plan.material;
+	mat = ((t_rtobd *)(rdata->lgeo.inst->obj))->plan.material;
 	frag = shade_diffuse(rdata, mat, tree);
 	// frag.hit_nor = shade_normale(&rdata, mat);
 	// rdata.geo.hit_nor = frag.hit_nor;
