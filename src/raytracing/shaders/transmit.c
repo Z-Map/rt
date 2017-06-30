@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 22:01:25 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/30 12:31:04 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/30 15:39:30 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,25 @@
 #include "rt_tools.h"
 #include "rt_render.h"
 
-t_rtrd			shadow_transmit(t_rtrd rdata, t_rdrtree *tree, t_ui raycount)
+t_rtrd			shadow_transmit(t_rtrd rdata, t_rayd *rayd, t_ui num)
 {
-	(void)raycount;
-	(void)tree;
+	t_rtrd		trd;
+	float		alpha;
+	t_v3f		col;
+
+	alpha = mxrangef(rdata.frag.color.w, 0.0f, 1.0f);
+	if (alpha >= 1.0f)
+		return (rdata);
+	if (num < RDR_GEOSTACK)
+	{
+		trd = shadowshade(rdata, rayd->geostack[num + 1], rayd, num + 1);
+	}
+	else
+		trd.frag.color = nv4f(1.0f);
+	col = *(t_v3f *)&(trd.frag.color);
+	pv3faddv3f(pv3fmulv3f((t_v3f *)&(rdata.frag.color), nv3f(alpha)),
+		v3fmulv3f(col, nv3f(1.0f - alpha)));
+	rdata.frag.color.w *= trd.frag.color.w;
 	return (rdata);
 }
 
@@ -54,7 +69,6 @@ t_rtrd			rdr_transmit(t_rtrd rdata, t_rayd *rayd, t_ui num)
 	alpha = mxrangef(rdata.frag.color.w, 0.0f, 1.0f);
 	if (alpha >= 1.0f)
 		return (rdata);
-	alpha = rdata.frag.color.w;
 	trd = raytracecall(rdata, rayd, num);
 	col = *(t_v3f *)&(trd.frag.color);
 	pv3faddv3f(pv3fmulv3f((t_v3f *)&(rdata.frag.color), nv3f(alpha)),
