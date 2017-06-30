@@ -6,22 +6,22 @@ SCENE: space
 
 CAMERA:
 	rotation:	-90		0		0
-	position:	100		-20		0
+	position:	0		-100		0
 
 
-	
 SPHERE: earth
-	normal:		data/textures/earth_normal.jpg
+	color: #2b66e9
+	normal:	data/textures/earth_normal.jpg
 	diffuse:	data/textures/earthhd.jpg
 	pos:		0	0	0
 	radius:		42
 	SPHERE: atmosphere
-		normal:		data/textures/clouds_earth_normal.jpg
+		color:		#3692b3b6
+		#normal:	data/textures/clouds_earth_normal.jpg
 		diffuse:	data/textures/clouds_earth.png
 		pos:		0	0	0
-		radius:		41
-		
-	
+		radius:		43
+
 SPHERE: moon
 	normal:		data/textures/moon_normal.jpg
 	diffuse:	data/textures/moon.jpg
@@ -31,6 +31,5 @@ SPHERE: moon
 		pos: 4 0 2
 	CUBE: lapin
 		diffuse : data/textures/lapin.jpg
-		diffuse.offset: 0.5 0.5 
+		diffuse.offset: 0.5 0.5
 		pos: 4 0 0
-

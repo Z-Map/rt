@@ -1,33 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   diffuse.c                                          :+:      :+:    :+:   */
+/*   geometry.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/11 11:01:45 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/30 15:50:06 by qloubier         ###   ########.fr       */
+/*   Created: 2017/06/20 21:13:06 by qloubier          #+#    #+#             */
+/*   Updated: 2017/06/30 12:26:09 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
 #include "mathex/utils.h"
-#include "mathex/vector.h"
-#include "rt_render.h"
 #include "rt_tools.h"
+#include "rt_render.h"
 
-t_rtrfd		shade_diffuse(t_rtrd *rdata, t_rtmat *mat)
+int			ray_setgeo(t_rayd *rayd, t_rtrgd gd)
 {
-	t_rtrfd	frag;
-	t_v2f	uv;
+	int		i;
+	int		ret;
+	t_rtrgd	tmp;
+	t_rtrgd	*tab;
 
-	frag = (t_rtrfd){nv4f(1.0f), (t_v3f){0.0f,0.0f,1.0f}, 0.0f};
-	frag.color = rgbatov4f(mat->color1);
-	if (mat->diffuse.flags & TEX_VALID)
+	if ((gd.depth <= rayd->lim.x) || (gd.depth > rayd->lim.y))
+		return (0);
+	i = 0;
+	ret = 0;
+	tab = rayd->geostack;
+	while (i < RDR_GEOSTACK)
 	{
-		uv = v2fmulv2f(v2faddv2f(geo_uv(rdata), mat->diffuse.offset),
-			mat->diffuse.size);
-		frag.color = mat->diffuse.tex->getcol(mat->diffuse.tex, uv);
+		tmp = tab[i];
+		if (gd.depth < tab[i].depth)
+		{
+			gd.flags |= RAY_GVALID;
+			tmp = gd;
+			gd = tab[i];
+			ret = 1;
+		}
+		tab[i] = tmp;
+		i++;
 	}
-	return (frag);
+	return (ret);
 }

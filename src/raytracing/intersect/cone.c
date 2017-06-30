@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 18:23:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/17 16:25:49 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/30 16:04:52 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,23 @@
 #include "mathex/utils.h"
 #include "rt_tools.h"
 #include "rt_render.h"
+
+static int		calc_cone_ret(t_v3f coef, float delta, t_v2f *dist)
+{
+	if (delta > 0.0f)
+	{
+		delta = sqrtf(delta);
+		*dist = sortv2f((t_v2f){(-coef.y - delta) / coef.x,
+			(-coef.y + delta) / coef.x});
+		return (1);
+	}
+	else if (delta == 0.0f)
+		*dist = sortv2f((t_v2f){(-coef.y - delta) / coef.x,
+			(-coef.y - delta) / coef.x});
+	else
+		return (0);
+	return (1);
+}
 
 static int		calc_cone(t_rtobd *cone, t_rtray *ray, t_v2f *dist)
 {
@@ -32,17 +49,7 @@ static int		calc_cone(t_rtobd *cone, t_rtray *ray, t_v2f *dist)
 		- (angle * (ray->start.z * ray->start.z));
 	delta = (coef.y * coef.y) - (4 * coef.x * coef.z);
 	coef.x *= 2;
-	if (delta > 0.0f)
-	{
-		delta = sqrtf(delta);
-		*dist = sortv2f((t_v2f){(-coef.y - delta) / coef.x,
-			(-coef.y + delta) / coef.x});
-		return (1);
-	}
-	else if (delta == 0.0f)
-		*dist = sortv2f((t_v2f){(-coef.y - delta) / coef.x,
-			(-coef.y - delta) / coef.x});
-	return (0);
+	return (calc_cone_ret(coef, delta, dist));
 }
 
 static int		is_in_cone(float da, t_v3f hitp)
@@ -56,53 +63,51 @@ static int		is_in_cone(float da, t_v3f hitp)
 	return (0);
 }
 
-static int		cone_depth(t_rtrgd *gd, t_rtray r, t_v2f d, t_v3f hp[2])
+static int		cone_depth(t_rtrgd *gd, t_rayd *rayd, t_v2f d, float a)
 {
 	int			ret;
+	t_rtray		r;
 
 	ret = 0;
-	if (((d.y < gd->depth.y) && (d.y > gd->depth.x)) ||
-		is_in_cone(hp[0].x, ray_hitpoint(r, gd->depth.y)))
-		ret = 8;
-	if ((gd->depth.x >= 0.0f)
-		&& is_in_cone(hp[0].x, ray_hitpoint(r, gd->depth.x)))
+	r = rayd->ray;
+	if (gd[0].depth > -INFINITY)
 	{
-		ret = 4;
-		if ((d.x > gd->depth.x) && (d.x < gd->depth.y))
-			ret |= geo_setdepth(gd, 2, d.x);
+		gd[0].hit_point = ray_hitpoint(r, gd[0].depth);
+		if (is_in_cone(a, gd[0].hit_point))
+			ret |= ray_setgeo(rayd, gd[0]);
 	}
-	else if ((gd->depth.x >= 0.0f) && (d.x < gd->depth.x) &&
-		(d.y > gd->depth.x) && (d.y < gd->depth.y))
+	if (gd[1].depth < INFINITY)
 	{
-		ret |= geo_setdepth(gd, 1, d.y);
-		d.y = INFINITY;
+		gd[1].hit_point = ray_hitpoint(r, gd[1].depth);
+		if (is_in_cone(a, ray_hitpoint(r, gd[1].depth)))
+			ret |= ray_setgeo(rayd, gd[1]);
 	}
-	else if ((d.x > gd->depth.x) && (d.x < gd->depth.y) && (ret & 8))
-		ret |= geo_setdepth(gd, 1, d.x);
-	if ((d.y < gd->depth.y) && (d.y > gd->depth.x))
-		ret |= geo_setdepth(gd, 2, d.y);
-	hp[0] = ray_hitpoint(r, gd->depth.x);
-	hp[1] = ray_hitpoint(r, gd->depth.y);
-	return (ret & ~8);
+	if ((d.x > gd[0].depth) && (d.x < gd[1].depth))
+		ret |= geo_setdepth(gd, 2, d.x);
+	if ((d.y < gd[1].depth) && (d.y > gd[0].depth))
+		ret |= geo_setdepth(gd + 1, 4, d.y);
+	return (ret);
 }
 
-int				intersect_cone(t_rtray ray, t_rtobd *cone, t_rtrgd *gd)
+int				intersect_cone(t_rayd *rayd, t_rtobd *cone, t_rtrgd *gd)
 {
 	t_v2f		dist;
 	int			ret;
-	t_v3f		hp[2];
 
-	(void)is_in_cone;
-	(void)cone_depth;
-	if (!calc_cone(cone, &ray, &dist) || (dist.x > gd->depth.y)
+	if (!calc_cone(cone, &(rayd->ray), &dist) || (dist.x > gd[1].depth)
 		|| (dist.y < 0.0))
 		return (0);
-	hp[0].x = mxabsf(cone->cone.angle) / 2;
-	if (!(ret = cone_depth(gd, ray, dist, hp)))
+	if (!(ret = cone_depth(gd, rayd, dist, mxabsf(cone->cone.angle) / 2)))
 		return (0);
-	if (gd->depth.x < 0.0)
-		gd->hit_point = (t_v4f){hp[1].x, hp[1].y, hp[1].z, gd->depth.y};
-	else
-		gd->hit_point = (t_v4f){hp[0].x, hp[0].y, hp[0].z, gd->depth.x};
-	return (ret);
+	if (ret & 2)
+	{
+		gd[0].hit_point = ray_hitpoint(rayd->ray, gd[0].depth);
+		ret |= ray_setgeo(rayd, gd[0]);
+	}
+	if (ret & 4)
+	{
+		gd[1].hit_point = ray_hitpoint(rayd->ray, gd[1].depth);
+		ret |= ray_setgeo(rayd, gd[1]);
+	}
+	return (ret & 1);
 }

@@ -6,20 +6,27 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 15:56:32 by ealbert           #+#    #+#             */
-/*   Updated: 2017/06/29 17:49:29 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/30 12:03:52 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include <stdlib.h>
 #include "rt_render.h"
 
 static t_v4f		calc_pixel(t_ui x, t_ui y, t_rtrmgr *rmgr)
 {
 	t_rtrd			rd;
+	t_rayd			rayd;
 	// t_v3f			col;
 
-	rd = raytrace(rdr_pxray(x, y, rmgr,
-		(t_rtrnode *)(rmgr->rendertree->tree.camera)), rmgr->rendertree, 6);
+	rayd.ray = rdr_pxray(x, y, rmgr,
+		(t_rtrnode *)(rmgr->rendertree->tree.camera));
+	rayd.tree = rmgr->rendertree;
+	rayd.lim = (t_v2f){0.0, INFINITY};
+	rayd.transmission = 6;
+	rayd.reflecion = 4;
+	rd = raytrace(&rayd);
 	// col = v3faddv3f(v3fmulv3f(rd.geo.hit_tangent.y, nv3f(0.5f)), nv3f(0.5f));
 	return (rd.frag.color);
 }

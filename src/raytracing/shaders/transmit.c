@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 22:01:25 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/29 17:50:23 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/30 16:42:28 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,45 +16,75 @@
 #include "rt_tools.h"
 #include "rt_render.h"
 
-t_rtrd		shadow_transmit(t_rtrd rdata, t_rdrtree *tree, t_ui raycount)
+t_rtrd			shadow_transmit(t_rtrd rdata, t_rayd *rayd, t_ui num)
 {
-	(void)raycount;
-	(void)tree;
+	t_rtrd		trd;
+	t_v3f		col;
+	float		a;
+
+	a = mxrangef(rdata.frag.color.w, 0.0f, 1.0f);
+	rdata.frag.color.w = 1.0f - rdata.frag.color.w;
+	if (a >= 1.0f)
+		return (rdata);
+	if (num < RDR_GEOSTACK)
+	{
+		trd = shadowshade(rdata, rayd->geostack[num + 1], rayd, num + 1);
+	}
+	else
+		trd.frag.color = nv4f(1.0f);
+	col = *(t_v3f *)&(trd.frag.color);
+	pv3faddv3f(pv3fmulv3f((t_v3f *)&(rdata.frag.color), nv3f(a)),
+		v3fmulv3f(col, nv3f(1.0f - a)));
+	rdata.frag.color.w *= trd.frag.color.w;
 	return (rdata);
 }
 
-t_rtrd		rdr_transmit(t_rtrd rdata, t_rdrtree *tree, t_ui raycount)
+static t_rtrd	raytracecall(t_rtrd rdata, t_rayd *rayd, t_ui num)
 {
-	t_rtrd	trd;
-	float	alpha;
+	t_rayd		nrayd;
+	float		ref;
 
-	if (rdata.frag.color.w >= 1.0)
-		return (rdata);
-	alpha = rdata.frag.color.w;
-	trd = rdata;
-	trd.ray = ray_bounceto(rdata.geo, calc_refraction(rdata.lgeo));
-	if (raycount)
-		trd = raytrace(trd.ray, tree, raycount - 1);
+	ref = ((t_rtobd *)(rdata.lgeo.inst->obj))->plan.material->refraction;
+	if ((ref == 1.0f) && (num < RDR_GEOSTACK))
+		rdata = rayshade(rdata, rayd->geostack[num + 1], rayd, num + 1);
+	else if (rayd->transmission > 0)
+	{
+		nrayd.tree = rayd->tree;
+		nrayd.ray = ray_bounceto(rdata.geo, calc_refraction(rdata.lgeo, ref));
+		nrayd.transmission = rayd->transmission - 1;
+		nrayd.transmission = rayd->reflecion;
+		nrayd.lim = rayd->lim;
+		rdata = raytrace(&nrayd);
+	}
 	else
-		trd.frag = shade_sky(rdata, tree);
-	pv3fmulv3f((t_v3f *)&trd.frag.color, nv3f(1.0f - alpha));
-	pv3faddv3f(pv3fmulv3f((t_v3f *)&rdata.frag.color, nv3f(alpha)),
-		*(t_v3f *)(&trd.frag.color));
+		return (raysky(rdata, rayd));
+	return (rdata);
+}
+
+t_rtrd			rdr_transmit(t_rtrd rdata, t_rayd *rayd, t_ui num)
+{
+	t_rtrd		trd;
+	float		alpha;
+	t_v3f		col;
+
+	alpha = mxrangef(rdata.frag.color.w, 0.0f, 1.0f);
+	if (alpha >= 1.0f)
+		return (rdata);
+	trd = raytracecall(rdata, rayd, num);
+	col = *(t_v3f *)&(trd.frag.color);
+	pv3faddv3f(pv3fmulv3f((t_v3f *)&(rdata.frag.color), nv3f(alpha)),
+		v3fmulv3f(col, nv3f(1.0f - alpha)));
 	rdata.frag.color.w = 1.0f;
 	return (rdata);
 }
 
-t_v3f		calc_refraction(t_rtrgd gd)
+t_v3f			calc_refraction(t_rtrgd gd, float ref)
 {
-	float	ref;
-	float	n;
-	float	c1;
-	float	c2;
-	float	coef;
+	float		n;
+	float		c1;
+	float		c2;
+	float		coef;
 
-	ref = ((t_rtobd *)(gd.inst->obj))->plan.material->refraction;
-	if (ref != 1.0)
-		ft_printf("ref = %f\n", ref);
 	n = 1 / ref;
 	c1 = v3fdotv3f(gd.ray.direction, gd.hit_nor);
 	c2 = sqrtf(1 - ((1 * ref) * (1 * ref)) * (1.0 - (c1 * c1)));

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 15:03:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/29 17:37:03 by ghubert          ###   ########.fr       */
+/*   Updated: 2017/06/30 11:02:56 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include "mathex/matrix.h"
 
 # include "rt_prototype.h"
+
+# define RDR_GEOSTACK 16
 
 struct					s_rt_render_ray
 {
@@ -36,12 +38,11 @@ typedef struct			s_rt_render_filter
 
 struct					s_rt_render_gdata
 {
-	t_ul				flags;
-	t_v2f				depth;
-	t_v4f				hit_point;
+	t_v3f				hit_point;
+	float				depth;
 	t_mat2x3f			hit_tangent;
 	t_v3f				hit_nor;
-	t_v3f				hit_nor2;
+	t_ui				flags;
 	t_rtray				ray;
 	t_rtobi				*inst;
 	t_rtrnode			*node;
@@ -80,14 +81,17 @@ struct					s_rt_render_data
 	t_rtrgd				lgeo;
 	t_rtrfd				frag;
 	t_rdrtree			*tree;
-	float				fdepth;
-	t_rgba				fcolor;
-	struct				s_rt_raynum
-	{
-		t_ui			transmit;
-		t_ui			reflect;
-	}					raynum;
 };
+
+typedef struct			s_rt_ray_data
+{
+	t_rdrtree			*tree;
+	t_rtray				ray;
+	t_ui				transmission;
+	t_ui				reflecion;
+	t_v2f				lim;
+	t_rtrgd				geostack[RDR_GEOSTACK];
+}						t_rayd;
 
 typedef struct			s_rt_render_manager
 {

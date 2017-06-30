@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/21 01:52:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/21 18:56:36 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/30 11:40:41 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,15 @@ t_mat3x2f		bound_intersect(t_mat3x2f a, t_mat3x2f b);
 t_mat3x2f		no_bound(void);
 t_mat3x2f		infinity_bound(void);
 int				bound_raycast(t_rtray *r, t_mat3x2f b, t_rtrgd *gd);
+int				bound_lraycast(t_rtray *r, t_mat3x2f b, t_rtrgd *gd);
 
 t_rtray			ray_trans(t_rtray ray, t_mattf m);
 t_v3f			ray_hitpoint(t_rtray ray, float depth);
 t_rtray			ray_bounceto(t_rtrgd geo, t_v3f dir);
 t_rtray			ray_transmit(t_rtrgd geo, t_v3f dir);
-t_v3f			calc_refraction(t_rtrgd gd);
+t_v3f			calc_refraction(t_rtrgd gd, float ref);
 
-int				intersect_depth(t_rtrgd *gd, t_rtray r, t_v2f d, t_v3f hp[2]);
+int				intersect_depth(t_rtrgd *gd, t_rtray r, t_v2f d);
 int				geo_setdepth(t_rtrgd *gd, int dim, float depth);
 void			geo_gnor(t_rtrd *rdata);
 void			geo_tan(t_rtrd *rdata);

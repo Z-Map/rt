@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/23 18:23:49 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/13 18:39:39 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/30 09:17:27 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,15 @@
 #include "rt_tools.h"
 #include "rt_render.h"
 
-int				intersect_plan(t_rtray ray, t_rtobd *plan, t_rtrgd *gd)
+int				intersect_plan(t_rayd *rayd, t_rtobd *plan, t_rtrgd *gd)
 {
 	float		dist;
 
 	(void)plan;
-	dist = (-ray.start.z / ray.direction.z);
-	if ((dist < 0.0) || (dist > gd->depth.y) || (dist < gd->depth.x))
+	dist = (-rayd->ray.start.z / rayd->ray.direction.z);
+	if ((dist < 0.0) || (dist > gd[1].depth) || (dist < gd[0].depth))
 		return (0);
-	geo_setdepth(gd, 3, dist);
-	gd->depth.y = dist;
-	*(t_v3f *)&(gd->hit_point) = ray_hitpoint(ray, dist);
-	gd->hit_point.w = dist;
-	return (1);
+	geo_setdepth(gd, 1, dist);
+	gd->hit_point = ray_hitpoint(rayd->ray, dist);
+	return (ray_setgeo(rayd, gd[0]));
 }
