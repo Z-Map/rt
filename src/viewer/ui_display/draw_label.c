@@ -12,15 +12,12 @@
 
 #include "rt_ui_display.h"
 #include "mathex/vector.h"
-#include <stdio.h>
 
 void	draw_label(mglwin *img, t_layer_label *label)
 {
 	float pos[2];
 
-	printf("Label ...\n");
 	pos[0] = label->gen.dim.x;
 	pos[1] = label->gen.dim.y;
 	mgl_drawmglstr(img, label->data, pos, 10, 0xFF00FF64);
-	printf("End ...\n");
 }
