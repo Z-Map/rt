@@ -11,17 +11,16 @@ CAMERA:
 
 SPHERE: earth
 	color: #2b66e9
-	#normal:	data/textures/earth_normal.jpg
-	#diffuse:	data/textures/earthhd.jpg
+	normal:	data/textures/earth_normal.jpg
+	diffuse:	data/textures/earthhd.jpg
 	pos:		0	0	0
 	radius:		42
-
-SPHERE: atmosphere
-	color:		#3692b3b6
-	#normal:	data/textures/clouds_earth_normal.jpg
-	#diffuse:	data/textures/clouds_earth.png
-	pos:		-50	0	0
-	radius:		43
+	SPHERE: atmosphere
+		color:		#3692b3b6
+		#normal:	data/textures/clouds_earth_normal.jpg
+		diffuse:	data/textures/clouds_earth.png
+		pos:		0	0	0
+		radius:		43
 
 SPHERE: moon
 	normal:		data/textures/moon_normal.jpg

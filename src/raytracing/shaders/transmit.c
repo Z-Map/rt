@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 22:01:25 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/30 15:39:30 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/30 16:42:28 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@
 t_rtrd			shadow_transmit(t_rtrd rdata, t_rayd *rayd, t_ui num)
 {
 	t_rtrd		trd;
-	float		alpha;
 	t_v3f		col;
+	float		a;
 
-	alpha = mxrangef(rdata.frag.color.w, 0.0f, 1.0f);
-	if (alpha >= 1.0f)
+	a = mxrangef(rdata.frag.color.w, 0.0f, 1.0f);
+	rdata.frag.color.w = 1.0f - rdata.frag.color.w;
+	if (a >= 1.0f)
 		return (rdata);
 	if (num < RDR_GEOSTACK)
 	{
@@ -32,8 +33,8 @@ t_rtrd			shadow_transmit(t_rtrd rdata, t_rayd *rayd, t_ui num)
 	else
 		trd.frag.color = nv4f(1.0f);
 	col = *(t_v3f *)&(trd.frag.color);
-	pv3faddv3f(pv3fmulv3f((t_v3f *)&(rdata.frag.color), nv3f(alpha)),
-		v3fmulv3f(col, nv3f(1.0f - alpha)));
+	pv3faddv3f(pv3fmulv3f((t_v3f *)&(rdata.frag.color), nv3f(a)),
+		v3fmulv3f(col, nv3f(1.0f - a)));
 	rdata.frag.color.w *= trd.frag.color.w;
 	return (rdata);
 }
