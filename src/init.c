@@ -39,7 +39,7 @@ int			rt_init_main(t_rt *rt)
 			.codepoint = 0, .cpline = 0, .cpname = NULL, .cpfile = NULL,
 			.cpfunc = NULL}
 	};
-	rt->viewer.ui = init_ui((t_v2i){RT_DEFAULT_RSIZE_X, RT_DEFAULT_RSIZE_Y});
+	rt->viewer.ui = init_ui(rt, (t_v2i){RT_DEFAULT_RSIZE_X, RT_DEFAULT_RSIZE_Y});
 	update_ui(rt->viewer.ui);
 	ft_bzero(rt->errors, sizeof(rt->errors));
 	rt_error(0, (const char *)rt);

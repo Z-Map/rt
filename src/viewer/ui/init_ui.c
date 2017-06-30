@@ -15,7 +15,36 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-t_rtnode			*init_ui(t_v2i dim)
+t_rtnode			*init_ui(t_rt *rt,  t_v2i dim)
+{
+	t_rtnode		*node;
+	t_layer_root		*root;
+	t_v4i	color[2];
+
+	color[0] = (t_v4i){255,0,255,100};
+	color[1] = (t_v4i){255,255,0,100};
+        if (!(root = mklayer_root(dim)))
+                return (0);
+	node = mknode((t_rtobi *)(root));
+	node->type = TE_ROOT;
+	node->flags = get_id_ui_node();
+	node->parent = node;
+	if (!(tree_addchild(node,\
+	mknlayer_rect((t_v2f){0.0, 0.0}, (t_v2f){0.3, 0.3}, (t_v4i){100.0, 200.0, 10.0, 200.0}, PL_LEFT))))
+		return (0);
+	if (!(tree_addchild_wid(node, mknlayer_variator((t_v2f){0.0, 0.0}, (t_v2f){1.0, 0.33}, color, PL_TOP), 1)))
+                return (0);
+        if (!(tree_addchild_wid(node, mknlayer_variator((t_v2f){0.0, 0.0}, (t_v2f){1.0, 0.33}, color, PL_MIDDLE), 1)))
+                return (0);
+        if (!(tree_addchild_wid(node, mknlayer_variator((t_v2f){0.0, 0.0}, (t_v2f){1.0, 0.33}, color, PL_BOTTOM), 1)))
+                return (0);
+        if (!(rt->viewer.layer_main_loadbar = tree_addchild(node,\
+        mknlayer_loadbar((t_v2f){0.0, 0.0}, (t_v2f){1.0, 0.15666}, color, PL_BOTTOM))))
+                return (0);
+	return (node);
+}
+
+t_rtnode			*init_ui2(t_v2i dim)
 {
 	t_rtnode		*tmp;
 	t_rtnode		*node;

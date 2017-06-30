@@ -16,6 +16,7 @@
 # include "mathex/vector.h"
 # include "rt_prototype.h"
 # include "data_term.h"
+# include "mglw/mgl.h"
 
 enum			e_type_element
 {
@@ -131,6 +132,8 @@ struct			s_layer_label
 	t_v2f		pos;
 	t_v2f		dim;
 	t_v4f		color;
+	mglca		police;
+	mglstr		data;
 	char		*label;
 };
 

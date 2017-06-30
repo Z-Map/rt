@@ -23,7 +23,7 @@ int							get_id_ui_node(void);
 /*
 ** main init interface
 */
-t_rtnode					*init_ui(t_v2i dim);
+t_rtnode					*init_ui(t_rt *rt, t_v2i dim);
 
 /*
 ** create root structure, node of type init

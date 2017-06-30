@@ -32,6 +32,7 @@ struct					s_rt_viewer
 	mglimg				*rdrtarget;
 	t_rtnode			*ui;
 	t_rtnode			*layer_event_focus;
+	t_rtnode			*layer_main_loadbar;
 };
 
 #endif
