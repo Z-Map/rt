@@ -6,12 +6,12 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/29 17:52:47 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/30 11:15:51 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RT_PROTOTYPE
-# define RT_PROTOTYPE
+#ifndef RT_PROTOTYPE_H
+# define RT_PROTOTYPE_H
 
 # include "libft.h"
 
@@ -137,64 +137,70 @@
 # define RT_DBGM_WORKER				0x4ul
 # define RT_DBGM_PARSER				0x8ul
 
-typedef struct s_rt_root			t_rt;
-typedef struct s_rt_viewer			t_rtview;
-typedef struct s_rt_render			t_rtr;
+typedef struct s_rt_root				t_rt;
+typedef struct s_rt_viewer				t_rtview;
+typedef struct s_rt_render				t_rtr;
 
-typedef struct s_rt_tree			t_rtree;
-typedef struct s_rt_rdr_rtree		t_rdrtree;
-typedef struct s_rt_treenode		t_rtnode;
-typedef struct s_rt_rtreenode		t_rtrnode;
-typedef struct s_rt_object_instance	t_rtobi;
-typedef struct s_rt_object_index	t_rtobind;
-typedef struct s_rt_object			t_rtobj;
-typedef struct s_rt_material		t_rtmat;
-typedef struct s_rt_texture			t_rtex;
-typedef struct s_rt_texinstance		t_rtexi;
-typedef union u_rt_objectdata		t_rtobd;
+typedef struct s_rt_tree				t_rtree;
+typedef struct s_rt_rdr_rtree			t_rdrtree;
+typedef struct s_rt_treenode			t_rtnode;
+typedef struct s_rt_rtreenode			t_rtrnode;
+typedef struct s_rt_object_instance		t_rtobi;
+typedef struct s_rt_object_index		t_rtobind;
+typedef struct s_rt_object				t_rtobj;
+typedef struct s_rt_material			t_rtmat;
+typedef struct s_rt_texture				t_rtex;
+typedef struct s_rt_texinstance			t_rtexi;
+typedef union u_rt_objectdata			t_rtobd;
 
 /*
-typedef enum						e_rt_object_type
-{
-	INVALID		= 0,
-	SCENE		= 0x1,
-	EMPTY		= 0x2,
-	CAMERA		= 0x4,
-	PLAN		= 0x8,
-	SPHERE		= 0x10,
-	CONE		= 0x20,
-	CYLINDER	= 0x40,
-	CUBOID		= 0x80,
-	TRIS		= 0x100,
-	MESH		= 0x200,
-	SPOT		= 0x400,
-	POINTLIGHT	= 0x800,
-	SUNLIGHT	= 0x1000,
-	NOTYPE		= 0x2000,
-	VISIBLE		= PLAN | SPHERE | CONE | CYLINDER | CUBOID | TRIS | MESH,
-	LIGHT		= SPOT | POINTLIGHT | SUNLIGHT,
-	TOOL		= EMPTY | CAMERA,
-	VALID		= VISIBLE | LIGHT | TOOL | SCENE
-}									t_rtobt;
+** typedef enum						e_rt_object_type
+** {
+**	INVALID		= 0,
+**	SCENE		= 0x1,
+**	EMPTY		= 0x2,
+**	CAMERA		= 0x4,
+**	PLAN		= 0x8,
+**	SPHERE		= 0x10,
+**	CONE		= 0x20,
+**	CYLINDER	= 0x40,
+**	CUBOID		= 0x80,
+**	TRIS		= 0x100,
+**	MESH		= 0x200,
+**	SPOT		= 0x400,
+**	POINTLIGHT	= 0x800,
+**	SUNLIGHT	= 0x1000,
+**	NOTYPE		= 0x2000,
+**	VISIBLE		= PLAN | SPHERE | CONE | CYLINDER | CUBOID | TRIS | MESH,
+**	LIGHT		= SPOT | POINTLIGHT | SUNLIGHT,
+**	TOOL		= EMPTY | CAMERA,
+**	VALID		= VISIBLE | LIGHT | TOOL | SCENE
+** }									t_rtobt;
 */
 
-typedef struct s_rt_render_ray		t_rtray;
-typedef struct s_rt_render_gdata	t_rtrgd;
-typedef struct s_rt_fastrdr_gdata	t_rtfrgd;
-typedef struct s_rt_light_data		t_rtrld;
-typedef struct s_rt_render_fdata	t_rtrfd;
-typedef struct s_rt_render_data		t_rtrd;
+typedef struct s_rt_render_ray			t_rtray;
+typedef struct s_rt_render_gdata		t_rtrgd;
+typedef struct s_rt_fastrdr_gdata		t_rtfrgd;
+typedef struct s_rt_light_data			t_rtrld;
+typedef struct s_rt_render_fdata		t_rtrfd;
+typedef struct s_rt_render_data			t_rtrd;
 
-typedef struct s_obj				t_obj;
-
+typedef struct s_obj					t_obj;
 
 /*
 ** layer
 */
-typedef struct s_layer_generic t_layer_gen;
+typedef struct s_layer_generic			t_layer_gen;
 
-typedef struct s_layer_root	t_layer_root;
+typedef struct s_layer_root				t_layer_root;
+typedef struct s_layer_rect				t_layer_rect;
+typedef struct s_layer_border			t_layer_border;
+typedef struct s_layer_checkbox			t_layer_checkbox;
+typedef struct s_layer_loadbar			t_layer_loadbar;
+typedef struct s_layer_variator			t_layer_variator;
+typedef struct s_layer_term				t_layer_term;
+typedef struct s_layer_label			t_layer_label;
 
-typedef struct s_layer_rect	t_layer_rect;
+typedef struct s_term					t_term;
 
 #endif

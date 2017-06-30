@@ -15,6 +15,10 @@
 #include "mathex/utils.h"
 #include "rt_render.h"
 
+/*
+** rt_sync_rdrmgrthread(rt);
+*/
+
 int			rdrmgr_render_request(t_rt *rt, t_rtree *tree)
 {
 	pthread_mutex_lock(&(rt->render.refresh_lock));
@@ -22,7 +26,6 @@ int			rdrmgr_render_request(t_rt *rt, t_rtree *tree)
 	rt->render.target = tree;
 	pthread_mutex_unlock(&(rt->render.refresh_lock));
 	RT_DBGM("Render requested.");
-	// rt_sync_rdrmgrthread(rt);
 	return (1);
 }
 

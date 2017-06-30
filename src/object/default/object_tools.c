@@ -27,7 +27,7 @@ t_mat3x2f		object_getbound(t_rtobj *obj)
 	if ((i < RT_OBT_TAB_LEN) && g_obt_tab[i].bounds)
 	{
 		bound = g_obt_tab[i].bounds((t_rtobd *)(obj),
-			*((t_mat3x2f *)(t_ul)&(obd->plan.limx)));
+			*((t_mat3x2f *)(t_ul) & (obd->plan.limx)));
 	}
 	return (bound);
 }

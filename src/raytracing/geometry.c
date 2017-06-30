@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/20 21:13:06 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/30 09:51:17 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/30 12:26:09 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int			ray_setgeo(t_rayd *rayd, t_rtrgd gd)
 			ret = 1;
 		}
 		tab[i] = tmp;
+		i++;
 	}
 	return (ret);
 }

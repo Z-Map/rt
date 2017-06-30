@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/24 01:23:17 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/17 16:54:15 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/29 17:52:23 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,39 @@
 #include "rt_tree.h"
 #include "rt_object.h"
 #include "rt_core.h"
+#include "rt_ui.h"
 
 int			rt_keypress(void *env, int k)
 {
 	t_rt	*rt;
-	t_rtobi	*cam;
-	t_v3f	vec;
 
 	rt = (t_rt *)env;
-	if (!rt->tree->camera)
+	if (k == MGLW_MOUSE_BUTTON_1)
+	{
+		event_ui(rt);
 		return (0);
-	cam = rt->tree->camera->content;
-	vec = cam->transform.offset;
-	cam->transform.offset = nv3f(0.0f);
-	if (k == MGLW_KEY_UP)
-		pmattf_rotx(&(cam->transform), 0.1);
-	else if (k == MGLW_KEY_DOWN)
-		pmattf_rotx(&(cam->transform), -0.1);
-	else if (k == MGLW_KEY_LEFT)
-		pmattf_rotz(&(cam->transform), 0.1);
-	else if (k == MGLW_KEY_RIGHT)
-		pmattf_rotz(&(cam->transform), -0.1);
-	else if (k == MGLW_KEY_W)
-		vec = v3faddv3f(vec, mattf_apply((t_v3f){0.0, 0.0, -0.2},
-			cam->transform));
-	else if (k == MGLW_KEY_S)
-		vec = v3faddv3f(vec, mattf_apply((t_v3f){0.0, 0.0, 0.2},
-			cam->transform));
-	else if (k == MGLW_KEY_A)
-		vec = v3faddv3f(vec, mattf_apply((t_v3f){-0.2, 0.0, 0.0},
-			cam->transform));
-	else if (k == MGLW_KEY_D)
-		vec = v3faddv3f(vec, mattf_apply((t_v3f){0.2, 0.0, 0.0},
-			cam->transform));
-	else if (k == MGLW_KEY_Q)
-		vec = v3faddv3f(vec, mattf_apply((t_v3f){0.0, 0.2, 0.0},
-			cam->transform));
-	else if (k == MGLW_KEY_E)
-		vec = v3faddv3f(vec, mattf_apply((t_v3f){0.0, -0.2, 0.0},
-			cam->transform));
-	else
-		rt = NULL;
+	}
+	// desactivation du variator : fail
+	else if (k == MGLW_MOUSE_BUTTON_3)
+	{
+		event_noclick_variator(rt);
+		return (0);
+	}
+	rt = rt_keyboard_camera(env, k);
 	if (rt)
 		rt->flags |= RTF_RDRREFRESH;
-	cam->transform.offset = vec;
+	return (0);
+}
+
+int			rt_keyrelease(void *env, int k)
+{
+	t_rt	*rt;
+
+	rt = (t_rt *)env;
+	if (k == MGLW_MOUSE_BUTTON_1)
+	{
+		event_noclick_variator(rt);
+		return (1);
+	}
 	return (0);
 }

@@ -52,7 +52,7 @@ void		geo_tan(t_rtrd *rdata)
 
 	lgd = &(rdata->lgeo);
 	if ((lgd->flags & RAY_GHTANG) ||
-		((lgd->flags & (RAY_GVALID|RAY_GHNOR)) != (RAY_GVALID|RAY_GHNOR)))
+		((lgd->flags & (RAY_GVALID | RAY_GHNOR)) != (RAY_GVALID | RAY_GHNOR)))
 		return ;
 	if (!(lgd->flags & RAY_GINTER))
 	{

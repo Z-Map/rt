@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/16 13:52:21 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/30 10:36:08 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/30 13:00:22 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ t_rtrd		raytrace(t_rayd *rayd)
 	rdata.ray = rayd->ray;
 	i = RDR_GEOSTACK;
 	while (i--)
-		rayd->geostack[i].flags = 0;
+		rayd->geostack[i] = (t_rtrgd){.flags = 0, .depth = INFINITY};
 	if (!rdr_raycast(rayd, rayd->tree))
-		return (rdata);
-	rayshade(rdata, rayd->geostack[0], rayd);
+		return (raysky(rdata, rayd));
+	rdata = rayshade(rdata, rayd->geostack[0], rayd, 0);
 	return (rdata);
 }

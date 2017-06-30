@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 22:47:00 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/30 10:30:45 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/30 12:34:24 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@
 # define MAXLIGHTINTENSITY 3.0f
 # define MARGIN 0.001f
 
-// # define SHADOWLIMIT 1000.0f
+/*
+** # define SHADOWLIMIT 1000.0f
+*/
 
 void		*rt_rdrmgr_main(void *arg);
 int			rdrmgr_isalive(t_rt *rt);
@@ -82,10 +84,10 @@ t_v3f		shadow_test(t_rtrgd geo, t_rtrld l, t_rdrtree *tree);
 t_rtray		rdr_pxray(t_ui x, t_ui y, t_rtrmgr *rmgr, t_rtrnode *camnode);
 
 int			rdr_raycast(t_rayd *rayd, t_rdrtree *tree);
-t_rtrfd		rdr_shade(t_rtrd *rdata, t_rdrtree *tree);
-t_rtrd		rdr_transmit(t_rtrd rdata, t_rdrtree *tree, t_ui raycount);
+t_rtrfd		rdr_shade(t_rtrd rdata, t_rdrtree *tree);
+t_rtrd		rdr_transmit(t_rtrd rdata, t_rayd *rayd, t_ui num);
 t_rtrd		raysky(t_rtrd rdata, t_rayd *rayd);
-t_rtrd		rayshade(t_rtrd rdata, t_rtrgd gd, t_rayd *rayd);
+t_rtrd		rayshade(t_rtrd rdata, t_rtrgd gd, t_rayd *rayd, t_ui num);
 t_rtrd		raytrace(t_rayd *rayd);
 
 t_rtrd		rdr_filter(t_rtrfd frag, t_rtree *tree);
@@ -96,5 +98,7 @@ t_v4f		*kernel_calc(t_v4f *img, t_mat3d knl, t_v2ui max);
 
 int			render_worker(t_ui px, t_ui step, t_rt *rt, t_rtrmgr *rmgr);
 int			rdr_start_workers(t_rt *rt, t_rtrmgr *mgr);
+
+void		filter_apply(t_rtrmgr *rmgr);
 
 #endif

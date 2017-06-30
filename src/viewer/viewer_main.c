@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 14:51:55 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/21 19:39:22 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/30 12:02:41 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int				rt_init_window(t_rt *rt)
 int				viewer_run(t_rt *rt, t_rtview *v)
 {
 	pthread_mutex_lock(&(v->refresh_lock));
-	if (rt->flags & RTF_RDRDISP)
-		mglw_draw_itow(v->win, v->rdrtarget, 0, 0);
 	mglwin_draw(v->win);
 	mglw_setGLContext(NULL);
 	if (!(v->keys & RTWK_REFRESH))
@@ -42,8 +40,10 @@ int				viewer_run(t_rt *rt, t_rtview *v)
 		mglw_setGLContext(NULL);
 		return (0);
 	}
-	mglwin_clear(v->win);
 	mglw_setGLContext(v->win);
+	mglwin_clear(v->win);
+	if (rt->flags & RTF_RDRDISP)
+		mglw_draw_itow(v->win, v->rdrtarget, 0, 0);
 	return (1);
 }
 

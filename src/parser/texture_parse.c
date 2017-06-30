@@ -6,7 +6,7 @@
 /*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 18:05:08 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/06/17 15:27:36 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/06/27 19:53:49 by alhelson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ static int	ti_parse(const char *name, size_t len, t_val *val, void *mem)
 	return (1);
 }
 
-int		texture_parse(t_val *val, void *mem, t_gparse parser)
+int			texture_parse(t_val *val, void *mem, t_gparse parser)
 {
-	int	ret;
+	int		ret;
 
 	ret = 0;
 	if (!parser.value || (ft_prstrim(&(parser.value), &(parser.v_len),

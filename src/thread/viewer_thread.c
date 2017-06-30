@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 14:57:26 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/11 23:35:52 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/29 16:31:31 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ int			rt_sync_viewerthread(t_rt *rt)
 	return (0);
 }
 
+/*
+** rt_init_window(rt);
+*/
+
 int			rt_init_viewerthread(t_rt *rt)
 {
 	if (!(rt->state & RTS_MGLW_INIT) && (rt_init_mglw(rt) <= 0))
@@ -50,6 +54,8 @@ int			rt_init_viewerthread(t_rt *rt)
 		return (rt_error(120, "Unable to open main window."));
 	mglw_setGLContext(NULL);
 	mglw_setkcb(rt->viewer.win, 3, &rt_keypress, rt);
+	mglw_setkcb(rt->viewer.win, 0, &rt_keyrelease, rt);
+	mglw_setmcb(rt->viewer.win, 0, &rt_mousemove, rt);
 	mglw_setsizecb(rt->viewer.win, &rt_resize, rt);
 	rt->viewer.layer = (mglimg *)mglw_get2dlayer(rt->viewer.win);
 	rt->viewer.keys = RTWK_REFRESH;
@@ -57,6 +63,5 @@ int			rt_init_viewerthread(t_rt *rt)
 	rt->viewer.refresh_cond = (pthread_cond_t)PTHREAD_COND_INITIALIZER;
 	if (pthread_create(&(rt->viewer.mainthread), NULL, &rt_viewer_main, rt))
 		return (rt_error(122, "Unable to start viewer thread."));
-	// rt_init_window(rt);
 	return (1);
 }

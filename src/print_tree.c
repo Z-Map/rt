@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 17:59:51 by ealbert           #+#    #+#             */
-/*   Updated: 2017/06/20 14:43:35 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/06/30 11:03:00 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int		recursive(t_v2i *p, t_rtnode *node, int i)
 	return (1);
 }
 
-int			print_tree(t_rtree *tree)
+int				print_tree(t_rtree *tree)
 {
 	int			i;
 	t_v2i		p;

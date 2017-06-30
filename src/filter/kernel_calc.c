@@ -48,8 +48,8 @@ static t_v4f	get_new_pixel(t_v4f *p, t_mat3d knl, t_v2ui uv, t_v2ui max)
 	double	*knlt;
 	t_v4f	new;
 	int		x;
-	int		y;	
-	
+	int		y;
+
 	y = -1;
 	new = (t_v4f){0.0f, 0.0f, 0.0f, 0.0f};
 	uv.x -= 1;

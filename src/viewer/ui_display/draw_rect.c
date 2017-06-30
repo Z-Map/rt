@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_layer_root.c                                  :+:      :+:    :+:   */
+/*   draw_rect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alhelson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/06/20 16:57:36 by alhelson          #+#    #+#             */
-/*   Updated: 2017/06/20 17:00:44 by alhelson         ###   ########.fr       */
+/*   Created: 2017/06/21 22:41:58 by alhelson          #+#    #+#             */
+/*   Updated: 2017/06/21 22:42:15 by alhelson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./rt_ui.h"
-#include <stdlib.h>
+#include "rt_ui_display.h"
+#include "mathex/vector.h"
+#include "mglw/data/rect.h"
+#include "mathex/color.h"
 
-t_layer_root	*init_layer_root(t_v2i dim)
+void				draw_rect(mglwin *img, t_layer_rect *rect)
 {
-	t_layer_root *l;
+	mglrect rect_d;
 
-	if (!(l = malloc(sizeof(t_layer_root))))
-		return (0);
-	l->gen.id = 0;
-	l->gen.dim = dim;
-	l->gen.pos = (t_v2i){0, 0};
-	return (l);
+	rect_d = gen_to_rect(rect->gen, rect->color);
+	mgl_drawrect(img, rect_d);
 }

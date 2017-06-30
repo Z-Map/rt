@@ -14,7 +14,7 @@
 
 void			object_default_pointlight(t_rtobd *object)
 {
-	object->pointlight.color = (t_rgba){255,255,255,255};
+	object->pointlight.color = (t_rgba){255, 255, 255, 255};
 	object->pointlight.radius = 20.0;
 	object->pointlight.intensity = 1.0;
 }
