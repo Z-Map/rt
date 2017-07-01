@@ -1,0 +1,82 @@
+SCENE: scene
+	color: #000000
+
+CAMERA: cam
+	pos: 0 -16 2
+	rot: -90 0 0
+
+SPOT: spot
+	pos: 6 -6 1
+	rot: -90 45 0
+	angle: 180
+
+SPOT: spot2
+	pos: -6 -6 1
+	rot: -90 45 0
+	angle: 180
+
+SPOT: spot3
+	pos: -1 -10 1
+	rot: -90 45 0
+	angle: 180
+
+SPOT: spot4
+	pos: 1 -10 1
+	rot: -90 45 0
+	angle: 180
+
+SPHERE: cristal
+	color: #5588aaaa
+	refraction: 1.2
+	pos: 0 -7 0
+	radius: 0.5
+
+CUBE: test
+
+PLAN: plafond
+	pos: 0 0 4
+
+PLAN: sol
+	pos: 0 0 -2
+	diffuse: data/textures/grassstone.jpg
+	diffuse.scale: 0.3 0.3
+	CYLINDER: colonne1
+		pos: -5 -5 0
+		diffuse: data/textures/brickwallmoss.jpg
+		radius: 0.7
+		SPHERE: socle1c1
+			pos: 0 0 6
+			diffuse: data/textures/brickwallmoss.jpg
+		SPHERE: socle2c1
+			pos: 0 0 0
+			diffuse: data/textures/brickwallmoss.jpg
+	CYLINDER: colonne2
+		pos: 5 -5 0
+		diffuse: data/textures/brickwallmoss.jpg
+		radius: 0.7
+		SPHERE: socle1c2
+			pos: 0 0 6
+			diffuse: data/textures/brickwallmoss.jpg
+		SPHERE: socle2c2
+			pos: 0 0 0
+			diffuse: data/textures/brickwallmoss.jpg
+	CYLINDER: colonne3
+		pos: -5 5 0
+		diffuse: data/textures/brickwallmoss.jpg
+		radius: 0.7
+		SPHERE: socle1c3
+			pos: 0 0 6
+			diffuse: data/textures/brickwallmoss.jpg
+		SPHERE: socle2c3
+			pos: 0 0 0
+			diffuse: data/textures/brickwallmoss.jpg
+	CYLINDER: colonne4
+		pos: 5 5 0
+		diffuse: data/textures/brickwallmoss.jpg
+		radius: 0.7
+		SPHERE: socle1c4
+			pos: 0 0 6
+			diffuse: data/textures/brickwallmoss.jpg
+		SPHERE: socle2c4
+			pos: 0 0 0
+			diffuse: data/textures/brickwallmoss.jpg

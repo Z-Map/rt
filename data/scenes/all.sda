@@ -1,0 +1,27 @@
+SCENE: scene
+	color: #000000
+
+CAMERA: cam
+	pos: 0 -6 0
+	rot: -90 0 0
+
+SPOT: spot
+	pos: 0 -10 5
+	rot: -60 0 0
+
+SPHERE: sphere
+	color: #ff0000
+
+CONE: cone
+	color: #ffff00
+	pos: 2 0 0
+	rot: 0 45 0
+
+CYLINDER: cylinder
+	color: #00ff00
+	pos: -2 0 0
+	rot: 0 -45 0
+
+PLAN: plan1
+	color: #777777
+	pos: 0 0 -1
