@@ -1,0 +1,13 @@
+SCENE: scene
+	color: #000000
+
+CAMERA: cam
+	pos: 0 -5 0
+	rot: -90 0 0
+
+SPOT: spot
+	pos: 0 -5 5
+	rot: -45 0 0
+
+CYLINDER: cylinder
+	color: #00ff00;

@@ -1,0 +1,17 @@
+SCENE: scene
+	color: #000000
+
+CAMERA: cam
+	pos: 0 -5 0
+	rot: -90 0 0
+
+SPOT: spot
+	pos: 0 -6 5
+	rot: -45 0 0
+
+CONE: cone
+	color: #ffff00;
+
+PLAN: plan
+	pos: 0 0 -1
+	color: #0000ff
