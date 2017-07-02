@@ -33,7 +33,7 @@ static int		print_node(t_rtobi *obi, int i)
 		while (j--)
 			ft_putchar('\t');
 		m = obi->lbounds;
-		m = *((t_mat3x2f *)(t_ul)&(((t_rtobd *)obj)->plan.limx));
+		m = *((t_mat3x2f *)(t_ul) & (((t_rtobd *)obj)->plan.limx));
 		ft_printf("bounds : x[%v2f] y[%v2f] z[%v2f]}\n", &m.x, &m.y, &m.z);
 	}
 	return (1);
