@@ -31,7 +31,7 @@ t_rtnode				*init_ui(t_rt *rt, t_v2i dim)
 	node->parent = node;
 	if (!(rt->viewer.layer_main_loadbar = tree_addchild(node,\
 	mknlayer_loadbar((t_v2f){0.0, 0.0}, (t_v2f){1.0, 0.15666},\
-color, PL_BOTTOM))))
+	color, PL_BOTTOM))))
 		return (0);
 	return (node);
 }

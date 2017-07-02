@@ -14,14 +14,20 @@
 #include "rt_ui.h"
 
 #ifdef RT_DEBUG
+
 t_rt		*g_rt_root = NULL;
+
 #endif
+
+/*
+** .flags = RT_DBGF_MSG  | RT_DBGF_RET | RT_DBGF_RETCP,
+*/
 
 int			rt_init_main(t_rt *rt)
 {
-	#ifdef RT_DEBUG
+#ifdef RT_DEBUG
 	g_rt_root = rt;
-	#endif
+#endif
 	*rt = (t_rt){ .global_lock = (pthread_mutex_t)PTHREAD_MUTEX_INITIALIZER,
 		.flags = RT_VISUALPREV,
 		.state = 0, .error = 0,
@@ -34,7 +40,7 @@ int			rt_init_main(t_rt *rt)
 			.render_size = (t_v2ui){RT_DEFAULT_RSIZE_X, RT_DEFAULT_RSIZE_Y},
 			.render_px = NULL},
 		.debug = (struct s_debugger){
-			.flags = RT_DBGF_MSG, // | RT_DBGF_RET | RT_DBGF_RETCP,
+			.flags = RT_DBGF_MSG,
 			.mask = RT_DBGM_GLOBALE,
 			.codepoint = 0, .cpline = 0, .cpname = NULL, .cpfile = NULL,
 			.cpfunc = NULL}
