@@ -1,0 +1,26 @@
+SCENE: scene
+	diffuse: data/textures/skybox_space.jpg
+
+SUNLIGHT: sun
+	rotation: 90 0 90
+
+CAMERA: cam
+	rotation: -90 0 0
+	position: 0 -10 0
+
+SPHERE: LAPIN
+	diffuse: data/textures/lapin.jpg
+	position: 0 0 0
+	rotation: 0 0 -45
+
+SPHERE: prisme
+	position: 0 -5 0
+	color: #22ffffff
+	refraction: 1.1
+
+SPHERE: sphere
+	position: 0 -8 0
+	color: #33ff0000
+	refraction: 1.3
+
+
