@@ -22,8 +22,6 @@
 */
 void	draw_rect(mglwin *img, t_layer_rect *rect);
 
-void	draw_border(mglwin *img, t_layer_border *rect);
-
 void	draw_checkbox(mglwin *img, t_layer_checkbox *rect);
 
 void	draw_loadbar(mglwin *img, t_layer_loadbar *loadbar);
