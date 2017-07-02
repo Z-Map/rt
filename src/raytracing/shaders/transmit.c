@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/11 22:01:25 by qloubier          #+#    #+#             */
-/*   Updated: 2017/07/02 09:24:00 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/02 13:06:01 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ t_rtrd			shadow_transmit(t_rtrd rdata, t_rayd *rayd, t_ui num)
 	if (a >= 1.0f)
 		return (rdata);
 	if (num < RDR_GEOSTACK)
-	{
 		trd = shadowshade(rdata, rayd->geostack[num + 1], rayd, num + 1);
-	}
 	else
 		trd.frag.color = nv4f(1.0f);
 	col = *(t_v3f *)&(trd.frag.color);
@@ -73,19 +71,4 @@ t_rtrd			rdr_transmit(t_rtrd rdata, t_rayd *rayd, t_ui num)
 		v3fmulv3f(col, nv3f(1.0f - alpha)));
 	rdata.frag.color.w = 1.0f;
 	return (rdata);
-}
-
-t_v3f			calc_refraction(t_rtrgd gd, float ref)
-{
-	float		n;
-	float		c1;
-	float		c2;
-	float		coef;
-
-	n = 1.0f / ref;
-	c1 = v3fdotv3f(gd.hit_nor, gd.ray.direction);
-	c2 = sqrtf(1.0f - (n*n) * (1.0f - (c1 * c1)));
-	coef = (c1 > 0.0) ? -1.0f : 1.0f;
-	return (v3faddv3f(v3fmulv3f(nv3f(n), gd.ray.direction),
-			v3fmulv3f(nv3f((n * c1) + (c2 * coef)), gd.hit_nor)));
 }

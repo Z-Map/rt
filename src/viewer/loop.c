@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 16:20:36 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/30 14:44:16 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/02 14:59:02 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,15 @@ void				draw_all(t_rtnode *ui, mglwin *win)
 		draw_all(tmp->childs, win);
 }
 
+/*
+** draw_all(rt->viewer.ui, rt->viewer.win);
+*/
+
 int					viewer_loop(t_rt *rt)
 {
 	((t_layer_root *)(rt->viewer.ui->content))->gen.show = 1;
 	update_ui_root_dim(rt);
 	update_ui(rt->viewer.ui);
-	// draw_all(rt->viewer.ui, rt->viewer.win);
+	draw_all(rt->viewer.ui, rt->viewer.win);
 	return (0);
 }

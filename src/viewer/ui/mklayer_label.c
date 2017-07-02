@@ -6,7 +6,7 @@
 /*   By: alhelson <alhelson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/27 12:07:29 by alhelson          #+#    #+#             */
-/*   Updated: 2017/07/01 14:57:58 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/02 11:49:54 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ t_layer_label			*mklayer_label(t_v2f pos, t_v2f dim, t_v4i color,\
 	label->gen.placement = placement;
 	label->gen.show = 1;
 	label->gen.event = 0;
-	label->police = mgl_ttf_to_charatlas("lib/mglw/font.ttf", NULL, 0);
-	label->data = mgl_cstrtomglstr(label->police, "coucou", 0.2, 0.35);
+	label->police = NULL;
+	label->data = NULL; // mgl_cstrtomglstr(label->police, "coucou", 0.2, 0.35);
 	return (label);
 }
 

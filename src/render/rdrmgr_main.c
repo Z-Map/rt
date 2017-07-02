@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/23 01:42:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/30 12:05:29 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/02 14:25:23 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void		*rdrmgr_exit(t_rt *rt, t_rtrmgr *rmgr)
 	rt_state(rt, RTS_RDRMGR_INIT, RT_UNSET);
 	if (rmgr->rpx)
 		free(rmgr->rpx);
+	if (rmgr->rendertree)
+		rmrtree((t_rtree **)&(rmgr->rendertree));
 	return (NULL);
 }
 

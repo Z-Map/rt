@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 19:06:35 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/30 14:41:55 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/07/02 13:46:11 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int			rt_init_scenerdr(t_rt *rt)
 	rt_state(rt, RTS_INIT, RT_SET);
 	RT_DBGM("Start tree parsing.");
 	RT_DBGM(rt->scene);
-	rt->tree = parse_scene(rt->scene);
+	if (!(rt->tree = parse_scene(rt->scene)))
+		return (rt_error(-118, "Parsing fail."));
 	RT_DBGM("Tree parsed.");
 	print_tree(rt->tree);
 	rt_init_rdrmgrthread(rt);
@@ -31,9 +32,10 @@ int			rt_init_scenerdr(t_rt *rt)
 int			rt_init_mglw(t_rt *rt)
 {
 	if (!mglw_init())
-		return (rt_error(121, "Unable to init mglw."));
-	rt->viewer.rdrtarget = mglw_mkimage((int)rt->render.render_size.x,
-		(int)rt->render.render_size.y, MGLW_RGBA, MGLWI_USERALLOC);
+		return (rt_error(-121, "Unable to init mglw."));
+	if (!(rt->viewer.rdrtarget = mglw_mkimage((int)rt->render.render_size.x,
+		(int)rt->render.render_size.y, MGLW_RGBA, MGLWI_USERALLOC)))
+		return (rt_error(-122, "Render image allocation fail."));
 	rt_state(rt, RTS_MGLW_INIT, RT_SET);
 	if ((rt->flags & RT_VISUALPREV) ||
 		!(rt->flags & (RT_FILEOUT | RT_COMMANDMODE)))

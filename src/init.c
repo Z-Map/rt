@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 21:51:11 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/11 23:24:18 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/02 14:48:05 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int			rt_init_main(t_rt *rt)
 		.scene = "data/scenes/default.sda",
 		.fileout = NULL,
 		.viewer = (t_rtview){ .keys = 0, .layer_event_focus = NULL,
-			.win = NULL, .wins = NULL, .layer = NULL },
+			.win = NULL, .wins = NULL, .layer = NULL, .font = NULL},
 		.render = (t_rtr) { .flags = 0, .target = NULL,
 			.target_size = (t_v2ui){RT_DEFAULT_RSIZE_X, RT_DEFAULT_RSIZE_Y},
 			.render_size = (t_v2ui){RT_DEFAULT_RSIZE_X, RT_DEFAULT_RSIZE_Y},
@@ -39,8 +39,6 @@ int			rt_init_main(t_rt *rt)
 			.codepoint = 0, .cpline = 0, .cpname = NULL, .cpfile = NULL,
 			.cpfunc = NULL}
 	};
-	rt->viewer.ui = init_ui(rt, (t_v2i){RT_DEFAULT_RSIZE_X, RT_DEFAULT_RSIZE_Y});
-	update_ui(rt->viewer.ui);
 	ft_bzero(rt->errors, sizeof(rt->errors));
 	rt_error(0, (const char *)rt);
 	RT_DBGM("RT started.");

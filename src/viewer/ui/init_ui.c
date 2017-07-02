@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_ui.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhelson <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alhelson <alhelson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/20 17:41:46 by alhelson          #+#    #+#             */
-/*   Updated: 2017/06/20 20:01:15 by alhelson         ###   ########.fr       */
+/*   Updated: 2017/07/02 15:00:05 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ t_rtnode				*init_ui(t_rt *rt, t_v2i dim)
 {
 	t_rtnode			*node;
 	t_layer_root		*root;
-	t_v4i				color[2];
+	t_v4i				color[3];
 
-	color[0] = (t_v4i){255, 0, 255, 100};
-	color[1] = (t_v4i){255, 255, 0, 100};
+	color[0] = (t_v4i){121,28,28,255};
+	color[1] = (t_v4i){98,98,98,98};
 	if (!(root = mklayer_root(dim)))
 		return (0);
 	node = mknode((t_rtobi *)(root));

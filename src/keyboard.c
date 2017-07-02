@@ -26,7 +26,6 @@ int			rt_keypress(void *env, int k)
 		event_ui(rt);
 		return (0);
 	}
-	// desactivation du variator : fail
 	else if (k == MGLW_MOUSE_BUTTON_3)
 	{
 		event_noclick_variator(rt);

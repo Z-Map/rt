@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rmnode.c                                           :+:      :+:    :+:   */
+/*   lerp.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alhelson <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/10 17:24:29 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/07/02 14:51:00 by qloubier         ###   ########.fr       */
+/*   Created: 2017/06/18 20:53:45 by alhelson          #+#    #+#             */
+/*   Updated: 2017/06/18 20:53:47 by alhelson         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "rt_tree.h"
-
-int			rmnode(t_rtnode **node)
+float	lerp(float factor, float v1, float v2)
 {
-	if (!node || !*node)
-		return (0);
-	free(*node);
-	*node = NULL;
-	return (1);
+	return (factor * v2 + (1 - factor) * v1);
 }
