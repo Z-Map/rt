@@ -21,8 +21,8 @@ t_rtnode				*init_ui(t_rt *rt, t_v2i dim)
 	t_layer_root		*root;
 	t_v4i				color[3];
 
-	color[0] = (t_v4i){121,28,28,255};
-	color[1] = (t_v4i){98,98,98,98};
+	color[0] = (t_v4i){121, 28, 28, 255};
+	color[1] = (t_v4i){98, 98, 98, 98};
 	if (!(root = mklayer_root(dim)))
 		return (0);
 	node = mknode((t_rtobi *)(root));

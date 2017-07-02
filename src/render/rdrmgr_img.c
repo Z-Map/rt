@@ -18,7 +18,6 @@ static t_v4f		calc_pixel(t_ui x, t_ui y, t_rtrmgr *rmgr)
 {
 	t_rtrd			rd;
 	t_rayd			rayd;
-	// t_v3f			col;
 
 	rayd.ray = rdr_pxray(x, y, rmgr,
 		(t_rtrnode *)(rmgr->rendertree->tree.camera));
@@ -27,7 +26,6 @@ static t_v4f		calc_pixel(t_ui x, t_ui y, t_rtrmgr *rmgr)
 	rayd.transmission = 6;
 	rayd.reflecion = 4;
 	rd = raytrace(&rayd);
-	// col = v3faddv3f(v3fmulv3f(rd.geo.hit_tangent.y, nv3f(0.5f)), nv3f(0.5f));
 	return (rd.frag.color);
 }
 

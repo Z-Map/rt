@@ -29,8 +29,6 @@ t_v3f		shadow_test(t_rtrgd geo, t_rtrld l, t_rdrtree *tree)
 	rayd.reflecion = 0;
 	l.color = rgbatov3f(l.ob->pointlight.color);
 	rdata = shadowtrace(&rayd, l);
-	// rdata.frag.color.w = 1.0;
 	pwr = nv3f(rdata.frag.color.w * l.pwr);
 	return (*pv3fmulv3f((t_v3f *)&rdata.frag.color, pwr));
-	// return (nv3f(l.pwr));
 }

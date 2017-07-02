@@ -22,7 +22,8 @@ int				rt_init_window(t_rt *rt)
 	viewer_clearlayer(rt);
 	if (!(rt->viewer.font = mgl_ttf_to_charatlas("font.ttf", NULL, 0)))
 		return (rt_error(240, "Font loading failed."));
-	rt->viewer.ui = init_ui(rt, (t_v2i){RT_DEFAULT_RSIZE_X, RT_DEFAULT_RSIZE_Y});
+	rt->viewer.ui =
+		init_ui(rt, (t_v2i){RT_DEFAULT_RSIZE_X, RT_DEFAULT_RSIZE_Y});
 	update_ui(rt->viewer.ui);
 	pthread_mutex_unlock(&(rt->viewer.refresh_lock));
 	RT_DBGM("Viewer window started.");

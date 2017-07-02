@@ -98,7 +98,7 @@ t_v3f			calc_refraction(t_rtrgd gd, float ref)
 
 	n = 1.0f / ref;
 	c1 = v3fdotv3f(gd.hit_nor, gd.ray.direction);
-	c2 = sqrtf(1.0f - (n*n) * (1.0f - (c1 * c1)));
+	c2 = sqrtf(1.0f - (n * n) * (1.0f - (c1 * c1)));
 	coef = (c1 > 0.0) ? -1.0f : 1.0f;
 	return (v3faddv3f(v3fmulv3f(nv3f(n), gd.ray.direction),
 			v3fmulv3f(nv3f((n * c1) + (c2 * coef)), gd.hit_nor)));

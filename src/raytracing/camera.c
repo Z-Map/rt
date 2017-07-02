@@ -26,7 +26,6 @@ t_rtray		rdr_pxray(t_ui x, t_ui y, t_rtrmgr *rmgr, t_rtrnode *camnode)
 	ray.start = camnode->transform.offset;
 	ray.direction = camnode->transform.z;
 	pv3fmulv3f(&ray.direction, nv3f(-cos(fov / 2)));
-	// fov = sinf(fov);
 	pv3faddv3f(&ray.direction, v3fmulv3f(camnode->transform.x,
 		nv3f((((float)x / (float)(rmgr->rsize.x))) - 0.5f)));
 	fov = (double)(rmgr->rsize.y) / (double)(rmgr->rsize.x);
