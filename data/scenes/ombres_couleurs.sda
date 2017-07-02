@@ -1,0 +1,55 @@
+SCENE: scene
+	color: #000000
+
+CAMERA: cam
+	pos: 0 -5 0
+	rot: -90 0 0
+
+SPOT: spot
+	pos: 3 -3.5 1
+	rot: -90 50 0
+	angle : 180
+
+SPOT: spot
+	pos: 3 -3 1
+	rot: -90 45 0
+	angle : 180
+
+SPOT: spot
+	pos: 3 -2.5 1
+	rot: -90 40 0
+	angle : 180
+
+PLAN:
+	color: #ffffff
+	pos: 0 0 -1
+
+SPHERE: sphere2
+	color: #33ffff00;
+	pos: 1 -1 0
+	radius: 0.3
+
+SPHERE: sphere
+	color: #33ff0000;
+	pos: 1 0 0
+	radius: 0.3
+
+SPHERE: sphere2
+	color: #3300ff00;
+	pos: 1 -1.5 0
+	radius: 0.3
+
+SPHERE: sphere2
+	color: #330000ff;
+	pos: 1 -2 0
+	radius: 0.3
+
+SPHERE: sphere3
+	color: #33ff7700;
+	pos: 1 -0.5 0
+	radius: 0.3
+
+SPHERE: sphere2
+	color: #33ff00ff;
+	pos: 1 -2.5 0
+	radius: 0.3
