@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 15:07:27 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/22 16:09:52 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/02 13:29:17 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ struct					s_rt_viewer
 	mglwin				**wins;
 	mglimg				*layer;
 	mglimg				*rdrtarget;
+	mglca				*font;
 	t_rtnode			*ui;
 	t_rtnode			*layer_event_focus;
 	t_rtnode			*layer_main_loadbar;

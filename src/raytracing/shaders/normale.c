@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/17 18:31:50 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/19 18:18:21 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/07/02 11:40:49 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 #include "mathex/vector.h"
 #include "rt_render.h"
 #include "rt_tools.h"
-
-/*
-** nor.x *= -1.0f;
-*/
 
 t_v3f		shade_normale(t_rtrd *rdata, t_rtmat *mat)
 {

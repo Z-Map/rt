@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 19:56:27 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/12 01:11:33 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/02 13:08:50 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,30 @@ t_rtray			ray_trans(t_rtray ray, t_mattf m)
 	return (ray);
 }
 
-t_rtray			ray_bounceto(t_rtrgd geo, t_v3f dir)
+t_rtray			ray_bounceto(t_rtrgd gd, t_v3f dir)
 {
 	t_rtray		ray;
 
 	ray.direction = dir;
-	ray.start = *(t_v3f *)(&geo.hit_point);
+	ray.start = gd.hit_point;
 	ray.start = v3faddv3f(ray.start, v3fmulv3f(ray.direction, nv3f(MARGIN)));
 	return (ray);
 }
 
-t_rtray			ray_transmit(t_rtrgd geo, t_v3f dir)
+t_rtray			ray_transmit(t_rtrgd gd, t_v3f dir)
 {
 	t_rtray		ray;
 
 	ray.direction = dir;
-	ray.start = *(t_v3f *)(&geo.hit_point);
-	ray.start = v3faddv3f(ray.start, v3fmulv3f(geo.ray.direction,
+	ray.start = gd.hit_point;
+	ray.start = v3faddv3f(ray.start, v3fmulv3f(gd.ray.direction,
 		nv3f(MARGIN)));
 	return (ray);
+}
+
+t_v3f			calc_reflexion(t_rtrgd gd)
+{
+	gd.ray.direction = v3fsubv3f(gd.ray.direction, v3fmulv3f(
+		nv3f(2.0f * v3fdotv3f(gd.hit_nor, gd.ray.direction)), gd.hit_nor));
+	return (gd.ray.direction);
 }

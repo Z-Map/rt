@@ -6,10 +6,11 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 18:56:47 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/19 17:43:22 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/07/02 13:13:33 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
 #include "mathex/utils.h"
 #include "rt_tools.h"
 #include "rt_render.h"
@@ -86,4 +87,19 @@ t_v2f		geo_uv(t_rtrd *rd)
 	else if (type & CYLINDER)
 		uv = getuv_cylinder(rd->lgeo);
 	return (uv);
+}
+
+t_v3f			calc_refraction(t_rtrgd gd, float ref)
+{
+	float		n;
+	float		c1;
+	float		c2;
+	float		coef;
+
+	n = 1.0f / ref;
+	c1 = v3fdotv3f(gd.hit_nor, gd.ray.direction);
+	c2 = sqrtf(1.0f - (n*n) * (1.0f - (c1 * c1)));
+	coef = (c1 > 0.0) ? -1.0f : 1.0f;
+	return (v3faddv3f(v3fmulv3f(nv3f(n), gd.ray.direction),
+			v3fmulv3f(nv3f((n * c1) + (c2 * coef)), gd.hit_nor)));
 }
