@@ -1,0 +1,60 @@
+SCENE: scene
+	diffuse: data/textures/skybox_space.jpg
+
+CAMERA: cam
+	pos: 0 -6 0
+	rot: -90 0 0
+
+SUNLIGHT: sun
+	rot: 90 0 0
+
+PLAN: panneau
+	lim.x: -5 5
+	lim.y: -5 5
+	rot: -90 0 180
+	pos: 0 2 0
+	diffuse: data/textures/LIIIINK.jpg
+	diffuse.scale: 0.1 0.1
+	diffuse.offset: 5 5
+
+SPHERE: sphere
+	color: #55ffff00;
+	refraction: 1.1
+	pos: -2 0 -1
+	radius: 0.4
+
+SPHERE: sphere2
+	color: #55ff7700;
+	refraction: 1.2
+	pos: -1 0 -1
+	radius: 0.4
+
+SPHERE: sphere3
+	color: #55ff0000;
+	refraction: 1.3
+	pos: 0 0 -1
+	radius: 0.4
+
+SPHERE: sphere4
+	color: #5500ff00;
+	refraction: 1.4
+	pos: 1 0 -1
+	radius: 0.4
+
+SPHERE: sphere5
+	color: #550000ff;
+	refraction: 1.5
+	pos: 2 0 -1
+	radius: 0.4
+
+SPHERE: sphere6
+	color: #55ff00ff;
+	refraction: 1.6
+	pos: 3 0 -1
+	radius: 0.4
+
+SPHERE: sphere7
+	color: #55ffffff;
+	refraction: 1.0
+	pos: -3 0 -1
+	radius: 0.4
