@@ -42,8 +42,7 @@ int			rdrmgr_sync(t_rt *rt, t_rtrmgr *rmgr)
 		rmgr->rsize = rt->render.target_size;
 		ft_memdel((void **)&(rmgr->rpx));
 	}
-	if ((!rmgr->rpx) &&
-		!(rmgr->rpx = malloc(rmgr->rsize.x * rmgr->rsize.y * sizeof(t_v4f))))
+	if (!rmgr->rpx && !(rmgr->rpx = malloc(rmgr->rsize.x * rmgr->rsize.y * 16)))
 		rt->render.flags |= RTRMK_CANCEL;
 	else
 	{
@@ -95,10 +94,9 @@ void		*rt_rdrmgr_main(void *arg)
 	{
 		if (!rdrmgr_sync(rt, &rmgr))
 			break ;
-/* Modifications (Eddy) à vérifier */
 		if (rdr_start_workers(rt, &rmgr) < RTRMGR_FINISHED)
 			continue ;
-		// filter_apply(&rmgr);
+		filter_apply(&rmgr);
 		rdrmgr_done(rt, &rmgr);
 	}
 	pthread_exit(rdrmgr_exit(rt, &rmgr));
