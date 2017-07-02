@@ -1,0 +1,51 @@
+SCENE: scene
+	color: #000000
+
+CAMERA: cam
+	pos: 0 -10 2
+	rot: -90  0
+
+SPOT: spot
+	pos: 5 -10 5
+	rot: -70 0 0
+	angle: 180
+
+SPOT: spot
+	pos: -5 -10 5
+	rot: -70 0 0
+	angle: 180
+
+SPHERE: sphere
+	color: #ff0000
+	pos: -4 0 0
+
+SPHERE: sphere
+	color: #00ffff
+	pos: 4 0 0
+
+CONE: cone
+	color: #ffff00
+	pos: 2 0 0
+	rot: 0 45 0
+	angle : 0.5
+
+CYLINDER: cylinder
+	color: #00ff00
+	pos: -2 0 0
+	rot: 0 -45 0
+
+CUBE: cube
+	color: #ff00ff
+	pos: 0 0 -0.25
+	lim.x: -0.75 0.75
+	lim.y: -0.75 0.75
+	lim.z: -0.75 0.75
+
+PLAN: plan1
+	color: #777777
+	pos: 0 0 -1
+
+PLAN: plan2
+	color: #0000ee
+	pos: 0 2 0
+	rot: -90 0 0
