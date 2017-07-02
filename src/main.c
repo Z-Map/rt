@@ -6,25 +6,13 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:28:23 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/15 18:52:32 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/03 00:50:47 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "rt.h"
 #include <stdio.h>
-
-/*
-** int main()
-** {
-**	t_rtnode *node;
-**
-**	node = init_ui((t_v2i){100, 100});
-**	update_ui(node);
-**	//printf("--> %d | %d\n", node->flags, node->childs->flags);
-**	return (1);
-**}
-*/
 
 int			main(int argc, char **argv)
 {

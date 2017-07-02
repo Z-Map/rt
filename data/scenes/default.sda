@@ -2,6 +2,8 @@ SCENE: sky
 	color: #32d4de
 	diffuse: data/textures/skybox_space.jpg
 	diffuse.offset: 0.25
+	ambient_light: #1b1b1b
+	filter: #579032
 
 CAMERA: cam1
 	rotation: -90		0		0
@@ -62,12 +64,13 @@ CONE: conayou
 PLAN: ground
 	lim.x: -50 50
 	lim.y: -50 50
-	rot : 0 5 0
+	rot : 0 0 0
 	#color:		#7edff5
 	diffuse:	data/textures/grassflower.jpg
 	normal:		data/textures/velour_normal.jpg
 	normal.scale: 0.3 0.3
 	position:	0	0		-2
+	specular: 0.0
 
 POINTLIGHT: point
 	color: #ff5972

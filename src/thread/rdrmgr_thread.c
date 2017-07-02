@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/23 01:42:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/18 18:10:44 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/03 00:56:20 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int			rdrmgr_render_request(t_rt *rt, t_rtree *tree)
 	rt->render.flags |= RTRMK_CANCEL | RTRMK_REFRESH;
 	rt->render.target = tree;
 	pthread_mutex_unlock(&(rt->render.refresh_lock));
-	RT_DBGM("Render requested.");
 	return (1);
 }
 
@@ -48,7 +47,6 @@ static void	rt_sync_rdrdone(t_rt *rt)
 		img->pixels = (t_uc *)(rt->render.render_px);
 		rt->render.render_px = NULL;
 		rt->flags |= RTF_RDRDISP;
-		RT_DBGM("Request viewer refresh.");
 		rt->viewer.keys |= RTWK_REFRESH;
 		pthread_mutex_unlock(&(rt->viewer.refresh_lock));
 	}

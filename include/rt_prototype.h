@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/07/03 00:20:30 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/03 00:57:13 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,23 +120,6 @@
 # define RTNF_RTREE					0x11u
 # define RTNF_RNODE					0x12u
 
-/*
-** Debug
-*/
-
-# define RT_DBGF_ALLCP				0x1ul
-# define RT_DBGF_DISPKEY			0x2ul
-# define RT_DBGF_STATECHANGE		0x4ul
-# define RT_DBGF_MSG				0x8ul
-# define RT_DBGF_INFO				0x10ul
-# define RT_DBGF_RET				0x20ul
-# define RT_DBGF_ALLRET				0x40ul
-# define RT_DBGF_RETCP				0x80ul
-
-# define RT_DBGM_GLOBALE			0x1ul
-# define RT_DBGM_RENDER				0x2ul
-# define RT_DBGM_WORKER				0x4ul
-# define RT_DBGM_PARSER				0x8ul
 
 typedef struct s_rt_root				t_rt;
 typedef struct s_rt_viewer				t_rtview;

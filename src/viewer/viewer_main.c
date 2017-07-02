@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 14:51:55 by qloubier          #+#    #+#             */
-/*   Updated: 2017/07/02 18:29:26 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/03 00:56:32 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int				rt_init_window(t_rt *rt)
 		init_ui(rt, (t_v2i){RT_DEFAULT_RSIZE_X, RT_DEFAULT_RSIZE_Y});
 	update_ui(rt->viewer.ui);
 	pthread_mutex_unlock(&(rt->viewer.refresh_lock));
-	RT_DBGM("Viewer window started.");
 	return (0);
 }
 
@@ -65,7 +64,6 @@ void			*viewer_exit(t_rt *rt, int code)
 	rt_state(rt, RTS_VPREV, RT_UNSET);
 	pthread_mutex_unlock(&(rt->viewer.refresh_lock));
 	viewer_run(rt, &(rt->viewer));
-	RT_DBGM("Viewer window stoped.");
 	return (NULL);
 }
 

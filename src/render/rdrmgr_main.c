@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/23 01:42:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/07/03 00:22:05 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/03 00:55:49 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int			rdrmgr_isrendering(t_rt *rt, t_rtrmgr *rmgr)
 
 void		*rdrmgr_exit(t_rt *rt, t_rtrmgr *rmgr)
 {
-	RT_DBGM("Render manager stoped.");
 	rt_state(rt, RTS_RDRMGR_INIT, RT_UNSET);
 	if (rmgr->rpx)
 		free(rmgr->rpx);
@@ -89,7 +88,6 @@ void		*rt_rdrmgr_main(void *arg)
 	rmgr.rdrstate = RTRMGR_FINISHED;
 	rmgr.rendertree = NULL;
 	rt_state(rt, RTS_RDRMGR_INIT, RT_SET);
-	RT_DBGM("Render manager started.");
 	while (rdrmgr_isrendering(rt, &rmgr))
 	{
 		if (!rdrmgr_sync(rt, &rmgr))

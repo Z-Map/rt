@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 19:06:35 by qloubier          #+#    #+#             */
-/*   Updated: 2017/07/02 13:46:11 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/03 00:50:11 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,9 @@
 int			rt_init_scenerdr(t_rt *rt)
 {
 	rt_state(rt, RTS_INIT, RT_SET);
-	RT_DBGM("Start tree parsing.");
-	RT_DBGM(rt->scene);
 	if (!(rt->tree = parse_scene(rt->scene)))
 		return (rt_error(-118, "Parsing fail."));
-	RT_DBGM("Tree parsed.");
-	print_tree(rt->tree);
 	rt_init_rdrmgrthread(rt);
-	RT_DBGM("Render inited.");
 	return (1);
 }
 
@@ -40,7 +35,6 @@ int			rt_init_mglw(t_rt *rt)
 	if ((rt->flags & RT_VISUALPREV) ||
 		!(rt->flags & (RT_FILEOUT | RT_COMMANDMODE)))
 		rt_init_viewerthread(rt);
-	RT_DBGM("MGLW inited.");
 	return (1);
 }
 

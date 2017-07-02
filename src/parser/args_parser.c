@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 17:52:09 by qloubier          #+#    #+#             */
-/*   Updated: 2017/05/25 16:25:57 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/03 00:58:43 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int				rt_parse_args(t_rt *rt, int ac, char **av)
 	ft_setarg(&arglst, 'v', "visual", &arg_visualprev);
 	ft_setarg(&arglst, 'm', "modes", &arg_modes);
 	argret = ft_parsearg(arglst, ac, av, rt);
-	RT_DBGR(argret->argp, 0, "Arg parsed");
 	ac = argret->ac;
 	av = argret->av;
 	if (ac)
