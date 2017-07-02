@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree_tabfromtype.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/30 22:15:56 by ealbert           #+#    #+#             */
-/*   Updated: 2017/06/28 17:56:49 by alhelson         ###   ########.fr       */
+/*   Created: 2017/07/03 01:00:01 by lcarreel          #+#    #+#             */
+/*   Updated: 2017/07/03 01:00:16 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,36 +53,3 @@ t_rtnode		**node_tabfromtype(t_rtree *tree, t_rtobt type, size_t *len)
 	}
 	return (tab);
 }
-
-/*
-** int			get_visible(t_tree *tree, t_rntree *rntree, int (*f)(void *env))
-** {
-** 	J'arrive pas à coder om
-** }
-**
-** int			get_light(t_tree *tree, t_rntree *rntree, int (*f)(void *env))
-** {
-**
-** }
-**
-** t_rmgrtree	*make_render_tree(t_rtree *tree)
-** {
-** 	t_rntree	*rntree;
-** 	int			(*vis)(void *);
-** 	int			(*lgt)(void *);
-**
-** 	if (!tree || !(rntree = (t_rntree *)malloc(sizeof(t_rntree))))
-** 		return (NULL);
-** 	vis = &rt_is_visible;
-** 	lgt = &rt_is_light;
-** 	get_visible(tree, rntree, vis);
-** 	get_light(tree, rntree, lgt);
-** 	if (!(rntree->ldepth) || !(rntree->vdepth))
-** 	{
-** 		if (rntree)
-** 			free(rntree);
-** 		return (NULL);
-** 	}
-** 	return (rntree);
-** }
-*/
