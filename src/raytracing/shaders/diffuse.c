@@ -21,7 +21,7 @@ t_rtrfd		shade_diffuse(t_rtrd *rdata, t_rtmat *mat)
 	t_rtrfd	frag;
 	t_v2f	uv;
 
-	frag = (t_rtrfd){nv4f(1.0f), (t_v3f){0.0f,0.0f,1.0f}, 0.0f};
+	frag = (t_rtrfd){nv4f(1.0f), (t_v3f){0.0f, 0.0f, 1.0f}, 0.0f};
 	frag.color = rgbatov4f(mat->color1);
 	if (mat->diffuse.flags & TEX_VALID)
 	{

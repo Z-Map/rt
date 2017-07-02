@@ -121,5 +121,5 @@ int				bound_lraycast(t_rtray *r, t_mat3x2f b, t_rtrgd *gd)
 		gd[1].flags |= RAY_GLOCAL;
 	else
 		gd[1].flags = flags[1];
-	return(ret);
+	return (ret);
 }

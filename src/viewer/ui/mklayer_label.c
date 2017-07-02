@@ -18,6 +18,7 @@
 /*
 ** bouger la function update_ui
 */
+
 t_layer_label			*mklayer_label(t_v2f pos, t_v2f dim, t_v4i color,\
 	int placement)
 {
