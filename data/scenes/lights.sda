@@ -1,0 +1,71 @@
+SCENE: scene
+	diffuse: data/textures/skybox_space.jpg
+
+CAMERA: cam
+	pos: 0 -4 -1
+	rot: -100 0 0
+
+PLAN: sol
+	pos: 0 0 -1.5
+	diffuse: data/textures/grassflower.jpg
+
+CUBE: tree
+	rot: 47 42 50
+	bound.x: -0.5 0.5
+	bound.y: -0.6 0.9
+	bound.z: -0.4 0.7
+	diffuse: data/textures/grass.jpg
+
+CYLINDER: tronc
+	radius: 0.1
+	lim.z: -1 1
+	pos: 0 0 -1
+	color: #883344
+
+SPHERE: sphere
+	color: #55ffff00;
+	pos: -0.3 -0.2 0.7
+	radius: 0.15
+	POINTLIGHT: lights1
+
+SPHERE: sphere2
+	color: #55ff7700;
+	pos: 0.7 0.7 -0.5
+	radius: 0.2
+	POINTLIGHT: lights2
+		intensity: 0.5
+
+SPHERE: sphere3
+	color: #55ff0000;
+	pos: -0.7 0.4 0.2
+	radius: 0.15
+	POINTLIGHT: lights3
+		intensity: 2
+
+SPHERE: sphere4
+	color: #5500ff00;
+	pos: 0.3 -0.9 0
+	radius: 0.2
+	POINTLIGHT: lights4
+		intensity: 1.5
+
+SPHERE: sphere5
+	color: #550000ff;
+	pos: -0.2 0 -0.7
+	radius: 0.25
+	POINTLIGHT: lights5
+		intensity: 1.5
+
+SPHERE: sphere6
+	color: #55ff00ff;
+	pos: 0.6 0 0.5
+	radius: 0.15
+	POINTLIGHT: lights6
+		intensity: 0.5
+
+SPHERE: sphere7
+	color: #55ffffff;
+	pos: 0 0 1
+	radius: 0.1
+	POINTLIGHT: lights7
+		intensity: 0.5
