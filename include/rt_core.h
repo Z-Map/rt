@@ -24,7 +24,8 @@
 extern t_rt	*g_rt_root;
 #  define RT_DBGI __LINE__, __FILE__, __func__
 #  define RT_DBGP(code, name) rtd_point(g_rt_root, code, name, RT_DBGI)
-#  define RT_DBGR(rcode, code, msg) rtd_ret(g_rt_root, rcode, code, msg, RT_DBGI)
+#  define RT_DBGR(rcode, code, msg) \
+	rtd_ret(g_rt_root, rcode, code, msg, RT_DBGI)
 #  define RT_DBGM(msg) rtd_msg(g_rt_root, RT_DBGM_GLOBALE, msg, RT_DBGI)
 #  define RT_DBGMC(mask, msg) rtd_msg(g_rt_root, mask, msg, RT_DBGI)
 # else
