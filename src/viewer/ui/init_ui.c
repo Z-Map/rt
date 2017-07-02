@@ -6,7 +6,7 @@
 /*   By: alhelson <alhelson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/20 17:41:46 by alhelson          #+#    #+#             */
-/*   Updated: 2017/07/02 15:00:05 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/02 18:18:03 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_rtnode				*init_ui(t_rt *rt, t_v2i dim)
 	node->flags = get_id_ui_node();
 	node->parent = node;
 	if (!(rt->viewer.layer_main_loadbar = tree_addchild(node,\
-	mknlayer_loadbar((t_v2f){0.0, 0.0}, (t_v2f){1.0, 0.15666},\
+	mknlayer_loadbar((t_v2f){0.0, 0.0}, (t_v2f){1.0, 0.02},\
 	color, PL_BOTTOM))))
 		return (0);
 	return (node);

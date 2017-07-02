@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mklayer_loadbar.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhelson <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alhelson <alhelson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/23 13:55:35 by alhelson          #+#    #+#             */
-/*   Updated: 2017/06/23 13:56:03 by alhelson         ###   ########.fr       */
+/*   Updated: 2017/07/02 18:10:09 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_layer_loadbar		*mklayer_loadbar(t_v2f pos, t_v2f dim, t_v4i color[3],\
 	load->gen[2].placement = placement;
 	load->gen[2].show = 1;
 	load->gen[2].event = 0;
-	load->load = 0.2;
+	load->load = 0.0;
 	return (load);
 }
 

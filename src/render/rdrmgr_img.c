@@ -6,7 +6,7 @@
 /*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 15:56:32 by ealbert           #+#    #+#             */
-/*   Updated: 2017/06/30 12:03:52 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/02 17:48:06 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,16 @@ int					render_worker(t_ui px, t_ui step, t_rt *rt, t_rtrmgr *rmgr)
 	const size_t	mlen = rmgr->rsize.x * rmgr->rsize.y;
 	int				get;
 	t_ui			i;
+	t_ui			n;
 
+	n = px;
 	while ((px < mlen)
 		&& ((get = rdrmgr_isrendering(rt, rmgr)) > RTRMGR_FINISHED))
 	{
 		i = px / rmgr->rsize.x;
 		rmgr->rpx[px] = calc_pixel(px % rmgr->rsize.x, i, rmgr);
 		px += step;
+		rt->render.advance[n] = (float)px / (float)mlen;
 	}
 	if (get > RTRMGR_FINISHED)
 		get = RTRMGR_FINISHED;

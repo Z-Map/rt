@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghubert <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ghubert <ghubert@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/29 16:29:22 by ghubert           #+#    #+#             */
-/*   Updated: 2017/06/29 18:58:37 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/07/03 00:29:19 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void		filter_apply(t_rtrmgr *rmgr)
 	unsigned int	pos;
 	t_v4f			color;
 
+	rmgr->filter.color =
+		((t_rtobd *)rmgr->rendertree->tree.scene)->scene.filter;
 	color = rgbatov4f(rmgr->filter.color);
 	y = 0;
 	while (y < rmgr->rsize.y)

@@ -6,7 +6,7 @@
 /*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 18:05:08 by lcarreel          #+#    #+#             */
-/*   Updated: 2017/06/27 19:53:49 by alhelson         ###   ########.fr       */
+/*   Updated: 2017/07/03 00:35:36 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static int	tp_parse(const char *name, size_t len, t_val *val, void *mem)
 	size_t	i;
 	size_t	l;
 
+	return (0);
 	i = TEXPROC_NUM;
 	while (i--)
 	{

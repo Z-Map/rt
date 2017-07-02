@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/23 01:42:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/07/02 14:25:23 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/03 00:22:05 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ void		*rt_rdrmgr_main(void *arg)
 
 	rmgr.filter.color.r = 0;
 	rmgr.filter.color.g = 0;
-	rmgr.filter.color.b = 255;
-	rmgr.filter.color.a = 255;
+	rmgr.filter.color.b = 0;
+	rmgr.filter.color.a = 0;
 	rt = (t_rt *)arg;
 	rmgr.rpx = NULL;
 	rmgr.rdrstate = RTRMGR_FINISHED;
@@ -96,7 +96,8 @@ void		*rt_rdrmgr_main(void *arg)
 			break ;
 		if (rdr_start_workers(rt, &rmgr) < RTRMGR_FINISHED)
 			continue ;
-		filter_apply(&rmgr);
+		if (rt->flags & RTF_FILTER)
+			filter_apply(&rmgr);
 		rdrmgr_done(rt, &rmgr);
 	}
 	pthread_exit(rdrmgr_exit(rt, &rmgr));

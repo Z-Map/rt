@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/07 01:31:45 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/17 16:20:19 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/07/03 00:34:21 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "rt_prototype.h"
 # include "data/rt_data_texture.h"
 
-# define TEXPROC_NUM			6
+# define TEXPROC_NUM			0
 
 t_blst		*rtex_singletone_texlst(void);
 t_blst		*rtex_singletone_texilst(void);

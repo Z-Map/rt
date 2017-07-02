@@ -52,9 +52,9 @@ G_objects = (
 		"property" : (
 			ObT("sky", "t_rtmat"),
 			ObT("ambient_light", "t_rgba"),
+			ObT("filter", "t_rgba"),
 			ObT("maxray.transmission", "ui"),
-			ObT("maxray.reflection", "ui"),
-			ObT("maxray.shadow", "ui")
+			ObT("maxray.reflection", "ui")
 		)
 	},
 	{

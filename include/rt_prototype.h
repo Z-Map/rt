@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 05:31:18 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/30 11:15:51 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/03 00:20:30 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 # define RTF_RDRAUTO				0x2000ul
 # define RTF_RDRREFRESH				0x4000ul
 # define RTF_CLEARLAYER				0x8000ul
+# define RTF_FILTER					0x10000ul
 
 # define RTR_CG						0x100ul
 
