@@ -2,7 +2,7 @@ SCENE: scene
 	color: #000000
 
 CAMERA: cam
-	pos: 0 -16 2
+	pos: 0 -16 1
 	rot: -90 0 0
 
 SPOT: spot
@@ -31,10 +31,11 @@ SPHERE: cristal
 	pos: 0 -7 0
 	radius: 0.5
 
-CUBE: test
-
 PLAN: plafond
 	pos: 0 0 4
+	rot: 180 0 0
+	diffuse: data/textures/brickwall.jpg
+	diffuse.scale: 0.3 0.3
 
 PLAN: sol
 	pos: 0 0 -2
