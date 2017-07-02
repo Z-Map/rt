@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 15:04:58 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/30 12:15:48 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/02 10:15:30 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,29 @@
 
 static void		trans_dim(t_mat3x2f *b, t_mattf *mat, t_v3f v)
 {
-	v = (t_v3f){(mat->x.x * v.x) + (mat->y.x * v.y) + (mat->z.x * v.z),
-		(mat->x.y * v.x) + (mat->y.y * v.y) + (mat->z.y * v.z),
-		(mat->x.z * v.x) + (mat->y.z * v.y) + (mat->z.z * v.z)};
-	b->x.x = mxminf(v.x, b->x.x);
-	b->y.x = mxminf(v.y, b->y.x);
-	b->z.x = mxminf(v.z, b->z.x);
-	b->x.y = mxmaxf(v.x, b->x.y);
-	b->y.y = mxmaxf(v.y, b->y.y);
-	b->z.y = mxmaxf(v.z, b->z.y);
+	t_v3f nv;
+
+	if ((v.x == INFINITY) || (v.x == -INFINITY))
+		nv = (t_v3f){(mat->x.x != 0.0) ? v.x : 0.0f,
+			(mat->x.y != 0.0) ? v.x : 0.0f, (mat->x.z != 0.0f) ? v.x : 0.0f};
+	else
+		nv = v3fmulv3f(mat->x, nv3f(v.x));
+	if ((v.y == INFINITY) || (v.y == -INFINITY))
+		nv = (t_v3f){(mat->y.x != 0.0) ? v.y : nv.x,
+			(mat->y.y != 0.0) ? v.y : nv.y, (mat->y.z != 0.0f) ? v.y : nv.z};
+	else
+		pv3faddv3f(&nv, v3fmulv3f(mat->y, nv3f(v.y)));
+	if ((v.z == INFINITY) || (v.z == -INFINITY))
+		nv = (t_v3f){(mat->z.x != 0.0) ? v.z : nv.x,
+			(mat->z.y != 0.0) ? v.z : nv.y, (mat->z.z != 0.0f) ? v.z : nv.z};
+	else
+		pv3faddv3f(&nv, v3fmulv3f(mat->z, nv3f(v.z)));
+	b->x.x = mxminf(nv.x, b->x.x);
+	b->y.x = mxminf(nv.y, b->y.x);
+	b->z.x = mxminf(nv.z, b->z.x);
+	b->x.y = mxmaxf(nv.x, b->x.y);
+	b->y.y = mxmaxf(nv.y, b->y.y);
+	b->z.y = mxmaxf(nv.z, b->z.y);
 }
 
 t_mat3x2f		bound_transform(t_mat3x2f b, t_mattf m)

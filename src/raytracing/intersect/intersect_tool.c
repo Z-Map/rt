@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/26 16:11:06 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/29 21:07:20 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/02 00:48:24 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_rtrgd		geo_getglobal(t_rtrgd gd, t_rtray r)
 
 	if (!(gd.flags & RAY_GVALID))
 		return (gd);
+	gd.ray = r;
 	if (gd.flags & RAY_GLOCAL)
 	{
 		m = gd.node->transform;

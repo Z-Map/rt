@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data_ui.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alhelson <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: alhelson <alhelson@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/20 16:54:21 by alhelson          #+#    #+#             */
-/*   Updated: 2017/06/27 18:11:07 by alhelson         ###   ########.fr       */
+/*   Updated: 2017/07/01 14:58:09 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ struct			s_layer_label
 	t_v2f		pos;
 	t_v2f		dim;
 	t_v4f		color;
-	mglca		police;
+	mglca		*police;
 	mglstr		*data;
 	char		*label;
 };
