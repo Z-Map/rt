@@ -45,11 +45,14 @@ void				draw_all(t_rtnode *ui, mglwin *win)
 		draw_all(tmp->childs, win);
 }
 
+/*
+** draw_all(rt->viewer.ui, rt->viewer.win);
+*/
+
 int					viewer_loop(t_rt *rt)
 {
 	((t_layer_root *)(rt->viewer.ui->content))->gen.show = 1;
 	update_ui_root_dim(rt);
 	update_ui(rt->viewer.ui);
-	// draw_all(rt->viewer.ui, rt->viewer.win);
 	return (0);
 }
