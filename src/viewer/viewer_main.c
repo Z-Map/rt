@@ -60,6 +60,7 @@ void			*viewer_exit(t_rt *rt, int code)
 	rt->viewer.keys |= RTWK_STOP | RTWK_REFRESH;
 	if (rt->viewer.font)
 		mgl_delcharatlas(&(rt->viewer.font));
+	delui(rt->viewer.ui);
 	rt_state(rt, RTS_VPREV, RT_UNSET);
 	pthread_mutex_unlock(&(rt->viewer.refresh_lock));
 	viewer_run(rt, &(rt->viewer));
