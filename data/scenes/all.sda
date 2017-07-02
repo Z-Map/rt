@@ -7,7 +7,7 @@ CAMERA: cam
 
 SPOT: spot
 	pos: 0 -10 5
-	rot: -60 0 0
+	rot: -70 0 0
 
 SPHERE: sphere
 	color: #ff0000
@@ -25,3 +25,8 @@ CYLINDER: cylinder
 PLAN: plan1
 	color: #777777
 	pos: 0 0 -1
+
+PLAN: plan2
+	color: #0000ee
+	pos: 0 2 0
+	rot: -90 0 0
