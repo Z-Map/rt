@@ -49,15 +49,6 @@ static int		noise_3v(int x, int y, int z)
 }
 
 /*
-** linear interpolation = a*h + (1-a)*l
-*/
-
-static float	lerp(float factor, float v1, float v2)
-{
-	return (factor * v2 + (1 - factor) * v1);
-}
-
-/*
 ** trilinear interpolation
 */
 

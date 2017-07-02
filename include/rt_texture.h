@@ -47,4 +47,6 @@ float		rtex_proc_stripy(t_v3f vec);
 float		rtex_proc_stripz(t_v3f vec);
 float		rtex_proc_chess(t_v3f vec);
 
+float		lerp(float factor, float v1, float v2);
+
 #endif
