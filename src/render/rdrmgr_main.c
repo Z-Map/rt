@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/23 01:42:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/07/02 14:25:23 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/03 00:55:49 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ int			rdrmgr_sync(t_rt *rt, t_rtrmgr *rmgr)
 		rmgr->rsize = rt->render.target_size;
 		ft_memdel((void **)&(rmgr->rpx));
 	}
-	if ((!rmgr->rpx) &&
-		!(rmgr->rpx = malloc(rmgr->rsize.x * rmgr->rsize.y * sizeof(t_v4f))))
+	if (!rmgr->rpx && !(rmgr->rpx = malloc(rmgr->rsize.x * rmgr->rsize.y * 16)))
 		rt->render.flags |= RTRMK_CANCEL;
 	else
 	{
@@ -67,7 +66,6 @@ int			rdrmgr_isrendering(t_rt *rt, t_rtrmgr *rmgr)
 
 void		*rdrmgr_exit(t_rt *rt, t_rtrmgr *rmgr)
 {
-	RT_DBGM("Render manager stoped.");
 	rt_state(rt, RTS_RDRMGR_INIT, RT_UNSET);
 	if (rmgr->rpx)
 		free(rmgr->rpx);
@@ -83,22 +81,21 @@ void		*rt_rdrmgr_main(void *arg)
 
 	rmgr.filter.color.r = 0;
 	rmgr.filter.color.g = 0;
-	rmgr.filter.color.b = 255;
-	rmgr.filter.color.a = 255;
+	rmgr.filter.color.b = 0;
+	rmgr.filter.color.a = 0;
 	rt = (t_rt *)arg;
 	rmgr.rpx = NULL;
 	rmgr.rdrstate = RTRMGR_FINISHED;
 	rmgr.rendertree = NULL;
 	rt_state(rt, RTS_RDRMGR_INIT, RT_SET);
-	RT_DBGM("Render manager started.");
 	while (rdrmgr_isrendering(rt, &rmgr))
 	{
 		if (!rdrmgr_sync(rt, &rmgr))
 			break ;
-/* Modifications (Eddy) à vérifier */
 		if (rdr_start_workers(rt, &rmgr) < RTRMGR_FINISHED)
 			continue ;
-		// filter_apply(&rmgr);
+		if (rt->flags & RTF_FILTER)
+			filter_apply(&rmgr);
 		rdrmgr_done(rt, &rmgr);
 	}
 	pthread_exit(rdrmgr_exit(rt, &rmgr));

@@ -33,7 +33,7 @@ t_layer_label			*mklayer_label(t_v2f pos, t_v2f dim, t_v4i color,\
 	label->gen.show = 1;
 	label->gen.event = 0;
 	label->police = NULL;
-	label->data = NULL; // mgl_cstrtomglstr(label->police, "coucou", 0.2, 0.35);
+	label->data = NULL;
 	return (label);
 }
 

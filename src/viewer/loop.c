@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 16:20:36 by qloubier          #+#    #+#             */
-/*   Updated: 2017/07/02 14:59:02 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/02 18:20:21 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "data/rt_data_viewer.h"
 #include "rt_ui_display.h"
 #include "data/rt_data_tree.h"
+#include "rt_render.h"
 #include <stdio.h>
 
 void				draw_f(t_rtnode *ui, mglwin *win)
@@ -51,8 +52,25 @@ void				draw_all(t_rtnode *ui, mglwin *win)
 
 int					viewer_loop(t_rt *rt)
 {
+	t_layer_loadbar	*load;
+	int				i;
+	float			adv;
+
 	((t_layer_root *)(rt->viewer.ui->content))->gen.show = 1;
 	update_ui_root_dim(rt);
+	load = (t_layer_loadbar *)(rt->viewer.layer_main_loadbar->content);
+	if (rt_state(rt, RTS_RENDER, RT_GET))
+	{
+		adv = 0.0f;
+		i = RDR_MAXWORKER;
+		while (i--)
+			adv += rt->render.advance[i];
+		adv /= (float)RDR_MAXWORKER;
+		load->load = adv;
+		rt->viewer.keys |= RTWK_REFRESH;
+	}
+	else
+		((t_layer_root *)(rt->viewer.ui->content))->gen.show = 0;
 	update_ui(rt->viewer.ui);
 	draw_all(rt->viewer.ui, rt->viewer.win);
 	return (0);

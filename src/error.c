@@ -6,26 +6,12 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 18:15:50 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/27 19:09:51 by alhelson         ###   ########.fr       */
+/*   Updated: 2017/07/03 00:50:12 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "rt.h"
-
-/*
-** static void	error_push(t_rt *rt)
-** {
-** 	int		*errors;
-** 	int		tmp;
-** 	int		i;
-**
-** 	i = 14
-** 	errors = rt->errors;
-** 	while (i-- && *errors)
-** 		errors[]
-** }
-*/
 
 int				rt_error(int code, const char *msg)
 {

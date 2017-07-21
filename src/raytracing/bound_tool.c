@@ -33,7 +33,7 @@ int					bound_isvalid(t_mat3x2f b)
 	return (1);
 }
 
-t_mat3x2f	bound_union(t_mat3x2f a, t_mat3x2f b)
+t_mat3x2f			bound_union(t_mat3x2f a, t_mat3x2f b)
 {
 	a.x.x = mxminf(a.x.x, b.x.x);
 	a.y.x = mxminf(a.y.x, b.y.x);
@@ -44,7 +44,7 @@ t_mat3x2f	bound_union(t_mat3x2f a, t_mat3x2f b)
 	return (a);
 }
 
-t_mat3x2f	bound_intersect(t_mat3x2f a, t_mat3x2f b)
+t_mat3x2f			bound_intersect(t_mat3x2f a, t_mat3x2f b)
 {
 	a.x.x = mxmaxf(a.x.x, b.x.x);
 	a.y.x = mxmaxf(a.y.x, b.y.x);

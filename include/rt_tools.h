@@ -36,7 +36,6 @@ t_rtray			ray_transmit(t_rtrgd gd, t_v3f dir);
 t_v3f			calc_reflexion(t_rtrgd gd);
 t_v3f			calc_refraction(t_rtrgd gd, float ref);
 
-
 int				intersect_depth(t_rtrgd *gd, t_rtray r, t_v2f d);
 int				geo_setdepth(t_rtrgd *gd, int dim, float depth);
 void			geo_gnor(t_rtrd *rdata);

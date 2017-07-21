@@ -32,7 +32,6 @@ struct					s_rt_object_instance
 	t_rtobj				*obj;
 };
 
-
 struct					s_rt_object_index
 {
 	const char			*name;
@@ -46,7 +45,6 @@ struct					s_rt_object_index
 	int					(*tagentspace)(t_rtobd *, t_rtrd *);
 	t_mat3x2f			(*bounds)(t_rtobd *, t_mat3x2f);
 };
-
 
 static const t_val		g_vtab_inst[8] =
 {

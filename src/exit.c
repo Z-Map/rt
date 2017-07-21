@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 18:16:17 by qloubier          #+#    #+#             */
-/*   Updated: 2017/07/02 14:53:02 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/03 00:50:13 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@
 static void	clean_viewer(t_rt *rt)
 {
 	rt_sync_viewerthread(rt);
-	ft_printf("font : %p\n", rt->viewer.font);
-	if (rt->viewer.font)
-	{
-		ft_printf("gu !!\n");
-		mgl_delcharatlas(&(rt->viewer.font));
-	}
 }
 
 int			rt_quit(t_rt *rt)

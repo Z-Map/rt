@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/11 17:08:51 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/29 16:23:05 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/07/03 00:48:19 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,6 @@
 
 # include "rt_prototype.h"
 # include "data/rt_data_core.h"
-
-# ifdef RT_DEBUG
-
-extern t_rt	*g_rt_root;
-#  define RT_DBGI __LINE__, __FILE__, __func__
-#  define RT_DBGP(code, name) rtd_point(g_rt_root, code, name, RT_DBGI)
-#  define RT_DBGR(rcode, code, msg) rtd_ret(g_rt_root, rcode, code, msg, RT_DBGI)
-#  define RT_DBGM(msg) rtd_msg(g_rt_root, RT_DBGM_GLOBALE, msg, RT_DBGI)
-#  define RT_DBGMC(mask, msg) rtd_msg(g_rt_root, mask, msg, RT_DBGI)
-# else
-#  define RT_DBGP(code, name) code
-#  define RT_DBGR(rcode, code, msg) rcode
-#  define RT_DBGM(msg) 0
-#  define RT_DBGMC(mask, msg) 0
-# endif
 
 int			rt_main(t_rt *rt);
 

@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 15:03:08 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/30 11:02:56 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/02 22:36:40 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 # include "rt_prototype.h"
 
+# define RDR_MAXWORKER 8
 # define RDR_GEOSTACK 16
 
 struct					s_rt_render_ray
@@ -63,6 +64,8 @@ struct					s_rt_light_data
 	float				depth;
 	t_v3f				color;
 	float				pwr;
+	t_v3f				i;
+	float				spec;
 	t_rtrnode			*nod;
 };
 
@@ -123,6 +126,7 @@ struct					s_rt_render
 	t_rtree				*target;
 	t_v2ui				render_size;
 	t_v4f				*render_px;
+	float				advance[RDR_MAXWORKER];
 };
 
 #endif

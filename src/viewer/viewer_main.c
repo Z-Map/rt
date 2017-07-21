@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/12 14:51:55 by qloubier          #+#    #+#             */
-/*   Updated: 2017/07/02 14:57:04 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/03 00:56:32 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int				rt_init_window(t_rt *rt)
 	viewer_clearlayer(rt);
 	if (!(rt->viewer.font = mgl_ttf_to_charatlas("font.ttf", NULL, 0)))
 		return (rt_error(240, "Font loading failed."));
-	rt->viewer.ui = init_ui(rt, (t_v2i){RT_DEFAULT_RSIZE_X, RT_DEFAULT_RSIZE_Y});
+	rt->viewer.ui =
+		init_ui(rt, (t_v2i){RT_DEFAULT_RSIZE_X, RT_DEFAULT_RSIZE_Y});
 	update_ui(rt->viewer.ui);
 	pthread_mutex_unlock(&(rt->viewer.refresh_lock));
-	RT_DBGM("Viewer window started.");
 	return (0);
 }
 
@@ -39,16 +39,17 @@ int				viewer_run(t_rt *rt, t_rtview *v)
 	if (rt->flags & RTF_CLEARLAYER)
 		viewer_clearlayer(rt);
 	v->keys &= ~RTWK_REFRESH;
-	pthread_mutex_unlock(&(v->refresh_lock));
 	if ((v->keys & RTWK_STOP) || !rt_isrunning(rt))
 	{
 		mglw_setGLContext(NULL);
+		pthread_mutex_unlock(&(v->refresh_lock));
 		return (0);
 	}
 	mglw_setGLContext(v->win);
 	mglwin_clear(v->win);
 	if (rt->flags & RTF_RDRDISP)
 		mglw_draw_itow(v->win, v->rdrtarget, 0, 0);
+	pthread_mutex_unlock(&(v->refresh_lock));
 	return (1);
 }
 
@@ -59,10 +60,10 @@ void			*viewer_exit(t_rt *rt, int code)
 	rt->viewer.keys |= RTWK_STOP | RTWK_REFRESH;
 	if (rt->viewer.font)
 		mgl_delcharatlas(&(rt->viewer.font));
+	delui(rt->viewer.ui);
 	rt_state(rt, RTS_VPREV, RT_UNSET);
 	pthread_mutex_unlock(&(rt->viewer.refresh_lock));
 	viewer_run(rt, &(rt->viewer));
-	RT_DBGM("Viewer window stoped.");
 	return (NULL);
 }
 

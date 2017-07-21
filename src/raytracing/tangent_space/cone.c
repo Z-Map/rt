@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/06/13 09:12:23 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/17 18:13:50 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/02 23:57:04 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int			getnor_cone(t_rtobd *ob, t_rtrd *rdata)
 	rdata->lgeo.hit_nor = v3faddv3f(v3fdivv3f(normalized3f((t_v3f){hitp.x,
 		hitp.y, 0.0}), nv3f(cosf(a))), (t_v3f){0.0f, 0.0f,
 		((hitp.z < 0.0f) ? 1.0f : -1.0f) * sinf(a)});
+	normalize3f(&(rdata->lgeo.hit_nor));
 	rdata->lgeo.flags |= RAY_GHNOR;
 	return (1);
 }

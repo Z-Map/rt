@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rdrmgr_img.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ealbert <ealbert@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lcarreel <lcarreel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/08 15:56:32 by ealbert           #+#    #+#             */
-/*   Updated: 2017/06/30 12:03:52 by qloubier         ###   ########.fr       */
+/*   Created: 2017/07/03 00:59:04 by lcarreel          #+#    #+#             */
+/*   Updated: 2017/07/03 00:59:17 by lcarreel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static t_v4f		calc_pixel(t_ui x, t_ui y, t_rtrmgr *rmgr)
 {
 	t_rtrd			rd;
 	t_rayd			rayd;
-	// t_v3f			col;
 
 	rayd.ray = rdr_pxray(x, y, rmgr,
 		(t_rtrnode *)(rmgr->rendertree->tree.camera));
@@ -27,7 +26,6 @@ static t_v4f		calc_pixel(t_ui x, t_ui y, t_rtrmgr *rmgr)
 	rayd.transmission = 6;
 	rayd.reflecion = 4;
 	rd = raytrace(&rayd);
-	// col = v3faddv3f(v3fmulv3f(rd.geo.hit_tangent.y, nv3f(0.5f)), nv3f(0.5f));
 	return (rd.frag.color);
 }
 
@@ -36,13 +34,16 @@ int					render_worker(t_ui px, t_ui step, t_rt *rt, t_rtrmgr *rmgr)
 	const size_t	mlen = rmgr->rsize.x * rmgr->rsize.y;
 	int				get;
 	t_ui			i;
+	t_ui			n;
 
+	n = px;
 	while ((px < mlen)
 		&& ((get = rdrmgr_isrendering(rt, rmgr)) > RTRMGR_FINISHED))
 	{
 		i = px / rmgr->rsize.x;
 		rmgr->rpx[px] = calc_pixel(px % rmgr->rsize.x, i, rmgr);
 		px += step;
+		rt->render.advance[n] = (float)px / (float)mlen;
 	}
 	if (get > RTRMGR_FINISHED)
 		get = RTRMGR_FINISHED;

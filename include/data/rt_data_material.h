@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 16:52:02 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/19 15:36:09 by lcarreel         ###   ########.fr       */
+/*   Updated: 2017/07/03 00:18:38 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ struct					s_rt_material
 	t_rtexi				diffuse;
 	t_rtexi				normal;
 	t_rtexi				reflective;
+	float				spec;
+	int					padding;
 };
 
-static const t_val		g_vtab_rtmat[13] = {
+static const t_val		g_vtab_rtmat[14] = {
 	{VT_COLOR, 8, 0, 0, "color", (t_elm *)(t_ul)&g_el_col},
 	{VT_COLOR, 12, 1, 0, "color2", (t_elm *)(t_ul)&g_el_col},
 	{VT_FLOAT, 16, 2, 0, "reflectivity", (t_elm *)(t_ul)&g_el_float},
@@ -49,9 +51,10 @@ static const t_val		g_vtab_rtmat[13] = {
 	{VT_FLOAT, 88, 10, 0, "normal.offset", (t_elm *)(t_ul)&g_el_vec2f},
 	{VF_ELEMENT, 96, 6, 0, "reflective", (t_elm *)(t_ul)&g_el_texi},
 	{VT_FLOAT, 112, 11, 0, "reflective.scale", (t_elm *)(t_ul)&g_el_vec2f},
-	{VT_FLOAT, 120, 12, 0, "reflective.offset", (t_elm *)(t_ul)&g_el_vec2f}};
+	{VT_FLOAT, 120, 12, 0, "reflective.offset", (t_elm *)(t_ul)&g_el_vec2f},
+	{VT_FLOAT, 128, 13, 0, "specular", (t_elm *)(t_ul)&g_el_float}};
 
 static const t_elm		g_el_mat = {"mat", sizeof(t_rtmat),
-	12, 13, (t_val *)(t_ul)g_vtab_rtmat, NULL, NULL, NULL, NULL};
+	13, 14, (t_val *)(t_ul)g_vtab_rtmat, NULL, NULL, NULL, NULL};
 
 #endif

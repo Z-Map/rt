@@ -6,7 +6,7 @@
 /*   By: qloubier <qloubier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 20:51:21 by qloubier          #+#    #+#             */
-/*   Updated: 2017/06/20 14:57:16 by qloubier         ###   ########.fr       */
+/*   Updated: 2017/07/03 00:58:29 by qloubier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,12 @@ t_rtobj				*mkobject(t_rtobt type, const char *name)
 	static t_vmem	*vm;
 	t_rtobj			*newob;
 
-	RT_DBGP(-5, "object vm creation");
 	if (!vm)
 		vm = ft_vmemnew((sizeof(t_rtobj) + sizeof(t_vmps)) * RTOBJ_MEMBUF_SIZE);
-	RT_DBGP(obj_type_memsize(type), "object validation");
 	if (!(type & VALID) || !(newob =
 		(t_rtobj *)ft_vmemalloc(vm, (short)obj_type_memsize(type))))
 		return (NULL);
-	RT_DBGP(-5, "object init");
 	init_obj(newob, type, name);
-	RT_DBGP(1, "object created");
 	return (newob);
 }
 
@@ -69,15 +65,12 @@ t_rtobi				*mkinstance(t_rtobj *object, char *name)
 	static t_vmem	*vm;
 	t_rtobi			*newinst;
 
-	RT_DBGP(-5, "instance vm creation");
 	if (!vm)
 		vm = ft_vmemnew((sizeof(t_rtobi) + sizeof(t_vmps)) * RTOBI_MEMBUF_SIZE);
 	if (!object || !(newinst =
 		(t_rtobi *)ft_vmemalloc(vm, (short)sizeof(t_rtobi))))
 		return (NULL);
-	RT_DBGP(-5, "instance init");
 	obinst_default(newinst, object, name);
-	RT_DBGP(1, "instance created");
 	object->instances += 1;
 	return (newinst);
 }
